@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Casa Mondego | Bolos Feitos à Mão - Em Construção</title>
-  <meta name="description" content="Bolos secos artesanais, feitos à mão todos os dias. Sabores tradicionais: laranja, limão siciliano, cenoura, chocolate e mesclado. Bom Retiro, Curitiba."/>
+  <meta name="description" content="Bolos secos artesanais, feitos à mão todos os dias. Sabores tradicionais: laranja, limão, cenoura, chocolate e mesclado. Bom Retiro, Curitiba."/>
   
-  <!-- Google Fonts: Courgette para logo/títulos + Montserrat para textos -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   
   <style>
     :root {
-      --dourado: #D4AF37;        /* Dourado do logo */
+      --dourado: #D4AF37;
       --bege-claro: #F8F1E9;
       --marrom-escuro: #4A2C0B;
       --cinza-texto: #5D5D5D;
@@ -39,11 +39,6 @@
       position: sticky;
       top: 0;
       z-index: 100;
-    }
-
-    .logo img {
-      max-width: 280px;
-      height: auto;
     }
 
     .aviso-construcao {
@@ -137,6 +132,7 @@
       box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     }
 
+    /* Botão WhatsApp flutuante - versão clean */
     .whatsapp-float {
       position: fixed;
       bottom: 25px;
@@ -147,18 +143,22 @@
       background: #25D366;
       color: white;
       border-radius: 50%;
-      text-align: center;
-      font-size: 40px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
       display: flex;
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      transition: transform 0.3s;
+      transition: all 0.3s ease;
     }
 
     .whatsapp-float:hover {
-      transform: scale(1.1);
+      transform: scale(1.12);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .whatsapp-float svg {
+      width: 42px;
+      height: 42px;
     }
 
     footer {
@@ -172,7 +172,8 @@
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.8rem; }
       h2 { font-size: 2.4rem; }
-      .whatsapp-float { width: 60px; height: 60px; font-size: 35px; bottom: 15px; right: 15px; }
+      .whatsapp-float { width: 60px; height: 60px; bottom: 20px; right: 20px; }
+      .whatsapp-float svg { width: 36px; height: 36px; }
     }
   </style>
 </head>
@@ -184,10 +185,7 @@
   </div>
 
   <header>
-    <div class="logo">
-      <!-- Coloque aqui o seu logo real (SVG ou PNG transparente) -->
-      <img src="https://via.placeholder.com/280x120/FFD700/4A2C0B?text=Casa+Mondego+Logo" alt="Casa Mondego - Feito à Mão">
-    </div>
+    <!-- Logo removido temporariamente conforme solicitado -->
   </header>
 
   <section class="hero">
@@ -206,8 +204,8 @@
       </div>
 
       <div class="sabor-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/5332f1b6e4b00ce9525b2a65/1402949069602-T5F95PQO8H4SS9HHIADP/image-asset.jpeg" alt="Bolo seco de limão siciliano">
-        <h3>Limão Siciliano</h3>
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWVztZ0o_8sg_kktamlW7ab6afcUgxtKwhGgJXGF6xsakqlQvZQM-XTuqAbaED8hoBEhfBGxVNZ3lvMjFdF45YSqb97AL-hZtrYgZyoL62PPUQXWSmtfrKBF7j1DZ0uv4peT0mDRMC-vU/s400/bololaranjavo1.jpg" alt="Bolo seco de limão">
+        <h3>Limão</h3>
       </div>
 
       <div class="sabor-card">
@@ -250,9 +248,11 @@
     </div>
   </section>
 
-  <!-- Botão WhatsApp Flutuante -->
+  <!-- Botão WhatsApp Flutuante - ícone clean -->
   <a href="https://wa.me/5541991755009?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20bolos%20da%20Casa%20Mondego!" class="whatsapp-float" target="_blank">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="#fff"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.852-.299.071-.677.107-1.082.079-.37-.025-.795-.151-1.388-.328-.541-.162-1.068-.324-1.534-.324-.637 0-1.142.128-1.564.378-.418.25-.68.579-.81.929-.131.35-.066.812.148 1.321.215.51.648 1.004 1.298 1.378.564.323 1.257.521 2.104.521.837 0 1.863-.227 2.534-.438.662-.209 1.25-.478 1.617-.774.364-.294.637-.644.796-.998.158-.355.22-.793.164-1.274-.058-.484-.308-.979-.824-1.325z"/></svg>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path fill="currentColor" d="M12.004 2c-5.523 0-10 4.477-10 10 0 1.989.58 3.843 1.58 5.396L2 22l4.604-1.58C8.157 21.42 10.015 22 12.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm4.996 14.82c-.197.557-.973.999-1.368 1.04-.367.038-.832.082-1.334.096-.502-.014-1.082-.228-1.711-.395-.667-.195-1.317-.389-1.893-.389-.785 0-1.409.154-1.929.454-.514.3-.838.713-.998 1.146-.16.433-.081 1.002.182 1.629.264.629.799 1.239 1.601 1.702.696.399 1.55.643 2.596.643 1.032 0 2.3-.279 3.128-.54.817-.258 1.543-.589 1.995-.955.45-.363.786-.794.982-1.232.195-.438.271-.98.202-1.573-.072-.596-.38-1.209-1.017-1.636z"/>
+    </svg>
   </a>
 
   <footer>
