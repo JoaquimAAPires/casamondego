@@ -1,123 +1,109 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Casa Mondego – Em Construção</title>
+<title>Casa Mondego – Bolos Caseiros em Curitiba</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-
 body {
+  margin:0;
   font-family: 'Montserrat', sans-serif;
-  background:#000;
-  color:#fff;
+  background:#fffaf5;
+  color:#4b2e1e;
 }
-
-.hero {
-  position:relative;
-  min-height:100vh;
-  background:url('https://images.unsplash.com/photo-1601972599720-bc02b37e8d61?auto=format&fit=crop&w=1600&q=80'),
-             url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=80');
-  background-size:50% 100%, 50% 100%;
-  background-position:left, right;
-  background-repeat:no-repeat;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+header {
+  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+  url('https://images.unsplash.com/photo-1541976076758-347942db1974?auto=format&fit=crop&w=1500&q=80');
+  background-size:cover;
+  padding:90px 20px;
   text-align:center;
-  padding:20px;
+  color:white;
 }
-
-.overlay {
-  background:rgba(0,0,0,0.65);
-  padding:60px 40px;
+header h1 {
+  font-family:'Playfair Display', serif;
+  font-size:48px;
+}
+section {
+  padding:40px 20px;
+  max-width:1100px;
+  margin:auto;
+  text-align:center;
+}
+.construction {
+  background:#f3e3d3;
+  padding:25px;
+  border-radius:10px;
+  margin-bottom:40px;
+}
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+.gallery img {
+  width:100%;
   border-radius:12px;
-  max-width:600px;
-  width:100%;
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
 }
-
-.logo {
-  width:140px;
-  height:140px;
-  border-radius:50%;
-  background:#f5f0e6;
-  color:#6f1d1b;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:'Playfair Display', serif;
-  font-size:22px;
-  margin:0 auto 20px;
-}
-
-h1 {
-  font-family:'Playfair Display', serif;
-  font-size:40px;
-  margin-bottom:15px;
-}
-
-p {
-  font-size:17px;
-  line-height:1.6;
-  margin-bottom:30px;
-}
-
-.btn {
-  background:#6ee7c7;
-  color:#063;
-  padding:16px 28px;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:600;
-  font-size:18px;
-  display:inline-block;
-}
-
 footer {
-  position:absolute;
-  bottom:20px;
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  padding:0 40px;
-  font-size:13px;
-  color:#ddd;
+  background:#4b2e1e;
+  color:white;
+  padding:20px;
+  text-align:center;
 }
-
-@media(max-width:768px){
-  .hero{
-    background-size:100% 50%, 100% 50%;
-    background-position:top, bottom;
-  }
-  footer{
-    flex-direction:column;
-    text-align:center;
-    gap:10px;
-  }
+.btn {
+  background:#c1793c;
+  color:white;
+  padding:14px 26px;
+  border-radius:30px;
+  text-decoration:none;
+  display:inline-block;
+  margin-top:20px;
+}
+.social a{
+  margin:0 10px;
+  color:#4b2e1e;
+  font-weight:600;
+  text-decoration:none;
 }
 </style>
 </head>
 
 <body>
-<div class="hero">
-  <div class="overlay">
-    <div class="logo">CASA<br>MONDEGO</div>
-    <h1>Estamos em construção!</h1>
-    <p>
-      Estamos preparando nossa loja online para receber você.<br>
-      Em breve, muitas novidades deliciosas!
-    </p>
-    <a class="btn" href="https://wa.me/55SEUNUMEROAQUI" target="_blank">
-      Fale com a gente no WhatsApp
-    </a>
+
+<header>
+  <h1>Casa Mondego</h1>
+  <p>Bolos caseiros feitos com carinho em Curitiba</p>
+</header>
+
+<section>
+  <div class="construction">
+    <h2>🚧 Estamos em construção!</h2>
+    <p>Em breve nosso cardápio digital estará disponível aqui.</p>
+    <p>Enquanto isso, fale com a gente pelo WhatsApp ou redes sociais.</p>
+    <a class="btn" href="https://wa.me/5541991755009" target="_blank">Falar no WhatsApp</a>
   </div>
 
-  <footer>
-    <div>© Casa Mondego – Todos os direitos reservados</div>
-    <div>Siga no Instagram @casamondego</div>
-  </footer>
-</div>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1605478031142-1e1b18fbe7c6?auto=format&fit=crop&w=800&q=80">
+    <img src="https://images.unsplash.com/photo-1603079843181-9c10bb7c0b0b?auto=format&fit=crop&w=800&q=80">
+    <img src="https://images.unsplash.com/photo-1589308078059-9186c0c23a78?auto=format&fit=crop&w=800&q=80">
+    <img src="https://images.unsplash.com/photo-1614707267537-1c52fdf7f8b2?auto=format&fit=crop&w=800&q=80">
+  </div>
+
+  <div class="social">
+    <p>
+      <a href="https://www.instagram.com/casa.mondego/" target="_blank">@casa.mondego</a> |
+      <a href="https://www.facebook.com/share/181w77kYzK/" target="_blank">Facebook</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>Casa Mondego – Bom Retiro, Curitiba</p>
+  <p>© 2026 – Todos os direitos reservados</p>
+</footer>
+
 </body>
 </html>
