@@ -1,49 +1,116 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Casa Mondego – Bolos Artesanais</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body{margin:0;font-family:Arial;background:#000;color:#fff}
-header{border-bottom:2px solid #d4af37;padding:40px 20px;text-align:center}
-header h1{color:#d4af37;letter-spacing:4px;font-size:38px;margin:0}
-section{padding:40px 20px;max-width:1000px;margin:auto;text-align:center}
-.btn{display:inline-block;margin-top:25px;padding:14px 28px;background:#d4af37;color:#000;text-decoration:none;font-weight:bold;border-radius:6px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:35px}
-.grid img{width:100%;border:2px solid #d4af37;border-radius:8px}
-footer{border-top:2px solid #d4af37;text-align:center;padding:20px;font-size:13px;color:#ccc}
-a{color:#d4af37;text-decoration:none}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa Mondego - Bolos Secos</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #fff8f0;
+      color: #333;
+    }
+    header {
+      background: #d2691e;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    header img {
+      max-height: 100px;
+      margin-bottom: 10px;
+    }
+    nav {
+      background: #333;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      text-align: center;
+      padding: 20px;
+    }
+    .hero img {
+      max-width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    main {
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .bolo-card {
+      background: #f9f2ec;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 8px;
+      width: 280px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .bolo-card h3 {
+      color: #d2691e;
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    footer a {
+      color: #ffd700;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <img src="logo.jpeg" alt="Logo Casa Mondego">
+    <h1>Casa Mondego</h1>
+    <p>Feito à mão. Bolos como os de antigamente.</p>
+  </header>
 
-<header>
-  <h1>CASA MONDEGO</h1>
-  <p>Bolos artesanais feitos diariamente</p>
-</header>
+  <nav>
+    <a href="#">Início</a>
+    <a href="#">Nossos Bolos</a>
+    <a href="#">Contato</a>
+  </nav>
 
-<section>
-  <h2>🚧 Estamos em construção</h2>
-  <p>Nosso cardápio digital está sendo preparado.</p>
-  <a class="btn" href="https://wa.me/5541991755009" target="_blank">Falar no WhatsApp</a>
+  <section class="hero">
+    <img src="placa.jpeg" alt="Placa Casa Mondego">
+  </section>
 
-  <div class="grid">
-    <img src="https://images.unsplash.com/photo-1605478031142-1e1b18fbe7c6?auto=format&fit=crop&w=800&q=80">
-    <img src="https://images.unsplash.com/photo-1589308078059-9186c0c23a78?auto=format&fit=crop&w=800&q=80">
-    <img src="https://images.unsplash.com/photo-1541976076758-347942db1974?auto=format&fit=crop&w=800&q=80">
-    <img src="https://images.unsplash.com/photo-1614707267537-1c52fdf7f8b2?auto=format&fit=crop&w=800&q=80">
-  </div>
-</section>
+  <main>
+    <div class="bolo-card">
+      <h3>Bolo de Laranja</h3>
+      <p>Leve, aromático e feito com suco natural. Sem cobertura, como os de antigamente.</p>
+    </div>
+    <div class="bolo-card">
+      <h3>Bolo de Cenoura</h3>
+      <p>Fofinho e tradicional, com sabor marcante da cenoura. Sem cobertura.</p>
+    </div>
+    <div class="bolo-card">
+      <h3>Bolo de Chocolate</h3>
+      <p>Simples, intenso e delicioso. Sem cobertura, ideal para acompanhar café.</p>
+    </div>
+  </main>
 
-<footer>
-  <p>Bom Retiro – Curitiba</p>
-  <p>
-    <a href="https://www.instagram.com/casa.mondego/" target="_blank">@casa.mondego</a> |
-    <a href="https://www.facebook.com/share/181w77kYzK/" target="_blank">Facebook</a>
-  </p>
-  <p>© 2026 Casa Mondego</p>
-</footer>
-
+  <footer>
+    <p>📞 <strong>41 99175-5009</strong></p>
+    <p>📷 Instagram: <a href="https://instagram.com/casa.mondego" target="_blank">@casa.mondego</a></p>
+    <p>&copy; 2026 - Casa Mondego</p>
+  </footer>
 </body>
 </html>
