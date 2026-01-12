@@ -1,99 +1,123 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Casa Mondego – Bolos Artesanais em Curitiba</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Casa Mondego - Bolos artesanais feitos diariamente no Bom Retiro, Curitiba.">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff8f2;
-      color: #3b2f2f;
-    }
-    header {
-      background: #6f1d1b;
-      color: #fff;
-      padding: 30px 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-      letter-spacing: 2px;
-    }
-    header p {
-      margin-top: 10px;
-      font-size: 16px;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 14px 24px;
-      background: #bb3e03;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 18px;
-    }
-    .section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    .section h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    footer {
-      background: #6f1d1b;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-    }
-    .info p {
-      text-align: center;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Casa Mondego – Em Construção</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background:#000;
+  color:#fff;
+}
+
+.hero {
+  position:relative;
+  min-height:100vh;
+  background:url('https://images.unsplash.com/photo-1601972599720-bc02b37e8d61?auto=format&fit=crop&w=1600&q=80'),
+             url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=80');
+  background-size:50% 100%, 50% 100%;
+  background-position:left, right;
+  background-repeat:no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
+
+.overlay {
+  background:rgba(0,0,0,0.65);
+  padding:60px 40px;
+  border-radius:12px;
+  max-width:600px;
+  width:100%;
+}
+
+.logo {
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  background:#f5f0e6;
+  color:#6f1d1b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Playfair Display', serif;
+  font-size:22px;
+  margin:0 auto 20px;
+}
+
+h1 {
+  font-family:'Playfair Display', serif;
+  font-size:40px;
+  margin-bottom:15px;
+}
+
+p {
+  font-size:17px;
+  line-height:1.6;
+  margin-bottom:30px;
+}
+
+.btn {
+  background:#6ee7c7;
+  color:#063;
+  padding:16px 28px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:18px;
+  display:inline-block;
+}
+
+footer {
+  position:absolute;
+  bottom:20px;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:0 40px;
+  font-size:13px;
+  color:#ddd;
+}
+
+@media(max-width:768px){
+  .hero{
+    background-size:100% 50%, 100% 50%;
+    background-position:top, bottom;
+  }
+  footer{
+    flex-direction:column;
+    text-align:center;
+    gap:10px;
+  }
+}
+</style>
 </head>
+
 <body>
-
-<header>
-  <h1>Casa Mondego</h1>
-  <p>Bolos artesanais feitos diariamente</p>
-  <a class="btn" href="#" target="_blank">Ver Cardápio Digital</a>
-</header>
-
-<section class="section">
-  <h2>Sobre Nós</h2>
-  <div class="info">
+<div class="hero">
+  <div class="overlay">
+    <div class="logo">CASA<br>MONDEGO</div>
+    <h1>Estamos em construção!</h1>
     <p>
-      A Casa Mondego nasceu do amor por bolos caseiros, preparados com cuidado,
-      ingredientes selecionados e aquele sabor que lembra casa de família.
+      Estamos preparando nossa loja online para receber você.<br>
+      Em breve, muitas novidades deliciosas!
     </p>
-    <p>
-      Estamos no bairro <strong>Bom Retiro – Curitiba</strong>, atendendo com carinho
-      cada cliente que passa por aqui.
-    </p>
+    <a class="btn" href="https://wa.me/55SEUNUMEROAQUI" target="_blank">
+      Fale com a gente no WhatsApp
+    </a>
   </div>
-</section>
 
-<section class="section">
-  <h2>Contato</h2>
-  <div class="info">
-    <p>📍 Bom Retiro – Curitiba</p>
-    <p>📲 WhatsApp: <a href="https://wa.me/55SEUNUMEROAQUI" target="_blank">Clique para conversar</a></p>
-    <p>📸 Instagram: <a href="#" target="_blank">@casamondego</a></p>
-  </div>
-</section>
-
-<footer>
-  © 2026 Casa Mondego – Todos os direitos reservados
-</footer>
-
+  <footer>
+    <div>© Casa Mondego – Todos os direitos reservados</div>
+    <div>Siga no Instagram @casamondego</div>
+  </footer>
+</div>
 </body>
 </html>
