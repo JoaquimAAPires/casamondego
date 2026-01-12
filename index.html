@@ -1,116 +1,267 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Casa Mondego - Bolos Secos</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Casa Mondego | Bolos Feitos à Mão - Em Construção</title>
+  <meta name="description" content="Bolos secos artesanais, feitos à mão todos os dias. Sabores tradicionais: laranja, limão siciliano, cenoura, chocolate e mesclado. Bom Retiro, Curitiba."/>
+  
+  <!-- Google Fonts: Courgette para logo/títulos + Montserrat para textos -->
+  <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
+    :root {
+      --dourado: #D4AF37;        /* Dourado do logo */
+      --bege-claro: #F8F1E9;
+      --marrom-escuro: #4A2C0B;
+      --cinza-texto: #5D5D5D;
+      --branco: #FFFFFF;
+    }
+
+    * {
       margin: 0;
-      background: #fff8f0;
-      color: #333;
+      padding: 0;
+      box-sizing: border-box;
     }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bege-claro);
+      color: var(--cinza-texto);
+      line-height: 1.7;
+    }
+
     header {
-      background: #d2691e;
-      color: white;
-      padding: 20px;
+      background: var(--branco);
+      padding: 2rem 1rem;
       text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    header img {
-      max-height: 100px;
-      margin-bottom: 10px;
+
+    .logo img {
+      max-width: 280px;
+      height: auto;
     }
-    nav {
-      background: #333;
-      padding: 10px;
+
+    .aviso-construcao {
+      background: var(--dourado);
+      color: var(--marrom-escuro);
       text-align: center;
+      padding: 1.2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
     }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
+
     .hero {
+      background: linear-gradient(rgba(212,175,55,0.15), rgba(212,175,55,0.15)), url('https://images.unsplash.com/photo-1550617931-eb3a88e8451a?w=1600&q=80') center/cover no-repeat;
+      color: var(--marrom-escuro);
       text-align: center;
-      padding: 20px;
+      padding: 8rem 1.5rem 6rem;
     }
-    .hero img {
-      max-width: 90%;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+    .hero h1 {
+      font-family: 'Courgette', cursive;
+      font-size: 3.8rem;
+      margin-bottom: 0.8rem;
+      color: var(--dourado);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
     }
-    main {
-      padding: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+
+    .hero p {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
     }
-    .bolo-card {
-      background: #f9f2ec;
-      padding: 15px;
-      margin: 10px;
-      border-radius: 8px;
-      width: 280px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    h2 {
+      font-family: 'Courgette', cursive;
+      color: var(--dourado);
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .sabores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .sabor-card {
+      background: var(--branco);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
       text-align: center;
     }
-    .bolo-card h3 {
-      color: #d2691e;
+
+    .sabor-card:hover {
+      transform: translateY(-10px);
     }
-    footer {
-      background: #333;
+
+    .sabor-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .sabor-card h3 {
+      padding: 1.2rem;
+      font-size: 1.4rem;
+      color: var(--marrom-escuro);
+    }
+
+    .endereco {
+      text-align: center;
+      font-size: 1.1rem;
+      margin: 2rem 0;
+    }
+
+    .mapa {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 999;
+      width: 70px;
+      height: 70px;
+      background: #25D366;
       color: white;
+      border-radius: 50%;
       text-align: center;
-      padding: 20px;
-      margin-top: 20px;
-    }
-    footer a {
-      color: #ffd700;
+      font-size: 40px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-decoration: none;
+      transition: transform 0.3s;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+
+    footer {
+      background: var(--marrom-escuro);
+      color: var(--branco);
+      text-align: center;
+      padding: 2.5rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.8rem; }
+      h2 { font-size: 2.4rem; }
+      .whatsapp-float { width: 60px; height: 60px; font-size: 35px; bottom: 15px; right: 15px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- Aviso de Em Construção -->
+  <div class="aviso-construcao">
+    Site em construção — em breve teremos nosso cardápio digital completo!
+  </div>
+
   <header>
-    <img src="logo.jpeg" alt="Logo Casa Mondego">
-    <h1>Casa Mondego</h1>
-    <p>Feito à mão. Bolos como os de antigamente.</p>
+    <div class="logo">
+      <!-- Coloque aqui o seu logo real (SVG ou PNG transparente) -->
+      <img src="https://via.placeholder.com/280x120/FFD700/4A2C0B?text=Casa+Mondego+Logo" alt="Casa Mondego - Feito à Mão">
+    </div>
   </header>
 
-  <nav>
-    <a href="#">Início</a>
-    <a href="#">Nossos Bolos</a>
-    <a href="#">Contato</a>
-  </nav>
-
   <section class="hero">
-    <img src="placa.jpeg" alt="Placa Casa Mondego">
+    <h1>Casa Mondego</h1>
+    <p>feito à mão</p>
+    <p>Bolos secos artesanais, preparados fresquinhos todos os dias, como antigamente. Simples, saborosos e com o carinho de quem faz com amor.</p>
   </section>
 
-  <main>
-    <div class="bolo-card">
-      <h3>Bolo de Laranja</h3>
-      <p>Leve, aromático e feito com suco natural. Sem cobertura, como os de antigamente.</p>
+  <section class="container">
+    <h2>Nossos Sabores</h2>
+    <div class="sabores-grid">
+
+      <div class="sabor-card">
+        <img src="https://st5.depositphotos.com/13273092/61895/i/450/depositphotos_618955884-stock-photo-traditional-brazilian-orange-cake-orange.jpg" alt="Bolo seco de laranja">
+        <h3>Laranja</h3>
+      </div>
+
+      <div class="sabor-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/5332f1b6e4b00ce9525b2a65/1402949069602-T5F95PQO8H4SS9HHIADP/image-asset.jpeg" alt="Bolo seco de limão siciliano">
+        <h3>Limão Siciliano</h3>
+      </div>
+
+      <div class="sabor-card">
+        <img src="https://static.itdg.com.br/images/1200-675/38c171f6e0c387c606a10e991cfbd369/bolo-de-cenoura.jpg" alt="Bolo seco de cenoura">
+        <h3>Cenoura</h3>
+      </div>
+
+      <div class="sabor-card">
+        <img src="https://www.receitasnestle.com.br/sites/default/files/styles/recipe_detail_desktop_new/public/srh_recipes/6e533d04faccf872f714914451bfd569.jpg?itok=Mcg2dkkZ" alt="Bolo seco de chocolate">
+        <h3>Chocolate</h3>
+      </div>
+
+      <div class="sabor-card">
+        <img src="https://www.shutterstock.com/image-photo/marble-butter-cake-served-on-260nw-2513736171.jpg" alt="Bolo seco mesclado">
+        <h3>Mesclado</h3>
+      </div>
+
     </div>
-    <div class="bolo-card">
-      <h3>Bolo de Cenoura</h3>
-      <p>Fofinho e tradicional, com sabor marcante da cenoura. Sem cobertura.</p>
+  </section>
+
+  <section class="container">
+    <h2>Onde nos Encontrar</h2>
+    <div class="endereco">
+      <p><strong>Rua Desembargador Hugo Simas, 1480 - Loja 5</strong><br>
+      Bairro Bom Retiro — Curitiba/PR<br>
+      <strong>WhatsApp / Telefone:</strong> (41) 99175-5009<br>
+      <strong>Horário:</strong> Segunda a Sábado, 10h às 18h</p>
     </div>
-    <div class="bolo-card">
-      <h3>Bolo de Chocolate</h3>
-      <p>Simples, intenso e delicioso. Sem cobertura, ideal para acompanhar café.</p>
+
+    <div class="mapa">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.0000000000005!2d-49.273000!3d-25.430000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce5b5b5b5b5b5%3A0x5b5b5b5b5b5b5b5b!2sR.+Des.+Hugo+Simas%2C+1480+-+Bom+Retiro%2C+Curitiba+-+PR!5e0!3m2!1spt-BR!2sbr!4v1736700000000!5m2!1spt-BR!2sbr" 
+        width="100%" 
+        height="450" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
-  </main>
+  </section>
+
+  <!-- Botão WhatsApp Flutuante -->
+  <a href="https://wa.me/5541991755009?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20bolos%20da%20Casa%20Mondego!" class="whatsapp-float" target="_blank">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="#fff"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.852-.299.071-.677.107-1.082.079-.37-.025-.795-.151-1.388-.328-.541-.162-1.068-.324-1.534-.324-.637 0-1.142.128-1.564.378-.418.25-.68.579-.81.929-.131.35-.066.812.148 1.321.215.51.648 1.004 1.298 1.378.564.323 1.257.521 2.104.521.837 0 1.863-.227 2.534-.438.662-.209 1.25-.478 1.617-.774.364-.294.637-.644.796-.998.158-.355.22-.793.164-1.274-.058-.484-.308-.979-.824-1.325z"/></svg>
+  </a>
 
   <footer>
-    <p>📞 <strong>41 99175-5009</strong></p>
-    <p>📷 Instagram: <a href="https://instagram.com/casa.mondego" target="_blank">@casa.mondego</a></p>
-    <p>&copy; 2026 - Casa Mondego</p>
+    <p>© 2026 Casa Mondego • Bolos feitos à mão com carinho • Bom Retiro, Curitiba/PR</p>
+    <p>
+      <a href="https://instagram.com/casa.mondego" style="color: var(--dourado); margin: 0 10px;">Instagram</a> • 
+      <a href="https://www.facebook.com/share/17fN9UakoA/" style="color: var(--dourado);">Facebook</a>
+    </p>
   </footer>
+
 </body>
 </html>
