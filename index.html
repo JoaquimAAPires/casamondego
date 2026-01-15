@@ -1,148 +1,562 @@
 <!DOCTYPE html>
-<!--[if !(IE 6) | !(IE 7) | !(IE 8) ]><!-->
-<html lang="pt-BR" class="no-js">
-<!--<![endif]-->
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<meta name="theme-color" content="#405b48"/> 
-<link rel="profile" href="https://gmpg.org/xfn/11" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Mondego - Doces e Confeitaria</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- Yoast SEO ajustado -->
-<title>Casa Mondego - Bolos Caseiros feitos à mão, como antigamente!</title>
-<meta name="description" content="Casa Mondego tem receitas de família e atende a região norte de Curitiba com bolos caseiros artesanais, fresquinhos e cheios de carinho." />
-<link rel="canonical" href="https://www.casamondego.com.br/" />
-<meta property="og:locale" content="pt_BR" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Casa Mondego - Bolos Caseiros feitos à mão, como antigamente!" />
-<meta property="og:description" content="A Casa Mondego nasce de receitas de família, cuidadosamente preservadas e aperfeiçoadas ao longo do tempo, dando origem a bolos caseiros autênticos, feitos com ingredientes selecionados, carinho em cada detalhe e o verdadeiro sabor do aconchego." />
-<meta property="og:url" content="https://www.casamondego.com.br/" />
-<meta property="og:site_name" content="Casa Mondego" />
-<meta property="article:publisher" content="https://www.facebook.com/casamondego" />
-<meta property="article:modified_time" content="2026-01-15T14:01:00+00:00" />
-<meta name="twitter:card" content="summary_large_image" />
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
 
-<!-- Schema corrigido e completo -->
-<script type="application/ld+json" class="yoast-schema-graph">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://www.casamondego.com.br/",
-      "url": "https://www.casamondego.com.br/",
-      "name": "Casa Mondego - Bolos Caseiros Feitos à Mão, como Antigamente!",
-      "isPartOf": { "@id": "https://www.casamondego.com.br/#website" },
-      "about": { "@id": "https://www.casamondego.com.br/#organization" },
-      "datePublished": "2025-01-01T00:00:00+00:00",
-      "dateModified": "2026-01-15T14:19:00+00:00",
-      "description": "A Casa Mondego nasce de receitas de família, cuidadosamente preservadas e aperfeiçoadas ao longo do tempo, dando origem a bolos caseiros autênticos, feitos com ingredientes selecionados e muito carinho.",
-      "breadcrumb": { "@id": "https://www.casamondego.com.br/#breadcrumb" },
-      "inLanguage": "pt-BR",
-      "potentialAction": [{"@type": "ReadAction", "target": ["https://www.casamondego.com.br/"]}]
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.casamondego.com.br/#breadcrumb",
-      "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início"}]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.casamondego.com.br/#website",
-      "url": "https://www.casamondego.com.br/",
-      "name": "Casa Mondego",
-      "description": "Bolos caseiros artesanais feitos à mão, com receitas de família para a região norte de Curitiba.",
-      "publisher": { "@id": "https://www.casamondego.com.br/#organization" },
-      "potentialAction": [{"@type": "SearchAction", "target": {"@type": "EntryPoint", "urlTemplate": "https://www.casamondego.com.br/?s={search_term_string}"}, "query-input": {"@type": "PropertyValueSpecification", "valueRequired": true, "valueName": "search_term_string"}}],
-      "inLanguage": "pt-BR"
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://www.casamondego.com.br/#organization",
-      "name": "Casa Mondego",
-      "url": "https://www.casamondego.com.br/",
-      "logo": {
-        "@type": "ImageObject",
-        "inLanguage": "pt-BR",
-        "@id": "https://www.casamondego.com.br/#/schema/logo/image/",
-        "url": "https://www.casamondego.com.br/wp-content/uploads/2020/06/logo.png",
-        "contentUrl": "https://www.casamondego.com.br/wp-content/uploads/2020/06/logo.png",
-        "width": 148,
-        "height": 127,
-        "caption": "Casa Mondego - Bolos Caseiros feitos à mão!"
-      },
-      "image": { "@id": "https://www.casamondego.com.br/#/schema/logo/image/" },
-      "sameAs": ["https://www.instagram.com/casa.mondego/?hl=pt-br", "https://www.facebook.com/casamondego"]
-    }
-  ]
-}
-</script>
+        /* Header e Navegação */
+        header {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-<!-- Mantenha os links de CSS/JS do seu tema aqui (copie do original se necessário) -->
-<!-- Exemplo: -->
-<link rel='stylesheet' id='dt-main-css' href='https://www.casamondego.com.br/wp-content/themes/dt-the7/css/main.min.css?ver=9.9.2' type='text/css' media='all' />
-<!-- ... outros CSS e JS ... -->
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(139, 69, 19, 0.7), rgba(139, 69, 19, 0.7)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f5deb3" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: #ffd700;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #ffed4e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Seção de Produtos */
+        .products {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #8b4513;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #ffd700;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #d2691e 0%, #cd853f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            color: #8b4513;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .product-info p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            color: #ffd700;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Seção Sobre */
+        .about {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f5deb3 0%, #ffe4b5 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: #8b4513;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        /* Seção de Contato */
+        .contact {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+
+        .contact-item h3 {
+            color: #8b4513;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            color: #666;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #8b4513;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 2rem;
+            color: #999;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🏠 Casa Mondego</div>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#produtos">Produtos</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-<body id="the7-body" class="home page-template-default page page-id-7 ..."> <!-- mantenha as classes do seu body original -->
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Bem-vindo à Casa Mondego</h1>
+            <p>Doces e confeitaria feitos com amor e tradição</p>
+            <a href="#produtos" class="btn">Conheça Nossos Produtos</a>
+        </div>
+    </section>
 
-<div id="page">
-<a class="skip-link screen-reader-text" href="#content">Pular para o conteúdo</a>
+    <!-- Produtos -->
+    <section class="products" id="produtos">
+        <div class="container">
+            <h2 class="section-title">Nossos Produtos</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🎂</div>
+                    <div class="product-info">
+                        <h3>Bolos Personalizados</h3>
+                        <p>Bolos deliciosos feitos sob encomenda para suas celebrações</p>
+                        <div class="price">A partir de R$ 50</div>
+                        <button class="btn">Encomendar</button>
+                    </div>
+                </div>
 
-<!-- Header ajustado -->
-<div class="masthead classic-header ...">
-  <header class="header-bar">
-    <div class="branding">
-      <a class="same-logo" href="https://www.casamondego.com.br/">
-        <img class="preload-me" src="https://www.casamondego.com.br/wp-content/uploads/2020/06/logo.png" alt="Casa Mondego - Bolos caseiros feitos à mão!" ... />
-        <img class="mobile-logo preload-me" src="https://www.casamondego.com.br/wp-content/uploads/2020/07/logo-mobile-1.png" alt="Casa Mondego - Bolos caseiros feitos à mão!" ... />
-      </a>
-      <!-- ... mini-widgets com redes sociais ... -->
-    </div>
-    <nav class="navigation">
-      <ul id="primary-menu" ...>
-        <li><a href="https://www.casamondego.com.br/">HOME</a></li>
-        <li><a href="https://www.casamondego.com.br/nossa-historia/">NOSSA HISTÓRIA</a></li>
-        <li><a href="https://www.casamondego.com.br/nossos-bolos/">NOSSOS BOLOS</a></li>
-        <li><a href="https://www.casamondego.com.br/onde-encontrar/">ONDE ENCONTRAR</a></li>
-        <li><a href="https://www.casamondego.com.br/blog/">BLOG</a></li>
-        <li><a href="https://www.casamondego.com.br/fale-conosco/">FALE CONOSCO</a></li>
-      </ul>
-      <!-- Botão Seja Franqueado -->
-      <a href="https://www.casamondego.com.br/franqueado/" class="...">SEJA UM FRANQUEADO</a>
-    </nav>
-  </header>
-</div>
+                <div class="product-card">
+                    <div class="product-image">🍪</div>
+                    <div class="product-info">
+                        <h3>Biscoitos e Doces</h3>
+                        <p>Variedade de biscoitos caseiros e doces tradicionais</p>
+                        <div class="price">A partir de R$ 15</div>
+                        <button class="btn">Encomendar</button>
+                    </div>
+                </div>
 
-<!-- Conteúdo principal (slider + seções) - mantido igual, só com textos ajustados se necessário -->
-<div id="main" ...>
-  <!-- Slider Smart Slider 3 - edite no painel para imagens novas -->
-  <!-- ... código do slider original aqui ... -->
+                <div class="product-card">
+                    <div class="product-image">🧁</div>
+                    <div class="product-info">
+                        <h3>Cupcakes Especiais</h3>
+                        <p>Cupcakes com sabores únicos e cobertura premium</p>
+                        <div class="price">A partir de R$ 25</div>
+                        <button class="btn">Encomendar</button>
+                    </div>
+                </div>
 
-  <!-- Seção Nossos Bolos -->
-  <h1 style="color: #405b48; text-align: center; font-family:Courgette;">Nossos Bolos</h1>
-  <h3 style="...">Muito mais gostoso, fresquinho e quentinho</h3>
-  <!-- Carrossel de imagens - edite no Ultimate VC Addons se necessário -->
+                <div class="product-card">
+                    <div class="product-image">🍰</div>
+                    <div class="product-info">
+                        <h3>Tortas Especiais</h3>
+                        <p>Tortas sofisticadas para momentos especiais</p>
+                        <div class="price">A partir de R$ 80</div>
+                        <button class="btn">Encomendar</button>
+                    </div>
+                </div>
 
-  <!-- Seção Nossa História -->
-  <h1 style="color: #405b48; text-align: center; font-family:Courgette;">Nossa História</h1>
-  <p>A Casa Mondego nasce de receitas de família, cuidadosamente preservadas e aperfeiçoadas ao longo do tempo, dando origem a bolos caseiros autênticos...</p>
+                <div class="product-card">
+                    <div class="product-image">🍩</div>
+                    <div class="product-info">
+                        <h3>Donuts Artesanais</h3>
+                        <p>Donuts frescos com coberturas variadas</p>
+                        <div class="price">A partir de R$ 20</div>
+                        <button class="btn">Encomendar</button>
+                    </div>
+                </div>
 
-  <!-- ... resto do conteúdo original ... -->
-</div>
+                <div class="product-card">
+                    <div class="product-image">🎁</div>
+                    <div class="product-info">
+                        <h3>Kits Presentes</h3>
+                        <p>Kits especiais para presentear quem você ama</p>
+                        <div class="price">A partir de R$ 60</div>
+                        <button class="btn">Encomendar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Footer ajustado -->
-<footer id="footer" ...>
-  <section ...>Casa Mondego</section>
-  <!-- Links rápidos ajustados -->
-  <div class="bottom-text-block">
-    <p>© 2025 - Casa Mondego | por <a href="https://otimizar.me">Otimizar.me</a></p>
-  </div>
-</footer>
+    <!-- Sobre -->
+    <section class="about" id="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre a Casa Mondego</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Nossa História</h2>
+                    <p>
+                        A Casa Mondego é resultado de uma paixão genuína por doces e confeitaria de qualidade. Com anos de experiência no ramo, 
+                        nos dedicamos a criar produtos que trazem alegria e sabor a cada celebração.
+                    </p>
+                    <p>
+                        Utilizamos ingredientes selecionados e técnicas tradicionais para garantir que cada produto seja uma verdadeira obra de arte 
+                        culinária. Nosso compromisso é com a excelência e a satisfação de nossos clientes.
+                    </p>
+                    <p>
+                        Cada encomenda é preparada com cuidado e atenção aos detalhes, porque sabemos que seus momentos especiais merecem o melhor.
+                    </p>
+                </div>
+                <div class="about-image">👨‍🍳</div>
+            </div>
+        </div>
+    </section>
 
-</div><!-- #page -->
+    <!-- Contato -->
+    <section class="contact" id="contato">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>📍 Localização</h3>
+                    <p>Rua Exemplo, 123<br>Cidade, Estado<br>CEP 00000-000</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📞 Telefone</h3>
+                    <p>(XX) 9999-9999<br>(XX) 3333-3333</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <p>contato@casamondego.com.br<br>encomendas@casamondego.com.br</p>
+                </div>
+            </div>
 
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone">
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" required></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Casa Mondego</h4>
+                    <p>Doces e confeitaria com tradição e qualidade</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <a href="#inicio">Início</a>
+                    <a href="#produtos">Produtos</a>
+                    <a href="#sobre">Sobre</a>
+                    <a href="#contato">Contato</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">WhatsApp</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Casa Mondego. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
 <!-- Scripts originais aqui -->
 
 </body>
