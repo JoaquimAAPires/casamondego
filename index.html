@@ -1,563 +1,412 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<!--[if !(IE 6) | !(IE 7) | !(IE 8) ]><!-->
+<html lang="pt-BR" class="no-js">
+<!--<![endif]-->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa Mondego - Doces e Confeitaria</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="theme-color" content="#000000"/> 
+<link rel="profile" href="https://gmpg.org/xfn/11" />
+<title>Casa Mondego - Bolos Caseiros feitos à mão, como antigamente !!</title>
+<meta name="description" content="Casa Mondego, tem receitas de família, e atendem a região norte de Curitiba." />
+<link rel="canonical" href="https://www.casamondego.com.br/" />
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-        }
+<style id='casa-mondego-custom-css' type='text/css'>
+    :root {
+        --gold-primary: #d4af37;
+        --gold-secondary: #c5a028;
+        --black-bg: #000000;
+        --black-accent: #111111;
+        --cream-bg: #fdfaf5;
+        --text-dark: #333333;
+        --text-light: #ffffff;
+    }
 
-        /* Header e Navegação */
-        header {
-            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: var(--cream-bg);
+        color: var(--text-dark);
+        margin: 0;
+        padding: 0;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    /* Header e Branding */
+    header.header-bar {
+        background-color: var(--black-bg) !important;
+        border-bottom: 2px solid var(--gold-primary);
+        padding: 40px 0; /* Aumentado para dar mais espaço ao logo */
+    }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+    .branding {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+    .logo-img {
+        max-width: 280px; /* Aumentado conforme solicitado */
+        height: auto;
+        margin-bottom: 15px;
+        transition: transform 0.3s ease;
+    }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
+    .logo-img:hover {
+        transform: scale(1.05);
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
+    /* Navegação */
+    .navigation-holder {
+        background-color: var(--black-accent);
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid #222;
+    }
 
-        nav a:hover {
-            color: #ffd700;
-        }
+    .main-nav {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex-wrap: wrap;
+    }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(139, 69, 19, 0.7), rgba(139, 69, 19, 0.7)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f5deb3" width="1200" height="600"/></svg>');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 6rem 2rem;
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .main-nav li a {
+        color: var(--gold-primary) !important;
+        text-decoration: none;
+        padding: 10px 25px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
 
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
+    .main-nav li a:hover {
+        color: var(--text-light) !important;
+        background-color: var(--gold-primary);
+    }
 
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
+    /* Hero Section */
+    .hero-section {
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/MTeBtuAOcldRYVSu.jpg');
+        background-size: cover;
+        background-position: center;
+        color: var(--text-light);
+        padding: 100px 20px;
+        text-align: center;
+        border-bottom: 5px solid var(--gold-primary);
+    }
 
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background-color: #ffd700;
-            color: #333;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
+    .hero-section h1 {
+        font-family: 'Courgette', cursive;
+        color: var(--gold-primary);
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
 
-        .btn:hover {
-            background-color: #ffed4e;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
+    /* Seção de Bolos */
+    .section-title {
+        text-align: center;
+        color: var(--black-bg);
+        font-family: 'Courgette', cursive;
+        font-size: 2.8rem;
+        margin: 60px 0 40px;
+        position: relative;
+    }
 
-        /* Seção de Produtos */
-        .products {
-            padding: 4rem 2rem;
-            background-color: white;
-        }
+    .section-title::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 3px;
+        background: var(--gold-primary);
+        margin: 15px auto;
+    }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #8b4513;
-            position: relative;
-            padding-bottom: 1rem;
-        }
+    .bolos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
+        padding: 20px;
+        max-width: 1300px;
+        margin: 0 auto;
+    }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background-color: #ffd700;
-        }
+    .bolo-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        transition: all 0.4s ease;
+        border: 1px solid #f0f0f0;
+        display: flex;
+        flex-direction: column;
+    }
 
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
+    .bolo-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        border-color: var(--gold-primary);
+    }
 
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-        }
+    .bolo-img-container {
+        width: 100%;
+        height: 280px;
+        overflow: hidden;
+    }
 
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
+    .bolo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
 
-        .product-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #d2691e 0%, #cd853f 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-        }
+    .bolo-card:hover .bolo-img {
+        transform: scale(1.1);
+    }
 
-        .product-info {
-            padding: 1.5rem;
-        }
+    .bolo-info {
+        padding: 25px;
+        text-align: center;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
-        .product-info h3 {
-            color: #8b4513;
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
+    .bolo-info h3 {
+        color: var(--black-bg);
+        margin-bottom: 15px;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
 
-        .product-info p {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
+    .bolo-info p {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
 
-        .price {
-            color: #ffd700;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
+    .btn-gold {
+        background-color: var(--gold-primary);
+        color: var(--black-bg);
+        padding: 12px 30px;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 30px;
+        display: inline-block;
+        transition: all 0.3s ease;
+        border: 2px solid var(--gold-primary);
+    }
 
-        /* Seção Sobre */
-        .about {
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #f5deb3 0%, #ffe4b5 100%);
-        }
+    .btn-gold:hover {
+        background-color: transparent;
+        color: var(--gold-primary);
+    }
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
+    /* Nossa História */
+    .historia-section {
+        background-color: var(--black-bg);
+        color: var(--text-light);
+        padding: 100px 20px;
+        margin-top: 80px;
+        background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+    }
 
-        .about-text h2 {
-            color: #8b4513;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
+    .historia-content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+    }
 
-        .about-text p {
-            color: #555;
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
+    .historia-content h2 {
+        font-family: 'Courgette', cursive;
+        color: var(--gold-primary);
+        font-size: 3rem;
+        margin-bottom: 30px;
+    }
 
-        .about-image {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-        }
+    .historia-content p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 20px;
+    }
 
-        /* Seção de Contato */
-        .contact {
-            padding: 4rem 2rem;
-            background-color: white;
-        }
+    /* Footer */
+    footer {
+        background-color: var(--black-bg);
+        color: #888;
+        padding: 60px 20px;
+        text-align: center;
+        border-top: 3px solid var(--gold-primary);
+    }
 
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+    .footer-logo {
+        max-width: 180px;
+        margin-bottom: 30px;
+    }
 
-        .contact-item {
-            text-align: center;
-            padding: 2rem;
-            background: #f9f9f9;
-            border-radius: 10px;
-            border-left: 4px solid #ffd700;
-        }
+    .social-links {
+        margin-bottom: 30px;
+    }
 
-        .contact-item h3 {
-            color: #8b4513;
-            margin-bottom: 0.5rem;
-        }
+    .social-links a {
+        color: var(--gold-primary);
+        font-size: 1rem;
+        margin: 0 20px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
 
-        .contact-item p {
-            color: #666;
-        }
+    .social-links a:hover {
+        color: var(--text-light);
+    }
 
-        .contact-form {
-            max-width: 600px;
-            margin: 2rem auto;
-            background: #f9f9f9;
-            padding: 2rem;
-            border-radius: 10px;
-        }
+    @media (max-width: 768px) {
+        .hero-section h1 { font-size: 2.5rem; }
+        .logo-img { max-width: 200px; }
+        .main-nav { flex-direction: column; }
+        .main-nav li a { padding: 10px; }
+    }
+</style>
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #8b4513;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #ffd700;
-            box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            margin-bottom: 1rem;
-            color: #ffd700;
-        }
-
-        .footer-section p, .footer-section a {
-            color: #ccc;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section a:hover {
-            color: #ffd700;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #555;
-            padding-top: 2rem;
-            color: #999;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            nav ul {
-                gap: 1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<link rel='stylesheet' id='dt-web-fonts-css' href='https://fonts.googleapis.com/css?family=Roboto:400,500,600,700%7CCourgette:400,600,700%7CMontserrat:300,400,600,700' type='text/css' media='all' />
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">🏠 Casa Mondego</div>
-                <nav>
-                    <ul>
-                        <li><a href="#inicio">Início</a></li>
-                        <li><a href="#produtos">Produtos</a></li>
-                        <li><a href="#sobre">Sobre</a></li>
-                        <li><a href="#contato">Contato</a></li>
-                    </ul>
-                </nav>
+
+<header class="header-bar">
+    <div class="branding">
+        <a href="https://www.casamondego.com.br/">
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nFppfSJCWhOsztEB.png" alt="Casa Mondego Logo" class="logo-img">
+        </a>
+        <div style="color: var(--gold-primary); font-family: 'Courgette'; font-size: 1.4rem; margin-top: 10px;">Bolos caseiros feitos à mão!</div>
+    </div>
+</header>
+
+<div class="navigation-holder">
+    <nav>
+        <ul class="main-nav">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#historia">NOSSA HISTÓRIA</a></li>
+            <li><a href="#bolos">NOSSOS BOLOS</a></li>
+            <li><a href="#contato">FALE CONOSCO</a></li>
+            <li><a href="#">SEJA UM FRANQUEADO</a></li>
+        </ul>
+    </nav>
+</div>
+
+<section class="hero-section">
+    <h1>Bem-vindo à Casa Mondego</h1>
+    <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto; line-height: 1.6;">Receitas de família, cuidadosamente preservadas, dando origem a bolos caseiros autênticos com o verdadeiro sabor do aconchego.</p>
+    <br><br>
+    <a href="#bolos" class="btn-gold">CONHEÇA NOSSOS BOLOS</a>
+</section>
+
+<div id="bolos">
+    <h2 class="section-title">Nossas Delícias</h2>
+    <div class="bolos-grid">
+        <!-- Bolo de Chocolate -->
+        <div class="bolo-card">
+            <div class="bolo-img-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/MTeBtuAOcldRYVSu.jpg" alt="Bolo de Chocolate" class="bolo-img">
+            </div>
+            <div class="bolo-info">
+                <h3>Bolo de Chocolate</h3>
+                <p>Massa fofinha com cobertura cremosa de chocolate belga. O favorito de todas as gerações.</p>
+                <a href="#" class="btn-gold">Encomendar</a>
             </div>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="hero-content">
-            <h1>Bem-vindo à Casa Mondego</h1>
-            <p>Doces e confeitaria feitos com amor e tradição</p>
-            <a href="#produtos" class="btn">Conheça Nossos Produtos</a>
-        </div>
-    </section>
-
-    <!-- Produtos -->
-    <section class="products" id="produtos">
-        <div class="container">
-            <h2 class="section-title">Nossos Produtos</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">🎂</div>
-                    <div class="product-info">
-                        <h3>Bolos Personalizados</h3>
-                        <p>Bolos deliciosos feitos sob encomenda para suas celebrações</p>
-                        <div class="price">A partir de R$ 50</div>
-                        <button class="btn">Encomendar</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">🍪</div>
-                    <div class="product-info">
-                        <h3>Biscoitos e Doces</h3>
-                        <p>Variedade de biscoitos caseiros e doces tradicionais</p>
-                        <div class="price">A partir de R$ 15</div>
-                        <button class="btn">Encomendar</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">🧁</div>
-                    <div class="product-info">
-                        <h3>Cupcakes Especiais</h3>
-                        <p>Cupcakes com sabores únicos e cobertura premium</p>
-                        <div class="price">A partir de R$ 25</div>
-                        <button class="btn">Encomendar</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">🍰</div>
-                    <div class="product-info">
-                        <h3>Tortas Especiais</h3>
-                        <p>Tortas sofisticadas para momentos especiais</p>
-                        <div class="price">A partir de R$ 80</div>
-                        <button class="btn">Encomendar</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">🍩</div>
-                    <div class="product-info">
-                        <h3>Donuts Artesanais</h3>
-                        <p>Donuts frescos com coberturas variadas</p>
-                        <div class="price">A partir de R$ 20</div>
-                        <button class="btn">Encomendar</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">🎁</div>
-                    <div class="product-info">
-                        <h3>Kits Presentes</h3>
-                        <p>Kits especiais para presentear quem você ama</p>
-                        <div class="price">A partir de R$ 60</div>
-                        <button class="btn">Encomendar</button>
-                    </div>
-                </div>
+        <!-- Bolo de Limão Siciliano e Mirtilo -->
+        <div class="bolo-card">
+            <div class="bolo-img-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" alt="Bolo de Limão Siciliano e Mirtilo" class="bolo-img">
+            </div>
+            <div class="bolo-info">
+                <h3>Limão Siciliano e Mirtilo</h3>
+                <p>Uma combinação sofisticada e refrescante, com mirtilos frescos e o toque cítrico do limão siciliano.</p>
+                <a href="#" class="btn-gold">Encomendar</a>
             </div>
         </div>
-    </section>
 
-    <!-- Sobre -->
-    <section class="about" id="sobre">
-        <div class="container">
-            <h2 class="section-title">Sobre a Casa Mondego</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Nossa História</h2>
-                    <p>
-                        A Casa Mondego é resultado de uma paixão genuína por doces e confeitaria de qualidade. Com anos de experiência no ramo, 
-                        nos dedicamos a criar produtos que trazem alegria e sabor a cada celebração.
-                    </p>
-                    <p>
-                        Utilizamos ingredientes selecionados e técnicas tradicionais para garantir que cada produto seja uma verdadeira obra de arte 
-                        culinária. Nosso compromisso é com a excelência e a satisfação de nossos clientes.
-                    </p>
-                    <p>
-                        Cada encomenda é preparada com cuidado e atenção aos detalhes, porque sabemos que seus momentos especiais merecem o melhor.
-                    </p>
-                </div>
-                <div class="about-image">👨‍🍳</div>
+        <!-- Bolo de Laranja -->
+        <div class="bolo-card">
+            <div class="bolo-img-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" alt="Bolo de Laranja" class="bolo-img">
+            </div>
+            <div class="bolo-info">
+                <h3>Bolo de Laranja</h3>
+                <p>O clássico bolo da tarde, feito com suco natural da fruta e uma calda irresistível.</p>
+                <a href="#" class="btn-gold">Encomendar</a>
             </div>
         </div>
-    </section>
 
-    <!-- Contato -->
-    <section class="contact" id="contato">
-        <div class="container">
-            <h2 class="section-title">Entre em Contato</h2>
-            
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <h3>📍 Localização</h3>
-                    <p>Rua Exemplo, 123<br>Cidade, Estado<br>CEP 00000-000</p>
-                </div>
-                <div class="contact-item">
-                    <h3>📞 Telefone</h3>
-                    <p>(XX) 9999-9999<br>(XX) 3333-3333</p>
-                </div>
-                <div class="contact-item">
-                    <h3>📧 Email</h3>
-                    <p>contato@casamondego.com.br<br>encomendas@casamondego.com.br</p>
-                </div>
+        <!-- Bolo de Milho -->
+        <div class="bolo-card">
+            <div class="bolo-img-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/VezOWuffxYCYNPbw.jpg" alt="Bolo de Milho" class="bolo-img">
             </div>
-
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="nome">Nome</label>
-                    <input type="text" id="nome" name="nome" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" id="telefone" name="telefone">
-                </div>
-                <div class="form-group">
-                    <label for="mensagem">Mensagem</label>
-                    <textarea id="mensagem" name="mensagem" required></textarea>
-                </div>
-                <button type="submit" class="btn">Enviar Mensagem</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Casa Mondego</h4>
-                    <p>Doces e confeitaria com tradição e qualidade</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Links Rápidos</h4>
-                    <a href="#inicio">Início</a>
-                    <a href="#produtos">Produtos</a>
-                    <a href="#sobre">Sobre</a>
-                    <a href="#contato">Contato</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Redes Sociais</h4>
-                    <a href="#">Facebook</a>
-                    <a href="#">Instagram</a>
-                    <a href="#">WhatsApp</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Casa Mondego. Todos os direitos reservados.</p>
+            <div class="bolo-info">
+                <h3>Bolo de Milho</h3>
+                <p>O clássico sabor da fazenda, cremoso, quentinho e feito com milho selecionado.</p>
+                <a href="#" class="btn-gold">Encomendar</a>
             </div>
         </div>
-    </footer>
-</body>
-</html>
-<!-- Scripts originais aqui -->
+
+        <!-- Bolo de Cenoura -->
+        <div class="bolo-card">
+            <div class="bolo-img-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/SJApeYcqlUqbeklo.webp" alt="Bolo de Cenoura" class="bolo-img">
+            </div>
+            <div class="bolo-info">
+                <h3>Bolo de Cenoura</h3>
+                <p>Massa vibrante e fofinha com aquela cobertura de chocolate que derrete na boca.</p>
+                <a href="#" class="btn-gold">Encomendar</a>
+            </div>
+        </div>
+
+        <!-- Bolo de Limão -->
+        <div class="bolo-card">
+            <div class="bolo-img-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/TYGUeSXUuPlqzaaX.jpg" alt="Bolo de Limão" class="bolo-img">
+            </div>
+            <div class="bolo-info">
+                <h3>Bolo de Limão</h3>
+                <p>Leve, fofinho e com o equilíbrio perfeito entre o doce e o cítrico.</p>
+                <a href="#" class="btn-gold">Encomendar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="historia-section" id="historia">
+    <div class="historia-content">
+        <h2>Nossa História</h2>
+        <p>A Casa Mondego nasce de receitas de família, cuidadosamente preservadas e aperfeiçoadas ao longo do tempo, dando origem a bolos caseiros autênticos, feitos com ingredientes selecionados, carinho em cada detalhe e o verdadeiro sabor do aconchego.</p>
+        <p>Nossa missão é transformar em realidade o sonho de comer bem, preservando a tradição artesanal em cada fornada. Cada bolo que sai do nosso forno carrega uma história de amor e dedicação.</p>
+    </div>
+</section>
+
+<footer>
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nFppfSJCWhOsztEB.png" alt="Casa Mondego" class="footer-logo">
+    <div class="social-links">
+        <a href="#">FACEBOOK</a>
+        <a href="#">INSTAGRAM</a>
+        <a href="#">WHATSAPP</a>
+    </div>
+    <p style="margin-top: 20px; letter-spacing: 1px;">© 2026 - CASA MONDEGO | BOLOS CASEIROS FEITOS À MÃO</p>
+    <p style="font-size: 0.8rem; margin-top: 10px;">Tradição e Sabor em cada detalhe.</p>
+</footer>
 
 </body>
 </html>
