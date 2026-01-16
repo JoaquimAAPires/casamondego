@@ -28,13 +28,14 @@
         color: var(--text-dark);
         margin: 0;
         padding: 0;
+        scroll-behavior: smooth;
     }
 
     /* Header e Branding */
     header.header-bar {
         background-color: var(--black-bg) !important;
         border-bottom: 2px solid var(--gold-primary);
-        padding: 40px 0; /* Aumentado para dar mais espaço ao logo */
+        padding: 40px 0;
     }
 
     .branding {
@@ -45,7 +46,7 @@
     }
 
     .logo-img {
-        max-width: 280px; /* Aumentado conforme solicitado */
+        max-width: 280px;
         height: auto;
         margin-bottom: 15px;
         transition: transform 0.3s ease;
@@ -186,13 +187,6 @@
         font-weight: 700;
     }
 
-    .bolo-info p {
-        color: #666;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        margin-bottom: 20px;
-    }
-
     .btn-gold {
         background-color: var(--gold-primary);
         color: var(--black-bg);
@@ -234,48 +228,83 @@
         margin-bottom: 30px;
     }
 
-    .historia-content p {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        margin-bottom: 20px;
-    }
-
     /* Footer */
     footer {
         background-color: var(--black-bg);
         color: #888;
-        padding: 60px 20px;
+        padding: 80px 20px;
         text-align: center;
         border-top: 3px solid var(--gold-primary);
     }
 
-    .footer-logo {
-        max-width: 180px;
-        margin-bottom: 30px;
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto 40px;
+        text-align: left;
     }
 
-    .social-links {
-        margin-bottom: 30px;
-    }
-
-    .social-links a {
+    .footer-section h4 {
         color: var(--gold-primary);
-        font-size: 1rem;
-        margin: 0 20px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.3s ease;
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
-    .social-links a:hover {
-        color: var(--text-light);
+    .footer-section p, .footer-section a {
+        color: #ccc;
+        text-decoration: none;
+        line-height: 1.8;
+        font-size: 0.95rem;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .footer-section a:hover {
+        color: var(--gold-primary);
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 20px;
+        margin-top: 10px;
+    }
+
+    .social-icons a {
+        background: #222;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: var(--gold-primary);
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        background: var(--gold-primary);
+        color: var(--black-bg);
+        transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+        border-top: 1px solid #222;
+        padding-top: 40px;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
     }
 
     @media (max-width: 768px) {
         .hero-section h1 { font-size: 2.5rem; }
         .logo-img { max-width: 200px; }
         .main-nav { flex-direction: column; }
-        .main-nav li a { padding: 10px; }
+        .footer-grid { text-align: center; }
+        .social-icons { justify-content: center; }
     }
 </style>
 
@@ -299,7 +328,7 @@
             <li><a href="#">HOME</a></li>
             <li><a href="#historia">NOSSA HISTÓRIA</a></li>
             <li><a href="#bolos">NOSSOS BOLOS</a></li>
-            <li><a href="#contato">FALE CONOSCO</a></li>
+            <li><a href="#contato">CONTATO</a></li>
             <li><a href="#">SEJA UM FRANQUEADO</a></li>
         </ul>
     </nav>
@@ -323,7 +352,7 @@
             <div class="bolo-info">
                 <h3>Bolo de Chocolate</h3>
                 <p>Massa fofinha com cobertura cremosa de chocolate belga. O favorito de todas as gerações.</p>
-                <a href="#" class="btn-gold">Encomendar</a>
+                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Chocolate." target="_blank" class="btn-gold">Encomendar</a>
             </div>
         </div>
 
@@ -335,7 +364,7 @@
             <div class="bolo-info">
                 <h3>Limão Siciliano e Mirtilo</h3>
                 <p>Uma combinação sofisticada e refrescante, com mirtilos frescos e o toque cítrico do limão siciliano.</p>
-                <a href="#" class="btn-gold">Encomendar</a>
+                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Limão Siciliano e Mirtilo." target="_blank" class="btn-gold">Encomendar</a>
             </div>
         </div>
 
@@ -347,7 +376,7 @@
             <div class="bolo-info">
                 <h3>Bolo de Laranja</h3>
                 <p>O clássico bolo da tarde, feito com suco natural da fruta e uma calda irresistível.</p>
-                <a href="#" class="btn-gold">Encomendar</a>
+                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Laranja." target="_blank" class="btn-gold">Encomendar</a>
             </div>
         </div>
 
@@ -359,7 +388,7 @@
             <div class="bolo-info">
                 <h3>Bolo de Milho</h3>
                 <p>O clássico sabor da fazenda, cremoso, quentinho e feito com milho selecionado.</p>
-                <a href="#" class="btn-gold">Encomendar</a>
+                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Milho." target="_blank" class="btn-gold">Encomendar</a>
             </div>
         </div>
 
@@ -371,7 +400,7 @@
             <div class="bolo-info">
                 <h3>Bolo de Cenoura</h3>
                 <p>Massa vibrante e fofinha com aquela cobertura de chocolate que derrete na boca.</p>
-                <a href="#" class="btn-gold">Encomendar</a>
+                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Cenoura." target="_blank" class="btn-gold">Encomendar</a>
             </div>
         </div>
 
@@ -383,7 +412,7 @@
             <div class="bolo-info">
                 <h3>Bolo de Limão</h3>
                 <p>Leve, fofinho e com o equilíbrio perfeito entre o doce e o cítrico.</p>
-                <a href="#" class="btn-gold">Encomendar</a>
+                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Limão." target="_blank" class="btn-gold">Encomendar</a>
             </div>
         </div>
     </div>
@@ -397,15 +426,32 @@
     </div>
 </section>
 
-<footer>
-    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nFppfSJCWhOsztEB.png" alt="Casa Mondego" class="footer-logo">
-    <div class="social-links">
-        <a href="#">FACEBOOK</a>
-        <a href="#">INSTAGRAM</a>
-        <a href="#">WHATSAPP</a>
+<footer id="contato">
+    <div class="footer-grid">
+        <div class="footer-section">
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nFppfSJCWhOsztEB.png" alt="Casa Mondego" style="max-width: 150px; margin-bottom: 20px;">
+            <p>Tradição e sabor em cada detalhe. Bolos feitos à mão com receitas de família.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Onde Estamos</h4>
+            <p>Rua Desembargador Hugo Simas, 1480</p>
+            <p>Loja 5 - Bom Retiro</p>
+            <p>Curitiba - PR | CEP 80520-708</p>
+        </div>
+        <div class="footer-section">
+            <h4>Fale Conosco</h4>
+            <a href="https://wa.me/5541991755009" target="_blank">WhatsApp: (41) 99175-5009</a>
+            <p>E-mail: contato@casamondego.com.br</p>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/casa.mondego/" target="_blank" title="Instagram">IG</a>
+                <a href="https://www.facebook.com/share/17fN9UakoA/" target="_blank" title="Facebook">FB</a>
+                <a href="https://wa.me/5541991755009" target="_blank" title="WhatsApp">WA</a>
+            </div>
+        </div>
     </div>
-    <p style="margin-top: 20px; letter-spacing: 1px;">© 2026 - CASA MONDEGO | BOLOS CASEIROS FEITOS À MÃO</p>
-    <p style="font-size: 0.8rem; margin-top: 10px;">Tradição e Sabor em cada detalhe.</p>
+    <div class="footer-bottom">
+        <p>© 2026 - CASA MONDEGO | BOLOS CASEIROS FEITOS À MÃO</p>
+    </div>
 </footer>
 
 </body>
