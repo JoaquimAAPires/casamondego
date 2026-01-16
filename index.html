@@ -335,14 +335,14 @@
 
     .footer-section a:hover { color: var(--gold-primary); }
 
-    /* Estilo para o vídeo da logo no rodapé */
+    /* Estilo para o vídeo da logo no rodapé - CENTRALIZADO E MAIOR */
     .footer-logo-video {
         width: 100%;
-        max-width: 200px;
+        max-width: 280px; /* Aumentado de 200px para 280px */
         height: auto;
         border-radius: 10px;
-        margin-bottom: 20px;
-        display: block;
+        margin: 0 auto 25px; /* Centralizado horizontalmente com margin auto */
+        display: block; /* Necessário para o margin auto funcionar */
     }
 
     .contact-link { display: flex !important; align-items: center; gap: 10px; }
@@ -371,7 +371,7 @@
         .footer-grid { text-align: center; }
         .social-icons { justify-content: center; }
         .contact-link { justify-content: center; }
-        .footer-logo-video { margin: 0 auto 20px; }
+        .footer-logo-video { max-width: 240px; margin: 0 auto 20px; }
     }
 </style>
 
@@ -574,7 +574,7 @@
 <footer id="contato">
     <div class="footer-grid">
         <div class="footer-section">
-            <!-- VÍDEO NO LUGAR DA LOGO -->
+            <!-- VÍDEO NO LUGAR DA LOGO - CENTRALIZADO E MAIOR -->
             <video class="footer-logo-video" autoplay muted loop playsinline>
                 <source src="logo-footer.mp4" type="video/mp4">
                 Seu navegador não suporta vídeos.
