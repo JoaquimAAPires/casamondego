@@ -21,7 +21,7 @@
 
 <!-- Open Graph para Redes Sociais -->
 <meta property="og:title" content="Casa Mondego - Melhor Bolo Caseiro em Curitiba" />
-<meta property="og:description" content="Bolos caseiros feitos à mão com receitas de família. Confeitaria artesanal no Bom Retiro, Curitiba." />
+<meta property="og:description" content="Bolos caseiros feitos à mão with receitas de família. Confeitaria artesanal no Bom Retiro, Curitiba." />
 <meta property="og:image" content="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nFppfSJCWhOsztEB.png" />
 <meta property="og:url" content="https://www.casamondego.com.br/" />
 <meta property="og:type" content="business.business" />
@@ -84,15 +84,14 @@
         color: white;
         border-radius: 50%;
         text-align: center;
-        font-size: 30px;
-        box-shadow: 2px 2px 3px #999;
-        z-index: 100;
+        z-index: 1000;
         display: flex;
         align-items: center;
         justify-content: center;
         text-decoration: none;
         transition: all 0.3s ease;
         animation: pulse-whatsapp 2s infinite;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
     }
 
     .whatsapp-float:hover {
@@ -101,31 +100,42 @@
         animation: none;
     }
 
+    .whatsapp-float svg {
+        width: 35px;
+        height: 35px;
+        fill: white;
+        display: block;
+    }
+
     @keyframes pulse-whatsapp {
         0% {
             box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
         }
         70% {
-            box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
         }
         100% {
             box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
         }
     }
 
-    /* Header e Branding - Ajustado para ser o mais compacto possível */
+    /* Header e Branding - Ajustado para ser ultra compacto */
     header.header-bar {
         background-color: var(--black-bg) !important;
         border-bottom: 2px solid var(--gold-primary);
-        padding: 5px 0;
-        line-height: 0;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
     .branding {
+        background-color: var(--black-bg);
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        justify-content: center;
+        padding: 0;
     }
 
     .logo-img {
@@ -146,7 +156,7 @@
         padding: 12px 0;
         position: sticky;
         top: 0;
-        z-index: 1000;
+        z-index: 999;
         border-bottom: 1px solid #222;
     }
 
@@ -321,12 +331,12 @@
         color: var(--gold-primary);
     }
 
-    /* Nossa História */
+    /* Nossa História - Ajustado para reduzir sobras */
     .historia-section {
         background-color: var(--black-bg);
         color: var(--text-light);
-        padding: 100px 20px;
-        margin-top: 80px;
+        padding: 50px 20px;
+        margin-top: 40px;
         background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg');
         background-attachment: fixed;
         background-size: cover;
@@ -342,14 +352,18 @@
         font-family: 'Courgette', cursive;
         color: var(--gold-primary);
         font-size: 3rem;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+    }
+
+    .historia-content p {
+        margin-bottom: 15px;
     }
 
     /* Footer */
     footer {
-        background-color: var(--black-bg);
+        background-color: #111;
         color: #888;
-        padding: 80px 20px 40px;
+        padding: 60px 20px 40px;
         text-align: center;
         border-top: 3px solid var(--gold-primary);
     }
@@ -382,6 +396,20 @@
 
     .footer-section a:hover {
         color: var(--gold-primary);
+    }
+
+    /* Estilo para os ícones de contato no rodapé */
+    .contact-link {
+        display: flex !important;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .contact-icon {
+        width: 18px;
+        height: 18px;
+        fill: var(--gold-primary);
+        flex-shrink: 0;
     }
 
     .map-container {
@@ -430,12 +458,16 @@
         .main-nav { flex-direction: column; }
         .footer-grid { text-align: center; }
         .social-icons { justify-content: center; }
+        .contact-link { justify-content: center; }
         .whatsapp-float {
             width: 50px;
             height: 50px;
             bottom: 20px;
             right: 20px;
-            font-size: 24px;
+        }
+        .whatsapp-float svg {
+            width: 30px;
+            height: 30px;
         }
     }
 </style>
@@ -445,9 +477,11 @@
 
 <body>
 
-<!-- Botão Flutuante de WhatsApp com ícone oficial -->
-<a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um bolo da Casa Mondego. Qual é a disponibilidade?" class="whatsapp-float" title="Fale conosco no WhatsApp">
-    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.255.949c-1.238.503-2.335 1.236-3.356 2.259-1.022 1.022-1.756 2.119-2.259 3.357-.606 1.605-.779 3.711-.5 5.902.28 2.191 1.104 4.289 2.514 6.062 1.41 1.773 3.44 3.061 5.64 3.514.505.1 1.01.15 1.52.15 1.3 0 2.58-.25 3.78-.75 1.2-.5 2.31-1.23 3.22-2.14.91-.91 1.64-2.02 2.14-3.22.5-1.2.75-2.48.75-3.78 0-1.3-.25-2.58-.75-3.78-.5-1.2-1.23-2.31-2.14-3.22-.91-.91-2.02-1.64-3.22-2.14-1.2-.5-2.48-.75-3.78-.75zm0-2c1.657 0 3.273.335 4.721 1.001 1.448.666 2.726 1.623 3.712 2.609.986.986 1.943 2.264 2.609 3.712.666 1.448 1.001 3.064 1.001 4.721 0 1.657-.335 3.273-1.001 4.721-.666 1.448-1.623 2.726-2.609 3.712-.986.986-2.264 1.943-3.712 2.609-1.448.666-3.064 1.001-4.721 1.001-1.657 0-3.273-.335-4.721-1.001-1.448-.666-2.726-1.623-3.712-2.609-.986-.986-1.943-2.264-2.609-3.712C2.335 15.273 2 13.657 2 12c0-1.657.335-3.273 1.001-4.721.666-1.448 1.623-2.726 2.609-3.712.986-.986 2.264-1.943 3.712-2.609C8.727 2.335 10.343 2 12 2z'/%3E%3C/svg%3E" alt="WhatsApp" style="width: 28px; height: 28px;">
+<!-- Botão Flutuante de WhatsApp com ícone oficial SVG BRANCO -->
+<a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um bolo da Casa Mondego. Qual é a disponibilidade?" class="whatsapp-float" title="Fale conosco no WhatsApp" target="_blank">
+    <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.5 2.5-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.9 4.4 26.5 3.8 36.5 2.3 11.1-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
 </a>
 
 <header class="header-bar">
@@ -483,7 +517,7 @@
         <!-- Bolo de Chocolate -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/MTeBtuAOcldRYVSu.jpg" alt="Bolo de Chocolate Caseiro - Casa Mondego Curitiba" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/MTeBtuAOcldRYVSu.jpg" alt="Bolo de Chocolate Caseiro - Casa Mondego Curitiba" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Chocolate</h3>
@@ -495,7 +529,7 @@
         <!-- Bolo de Limão Siciliano e Mirtilo -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" alt="Bolo de Limão Siciliano e Mirtilo - Confeitaria Artesanal Curitiba" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" alt="Bolo de Limão Siciliano e Mirtilo - Confeitaria Artesanal Curitiba" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Limão Siciliano e Mirtilo</h3>
@@ -507,7 +541,7 @@
         <!-- Bolo de Laranja -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" alt="Bolo de Laranja - Receita Tradicional Curitiba" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" alt="Bolo de Laranja - Receita Tradicional Curitiba" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Laranja</h3>
@@ -519,7 +553,7 @@
         <!-- Bolo de Milho -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/VezOWuffxYCYNPbw.jpg" alt="Bolo de Milho Cremoso - Bolo Caseiro Artesanal" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/VezOWuffxYCYNPbw.jpg" alt="Bolo de Milho Cremoso - Bolo Caseiro Artesanal" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Milho</h3>
@@ -531,7 +565,7 @@
         <!-- Bolo de Cenoura -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/SJApeYcqlUqbeklo.webp" alt="Bolo de Cenoura com Chocolate - Confeitaria Bom Retiro" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/SJApeYcqlUqbeklo.webp" alt="Bolo de Cenoura com Chocolate - Confeitaria Bom Retiro" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Cenoura</h3>
@@ -543,7 +577,7 @@
         <!-- Bolo de Limão -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/TYGUeSXUuPlqzaaX.jpg" alt="Bolo de Limão Fresco - Bolos Caseiros Curitiba" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/TYGUeSXUuPlqzaaX.jpg" alt="Bolo de Limão Fresco - Bolos Caseiros Curitiba" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Limão</h3>
@@ -555,7 +589,7 @@
         <!-- Bolo de Aipim (NOVO) -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/xrjxIXkkOVwzaNRN.jpeg" alt="Bolo de Aipim - Receita Tradicional" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/xrjxIXkkOVwzaNRN.jpeg" alt="Bolo de Aipim - Receita Tradicional" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Aipim</h3>
@@ -567,7 +601,7 @@
         <!-- Bolo Red Velvet (NOVO) -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/KVzYzaeAedJjBgYy.jpg" alt="Bolo Red Velvet Premium - Confeitaria Artesanal" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/KVzYzaeAedJjBgYy.jpg" alt="Bolo Red Velvet Premium - Confeitaria Artesanal" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo Red Velvet</h3>
@@ -579,7 +613,7 @@
         <!-- Bolo Mesclado (NOVO) -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/WDivBUGBkPgPCQQO.jpg" alt="Bolo Mesclado Cenoura e Chocolate - Casa Mondego" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/WDivBUGBkPgPCQQO.jpg" alt="Bolo Mesclado Cenoura e Chocolate - Casa Mondego" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo Mesclado</h3>
@@ -591,7 +625,7 @@
         <!-- Bolo de Amendoim (NOVO) -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/HvxqiRCeztySssUZ.jpg" alt="Bolo de Amendoim Caramelizado - Receita Especial" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/HvxqiRCeztySssUZ.jpg" alt="Bolo de Amendoim Caramelizado - Receita Especial" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Amendoim</h3>
@@ -603,7 +637,7 @@
         <!-- Bolo de Fubá (NOVO) -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nmFrKFeTPKNYkwcD.jpg" alt="Bolo de Fubá Cremoso - Clássico Caseiro" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nmFrKFeTPKNYkwcD.jpg" alt="Bolo de Fubá Cremoso - Clássico Caseiro" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Fubá</h3>
@@ -615,7 +649,7 @@
         <!-- Bolo Formigueiro (NOVO) -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/EAvMSXwpmOJYqKKE.jpg" alt="Bolo Formigueiro Molhadinho - Receita Tradicional" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/EAvMSXwpmOJYqKKE.jpg" alt="Bolo Formigueiro Molhadinho - Receita Tradicional" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo Formigueiro</h3>
@@ -626,7 +660,7 @@
     </div>
 </div>
 
-<section class="historia-section" id="historia">
+<section id="historia" class="historia-section">
     <div class="historia-content">
         <h2>Nossa História</h2>
         <p>A Casa Mondego nasce de receitas de família, cuidadosamente preservadas e aperfeiçoadas ao longo do tempo, dando origem a bolos caseiros autênticos, feitos com ingredientes selecionados, carinho em cada detalhe e o verdadeiro sabor do aconchego. Somos a confeitaria artesanal que Curitiba merecia.</p>
@@ -655,8 +689,18 @@
         </div>
         <div class="footer-section">
             <h4>Fale Conosco</h4>
-            <a href="https://wa.me/5541991755009" target="_blank">📱 WhatsApp: (41) 99175-5009</a>
-            <p>📧 E-mail: contato@casamondego.com.br</p>
+            <a href="https://wa.me/5541991755009" target="_blank" class="contact-link">
+                <svg class="contact-icon" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.5 2.5-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.9 4.4 26.5 3.8 36.5 2.3 11.1-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                </svg>
+                WhatsApp: (41) 99175-5009
+            </a>
+            <a href="mailto:contato@casamondego.com.br" class="contact-link">
+                <svg class="contact-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/>
+                </svg>
+                E-mail: contato@casamondego.com.br
+            </a>
             <p><strong>Horário de Atendimento:</strong><br>Seg-Sex: 8h às 18h<br>Sábado: 8h às 14h</p>
             <div class="social-icons">
                 <a href="https://www.instagram.com/casa.mondego/" target="_blank" title="Instagram Casa Mondego">
