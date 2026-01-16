@@ -12,9 +12,45 @@
 <meta name="theme-color" content="#000000">
 
 <link rel="profile" href="https://gmpg.org/xfn/11" />
-<title>Casa Mondego - Bolos Caseiros feitos à mão, como antigamente !!</title>
-<meta name="description" content="Casa Mondego, tem receitas de família, e atendem a região de Curitiba." />
+
+<!-- SEO Local Otimizado para Curitiba -->
+<title>Casa Mondego - Melhor Bolo Caseiro em Curitiba | Confeitaria no Bom Retiro</title>
+<meta name="description" content="Casa Mondego: bolos caseiros artesanais em Curitiba. Receitas de família, ingredientes premium. Confeitaria no Bom Retiro. Encomende seu bolo agora!" />
+<meta name="keywords" content="bolo caseiro Curitiba, confeitaria artesanal, bolos premium, bolo de chocolate, bolo de limão, Bom Retiro, confeitaria Curitiba" />
 <link rel="canonical" href="https://www.casamondego.com.br/" />
+
+<!-- Open Graph para Redes Sociais -->
+<meta property="og:title" content="Casa Mondego - Melhor Bolo Caseiro em Curitiba" />
+<meta property="og:description" content="Bolos caseiros feitos à mão com receitas de família. Confeitaria artesanal no Bom Retiro, Curitiba." />
+<meta property="og:image" content="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nFppfSJCWhOsztEB.png" />
+<meta property="og:url" content="https://www.casamondego.com.br/" />
+<meta property="og:type" content="business.business" />
+
+<!-- Schema.org para SEO Local -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Casa Mondego",
+  "image": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nFppfSJCWhOsztEB.png",
+  "description": "Confeitaria artesanal com bolos caseiros feitos à mão",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua Desembargador Hugo Simas, 1480, Loja 5",
+    "addressLocality": "Curitiba",
+    "addressRegion": "PR",
+    "postalCode": "80520-708",
+    "addressCountry": "BR"
+  },
+  "telephone": "+55 41 99175-5009",
+  "url": "https://www.casamondego.com.br/",
+  "priceRange": "$$",
+  "sameAs": [
+    "https://www.instagram.com/casa.mondego/",
+    "https://www.facebook.com/share/17fN9UakoA/"
+  ]
+}
+</script>
 
 <style id='casa-mondego-custom-css' type='text/css'>
     :root {
@@ -37,12 +73,52 @@
         scroll-behavior: smooth;
     }
 
+    /* Botão Flutuante de WhatsApp com ícone oficial */
+    .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 30px;
+        right: 30px;
+        background-color: var(--whatsapp-green);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        animation: pulse-whatsapp 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+        background-color: #1ead12;
+        transform: scale(1.1);
+        animation: none;
+    }
+
+    @keyframes pulse-whatsapp {
+        0% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+        }
+    }
+
     /* Header e Branding - Ajustado para ser o mais compacto possível */
     header.header-bar {
         background-color: var(--black-bg) !important;
         border-bottom: 2px solid var(--gold-primary);
-        padding: 5px 0; /* Reduzido ao mínimo absoluto */
-        line-height: 0; /* Remove espaços extras de linha */
+        padding: 5px 0;
+        line-height: 0;
     }
 
     .branding {
@@ -53,10 +129,10 @@
     }
 
     .logo-img {
-        max-width: 365px; /* Mantido o tamanho 30% maior */
+        max-width: 365px;
         height: auto;
         display: block;
-        margin: 0; /* Remove margens extras */
+        margin: 0;
         transition: transform 0.3s ease;
     }
 
@@ -117,6 +193,13 @@
         text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
 
+    .hero-section p {
+        font-size: 1.3rem;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
     /* Seção de Bolos */
     .section-title {
         text-align: center;
@@ -136,13 +219,32 @@
         margin: 15px auto;
     }
 
+    /* Grid de 4 colunas */
     .bolos-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
         padding: 20px;
-        max-width: 1300px;
+        max-width: 1400px;
         margin: 0 auto;
+    }
+
+    @media (min-width: 1200px) {
+        .bolos-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1199px) {
+        .bolos-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width: 767px) {
+        .bolos-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     .bolo-card {
@@ -164,7 +266,7 @@
 
     .bolo-img-container {
         width: 100%;
-        height: 280px;
+        height: 220px;
         overflow: hidden;
     }
 
@@ -180,7 +282,7 @@
     }
 
     .bolo-info {
-        padding: 25px;
+        padding: 20px;
         text-align: center;
         flex-grow: 1;
         display: flex;
@@ -190,21 +292,28 @@
 
     .bolo-info h3 {
         color: var(--black-bg);
-        margin-bottom: 15px;
-        font-size: 1.4rem;
+        margin-bottom: 12px;
+        font-size: 1.1rem;
         font-weight: 700;
+    }
+
+    .bolo-info p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 15px;
     }
 
     .btn-gold {
         background-color: var(--gold-primary);
         color: var(--black-bg);
-        padding: 12px 30px;
+        padding: 10px 25px;
         text-decoration: none;
         font-weight: bold;
         border-radius: 30px;
         display: inline-block;
         transition: all 0.3s ease;
         border: 2px solid var(--gold-primary);
+        font-size: 0.9rem;
     }
 
     .btn-gold:hover {
@@ -321,6 +430,13 @@
         .main-nav { flex-direction: column; }
         .footer-grid { text-align: center; }
         .social-icons { justify-content: center; }
+        .whatsapp-float {
+            width: 50px;
+            height: 50px;
+            bottom: 20px;
+            right: 20px;
+            font-size: 24px;
+        }
     }
 </style>
 
@@ -329,10 +445,15 @@
 
 <body>
 
+<!-- Botão Flutuante de WhatsApp com ícone oficial -->
+<a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um bolo da Casa Mondego. Qual é a disponibilidade?" class="whatsapp-float" title="Fale conosco no WhatsApp">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.255.949c-1.238.503-2.335 1.236-3.356 2.259-1.022 1.022-1.756 2.119-2.259 3.357-.606 1.605-.779 3.711-.5 5.902.28 2.191 1.104 4.289 2.514 6.062 1.41 1.773 3.44 3.061 5.64 3.514.505.1 1.01.15 1.52.15 1.3 0 2.58-.25 3.78-.75 1.2-.5 2.31-1.23 3.22-2.14.91-.91 1.64-2.02 2.14-3.22.5-1.2.75-2.48.75-3.78 0-1.3-.25-2.58-.75-3.78-.5-1.2-1.23-2.31-2.14-3.22-.91-.91-2.02-1.64-3.22-2.14-1.2-.5-2.48-.75-3.78-.75zm0-2c1.657 0 3.273.335 4.721 1.001 1.448.666 2.726 1.623 3.712 2.609.986.986 1.943 2.264 2.609 3.712.666 1.448 1.001 3.064 1.001 4.721 0 1.657-.335 3.273-1.001 4.721-.666 1.448-1.623 2.726-2.609 3.712-.986.986-2.264 1.943-3.712 2.609-1.448.666-3.064 1.001-4.721 1.001-1.657 0-3.273-.335-4.721-1.001-1.448-.666-2.726-1.623-3.712-2.609-.986-.986-1.943-2.264-2.609-3.712C2.335 15.273 2 13.657 2 12c0-1.657.335-3.273 1.001-4.721.666-1.448 1.623-2.726 2.609-3.712.986-.986 2.264-1.943 3.712-2.609C8.727 2.335 10.343 2 12 2z'/%3E%3C/svg%3E" alt="WhatsApp" style="width: 28px; height: 28px;">
+</a>
+
 <header class="header-bar">
     <div class="branding">
         <a href="https://www.casamondego.com.br/">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nFppfSJCWhOsztEB.png" alt="Casa Mondego Logo" class="logo-img">
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nFppfSJCWhOsztEB.png" alt="Casa Mondego - Melhor Bolo Caseiro em Curitiba" class="logo-img">
         </a>
     </div>
 </header>
@@ -351,22 +472,22 @@
 
 <section class="hero-section">
     <h1>Bem-vindo à Casa Mondego</h1>
-    <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto; line-height: 1.6;">Receitas de família, cuidadosamente preservadas, dando origem a bolos caseiros autênticos com o verdadeiro sabor do aconchego.</p>
+    <p>A melhor confeitaria artesanal de Curitiba! Receitas de família, cuidadosamente preservadas, dando origem a bolos caseiros autênticos com o verdadeiro sabor do aconchego. Localizada no Bom Retiro, servindo toda a região de Curitiba com qualidade e tradição.</p>
     <br><br>
     <a href="#bolos" class="btn-gold">CONHEÇA NOSSOS BOLOS</a>
 </section>
 
 <div id="bolos">
-    <h2 class="section-title">Nossas Delícias</h2>
+    <h2 class="section-title">Nossas Delícias - 12 Sabores Artesanais</h2>
     <div class="bolos-grid">
         <!-- Bolo de Chocolate -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/MTeBtuAOcldRYVSu.jpg" alt="Bolo de Chocolate" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/MTeBtuAOcldRYVSu.jpg" alt="Bolo de Chocolate Caseiro - Casa Mondego Curitiba" class="bolo-img">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Chocolate</h3>
-                <p>Massa fofinha com cobertura cremosa de chocolate belga. O favorito de todas as gerações.</p>
+                <p>Massa fofinha com cobertura cremosa de chocolate belga.</p>
                 <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Chocolate." target="_blank" class="btn-gold">Encomendar</a>
             </div>
         </div>
@@ -374,11 +495,11 @@
         <!-- Bolo de Limão Siciliano e Mirtilo -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" alt="Bolo de Limão Siciliano e Mirtilo" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" alt="Bolo de Limão Siciliano e Mirtilo - Confeitaria Artesanal Curitiba" class="bolo-img">
             </div>
             <div class="bolo-info">
                 <h3>Limão Siciliano e Mirtilo</h3>
-                <p>Uma combinação sofisticada e refrescante, com mirtilos frescos e o toque cítrico do limão siciliano.</p>
+                <p>Sofisticado e refrescante com mirtilos frescos.</p>
                 <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Limão Siciliano e Mirtilo." target="_blank" class="btn-gold">Encomendar</a>
             </div>
         </div>
@@ -386,11 +507,11 @@
         <!-- Bolo de Laranja -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" alt="Bolo de Laranja" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" alt="Bolo de Laranja - Receita Tradicional Curitiba" class="bolo-img">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Laranja</h3>
-                <p>O clássico bolo da tarde, feito com suco natural da fruta e uma calda irresistível.</p>
+                <p>O clássico da tarde com suco natural e calda irresistível.</p>
                 <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Laranja." target="_blank" class="btn-gold">Encomendar</a>
             </div>
         </div>
@@ -398,11 +519,11 @@
         <!-- Bolo de Milho -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/VezOWuffxYCYNPbw.jpg" alt="Bolo de Milho" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/VezOWuffxYCYNPbw.jpg" alt="Bolo de Milho Cremoso - Bolo Caseiro Artesanal" class="bolo-img">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Milho</h3>
-                <p>O clássico sabor da fazenda, cremoso, quentinho e feito com milho selecionado.</p>
+                <p>Cremoso e quentinho feito com milho selecionado.</p>
                 <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Milho." target="_blank" class="btn-gold">Encomendar</a>
             </div>
         </div>
@@ -410,11 +531,11 @@
         <!-- Bolo de Cenoura -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/SJApeYcqlUqbeklo.webp" alt="Bolo de Cenoura" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/SJApeYcqlUqbeklo.webp" alt="Bolo de Cenoura com Chocolate - Confeitaria Bom Retiro" class="bolo-img">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Cenoura</h3>
-                <p>Massa vibrante e fofinha com aquela cobertura de chocolate que derrete na boca.</p>
+                <p>Massa vibrante com cobertura de chocolate que derrete.</p>
                 <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Cenoura." target="_blank" class="btn-gold">Encomendar</a>
             </div>
         </div>
@@ -422,12 +543,84 @@
         <!-- Bolo de Limão -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/TYGUeSXUuPlqzaaX.jpg" alt="Bolo de Limão" class="bolo-img">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/TYGUeSXUuPlqzaaX.jpg" alt="Bolo de Limão Fresco - Bolos Caseiros Curitiba" class="bolo-img">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Limão</h3>
-                <p>Leve, fofinho e com o equilíbrio perfeito entre o doce e o cítrico.</p>
+                <p>Leve e fofinho com equilíbrio perfeito de sabor.</p>
                 <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Limão." target="_blank" class="btn-gold">Encomendar</a>
+            </div>
+        </div>
+
+        <!-- Bolo de Aipim (NOVO) -->
+        <div class="bolo-card">
+            <div class="bolo-img-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/xrjxIXkkOVwzaNRN.jpeg" alt="Bolo de Aipim - Receita Tradicional" class="bolo-img">
+            </div>
+            <div class="bolo-info">
+                <h3>Bolo de Aipim</h3>
+                <p>Macio e molhadinho com sabor tradicional irresistível.</p>
+                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Aipim." target="_blank" class="btn-gold">Encomendar</a>
+            </div>
+        </div>
+
+        <!-- Bolo Red Velvet (NOVO) -->
+        <div class="bolo-card">
+            <div class="bolo-img-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/KVzYzaeAedJjBgYy.jpg" alt="Bolo Red Velvet Premium - Confeitaria Artesanal" class="bolo-img">
+            </div>
+            <div class="bolo-info">
+                <h3>Bolo Red Velvet</h3>
+                <p>Elegante e sofisticado com cobertura de cream cheese.</p>
+                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo Red Velvet." target="_blank" class="btn-gold">Encomendar</a>
+            </div>
+        </div>
+
+        <!-- Bolo Mesclado (NOVO) -->
+        <div class="bolo-card">
+            <div class="bolo-img-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/WDivBUGBkPgPCQQO.jpg" alt="Bolo Mesclado Cenoura e Chocolate - Casa Mondego" class="bolo-img">
+            </div>
+            <div class="bolo-info">
+                <h3>Bolo Mesclado</h3>
+                <p>Cenoura e chocolate em perfeita harmonia.</p>
+                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo Mesclado (Cenoura e Chocolate)." target="_blank" class="btn-gold">Encomendar</a>
+            </div>
+        </div>
+
+        <!-- Bolo de Amendoim (NOVO) -->
+        <div class="bolo-card">
+            <div class="bolo-img-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/HvxqiRCeztySssUZ.jpg" alt="Bolo de Amendoim Caramelizado - Receita Especial" class="bolo-img">
+            </div>
+            <div class="bolo-info">
+                <h3>Bolo de Amendoim</h3>
+                <p>Sabor intenso e caramelizado para os amantes.</p>
+                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Amendoim." target="_blank" class="btn-gold">Encomendar</a>
+            </div>
+        </div>
+
+        <!-- Bolo de Fubá (NOVO) -->
+        <div class="bolo-card">
+            <div class="bolo-img-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nmFrKFeTPKNYkwcD.jpg" alt="Bolo de Fubá Cremoso - Clássico Caseiro" class="bolo-img">
+            </div>
+            <div class="bolo-info">
+                <h3>Bolo de Fubá</h3>
+                <p>Clássico cremoso com textura perfeita e sabor autêntico.</p>
+                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Fubá." target="_blank" class="btn-gold">Encomendar</a>
+            </div>
+        </div>
+
+        <!-- Bolo Formigueiro (NOVO) -->
+        <div class="bolo-card">
+            <div class="bolo-img-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/EAvMSXwpmOJYqKKE.jpg" alt="Bolo Formigueiro Molhadinho - Receita Tradicional" class="bolo-img">
+            </div>
+            <div class="bolo-info">
+                <h3>Bolo Formigueiro</h3>
+                <p>Molhadinho e desmancha na boca com cobertura de açúcar.</p>
+                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo Formigueiro." target="_blank" class="btn-gold">Encomendar</a>
             </div>
         </div>
     </div>
@@ -436,48 +629,50 @@
 <section class="historia-section" id="historia">
     <div class="historia-content">
         <h2>Nossa História</h2>
-        <p>A Casa Mondego nasce de receitas de família, cuidadosamente preservadas e aperfeiçoadas ao longo do tempo, dando origem a bolos caseiros autênticos, feitos com ingredientes selecionados, carinho em cada detalhe e o verdadeiro sabor do aconchego.</p>
-        <p>Nossa missão é transformar em realidade o sonho de comer bem, preservando a tradição artesanal em cada fornada. Cada bolo que sai do nosso forno carrega uma história de amor e dedicação.</p>
+        <p>A Casa Mondego nasce de receitas de família, cuidadosamente preservadas e aperfeiçoadas ao longo do tempo, dando origem a bolos caseiros autênticos, feitos com ingredientes selecionados, carinho em cada detalhe e o verdadeiro sabor do aconchego. Somos a confeitaria artesanal que Curitiba merecia.</p>
+        <p>Nossa missão é transformar em realidade o sonho de comer bem, preservando a tradição artesanal em cada fornada. Cada bolo que sai do nosso forno carrega uma história de amor e dedicação. Localizada no Bom Retiro, servimos toda a região de Curitiba com bolos de qualidade premium.</p>
     </div>
 </section>
 
 <footer id="contato">
     <div class="footer-grid">
         <div class="footer-section">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nFppfSJCWhOsztEB.png" alt="Casa Mondego" style="max-width: 150px; margin-bottom: 20px;">
-            <p>Tradição e sabor em cada detalhe. Bolos feitos à mão com receitas de família.</p>
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nFppfSJCWhOsztEB.png" alt="Casa Mondego Logo" style="max-width: 150px; margin-bottom: 20px;">
+            <p>Tradição e sabor em cada detalhe. Bolos feitos à mão com receitas de família. A melhor confeitaria artesanal de Curitiba.</p>
         </div>
         <div class="footer-section">
             <h4>Onde Estamos</h4>
+            <p><strong>Casa Mondego - Confeitaria Artesanal</strong></p>
             <p>Rua Desembargador Hugo Simas, 1480</p>
             <p>Loja 5 - Bom Retiro</p>
             <p>Curitiba - PR | CEP 80520-708</p>
             <div class="map-container">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.843647164848!2d-49.2848888!3d-25.4100000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce43e7e7e7e7e%3A0x7e7e7e7e7e7e7e7e!2sR.%20Des.%20Hugo%20Simas%2C%201480%20-%20Bom%20Retiro%2C%20Curitiba%20-%20PR%2C%2080520-708!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
-                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização Casa Mondego - Bom Retiro, Curitiba">
                 </iframe>
             </div>
         </div>
         <div class="footer-section">
             <h4>Fale Conosco</h4>
-            <a href="https://wa.me/5541991755009" target="_blank">WhatsApp: (41) 99175-5009</a>
-            <p>E-mail: contato@casamondego.com.br</p>
+            <a href="https://wa.me/5541991755009" target="_blank">📱 WhatsApp: (41) 99175-5009</a>
+            <p>📧 E-mail: contato@casamondego.com.br</p>
+            <p><strong>Horário de Atendimento:</strong><br>Seg-Sex: 8h às 18h<br>Sábado: 8h às 14h</p>
             <div class="social-icons">
-                <a href="https://www.instagram.com/casa.mondego/" target="_blank" title="Instagram">
+                <a href="https://www.instagram.com/casa.mondego/" target="_blank" title="Instagram Casa Mondego">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/132px-Instagram_logo_2016.svg.png" alt="Instagram">
                 </a>
-                <a href="https://www.facebook.com/share/17fN9UakoA/" target="_blank" title="Facebook">
+                <a href="https://www.facebook.com/share/17fN9UakoA/" target="_blank" title="Facebook Casa Mondego">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png" alt="Facebook">
                 </a>
-                <a href="https://wa.me/5541991755009" target="_blank" title="WhatsApp">
+                <a href="https://wa.me/5541991755009" target="_blank" title="WhatsApp Casa Mondego">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="WhatsApp">
                 </a>
             </div>
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© 2026 - CASA MONDEGO | BOLOS CASEIROS FEITOS À MÃO</p>
+        <p>© 2026 - CASA MONDEGO | BOLOS CASEIROS FEITOS À MÃO | Confeitaria Artesanal em Curitiba - Bom Retiro</p>
     </div>
 </footer>
 
