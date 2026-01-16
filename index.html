@@ -21,7 +21,7 @@
 
 <!-- Open Graph para Redes Sociais -->
 <meta property="og:title" content="Casa Mondego - Melhor Bolo Caseiro em Curitiba" />
-<meta property="og:description" content="Bolos caseiros feitos à mão with receitas de família. Confeitaria artesanal no Bom Retiro, Curitiba." />
+<meta property="og:description" content="Bolos caseiros feitos à mão com receitas de família. Confeitaria artesanal no Bom Retiro, Curitiba." />
 <meta property="og:image" content="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nFppfSJCWhOsztEB.png" />
 <meta property="og:url" content="https://www.casamondego.com.br/" />
 <meta property="og:type" content="business.business" />
@@ -108,15 +108,9 @@
     }
 
     @keyframes pulse-whatsapp {
-        0% {
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-        }
-        70% {
-            box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-        }
-        100% {
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-        }
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+        70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
 
     /* Header e Branding - Ajustado para ser ultra compacto */
@@ -146,9 +140,7 @@
         transition: transform 0.3s ease;
     }
 
-    .logo-img:hover {
-        transform: scale(1.02);
-    }
+    .logo-img:hover { transform: scale(1.02); }
 
     /* Navegação */
     .navigation-holder {
@@ -239,23 +231,9 @@
         margin: 0 auto;
     }
 
-    @media (min-width: 1200px) {
-        .bolos-grid {
-            grid-template-columns: repeat(4, 1fr);
-        }
-    }
-
-    @media (min-width: 768px) and (max-width: 1199px) {
-        .bolos-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    @media (max-width: 767px) {
-        .bolos-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
+    @media (min-width: 1200px) { .bolos-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (min-width: 768px) and (max-width: 1199px) { .bolos-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 767px) { .bolos-grid { grid-template-columns: repeat(2, 1fr); } }
 
     .bolo-card {
         background: white;
@@ -274,22 +252,9 @@
         border-color: var(--gold-primary);
     }
 
-    .bolo-img-container {
-        width: 100%;
-        height: 220px;
-        overflow: hidden;
-    }
-
-    .bolo-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-    }
-
-    .bolo-card:hover .bolo-img {
-        transform: scale(1.1);
-    }
+    .bolo-img-container { width: 100%; height: 220px; overflow: hidden; }
+    .bolo-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .bolo-card:hover .bolo-img { transform: scale(1.1); }
 
     .bolo-info {
         padding: 20px;
@@ -300,18 +265,8 @@
         justify-content: space-between;
     }
 
-    .bolo-info h3 {
-        color: var(--black-bg);
-        margin-bottom: 12px;
-        font-size: 1.1rem;
-        font-weight: 700;
-    }
-
-    .bolo-info p {
-        font-size: 0.9rem;
-        line-height: 1.4;
-        margin-bottom: 15px;
-    }
+    .bolo-info h3 { color: var(--black-bg); margin-bottom: 12px; font-size: 1.1rem; font-weight: 700; }
+    .bolo-info p { font-size: 0.9rem; line-height: 1.4; margin-bottom: 15px; }
 
     .btn-gold {
         background-color: var(--gold-primary);
@@ -326,10 +281,7 @@
         font-size: 0.9rem;
     }
 
-    .btn-gold:hover {
-        background-color: transparent;
-        color: var(--gold-primary);
-    }
+    .btn-gold:hover { background-color: transparent; color: var(--gold-primary); }
 
     /* Nossa História - Ajustado para reduzir sobras */
     .historia-section {
@@ -342,26 +294,13 @@
         background-size: cover;
     }
 
-    .historia-content {
-        max-width: 900px;
-        margin: 0 auto;
-        text-align: center;
-    }
+    .historia-content { max-width: 900px; margin: 0 auto; text-align: center; }
+    .historia-content h2 { font-family: 'Courgette', cursive; color: var(--gold-primary); font-size: 3rem; margin-bottom: 20px; }
+    .historia-content p { margin-bottom: 15px; }
 
-    .historia-content h2 {
-        font-family: 'Courgette', cursive;
-        color: var(--gold-primary);
-        font-size: 3rem;
-        margin-bottom: 20px;
-    }
-
-    .historia-content p {
-        margin-bottom: 15px;
-    }
-
-    /* Footer */
+    /* Footer - Ajustado para fundo preto total */
     footer {
-        background-color: #111;
+        background-color: var(--black-bg) !important;
         color: #888;
         padding: 60px 20px 40px;
         text-align: center;
@@ -394,23 +333,20 @@
         margin-bottom: 10px;
     }
 
-    .footer-section a:hover {
-        color: var(--gold-primary);
+    .footer-section a:hover { color: var(--gold-primary); }
+
+    /* Estilo para o vídeo da logo no rodapé */
+    .footer-logo-video {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        display: block;
     }
 
-    /* Estilo para os ícones de contato no rodapé */
-    .contact-link {
-        display: flex !important;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .contact-icon {
-        width: 18px;
-        height: 18px;
-        fill: var(--gold-primary);
-        flex-shrink: 0;
-    }
+    .contact-link { display: flex !important; align-items: center; gap: 10px; }
+    .contact-icon { width: 18px; height: 18px; fill: var(--gold-primary); flex-shrink: 0; }
 
     .map-container {
         width: 100%;
@@ -421,36 +357,12 @@
         border: 1px solid #333;
     }
 
-    .social-icons {
-        display: flex;
-        gap: 15px;
-        margin-top: 15px;
-        align-items: center;
-    }
+    .social-icons { display: flex; gap: 15px; margin-top: 15px; align-items: center; }
+    .social-icons a { display: block; width: 40px; height: 40px; transition: transform 0.3s ease; }
+    .social-icons a:hover { transform: translateY(-5px); }
+    .social-icons img { width: 100%; height: 100%; object-fit: contain; }
 
-    .social-icons a {
-        display: block;
-        width: 40px;
-        height: 40px;
-        transition: transform 0.3s ease;
-    }
-
-    .social-icons a:hover {
-        transform: translateY(-5px);
-    }
-
-    .social-icons img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-
-    .footer-bottom {
-        border-top: 1px solid #222;
-        padding-top: 40px;
-        font-size: 0.85rem;
-        letter-spacing: 1px;
-    }
+    .footer-bottom { border-top: 1px solid #222; padding-top: 40px; font-size: 0.85rem; letter-spacing: 1px; }
 
     @media (max-width: 768px) {
         .hero-section h1 { font-size: 2.5rem; }
@@ -459,16 +371,7 @@
         .footer-grid { text-align: center; }
         .social-icons { justify-content: center; }
         .contact-link { justify-content: center; }
-        .whatsapp-float {
-            width: 50px;
-            height: 50px;
-            bottom: 20px;
-            right: 20px;
-        }
-        .whatsapp-float svg {
-            width: 30px;
-            height: 30px;
-        }
+        .footer-logo-video { margin: 0 auto 20px; }
     }
 </style>
 
@@ -477,7 +380,7 @@
 
 <body>
 
-<!-- Botão Flutuante de WhatsApp com ícone oficial SVG BRANCO -->
+<!-- Botão Flutuante de WhatsApp -->
 <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um bolo da Casa Mondego. Qual é a disponibilidade?" class="whatsapp-float" title="Fale conosco no WhatsApp" target="_blank">
     <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
         <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.5 2.5-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.9 4.4 26.5 3.8 36.5 2.3 11.1-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
@@ -586,7 +489,7 @@
             </div>
         </div>
 
-        <!-- Bolo de Aipim (NOVO) -->
+        <!-- Bolo de Aipim -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/xrjxIXkkOVwzaNRN.jpeg" alt="Bolo de Aipim - Receita Tradicional" class="bolo-img" loading="lazy">
@@ -598,7 +501,7 @@
             </div>
         </div>
 
-        <!-- Bolo Red Velvet (NOVO) -->
+        <!-- Bolo Red Velvet -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/KVzYzaeAedJjBgYy.jpg" alt="Bolo Red Velvet Premium - Confeitaria Artesanal" class="bolo-img" loading="lazy">
@@ -610,7 +513,7 @@
             </div>
         </div>
 
-        <!-- Bolo Mesclado (NOVO) -->
+        <!-- Bolo Mesclado -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/WDivBUGBkPgPCQQO.jpg" alt="Bolo Mesclado Cenoura e Chocolate - Casa Mondego" class="bolo-img" loading="lazy">
@@ -622,7 +525,7 @@
             </div>
         </div>
 
-        <!-- Bolo de Amendoim (NOVO) -->
+        <!-- Bolo de Amendoim -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/HvxqiRCeztySssUZ.jpg" alt="Bolo de Amendoim Caramelizado - Receita Especial" class="bolo-img" loading="lazy">
@@ -634,7 +537,7 @@
             </div>
         </div>
 
-        <!-- Bolo de Fubá (NOVO) -->
+        <!-- Bolo de Fubá -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nmFrKFeTPKNYkwcD.jpg" alt="Bolo de Fubá Cremoso - Clássico Caseiro" class="bolo-img" loading="lazy">
@@ -646,7 +549,7 @@
             </div>
         </div>
 
-        <!-- Bolo Formigueiro (NOVO) -->
+        <!-- Bolo Formigueiro -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/EAvMSXwpmOJYqKKE.jpg" alt="Bolo Formigueiro Molhadinho - Receita Tradicional" class="bolo-img" loading="lazy">
@@ -671,7 +574,11 @@
 <footer id="contato">
     <div class="footer-grid">
         <div class="footer-section">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nFppfSJCWhOsztEB.png" alt="Casa Mondego Logo" style="max-width: 150px; margin-bottom: 20px;">
+            <!-- VÍDEO NO LUGAR DA LOGO -->
+            <video class="footer-logo-video" autoplay muted loop playsinline>
+                <source src="logo-footer.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos.
+            </video>
             <p>Tradição e sabor em cada detalhe. Bolos feitos à mão com receitas de família. A melhor confeitaria artesanal de Curitiba.</p>
         </div>
         <div class="footer-section">
