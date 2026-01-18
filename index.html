@@ -196,14 +196,17 @@
         .main-nav {
             width: 100%;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
+            flex-wrap: nowrap; /* Garante uma única linha */
+            gap: 5px; /* Reduz o espaço entre itens */
+            overflow-x: auto; /* Permite scroll se for muito pequeno */
+            -webkit-overflow-scrolling: touch;
         }
 
         .main-nav li a {
-            font-size: 0.85rem;
-            padding: 8px 12px;
-            letter-spacing: 0.8px;
+            font-size: 0.7rem; /* Reduz o tamanho da fonte */
+            padding: 6px 8px; /* Reduz o preenchimento */
+            letter-spacing: 0.5px;
+            white-space: nowrap; /* Impede quebra de texto no item */
         }
     }
 
@@ -518,7 +521,7 @@
         <!-- Bolo de Cenoura -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/SJApeYcqlUqbeklo.webp" alt="Bolo de Cenoura" class="bolo-img" loading="lazy">
+                <img src="cenoura.jpg" alt="Bolo de Cenoura" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo de Cenoura</h3>
@@ -554,7 +557,7 @@
         <!-- Bolo Red Velvet -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/KVzYzaeAedJjBgYy.jpg" alt="Bolo Red Velvet" class="bolo-img" loading="lazy">
+                <img src="Bolo-redvelvet.jpg" alt="Bolo Red Velvet" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo Red Velvet</h3>
@@ -602,7 +605,7 @@
         <!-- Bolo Formigueiro -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/EAvMSXwpmOJYqKKE.jpg" alt="Bolo Formigueiro" class="bolo-img" loading="lazy">
+                <img src="Bolo-formigueiro-1024x683(1).jpg" alt="Bolo Formigueiro" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Bolo Formigueiro</h3>
@@ -656,6 +659,10 @@
     <div class="footer-bottom">
         <p>© 2026 - CASA MONDEGO | Confeitaria Artesanal em Curitiba</p>
     </div>
+</footer>
+
+</body>
+</html>
 </footer>
 
 </body>
