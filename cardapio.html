@@ -1,1 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cardápio Digital - Casa Mondego</title>
+    <meta name="description" content="Cardápio digital da Casa Mondego - Bolos artesanais em Curitiba">
+    
+    <style>
+        :root {
+            --gold-primary: #d4af37;
+            --gold-secondary: #c5a028;
+            --black-bg: #000000;
+            --cream-bg: #fdfaf5;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            background-color: var(--cream-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header do Cardápio */
+        .menu-header {
+            background: linear-gradient(135deg, var(--black-bg), #1a1a1a);
+            color: var(--text-light);
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--gold-primary);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .logo-section img {
+            height: 80px;
+            width: auto;
+        }
+
+        .qr-section {
+            text-align: center;
+        }
+
+        .qr-section img {
+            width: 100px;
+            height: 100px;
+            border: 3px solid var(--gold-primary);
+            border-radius: 10px;
+            background: white;
+            padding: 5px;
+        }
+
+        .qr-section p {
+            font-size: 0.75rem;
+            margin-top: 5px;
+            color: var(--gold-primary);
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+            font-size: 0.85rem;
+        }
+
+        .contact-info p {
+            margin: 3px 0;
+        }
+
+        .contact-info a {
+            color: var(--gold-primary);
+            text-decoration: none;
+        }
+
+        /* Título Principal */
+        .menu-title {
+            background: var(--cream-bg);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .menu-title h1 {
+            font-family: 'Courgette', cursive;
+            color: var(--black-bg);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .menu-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Grid de Bolos */
+        .cakes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 30px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 1200px) {
+            .cakes-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .cakes-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 767px) {
+            .cakes-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Card do Bolo */
+        .cake-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .cake-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+            border: 2px solid var(--gold-primary);
+        }
+
+        .cake-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cake-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .cake-card:hover .cake-image img {
+            transform: scale(1.1);
+        }
+
+        .cake-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--gold-primary);
+            color: var(--black-bg);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .cake-info {
+            padding: 20px;
+        }
+
+        .cake-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--black-bg);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .cake-description {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            min-height: 40px;
+        }
+
+        .cake-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+        }
+
+        .click-hint {
+            font-size: 0.75rem;
+            color: #999;
+            text-align: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .click-hint svg {
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        /* Footer do Cardápio */
+        .menu-footer {
+            background: var(--black-bg);
+            color: #888;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 4px solid var(--gold-primary);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-item {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-item h4 {
+            color: var(--gold-primary);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .footer-item p {
+            font-size: 0.9rem;
+            margin: 5px 0;
+        }
+
+        .footer-item a {
+            color: var(--gold-primary);
+            text-decoration: none;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gold-primary);
+            color: var(--black-bg);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--gold-secondary);
+            transform: scale(1.05);
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* Fonts */
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Courgette&display=swap');
+    </style>
+</head>
+<body>
+
+    <!-- Header do Cardápio -->
+    <header class="menu-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/uFUuILwJmMetvATy.png" alt="Casa Mondego">
+            </div>
+            
+            <div class="contact-info">
+                <p>📍 Rua Desembargador Hugo Simas, 1480, Loja 5</p>
+                <p>🏘️ Bairro Bom Retiro - Curitiba/PR</p>
+                <p>📱 <a href="https://wa.me/5541991755009" target="_blank">(41) 99175-5009</a></p>
+                <p>🌐 <a href="https://www.casamondego.com.br/" target="_blank">www.casamondego.com.br</a></p>
+                <p>📸 @casa.mondego</p>
+            </div>
+
+            <div class="qr-section">
+                <!-- QR Code que leva para o site principal -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.casamondego.com.br/" alt="QR Code Casa Mondego">
+                <p>Faça sua encomenda</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Título Principal -->
+    <section class="menu-title">
+        <h1>Nossas Delícias – Bolos Artesanais</h1>
+        <p>📸 Clique em qualquer bolo para pedir agora!</p>
+    </section>
+
+    <!-- Grid de Bolos -->
+    <div class="loading" id="loading">Carregando cardápio...</div>
+    <div class="cakes-grid" id="cakesGrid"></div>
+
+    <!-- Footer do Cardápio -->
+    <footer class="menu-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="footer-item">
+                    <h4>🕒 Horário de Retirada</h4>
+                    <p>Segunda a Sexta: 10h às 18h</p>
+                    <p>Sábado: 10h às 16h</p>
+                    <p>Domingo: Fechado</p>
+                </div>
+                <div class="footer-item">
+                    <h4>📍 Como Retirar</h4>
+                    <p>• Pessoalmente na loja</p>
+                    <p>• Via Uber/99 (após confirmação)</p>
+                </div>
+                <div class="footer-item">
+                    <h4>💳 Pagamento</h4>
+                    <p>• PIX (valor exato do pedido)</p>
+                    <p>• Confirmação via WhatsApp</p>
+                </div>
+            </div>
+
+            <a href="https://www.casamondego.com.br/" class="cta-button">
+                🛒 Ir para o Site e Pedir
+            </a>
+
+            <p style="margin-top: 30px; font-size: 0.85rem; color: #666;">
+                📸 As imagens dos bolos são meramente ilustrativas<br>
+                © 2026 Casa Mondego - Todos os direitos reservados
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ===== DADOS DOS BOLOS (MESMOS DO SITE PRINCIPAL) =====
+        const cakes = [
+            { id: 2, name: "Limão Siciliano & Mirtilo", desc: "Refrescante e cítrico com mirtilos frescos.", price: 30.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" },
+            { id: 13, name: "Maçã com Nozes", desc: "Clássico sabor de maçã com crocância de nozes.", price: 30.00, img: "bolo-maca-nozes.jpg" },
+            { id: 14, name: "Maçã com Passas", desc: "Aveludado com a doçura das passas.", price: 30.00, img: "bolo-maca-passas.jpg" },
+            { id: 12, name: "Laranja Bahia com Amora", desc: "Aroma de laranja com o toque de amora.", price: 30.00, img: "bolo-laranja-amora.jpg" },
+            { id: 7, name: "Bolo de Aipim", desc: "Textura única e sabor inconfundível do aipim.", price: 32.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/xrjxIXkkOVwzaNRN.jpeg" },
+            { id: 11, name: "Bolo de Coco", desc: "Macia nuvem de coco fresco.", price: 26.00, img: "bolo-fuba-coco.jpg" },
+            { id: 15, name: "Bolo de Banana", desc: "Naturalmente doce e perfumado.", price: 26.00, img: "https://images.unsplash.com/photo-1603539245401-08bc59043f3a?w=400&h=300&fit=crop" },
+            { id: 1, name: "Bolo de Chocolate", desc: "Intenso sabor de chocolate artesanal.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/PRdTFbGPPJRfxGUn.png" },
+            { id: 4, name: "Bolo de Milho", desc: "O verdadeiro bolo de milho da fazenda.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/VezOWuffxYCYNPbw.jpg" },
+            { id: 5, name: "Bolo de Cenoura", desc: "Simplesmente o melhor bolo de cenoura.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/vVPrthhQxhwSdbwg.jpg" },
+            { id: 6, name: "Bolo de Limão Siciliano", desc: "Aroma a frescor do limão siciliano.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nTMHyturkMHdoCAC.jpg" },
+            { id: 10, name: "Bolo de Amendoim", desc: "Sabor rústico e marcante do amendoim.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/GzjpPKjJMHZsTvvg.jpg" },
+            { id: 10, name: "Bolo de Fubá", desc: "Clássico bolo de fubá com erva-doce.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nmFrKFeTPKNYkwcD.jpg" },
+            { id: 11, name: "Fubá com Coco", desc: "Fubá tradicional com pedacinhos de coco.", price: 26.00, img: "bolo-fuba-coco.jpg" },
+            { id: 8, name: "Bolo de Cenoura e Chocolate", desc: "Dupla perfeita: cenoura e chocolate.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/OueHUtJwlOElMHWm.jpg" }
+        ];
+
+        // ===== URL DO SITE PRINCIPAL =====
+        const SITE_URL = "https://www.casamondego.com.br/";
+
+        // ===== RENDERIZAR CARDÁPIO =====
+        function renderMenu() {
+            const grid = document.getElementById('cakesGrid');
+            const loading = document.getElementById('loading');
+
+            grid.innerHTML = cakes.map(cake => {
+                // Cria URL que adiciona o bolo ao carrinho no site principal
+                // O site principal precisa ler o parâmetro ?add=X da URL
+                const orderUrl = `${SITE_URL}?add=${cake.id}`;
+                
+                return `
+                    <a href="${orderUrl}" target="_blank" class="cake-card">
+                        <div class="cake-image">
+                            <img src="${cake.img}" alt="${cake.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop'">
+                            <div class="cake-overlay">R$ ${cake.price.toFixed(2).replace('.',',')}</div>
+                        </div>
+                        <div class="cake-info">
+                            <h3 class="cake-name">${cake.name}</h3>
+                            <p class="cake-description">${cake.desc}</p>
+                            <div class="click-hint">
+                                <svg viewBox="0 0 448 512" fill="#999"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.5 2.5-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.9 4.4 26.5 3.8 36.5 2.3 11.1-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                                Clique para pedir
+                            </div>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+
+            loading.style.display = 'none';
+        }
+
+        // ===== INICIALIZAR =====
+        document.addEventListener('DOMContentLoaded', renderMenu);
+    </script>
+</body>
+</html>
