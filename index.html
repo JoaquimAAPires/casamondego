@@ -976,9 +976,9 @@
                 <img src="bolo-fuba-coco.jpg" alt="Bolo de Fubá com Coco" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
-                <h3>Bolo de Fubá com Coco</h3>
-                <p>Sabor tradicional de fubá com o toque especial do coco fresco.</p>
-                <button class="btn-gold" onclick="addToCart(11, 'Bolo de Fubá com Coco', 26.00)">Encomendar • R$ 26,00</button>
+                <h3>Fubá com Coco</h3>
+                <p>Fubá tradicional com pedacinhos de coco.</p>
+                <button class="btn-gold" onclick="addToCart(11, 'Fubá com Coco', 26.00)">Encomendar • R$ 26,00</button>
             </div>
         </div>
 
@@ -989,7 +989,7 @@
             </div>
             <div class="bolo-info">
                 <h3>Laranja Bahia com Amora</h3>
-                <p>Suco de laranja Bahia com amoras frescas, combinação perfeita.</p>
+                <p>Aroma de laranja com o toque de amora.</p>
                 <button class="btn-gold" onclick="addToCart(12, 'Laranja Bahia com Amora', 30.00)">Encomendar • R$ 30,00</button>
             </div>
         </div>
@@ -1000,9 +1000,9 @@
                 <img src="bolo-maca-nozes.jpg" alt="Bolo de Maçã com Nozes" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
-                <h3>Bolo de Maçã com Nozes</h3>
-                <p>Maçãs frescas e nozes crocantes, sabor sofisticado e caseiro.</p>
-                <button class="btn-gold" onclick="addToCart(13, 'Bolo de Maçã com Nozes', 30.00)">Encomendar • R$ 30,00</button>
+                <h3>Maçã com Nozes</h3>
+                <p>Clássico sabor de maçã com crocância de nozes.</p>
+                <button class="btn-gold" onclick="addToCart(13, 'Maçã com Nozes', 30.00)">Encomendar • R$ 30,00</button>
             </div>
         </div>
 
@@ -1012,9 +1012,9 @@
                 <img src="bolo-maca-passas.jpg" alt="Bolo de Maçã com Passas" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
-                <h3>Bolo de Maçã com Passas</h3>
-                <p>Maçãs caramelizadas com passas, um clássico reconfortante.</p>
-                <button class="btn-gold" onclick="addToCart(14, 'Bolo de Maçã com Passas', 30.00)">Encomendar • R$ 30,00</button>
+                <h3>Maçã com Passas</h3>
+                <p>Aveludado com a doçura das passas.</p>
+                <button class="btn-gold" onclick="addToCart(14, 'Maçã com Passas', 30.00)">Encomendar • R$ 30,00</button>
             </div>
         </div>
     </div>
@@ -1069,8 +1069,45 @@
     </div>
 </footer>
 
-<!-- === JAVASCRIPT COM TODAS AS OTIMIZAÇÕES === -->
+<!-- === JAVASCRIPT COM TODAS AS FUNCIONALIDADES === -->
 <script>
+// ===== AUTO-ADD AO CARRINHO VIA URL (PARA O CARDÁPIO DIGITAL) =====
+window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const addCakeId = urlParams.get('add');
+    
+    if (addCakeId) {
+        const cakeMap = {
+            '1': { name: 'Bolo de Chocolate', price: 26.00 },
+            '2': { name: 'Limão Siciliano e Mirtilo', price: 30.00 },
+            '3': { name: 'Bolo de Laranja', price: 26.00 },
+            '4': { name: 'Bolo de Milho', price: 26.00 },
+            '5': { name: 'Bolo de Cenoura', price: 26.00 },
+            '6': { name: 'Bolo de Limão', price: 26.00 },
+            '7': { name: 'Bolo de Aipim', price: 32.00 },
+            '8': { name: 'Bolo Mesclado', price: 26.00 },
+            '9': { name: 'Bolo de Amendoim', price: 26.00 },
+            '10': { name: 'Bolo de Fubá', price: 26.00 },
+            '11': { name: 'Fubá com Coco', price: 26.00 },
+            '12': { name: 'Laranja Bahia com Amora', price: 30.00 },
+            '13': { name: 'Maçã com Nozes', price: 30.00 },
+            '14': { name: 'Maçã com Passas', price: 30.00 }
+        };
+        
+        const cake = cakeMap[addCakeId];
+        if (cake) {
+            addToCart(parseInt(addCakeId), cake.name, cake.price);
+            setTimeout(() => {
+                showToast(`🎂 ${cake.name} adicionado ao carrinho!`);
+                setTimeout(() => {
+                    openCheckout();
+                }, 1500);
+            }, 500);
+        }
+    }
+});
+// ===== FIM AUTO-ADD =====
+
 // ===== CONFIGURAÇÕES REAIS =====
 const WHATSAPP_NUMBER = "5541991755009";
 const PIX_KEY = "a193c533-4855-433b-a31b-2fa22f6f106e";
