@@ -6,7 +6,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
-<!-- Favicon package - Ícones da Casa Mondego em múltiplas resoluções -->
+<!-- Favicon package -->
 <link rel="icon" type="image/png" sizes="32x32" href="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/oicqteltreWtywgP.png">
 <link rel="icon" type="image/png" sizes="192x192" href="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/ItsHjbpupNQQxemS.png">
 <link rel="icon" type="image/png" sizes="512x512" href="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nCpjQxDKMgQxdXDa.png">
@@ -15,20 +15,20 @@
 
 <link rel="profile" href="https://gmpg.org/xfn/11" />
 
-<!-- SEO Local Otimizado para Curitiba -->
+<!-- SEO Local -->
 <title>Casa Mondego - Melhor Bolo Caseiro em Curitiba | Confeitaria no Bom Retiro</title>
 <meta name="description" content="Casa Mondego: bolos caseiros artesanais em Curitiba. Receitas de família, ingredientes premium. Confeitaria no Bom Retiro. Encomende seu bolo agora!" />
 <meta name="keywords" content="bolo caseiro Curitiba, confeitaria artesanal, bolos premium, bolo de chocolate, bolo de limão, Bom Retiro, confeitaria Curitiba" />
 <link rel="canonical" href="https://www.casamondego.com.br/" />
 
-<!-- Open Graph para Redes Sociais -->
+<!-- Open Graph -->
 <meta property="og:title" content="Casa Mondego - Melhor Bolo Caseiro em Curitiba" />
 <meta property="og:description" content="Bolos caseiros feitos à mão com receitas de família. Confeitaria artesanal no Bom Retiro, Curitiba." />
 <meta property="og:image" content="https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/uFUuILwJmMetvATy.png" />
 <meta property="og:url" content="https://www.casamondego.com.br/" />
 <meta property="og:type" content="business.business" />
 
-<!-- Schema.org para SEO Local -->
+<!-- Schema.org -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -77,7 +77,7 @@
         scroll-behavior: smooth;
     }
 
-    /* Botão Flutuante de WhatsApp com ícone oficial */
+    /* Botão Flutuante de WhatsApp */
     .whatsapp-float {
         position: fixed;
         width: 60px;
@@ -117,7 +117,7 @@
         100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
 
-    /* Header Unificado e Horizontal */
+    /* Header */
     header.header-bar {
         background-color: var(--black-bg) !important;
         border-bottom: 2px solid var(--gold-primary);
@@ -150,7 +150,6 @@
 
     .logo-img:hover { transform: scale(1.05); }
 
-    /* Navegação Alinhada à Direita */
     .main-nav {
         display: flex;
         list-style: none;
@@ -281,6 +280,7 @@
         border: 2px solid var(--gold-primary);
         font-size: 0.9rem;
         text-align: center;
+        cursor: pointer;
     }
 
     .btn-gold:hover { background-color: transparent; color: var(--gold-primary); }
@@ -341,12 +341,8 @@
     }
 
     .contact-link:hover { color: var(--gold-primary); }
-
     .contact-link svg { width: 20px; height: 20px; fill: var(--gold-primary); }
 
-    .social-links { display: flex; gap: 15px; margin-top: 20px; }
-    
-    /* Ícones Sociais Coloridos com Cores Oficiais */
     .social-links { display: flex; gap: 15px; margin-top: 20px; }
     .social-links a { 
         display: flex; 
@@ -360,20 +356,14 @@
     }
     .social-links a:hover { transform: scale(1.1); }
     .social-links a svg { width: 22px; height: 22px; fill: white; }
-    
-    /* Instagram com Degradê Oficial */
     .social-instagram { 
         background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285ae1 90%);
     }
-    
-    /* Facebook com Azul Oficial */
-    .social-facebook { 
-        background-color: #1877F2;
-    }
+    .social-facebook { background-color: #1877F2; }
 
     .map-container { width: 100%; height: 180px; border-radius: 10px; overflow: hidden; margin-top: 15px; border: 1px solid #333; }
 
-    /* Ajustes Responsivos para Celular */
+    /* Responsive */
     @media (max-width: 768px) {
         header.header-bar { 
             position: relative !important; 
@@ -389,34 +379,267 @@
             justify-content: center; 
             gap: 5px; 
             width: 100%;
-            overflow: hidden; /* Remove scroll se possível */
-            border: none !important; /* Garante que não haja bordas extras */
+            overflow: hidden;
+            border: none !important;
         }
-        .main-nav li {
-            border: none !important; /* Remove qualquer borda dos itens */
-        }
+        .main-nav li { border: none !important; }
         .main-nav li a { 
             font-size: 0.75rem; 
             padding: 5px 8px; 
             letter-spacing: 0.5px;
-            border: none !important; /* Remove bordas dos links */
+            border: none !important;
         }
         .hero-section h1 { font-size: 2.2rem; }
         .hero-section p { font-size: 1.1rem; }
     }
+
+    /* === FUNCIONALIDADES E-COMMERCE === */
+    .cart-float {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        background: var(--gold-primary);
+        color: var(--black-bg);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        cursor: pointer;
+        z-index: 999;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        transition: transform 0.3s;
+    }
+    .cart-float:hover { transform: scale(1.1); }
+    .cart-float.hidden { display: none; }
+    
+    .checkout-modal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.7);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    .checkout-modal.active { display: flex; }
+    
+    .checkout-content {
+        background: var(--cream-bg);
+        border-radius: 15px;
+        max-width: 500px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 25px;
+        position: relative;
+        border: 3px solid var(--gold-primary);
+    }
+    
+    .checkout-close {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--black-bg);
+        font-weight: bold;
+    }
+    
+    .checkout-title {
+        font-family: 'Courgette', cursive;
+        color: var(--gold-primary);
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .cart-items-list {
+        margin-bottom: 20px;
+        border-bottom: 2px solid var(--gold-primary);
+        padding-bottom: 15px;
+    }
+    
+    .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        font-size: 0.95rem;
+    }
+    
+    .cart-total {
+        text-align: right;
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: var(--black-bg);
+        margin: 15px 0;
+    }
+    
+    .form-group { margin-bottom: 15px; }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+    .form-group input, .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        box-sizing: border-box;
+    }
+    .form-group input:focus, .form-group select:focus {
+        outline: none;
+        border-color: var(--gold-primary);
+    }
+    
+    .pickup-info {
+        background: #f0f0f0;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        margin: 15px 0;
+        border-left: 3px solid var(--gold-primary);
+    }
+    
+    .pix-section {
+        text-align: center;
+        padding: 15px;
+        background: white;
+        border-radius: 10px;
+        margin: 15px 0;
+        border: 2px dashed var(--gold-primary);
+    }
+    
+    #qrcode { margin: 10px auto; display: flex; justify-content: center; }
+    
+    .pix-key {
+        background: #f9f9f9;
+        padding: 8px;
+        border-radius: 5px;
+        font-family: monospace;
+        font-size: 0.85rem;
+        word-break: break-all;
+        margin: 10px 0;
+    }
+    
+    .btn-whatsapp-final {
+        background: var(--whatsapp-green);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: background 0.3s;
+    }
+    .btn-whatsapp-final:hover { background: #1ead12; }
+    
+    .toast {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--black-bg);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 30px;
+        z-index: 3000;
+        font-size: 0.95rem;
+        animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp {
+        from { opacity: 0; transform: translate(-50%, 20px); }
+        to { opacity: 1; transform: translate(-50%, 0); }
+    }
 </style>
 
+<!-- Biblioteca QR Code PIX -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <link rel='stylesheet' id='google-fonts-css' href='https://fonts.googleapis.com/css?family=Montserrat%3A400%2C700%7CCourgette&display=swap' type='text/css' media='all' />
 </head>
 <body>
 
-
-<!-- Botão Flutuante de WhatsApp -->
+<!-- Botão WhatsApp Original -->
 <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um bolo da Casa Mondego. Qual é a disponibilidade?" class="whatsapp-float" title="Fale conosco no WhatsApp" target="_blank">
     <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
         <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.5 2.5-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.9 4.4 26.5 3.8 36.5 2.3 11.1-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
     </svg>
 </a>
+
+<!-- Botão Carrinho -->
+<div id="cartFloat" class="cart-float hidden" onclick="openCheckout()">
+    🛒<span id="cartCount">0</span>
+</div>
+
+<!-- Modal Checkout -->
+<div id="checkoutModal" class="checkout-modal">
+    <div class="checkout-content">
+        <button class="checkout-close" onclick="closeCheckout()">&times;</button>
+        <h3 class="checkout-title">Finalizar Pedido</h3>
+        
+        <div class="cart-items-list" id="cartItemsList"></div>
+        <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
+        
+        <div class="form-group">
+            <label for="customerName">Seu Nome *</label>
+            <input type="text" id="customerName" placeholder="Ex: Maria Silva" required>
+        </div>
+        <div class="form-group">
+            <label for="customerPhone">Seu WhatsApp *</label>
+            <input type="tel" id="customerPhone" placeholder="(41) 99999-9999" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="pickupDate">Data para Retirada *</label>
+            <input type="date" id="pickupDate" required>
+            <small style="color: #666; display: block; margin-top: 3px;">📅 Apenas no dia seguinte ao pedido</small>
+        </div>
+        <div class="form-group">
+            <label for="pickupTime">Horário para Retirada *</label>
+            <select id="pickupTime" required>
+                <option value="">Selecione um horário</option>
+            </select>
+            <small style="color: #666; display: block; margin-top: 3px;">🕒 Seg-Sex: 10h-18h | Sáb: 10h-16h</small>
+        </div>
+        
+        <div class="pickup-info">
+            <strong>🚗 Como retirar:</strong><br>
+            • Pessoalmente: Rua Desembargador Hugo Simas, 1480 - Loja 5<br>
+            • Via app: Uber, 99 ou similar (você agenda após nossa confirmação)
+        </div>
+        
+        <div class="pix-section">
+            <strong>💳 Pagamento via PIX</strong>
+            <p style="font-size: 0.9rem; margin: 8px 0;">Escaneie o QR Code ou copie a chave:</p>
+            <div id="qrcode"></div>
+            <div class="pix-key" id="pixKeyDisplay">carregando...</div>
+            <button class="btn-gold" onclick="copyPixKey()" style="padding: 8px 20px; font-size: 0.9rem;">📋 Copiar chave</button>
+        </div>
+        
+        <button class="btn-whatsapp-final" onclick="sendToWhatsApp()">
+            <svg width="20" height="20" viewBox="0 0 448 512" fill="white"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.5 2.5-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.9 4.4 26.5 3.8 36.5 2.3 11.1-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+            Finalizar no WhatsApp
+        </button>
+    </div>
+</div>
 
 <header class="header-bar">
     <div class="branding">
@@ -445,7 +668,7 @@
 <div id="bolos">
     <h2 class="section-title">Nossas Delícias - 12 Sabores Artesanais</h2>
     <div class="bolos-grid">
-        <!-- Bolo de Chocolate -->
+        <!-- 12 bolos com botões atualizados -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/PRdTFbGPPJRfxGUn.png" alt="Bolo de Chocolate" class="bolo-img" loading="lazy">
@@ -453,23 +676,19 @@
             <div class="bolo-info">
                 <h3>Bolo de Chocolate</h3>
                 <p>Massa fofinha e super chocolatuda, com sabor intenso e caseiro.</p>
-                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Chocolate." target="_blank" class="btn-gold">Encomendar</a>
+                <button class="btn-gold" onclick="addToCart(1, 'Bolo de Chocolate', 32.00)">Encomendar</button>
             </div>
         </div>
-
-        <!-- Bolo de Limão Siciliano e Mirtilo -->
         <div class="bolo-card">
             <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" alt="Bolo de Limão Siciliano e Mirtilo" class="bolo-img" loading="lazy">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" alt="Limão Siciliano e Mirtilo" class="bolo-img" loading="lazy">
             </div>
             <div class="bolo-info">
                 <h3>Limão Siciliano e Mirtilo</h3>
                 <p>Refrescante com limão siciliano e mirtilos frescos na massa.</p>
-                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Limão Siciliano e Mirtilo." target="_blank" class="btn-gold">Encomendar</a>
+                <button class="btn-gold" onclick="addToCart(2, 'Limão Siciliano e Mirtilo', 32.00)">Encomendar</button>
             </div>
         </div>
-
-        <!-- Bolo de Laranja -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" alt="Bolo de Laranja" class="bolo-img" loading="lazy">
@@ -477,11 +696,9 @@
             <div class="bolo-info">
                 <h3>Bolo de Laranja</h3>
                 <p>Clássico molhadinho com suco de laranja natural cítrico.</p>
-                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Laranja." target="_blank" class="btn-gold">Encomendar</a>
+                <button class="btn-gold" onclick="addToCart(3, 'Bolo de Laranja', 32.00)">Encomendar</button>
             </div>
         </div>
-
-        <!-- Bolo de Milho -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/VezOWuffxYCYNPbw.jpg" alt="Bolo de Milho" class="bolo-img" loading="lazy">
@@ -489,11 +706,9 @@
             <div class="bolo-info">
                 <h3>Bolo de Milho</h3>
                 <p>Sabor caseiro autêntico com milho selecionado e macio.</p>
-                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Milho." target="_blank" class="btn-gold">Encomendar</a>
+                <button class="btn-gold" onclick="addToCart(4, 'Bolo de Milho', 32.00)">Encomendar</button>
             </div>
         </div>
-
-        <!-- Bolo de Cenoura -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/vVPrthhQxhwSdbwg.jpg" alt="Bolo de Cenoura" class="bolo-img" loading="lazy">
@@ -501,11 +716,9 @@
             <div class="bolo-info">
                 <h3>Bolo de Cenoura</h3>
                 <p>Cenoura fresca, massa úmida com sabor caseiro irresistível.</p>
-                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Cenoura." target="_blank" class="btn-gold">Encomendar</a>
+                <button class="btn-gold" onclick="addToCart(5, 'Bolo de Cenoura', 32.00)">Encomendar</button>
             </div>
         </div>
-
-        <!-- Bolo de Limão -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nTMHyturkMHdoCAC.jpg" alt="Bolo de Limão" class="bolo-img" loading="lazy">
@@ -513,11 +726,9 @@
             <div class="bolo-info">
                 <h3>Bolo de Limão</h3>
                 <p>Leve, fofinho e azedinho com frescor natural de limão.</p>
-                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Limão." target="_blank" class="btn-gold">Encomendar</a>
+                <button class="btn-gold" onclick="addToCart(6, 'Bolo de Limão', 32.00)">Encomendar</button>
             </div>
         </div>
-
-        <!-- Bolo de Aipim -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/xrjxIXkkOVwzaNRN.jpeg" alt="Bolo de Aipim" class="bolo-img" loading="lazy">
@@ -525,11 +736,9 @@
             <div class="bolo-info">
                 <h3>Bolo de Aipim</h3>
                 <p>Macio e molhadinho com aipim fresco e sabor tradicional.</p>
-                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Aipim." target="_blank" class="btn-gold">Encomendar</a>
+                <button class="btn-gold" onclick="addToCart(7, 'Bolo de Aipim', 32.00)">Encomendar</button>
             </div>
         </div>
-
-        <!-- Bolo Red Velvet -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/DFRIuwpDYgfEubbV.jpg" alt="Bolo Red Velvet" class="bolo-img" loading="lazy">
@@ -537,11 +746,9 @@
             <div class="bolo-info">
                 <h3>Bolo Red Velvet</h3>
                 <p>Aveludado e elegante, massa vermelha com cacau e baunilha.</p>
-                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo Red Velvet." target="_blank" class="btn-gold">Encomendar</a>
+                <button class="btn-gold" onclick="addToCart(8, 'Bolo Red Velvet', 32.00)">Encomendar</button>
             </div>
         </div>
-
-        <!-- Bolo Mesclado -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/OueHUtJwlOElMHWm.jpg" alt="Bolo Mesclado" class="bolo-img" loading="lazy">
@@ -549,11 +756,9 @@
             <div class="bolo-info">
                 <h3>Bolo Mesclado</h3>
                 <p>Cenoura + chocolate em camadas intensas e irresistíveis.</p>
-                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo Mesclado." target="_blank" class="btn-gold">Encomendar</a>
+                <button class="btn-gold" onclick="addToCart(9, 'Bolo Mesclado', 32.00)">Encomendar</button>
             </div>
         </div>
-
-        <!-- Bolo de Amendoim -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/GzjpPKjJMHZsTvvg.jpg" alt="Bolo de Amendoim" class="bolo-img" loading="lazy">
@@ -561,11 +766,9 @@
             <div class="bolo-info">
                 <h3>Bolo de Amendoim</h3>
                 <p>Sabor intenso de amendoim, com textura macia e um sabor marcante.</p>
-                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Amendoim." target="_blank" class="btn-gold">Encomendar</a>
+                <button class="btn-gold" onclick="addToCart(10, 'Bolo de Amendoim', 32.00)">Encomendar</button>
             </div>
         </div>
-
-        <!-- Bolo de Fubá -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nmFrKFeTPKNYkwcD.jpg" alt="Bolo de Fubá" class="bolo-img" loading="lazy">
@@ -573,11 +776,9 @@
             <div class="bolo-info">
                 <h3>Bolo de Fubá</h3>
                 <p>Clássico fofinho, sabor autêntico de fubá caseiro como os da vó.</p>
-                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo de Fubá." target="_blank" class="btn-gold">Encomendar</a>
+                <button class="btn-gold" onclick="addToCart(11, 'Bolo de Fubá', 32.00)">Encomendar</button>
             </div>
         </div>
-
-        <!-- Bolo Formigueiro -->
         <div class="bolo-card">
             <div class="bolo-img-container">
                 <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/wyULhHENHNrOLGJF.jpg" alt="Bolo Formigueiro" class="bolo-img" loading="lazy">
@@ -585,7 +786,7 @@
             <div class="bolo-info">
                 <h3>Bolo Formigueiro</h3>
                 <p>Desmancha na boca com granulados de chocolate crocantes.</p>
-                <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um Bolo Formigueiro." target="_blank" class="btn-gold">Encomendar</a>
+                <button class="btn-gold" onclick="addToCart(12, 'Bolo Formigueiro', 32.00)">Encomendar</button>
             </div>
         </div>
     </div>
@@ -639,6 +840,155 @@
         <p>&copy; 2026 Casa Mondego - Todos os direitos reservados.</p>
     </div>
 </footer>
+
+<!-- === JAVASCRIPT COM SUAS CONFIGURAÇÕES REAIS === -->
+<script>
+// ===== CONFIGURAÇÕES REAIS =====
+const WHATSAPP_NUMBER = "5541991755009"; // ✅ Seu número real
+const PIX_KEY = "a193c533-4855-433b-a31b-2fa22f6f106e"; // ✅ Sua chave EVP real
+const PIX_NAME = "Casa Mondego";
+const PIX_CITY = "Curitiba";
+const CAKE_PRICE = 32.00;
+
+const BUSINESS_HOURS = {
+    weekday: { start: 10, end: 18 },
+    saturday: { start: 10, end: 16 }
+};
+
+let cart = JSON.parse(localStorage.getItem('cart_mondego')) || [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartFloat();
+    setupPickupDate();
+    generatePixQR();
+    document.getElementById('pixKeyDisplay').textContent = PIX_KEY;
+    document.getElementById('pickupDate')?.addEventListener('change', setupPickupTimeOptions);
+});
+
+// ===== CARRINHO =====
+function addToCart(id, name, price) {
+    const existing = cart.find(item => item.id === id);
+    if (existing) existing.quantity += 1;
+    else cart.push({ id, name, price, quantity: 1 });
+    saveCart();
+    updateCartFloat();
+    showToast(`✅ ${name} adicionado ao carrinho!`);
+}
+
+function removeFromCart(id) {
+    cart = cart.filter(item => item.id !== id);
+    saveCart();
+    renderCartItems();
+    updateCartFloat();
+}
+
+function updateQuantity(id, change) {
+    const item = cart.find(i => i.id === id);
+    if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) removeFromCart(id);
+        else { saveCart(); renderCartItems(); }
+    }
+}
+
+function saveCart() { localStorage.setItem('cart_mondego', JSON.stringify(cart)); }
+
+function updateCartFloat() {
+    const float = document.getElementById('cartFloat');
+    const count = document.getElementById('cartCount');
+    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+    if (total > 0) { count.textContent = total; float.classList.remove('hidden'); }
+    else float.classList.add('hidden');
+}
+
+// ===== CHECKOUT =====
+function openCheckout() { renderCartItems(); setupPickupTimeOptions(); document.getElementById('checkoutModal').classList.add('active'); }
+function closeCheckout() { document.getElementById('checkoutModal').classList.remove('active'); }
+
+function renderCartItems() {
+    const list = document.getElementById('cartItemsList');
+    const totalEl = document.getElementById('cartTotal');
+    if (cart.length === 0) { list.innerHTML = '<p style="text-align:center;color:#666">Carrinho vazio</p>'; totalEl.textContent = 'R$ 0,00'; return; }
+    let total = 0;
+    list.innerHTML = cart.map(item => {
+        const subtotal = item.quantity * item.price; total += subtotal;
+        return `<div class="cart-item"><span>${item.name} × ${item.quantity}</span><div style="display:flex;align-items:center;gap:8px;"><span>R$ ${subtotal.toFixed(2).replace('.',',')}</span><button onclick="updateQuantity(${item.id},-1)" style="background:#ddd;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer">−</button><button onclick="updateQuantity(${item.id},1)" style="background:#ddd;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer">+</button><button onclick="removeFromCart(${item.id})" style="background:#c00;color:white;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer">×</button></div></div>`;
+    }).join('');
+    totalEl.textContent = `R$ ${total.toFixed(2).replace('.',',')}`;
+}
+
+// ===== RETIRADA =====
+function setupPickupDate() {
+    const input = document.getElementById('pickupDate');
+    const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+    input.min = tomorrow.toISOString().split('T')[0];
+    const nextWeek = new Date(); nextWeek.setDate(nextWeek.getDate() + 7);
+    input.max = nextWeek.toISOString().split('T')[0];
+}
+
+function setupPickupTimeOptions() {
+    const select = document.getElementById('pickupTime');
+    const dateVal = document.getElementById('pickupDate').value;
+    if (!dateVal) return;
+    select.innerHTML = '<option value="">Selecione um horário</option>';
+    const selectedDate = new Date(dateVal);
+    const dayOfWeek = selectedDate.getDay();
+    if (dayOfWeek === 0) { select.innerHTML += '<option value="" disabled>Domingo: não há retirada</option>'; return; }
+    const hoursConfig = (dayOfWeek === 6) ? BUSINESS_HOURS.saturday : BUSINESS_HOURS.weekday;
+    for (let h = hoursConfig.start; h <= hoursConfig.end; h++) {
+        const label = `${h.toString().padStart(2,'0')}:00 - ${(h+1).toString().padStart(2,'0')}:00`;
+        const value = `${h.toString().padStart(2,'0')}:00`;
+        select.innerHTML += `<option value="${value}">${label}</option>`;
+    }
+}
+
+// ===== PIX QR CODE =====
+function generatePixQR() {
+    const payload = generatePixPayload(PIX_KEY, PIX_NAME, PIX_CITY);
+    document.getElementById('qrcode').innerHTML = '';
+    new QRCode(document.getElementById("qrcode"), { text: payload, width: 180, height: 180, correctLevel: QRCode.CorrectLevel.M });
+}
+
+function generatePixPayload(key, name, city) {
+    const cleanKey = key.replace(/[^a-zA-Z0-9@._-]/g, '');
+    const amount = CAKE_PRICE.toFixed(2);
+    const fields = ["000201", "26" + String(8 + cleanKey.length).padStart(2,'0') + "0014BR.GOV.BCB.PIX01" + String(cleanKey.length).padStart(2,'0') + cleanKey, "52040000", "5303986", "54" + String(amount.length).padStart(2,'0') + amount, "5802BR", "59" + String(name.length).padStart(2,'0') + name, "60" + String(city.length).padStart(2,'0') + city, "62070503***", "6304"];
+    const base = fields.join("");
+    const crc = calculateCRC16(base);
+    return base.replace("6304", "6304" + crc);
+}
+
+function calculateCRC16(str) {
+    let crc = 0xFFFF; const poly = 0x1021;
+    for (let i = 0; i < str.length; i++) {
+        crc ^= str.charCodeAt(i) << 8;
+        for (let j = 0; j < 8; j++) { crc = (crc & 0x8000) ? (crc << 1) ^ poly : crc << 1; crc &= 0xFFFF; }
+    }
+    return crc.toString(16).toUpperCase().padStart(4, '0');
+}
+
+function copyPixKey() { navigator.clipboard.writeText(PIX_KEY).then(() => showToast('📋 Chave PIX copiada!')); }
+
+// ===== WHATSAPP =====
+function sendToWhatsApp() {
+    const name = document.getElementById('customerName').value.trim();
+    const phone = document.getElementById('customerPhone').value.trim();
+    const date = document.getElementById('pickupDate').value;
+    const time = document.getElementById('pickupTime').value;
+    if (!name || !phone || !date || !time) { alert('⚠️ Preencha todos os campos obrigatórios.'); return; }
+    if (cart.length === 0) { alert('⚠️ Adicione pelo menos um bolo.'); return; }
+    const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
+    const items = cart.map(i => `• ${i.quantity}x ${i.name} (R$ ${(i.quantity*i.price).toFixed(2).replace('.',',')})`).join('\n');
+    const message = `🎂 *NOVO PEDIDO - CASA MONDEGO*%0A%0A*Cliente:* ${name}%0A*WhatsApp:* ${phone}%0A%0A*Itens:*%0A${items}%0A%0A*Retirada:* ${formatDateBR(date)} às ${time}%0A*Modalidade:* Cliente retira (pessoal ou via app)%0A%0A*Total:* R$ ${total.toFixed(2).replace('.',',')}%0A*Pagamento:* PIX confirmado%0A%0AAguardo confirmação! 🙏`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+    closeCheckout(); window.open(url, '_blank'); resetCart();
+}
+
+function formatDateBR(dateStr) { const [y,m,d] = dateStr.split('-'); return `${d}/${m}/${y}`; }
+function resetCart() { cart = []; saveCart(); updateCartFloat(); document.getElementById('customerName').value = ''; document.getElementById('customerPhone').value = ''; document.getElementById('pickupDate').value = ''; document.getElementById('pickupTime').innerHTML = '<option value="">Selecione um horário</option>'; }
+function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2500); }
+document.getElementById('checkoutModal')?.addEventListener('click', (e) => { if (e.target.id === 'checkoutModal') closeCheckout(); });
+</script>
 
 </body>
 </html>
