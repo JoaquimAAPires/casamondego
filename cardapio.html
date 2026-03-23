@@ -314,7 +314,6 @@
             </div>
 
             <div class="qr-section">
-                <!-- QR Code que leva para o site principal -->
                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.casamondego.com.br/" alt="QR Code Casa Mondego">
                 <p>Faça sua encomenda</p>
             </div>
@@ -365,23 +364,22 @@
     </footer>
 
     <script>
-        // ===== DADOS DOS BOLOS (MESMOS DO SITE PRINCIPAL) =====
+        // ===== DADOS DOS 14 BOLOS (EXATAMENTE COMO NO SITE PRINCIPAL) =====
         const cakes = [
             { id: 2, name: "Limão Siciliano & Mirtilo", desc: "Refrescante e cítrico com mirtilos frescos.", price: 30.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" },
             { id: 13, name: "Maçã com Nozes", desc: "Clássico sabor de maçã com crocância de nozes.", price: 30.00, img: "bolo-maca-nozes.jpg" },
             { id: 14, name: "Maçã com Passas", desc: "Aveludado com a doçura das passas.", price: 30.00, img: "bolo-maca-passas.jpg" },
             { id: 12, name: "Laranja Bahia com Amora", desc: "Aroma de laranja com o toque de amora.", price: 30.00, img: "bolo-laranja-amora.jpg" },
             { id: 7, name: "Bolo de Aipim", desc: "Textura única e sabor inconfundível do aipim.", price: 32.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/xrjxIXkkOVwzaNRN.jpeg" },
-            { id: 11, name: "Bolo de Coco", desc: "Macia nuvem de coco fresco.", price: 26.00, img: "bolo-fuba-coco.jpg" },
-            { id: 15, name: "Bolo de Banana", desc: "Naturalmente doce e perfumado.", price: 26.00, img: "https://images.unsplash.com/photo-1603539245401-08bc59043f3a?w=400&h=300&fit=crop" },
+            { id: 11, name: "Fubá com Coco", desc: "Fubá tradicional com pedacinhos de coco.", price: 26.00, img: "bolo-fuba-coco.jpg" },
             { id: 1, name: "Bolo de Chocolate", desc: "Intenso sabor de chocolate artesanal.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/PRdTFbGPPJRfxGUn.png" },
             { id: 4, name: "Bolo de Milho", desc: "O verdadeiro bolo de milho da fazenda.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/VezOWuffxYCYNPbw.jpg" },
             { id: 5, name: "Bolo de Cenoura", desc: "Simplesmente o melhor bolo de cenoura.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/vVPrthhQxhwSdbwg.jpg" },
-            { id: 6, name: "Bolo de Limão Siciliano", desc: "Aroma a frescor do limão siciliano.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nTMHyturkMHdoCAC.jpg" },
-            { id: 10, name: "Bolo de Amendoim", desc: "Sabor rústico e marcante do amendoim.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/GzjpPKjJMHZsTvvg.jpg" },
+            { id: 6, name: "Bolo de Limão", desc: "Aroma e frescor do limão siciliano.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nTMHyturkMHdoCAC.jpg" },
+            { id: 9, name: "Bolo de Amendoim", desc: "Sabor rústico e marcante do amendoim.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/GzjpPKjJMHZsTvvg.jpg" },
             { id: 10, name: "Bolo de Fubá", desc: "Clássico bolo de fubá com erva-doce.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nmFrKFeTPKNYkwcD.jpg" },
-            { id: 11, name: "Fubá com Coco", desc: "Fubá tradicional com pedacinhos de coco.", price: 26.00, img: "bolo-fuba-coco.jpg" },
-            { id: 8, name: "Bolo de Cenoura e Chocolate", desc: "Dupla perfeita: cenoura e chocolate.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/OueHUtJwlOElMHWm.jpg" }
+            { id: 3, name: "Bolo de Laranja", desc: "Clássico molhadinho com suco natural cítrico.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" },
+            { id: 8, name: "Bolo Mesclado", desc: "Dupla perfeita: cenoura e chocolate.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/OueHUtJwlOElMHWm.jpg" }
         ];
 
         // ===== URL DO SITE PRINCIPAL =====
@@ -393,8 +391,7 @@
             const loading = document.getElementById('loading');
 
             grid.innerHTML = cakes.map(cake => {
-                // Cria URL que adiciona o bolo ao carrinho no site principal
-                // O site principal precisa ler o parâmetro ?add=X da URL
+                // URL que adiciona o bolo ao carrinho automaticamente
                 const orderUrl = `${SITE_URL}?add=${cake.id}`;
                 
                 return `
