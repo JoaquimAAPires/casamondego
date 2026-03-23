@@ -220,6 +220,16 @@
         margin: 15px auto;
     }
 
+    .disclaimer-images {
+        text-align: center;
+        font-size: 0.85rem;
+        color: #666;
+        font-style: italic;
+        margin-top: -20px;
+        margin-bottom: 30px;
+        padding: 0 20px;
+    }
+
     .bolos-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -632,6 +642,7 @@
             <div id="qrcode"></div>
             <div class="pix-key" id="pixKeyDisplay">carregando...</div>
             <button class="btn-gold" onclick="copyPixKey()" style="padding: 8px 20px; font-size: 0.9rem;">📋 Copiar chave</button>
+            <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">QR Code gerado com o valor exato do seu pedido</p>
         </div>
         
         <button class="btn-whatsapp-final" onclick="sendToWhatsApp()">
@@ -668,6 +679,7 @@
 <!-- SEÇÃO DE BOLOS ATUALIZADA COM PREÇOS E IMAGENS -->
 <div id="bolos">
     <h2 class="section-title">Nossas Delícias - 14 Sabores Artesanais</h2>
+    <p class="disclaimer-images">📸 As imagens dos bolos são meramente ilustrativas</p>
     <div class="bolos-grid">
         <!-- Bolo de Chocolate - R$26 -->
         <div class="bolo-card">
@@ -888,7 +900,7 @@
     </div>
 </footer>
 
-<!-- === JAVASCRIPT COM CONFIGURAÇÕES REAIS E HORÁRIOS ATUALIZADOS === -->
+<!-- === JAVASCRIPT COM CONFIGURAÇÕES REAIS E QR CODE DINÂMICO === -->
 <script>
 // ===== CONFIGURAÇÕES REAIS =====
 const WHATSAPP_NUMBER = "5541991755009";
@@ -908,7 +920,6 @@ let cart = JSON.parse(localStorage.getItem('cart_mondego')) || [];
 document.addEventListener('DOMContentLoaded', () => {
     updateCartFloat();
     setupPickupDate();
-    generatePixQR();
     document.getElementById('pixKeyDisplay').textContent = PIX_KEY;
     document.getElementById('pickupDate')?.addEventListener('change', setupPickupTimeOptions);
 });
@@ -950,7 +961,12 @@ function updateCartFloat() {
 }
 
 // ===== CHECKOUT =====
-function openCheckout() { renderCartItems(); setupPickupTimeOptions(); document.getElementById('checkoutModal').classList.add('active'); }
+function openCheckout() { 
+    renderCartItems(); 
+    setupPickupTimeOptions(); 
+    generatePixQR(); // Gera QR Code com valor atualizado
+    document.getElementById('checkoutModal').classList.add('active'); 
+}
 function closeCheckout() { document.getElementById('checkoutModal').classList.remove('active'); }
 
 function renderCartItems() {
@@ -1014,17 +1030,18 @@ function setupPickupTimeOptions() {
     }
 }
 
-// ===== PIX QR CODE =====
+// ===== PIX QR CODE DINÂMICO (com valor exato do carrinho) =====
 function generatePixQR() {
-    const payload = generatePixPayload(PIX_KEY, PIX_NAME, PIX_CITY);
+    const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
+    const payload = generatePixPayload(PIX_KEY, PIX_NAME, PIX_CITY, total);
     document.getElementById('qrcode').innerHTML = '';
     new QRCode(document.getElementById("qrcode"), { text: payload, width: 180, height: 180, correctLevel: QRCode.CorrectLevel.M });
 }
 
-function generatePixPayload(key, name, city) {
+function generatePixPayload(key, name, city, amount) {
     const cleanKey = key.replace(/[^a-zA-Z0-9@._-]/g, '');
-    const amount = "26.00"; // Valor padrão para o PIX (será ajustado manualmente pelo cliente)
-    const fields = ["000201", "26" + String(8 + cleanKey.length).padStart(2,'0') + "0014BR.GOV.BCB.PIX01" + String(cleanKey.length).padStart(2,'0') + cleanKey, "52040000", "5303986", "54" + String(amount.length).padStart(2,'0') + amount, "5802BR", "59" + String(name.length).padStart(2,'0') + name, "60" + String(city.length).padStart(2,'0') + city, "62070503***", "6304"];
+    const amountStr = amount.toFixed(2);
+    const fields = ["000201", "26" + String(8 + cleanKey.length).padStart(2,'0') + "0014BR.GOV.BCB.PIX01" + String(cleanKey.length).padStart(2,'0') + cleanKey, "52040000", "5303986", "54" + String(amountStr.length).padStart(2,'0') + amountStr, "5802BR", "59" + String(name.length).padStart(2,'0') + name, "60" + String(city.length).padStart(2,'0') + city, "62070503***", "6304"];
     const base = fields.join("");
     const crc = calculateCRC16(base);
     return base.replace("6304", "6304" + crc);
