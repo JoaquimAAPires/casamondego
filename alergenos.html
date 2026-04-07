@@ -26,6 +26,8 @@
       --cream-bg: #fdfaf5;
       --text-dark: #333333;
       --text-light: #ffffff;
+      --alert-red: #b30000;
+      --warning-orange: #e65100;
     }
     
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -198,6 +200,22 @@
       font-weight: 600;
     }
     
+    /* Observações - PADRONIZADO */
+    .obs-critical {
+      color: var(--alert-red);
+      font-weight: 700;
+    }
+    
+    .obs-warning {
+      color: var(--warning-orange);
+      font-weight: 600;
+    }
+    
+    .obs-normal {
+      color: var(--text-dark);
+      font-weight: 400;
+    }
+    
     /* Aviso */
     .warning-box { 
       background: #fff3cd; 
@@ -348,10 +366,10 @@
             <span class="allergen-item"><span class="allergen-icon">🌾</span><span class="allergen-text">Trigo</span></span>
             <span class="allergen-item"><span class="allergen-icon">🥚</span><span class="allergen-text">Ovos</span></span>
           </td>
-          <td class="no">NÃO</td>
+          <td class="yes">SIM</td>
           <td class="no">NÃO*</td>
           <td class="yes">SIM</td>
-          <td style="color:#b30000;">⚠️ Chocolate em pó pode conter lactose e soja</td>
+          <td class="obs-warning">⚠️ Chocolate em pó pode conter lactose e soja</td>
         </tr>
         <tr>
           <td><strong>Limão Siciliano e Mirtilo</strong></td>
@@ -362,7 +380,7 @@
           <td class="yes">SIM</td>
           <td class="no">NÃO</td>
           <td class="yes">SIM</td>
-          <td>Contém frutas frescas</td>
+          <td class="obs-normal">Contém frutas frescas</td>
         </tr>
         <tr>
           <td><strong>Bolo de Laranja</strong></td>
@@ -373,7 +391,7 @@
           <td class="yes">SIM</td>
           <td class="no">NÃO</td>
           <td class="yes">SIM</td>
-          <td>-</td>
+          <td class="obs-normal">-</td>
         </tr>
         <tr>
           <td><strong>Bolo de Milho</strong></td>
@@ -384,7 +402,7 @@
           <td class="no">NÃO</td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
-          <td>Base de fubá (sem trigo)</td>
+          <td class="obs-normal">Base de fubá (sem trigo)</td>
         </tr>
         <tr>
           <td><strong>Bolo de Cenoura</strong></td>
@@ -395,7 +413,7 @@
           <td class="yes">SIM</td>
           <td class="no">NÃO*</td>
           <td class="yes">SIM</td>
-          <td style="color:#b30000;">⚠️ Gotas de chocolate contém lactose e derivados de soja</td>
+          <td class="obs-warning">⚠️ Gotas de chocolate podem conter lactose e soja</td>
         </tr>
         <tr>
           <td><strong>Bolo de Limão</strong></td>
@@ -406,7 +424,7 @@
           <td class="yes">SIM</td>
           <td class="no">NÃO</td>
           <td class="yes">SIM</td>
-          <td>-</td>
+          <td class="obs-normal">-</td>
         </tr>
         <tr>
           <td><strong>Bolo de Aipim</strong></td>
@@ -418,7 +436,7 @@
           <td class="no">NÃO</td>
           <td class="no">NÃO</td>
           <td class="yes">SIM</td>
-          <td>*Receita tradicional sem trigo. <strong>Contém queijo parmesão</strong></td>
+          <td class="obs-normal">Receita tradicional sem trigo. Contém queijo parmesão</td>
         </tr>
         <tr>
           <td><strong>Bolo Mesclado</strong></td>
@@ -429,7 +447,7 @@
           <td class="yes">SIM</td>
           <td class="no">NÃO*</td>
           <td class="yes">SIM</td>
-          <td style="color:#b30000;">⚠️ Chocolate em pó pode conter lactose e soja</td>
+          <td class="obs-warning">⚠️ Chocolate em pó pode conter lactose e soja</td>
         </tr>
         <tr>
           <td><strong>Bolo de Amendoim</strong></td>
@@ -442,7 +460,7 @@
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
-          <td style="color:#b30000; font-weight:bold;">⚠️ CONTÉM AMENDOIM</td>
+          <td class="obs-critical">⚠️ CONTÉM AMENDOIM</td>
         </tr>
         <tr>
           <td><strong>Bolo de Fubá</strong></td>
@@ -454,7 +472,7 @@
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
-          <td>Base de fubá + farinha de trigo</td>
+          <td class="obs-normal">Base de fubá + farinha de trigo</td>
         </tr>
         <tr>
           <td><strong>Fubá com Coco</strong></td>
@@ -467,7 +485,7 @@
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
-          <td>Contém coco ralado</td>
+          <td class="obs-normal">Contém coco ralado</td>
         </tr>
         <tr>
           <td><strong>Laranja Bahia com Amora</strong></td>
@@ -478,7 +496,7 @@
           <td class="yes">SIM</td>
           <td class="no">NÃO</td>
           <td class="yes">SIM</td>
-          <td>Contém frutas frescas/sazonais</td>
+          <td class="obs-normal">Contém frutas frescas/sazonais</td>
         </tr>
         <tr>
           <td><strong>Maçã com Nozes</strong></td>
@@ -491,7 +509,7 @@
           <td class="yes">SIM</td>
           <td class="no">NÃO</td>
           <td class="yes">SIM</td>
-          <td style="color:#b30000; font-weight:bold;">⚠️ CONTÉM NOZES E CANELA</td>
+          <td class="obs-critical">⚠️ CONTÉM NOZES E CANELA</td>
         </tr>
         <tr>
           <td><strong>Maçã com Passas</strong></td>
@@ -503,7 +521,7 @@
           <td class="yes">SIM</td>
           <td class="no">NÃO</td>
           <td class="yes">SIM</td>
-          <td>Contém passas e canela</td>
+          <td class="obs-normal">Contém passas ao rum (sem álcool) e canela</td>
         </tr>
       </tbody>
     </table>
@@ -526,11 +544,16 @@
       A declaração textual completa está disponível mediante solicitação.
     </div>
     <div class="legal">
-      <strong>LEGENDA:</strong> 
+      <strong>LEGENDA DE CORES:</strong> 
+      <span class="obs-critical">🔴 Vermelho Negrito</span> = Alérgeno crítico / 
+      <span class="obs-warning">🟠 Laranja</span> = Pode conter traços / 
+      <span class="obs-normal">⚫ Preto</span> = Informação geral
+    </div>
+    <div class="legal">
+      <strong>LEGENDA DE SÍMBOLOS:</strong> 
       <span class="yes">SIM</span> = Contém o componente na receita / 
       <span class="no">NÃO</span> = Não adicionado intencionalmente / 
-      <span class="no">NÃO*</span> = Não na receita, mas pode conter traços /
-      * = Verificar sempre a receita atual e risco de contaminação cruzada.
+      <span class="no">NÃO*</span> = Pode conter traços (contaminação cruzada)
     </div>
     <div class="update">
       <strong>Última atualização:</strong> <span id="updateDate"></span> • 
