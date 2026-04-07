@@ -162,7 +162,8 @@
     th:nth-child(2), td:nth-child(2) { width: 35%; }
     th:nth-child(3), td:nth-child(3) { width: 10%; text-align: center; }
     th:nth-child(4), td:nth-child(4) { width: 10%; text-align: center; }
-    th:nth-child(5), td:nth-child(5) { width: 23%; }
+    th:nth-child(5), td:nth-child(5) { width: 10%; text-align: center; }
+    th:nth-child(6), td:nth-child(6) { width: 13%; }
     
     /* Itens de alérgenos */
     .allergen-item { 
@@ -279,11 +280,12 @@
       .legend-grid { grid-template-columns: 1fr; }
       
       th:nth-child(3), td:nth-child(3),
-      th:nth-child(4), td:nth-child(4) { display: none; }
+      th:nth-child(4), td:nth-child(4),
+      th:nth-child(5), td:nth-child(5) { display: none; }
       
-      th:nth-child(1), td:nth-child(1) { width: 30%; }
+      th:nth-child(1), td:nth-child(1) { width: 35%; }
       th:nth-child(2), td:nth-child(2) { width: 45%; }
-      th:nth-child(5), td:nth-child(5) { width: 25%; }
+      th:nth-child(6), td:nth-child(6) { width: 20%; }
     }
     
     /* Print */
@@ -320,8 +322,8 @@
       <div class="legend-item"><span class="allergen-icon">🥜</span><span>Amendoim</span></div>
       <div class="legend-item"><span class="allergen-icon">🌰</span><span>Nozes/Castanhas</span></div>
       <div class="legend-item"><span class="allergen-icon">🥥</span><span>Coco</span></div>
-      <div class="legend-item"><span class="allergen-icon">🫘</span><span>Soja</span></div>
-      <div class="legend-item"><span class="allergen-icon">🌾</span><span>Centeio/Cevada</span></div>
+      <div class="legend-item"><span class="allergen-icon">🧀</span><span>Queijo</span></div>
+      <div class="legend-item"><span class="allergen-icon">🌿</span><span>Canela</span></div>
     </div>
   </div>
 
@@ -334,6 +336,7 @@
           <th>ALÉRGENOS PRESENTES</th>
           <th>GLÚTEN</th>
           <th>LACTOSE</th>
+          <th>OVOS</th>
           <th>OBSERVAÇÕES</th>
         </tr>
       </thead>
@@ -347,6 +350,7 @@
           </td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
+          <td class="yes">SIM</td>
           <td>Contém cacau em pó</td>
         </tr>
         <tr>
@@ -356,6 +360,7 @@
             <span class="allergen-item"><span class="allergen-icon">🥛</span><span class="allergen-text">Leite</span></span>
             <span class="allergen-item"><span class="allergen-icon">🥚</span><span class="allergen-text">Ovos</span></span>
           </td>
+          <td class="yes">SIM</td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
           <td>Contém frutas frescas</td>
@@ -369,15 +374,16 @@
           </td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
+          <td class="yes">SIM</td>
           <td>-</td>
         </tr>
         <tr>
           <td><strong>Bolo de Milho</strong></td>
           <td class="allergen-list">
-            <span class="allergen-item"><span class="allergen-icon">🌾</span><span class="allergen-text">Trigo</span></span>
             <span class="allergen-item"><span class="allergen-icon">🥛</span><span class="allergen-text">Leite</span></span>
             <span class="allergen-item"><span class="allergen-icon">🥚</span><span class="allergen-text">Ovos</span></span>
           </td>
+          <td class="no">NÃO</td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
           <td>Base de fubá + farinha de trigo</td>
@@ -391,6 +397,7 @@
           </td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
+          <td class="yes">SIM</td>
           <td>Cobertura de chocolate opcional</td>
         </tr>
         <tr>
@@ -402,6 +409,7 @@
           </td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
+          <td class="yes">SIM</td>
           <td>-</td>
         </tr>
         <tr>
@@ -409,11 +417,13 @@
           <td class="allergen-list">
             <span class="allergen-item"><span class="allergen-icon">🥛</span><span class="allergen-text">Leite</span></span>
             <span class="allergen-item"><span class="allergen-icon">🥚</span><span class="allergen-text">Ovos</span></span>
-            <small style="color:#666; display:block; margin-top:3px">(pode conter queijo)</small>
+            <span class="allergen-item"><span class="allergen-icon">🧀</span><span class="allergen-text">Queijo</span></span>
+            <small style="color:#666; display:block; margin-top:3px">(queijo parmesão)</small>
           </td>
-          <td class="no">NÃO*</td>
+          <td class="no">NÃO</td>
           <td class="yes">SIM</td>
-          <td>*Receita tradicional sem trigo. <strong>Verificar contaminação cruzada</strong></td>
+          <td class="yes">SIM</td>
+          <td>*Receita tradicional sem trigo. <strong>Contém queijo parmesão</strong></td>
         </tr>
         <tr>
           <td><strong>Bolo Mesclado</strong></td>
@@ -422,6 +432,7 @@
             <span class="allergen-item"><span class="allergen-icon">🥛</span><span class="allergen-text">Leite</span></span>
             <span class="allergen-item"><span class="allergen-icon">🥚</span><span class="allergen-text">Ovos</span></span>
           </td>
+          <td class="yes">SIM</td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
           <td>Massa baunilha + chocolate</td>
@@ -436,6 +447,7 @@
           </td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
+          <td class="yes">SIM</td>
           <td style="color:#b30000; font-weight:bold;">⚠️ CONTÉM AMENDOIM</td>
         </tr>
         <tr>
@@ -445,6 +457,7 @@
             <span class="allergen-item"><span class="allergen-icon">🥛</span><span class="allergen-text">Leite</span></span>
             <span class="allergen-item"><span class="allergen-icon">🥚</span><span class="allergen-text">Ovos</span></span>
           </td>
+          <td class="yes">SIM</td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
           <td>Base de fubá + farinha de trigo</td>
@@ -459,6 +472,7 @@
           </td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
+          <td class="yes">SIM</td>
           <td>Contém coco ralado</td>
         </tr>
         <tr>
@@ -470,6 +484,7 @@
           </td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
+          <td class="yes">SIM</td>
           <td>Contém frutas frescas/sazonais</td>
         </tr>
         <tr>
@@ -479,10 +494,12 @@
             <span class="allergen-item"><span class="allergen-icon">🥛</span><span class="allergen-text">Leite</span></span>
             <span class="allergen-item"><span class="allergen-icon">🥚</span><span class="allergen-text">Ovos</span></span>
             <span class="allergen-item"><span class="allergen-icon">🌰</span><span class="allergen-text">Nozes</span></span>
+            <span class="allergen-item"><span class="allergen-icon">🌿</span><span class="allergen-text">Canela</span></span>
           </td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
-          <td style="color:#b30000; font-weight:bold;">⚠️ CONTÉM NOZES</td>
+          <td class="yes">SIM</td>
+          <td style="color:#b30000; font-weight:bold;">⚠️ CONTÉM NOZES E CANELA</td>
         </tr>
         <tr>
           <td><strong>Maçã com Passas</strong></td>
@@ -490,10 +507,12 @@
             <span class="allergen-item"><span class="allergen-icon">🌾</span><span class="allergen-text">Trigo</span></span>
             <span class="allergen-item"><span class="allergen-icon">🥛</span><span class="allergen-text">Leite</span></span>
             <span class="allergen-item"><span class="allergen-icon">🥚</span><span class="allergen-text">Ovos</span></span>
+            <span class="allergen-item"><span class="allergen-icon">🌿</span><span class="allergen-text">Canela</span></span>
           </td>
           <td class="yes">SIM</td>
           <td class="yes">SIM</td>
-          <td>Contém passas ao rum (sem álcool)</td>
+          <td class="yes">SIM</td>
+          <td>Contém passas ao rum (sem álcool) e canela</td>
         </tr>
       </tbody>
     </table>
