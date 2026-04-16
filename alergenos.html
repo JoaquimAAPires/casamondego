@@ -26,7 +26,7 @@
       --cream-bg: #fdfaf5;
       --text-dark: #333333;
       --text-light: #ffffff;
-      /* 🟡 Cores semânticas para alérgenos */
+      /* Cores semânticas para alérgenos */
       --contem-bg: #ffebee;
       --contem-text: #b30000;
       --contem-border: #ffcdd2;
@@ -42,8 +42,8 @@
     
     body { 
       font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; 
-      font-size: 14px; 
-      line-height: 1.5;
+      font-size: 11px; /* Reduzido para caber em A4 */
+      line-height: 1.4;
       color: var(--text-dark);
       background: var(--cream-bg);
       margin: 0;
@@ -51,101 +51,94 @@
     }
     
     .container { 
-      max-width: 1200px; 
+      max-width: 210mm; /* Largura A4 */
       margin: 0 auto; 
-      padding: 20px;
+      padding: 10mm;
     }
     
     /* Header */
     .header { 
       text-align: center; 
-      border-bottom: 4px solid var(--gold-primary); 
-      padding: 25px 20px; 
-      margin-bottom: 25px;
+      border-bottom: 3px solid var(--gold-primary); 
+      padding: 15px 10px; 
+      margin-bottom: 15px;
       background: var(--black-bg);
       color: var(--text-light);
-      border-radius: 0 0 15px 15px;
+      border-radius: 0 0 10px 10px;
     }
     
     .header h1 { 
-      margin: 0 0 10px; 
+      margin: 0 0 8px; 
       font-family: 'Courgette', cursive;
-      font-size: 1.8rem; 
+      font-size: 1.4rem; 
       color: var(--gold-primary);
       text-transform: uppercase;
       letter-spacing: 1px;
     }
     
     .header .subtitle {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: var(--gold-primary);
-      margin: 5px 0;
+      margin: 3px 0;
       font-weight: 600;
     }
     
     .header .address {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: #aaa;
       font-style: italic;
-      margin: 3px 0;
+      margin: 2px 0;
     }
     
     .header .anvisa {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: #888;
-      margin-top: 8px;
+      margin-top: 5px;
     }
     
-    /* Legenda de Alérgenos (14 grupos RDC 26) */
+    /* Legenda compacta */
     .legend {
       background: white;
-      border: 2px solid var(--gold-primary);
-      border-radius: 12px;
-      padding: 20px;
-      margin: 20px 0 30px;
+      border: 1px solid var(--gold-primary);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 15px 0 20px;
+      font-size: 0.8rem;
     }
     
     .legend h3 {
-      margin: 0 0 15px;
-      font-size: 1.1rem;
+      margin: 0 0 8px;
+      font-size: 0.95rem;
       color: var(--black-bg);
-      border-bottom: 2px solid var(--gold-primary);
-      padding-bottom: 10px;
       font-family: 'Courgette', cursive;
-    }
-    
-    .legend-subtitle {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 12px;
-      font-style: italic;
     }
     
     .legend-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
     }
     
     .legend-item {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
+      gap: 4px;
+      font-size: 0.75rem;
     }
     
-    .allergen-icon { font-size: 1.1rem; }
+    .allergen-icon { font-size: 0.9rem; }
     
-    /* Badges de status */
+    /* Badges compactos para tabela */
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
+      gap: 3px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.75rem;
       font-weight: 600;
-      margin: 2px 4px 2px 0;
+      margin: 1px 3px 1px 0;
+      white-space: nowrap;
     }
     .badge-contem {
       background: var(--contem-bg);
@@ -163,201 +156,214 @@
       border: 1px solid var(--pode-conter-border);
     }
     
-    /* Tabela */
+    /* Tabela - Formato 3 colunas de alérgenos */
     .table-container {
       overflow-x: auto;
       background: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+      margin: 15px 0;
+      border: 1px solid #ddd;
     }
     
     table { 
       width: 100%; 
       border-collapse: collapse; 
-      font-size: 0.9rem;
-      min-width: 900px;
+      font-size: 0.8rem;
+      table-layout: fixed; /* Para controle preciso de colunas */
     }
     
     th { 
       background: var(--black-bg);
       color: var(--gold-primary);
       border: 1px solid #444; 
-      padding: 12px 8px; 
+      padding: 8px 5px; 
       text-align: left; 
       font-weight: 700;
-      position: sticky;
-      top: 0;
+      font-size: 0.8rem;
+      vertical-align: top;
     }
     
     td { 
       border: 1px solid #ddd; 
-      padding: 12px 8px; 
+      padding: 6px 5px; 
       vertical-align: top;
+      font-size: 0.8rem;
     }
     
     tr:nth-child(even) { background: #fafafa; }
-    tr:hover { background: #fff9e6; }
     
-    /* Colunas */
-    th:nth-child(1), td:nth-child(1) { width: 20%; font-weight: 600; }
-    th:nth-child(2), td:nth-child(2) { width: 55%; }
-    th:nth-child(3), td:nth-child(3) { width: 25%; }
+    /* Larguras das colunas - Otimizado para A4 */
+    th:nth-child(1), td:nth-child(1) { width: 18%; font-weight: 600; }
+    th:nth-child(2), td:nth-child(2) { width: 24%; } /* CONTÉM */
+    th:nth-child(3), td:nth-child(3) { width: 24%; } /* NÃO CONTÉM */
+    th:nth-child(4), td:nth-child(4) { width: 24%; } /* PODE CONTER */
+    th:nth-child(5), td:nth-child(5) { width: 10%; } /* OBS */
     
-    /* Declaração de alérgenos - PADRONIZADA */
-    .declaracao {
-      font-size: 0.85rem;
-      line-height: 1.6;
-    }
-    .declaracao strong {
-      display: block;
-      margin: 4px 0 2px;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-    }
-    .declaracao .contem { color: var(--contem-text); }
-    .declaracao .nao-contem { color: var(--nao-contem-text); }
-    .declaracao .pode-conter { color: var(--pode-conter-text); }
+    /* Cabeçalhos das 3 colunas de alérgenos */
+    .col-contem { background: var(--contem-bg) !important; color: var(--contem-text) !important; border-bottom: 2px solid var(--contem-border); }
+    .col-nao-contem { background: var(--nao-contem-bg) !important; color: var(--nao-contem-text) !important; border-bottom: 2px solid var(--nao-contem-border); }
+    .col-pode-conter { background: var(--pode-conter-bg) !important; color: var(--pode-conter-text) !important; border-bottom: 2px solid var(--pode-conter-border); }
     
-    .lista-alergenos {
+    /* Lista de badges dentro da célula */
+    .badge-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
-      margin-top: 3px;
+      gap: 2px;
+      line-height: 1.3;
     }
     
     /* Observações técnicas */
     .obs-box {
-      background: #f9f9f9;
-      border-left: 3px solid var(--gold-primary);
-      padding: 8px 12px;
-      border-radius: 0 4px 4px 0;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
+      color: #555;
+      line-height: 1.3;
     }
     .obs-box.critical {
-      border-left-color: var(--contem-text);
-      background: var(--contem-bg);
+      color: var(--contem-text);
+      font-weight: 600;
     }
     .obs-box.warning {
-      border-left-color: var(--pode-conter-text);
-      background: var(--pode-conter-bg);
+      color: var(--pode-conter-text);
     }
     
     /* Aviso de contaminação */
     .warning-box { 
       background: #fff3cd; 
-      border: 2px solid #ffc107;
-      border-left: 5px solid #ffc107;
-      padding: 18px 20px; 
-      margin: 25px 0;
-      font-size: 0.95rem;
-      border-radius: 0 8px 8px 0;
+      border: 1px solid #ffc107;
+      border-left: 4px solid #ffc107;
+      padding: 12px 15px; 
+      margin: 20px 0;
+      font-size: 0.85rem;
+      border-radius: 0 6px 6px 0;
     }
     .warning-box strong { color: #856404; }
     
     /* Footer */
     .footer { 
-      font-size: 0.85rem; 
+      font-size: 0.75rem; 
       color: #555; 
-      border-top: 3px solid var(--gold-primary); 
-      padding-top: 20px;
-      margin-top: 30px;
+      border-top: 2px solid var(--gold-primary); 
+      padding-top: 15px;
+      margin-top: 20px;
       background: white;
-      padding: 25px 20px;
-      border-radius: 12px 12px 0 0;
+      padding: 15px 10px;
+      border-radius: 8px 8px 0 0;
+      line-height: 1.4;
     }
     
-    .footer .legal {
-      margin-bottom: 12px;
-      line-height: 1.6;
-    }
-    
-    .footer .update {
-      font-style: italic;
-      color: #666;
-    }
+    .footer .legal { margin-bottom: 8px; }
     
     .disclaimer {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       color: #888;
       text-align: center;
-      margin-top: 15px;
+      margin-top: 10px;
       font-style: italic;
     }
     
-    /* Botão Voltar */
+    /* Botão Voltar - escondido na impressão */
     .back-btn {
       display: inline-block;
       background: var(--gold-primary);
       color: var(--black-bg);
-      padding: 12px 30px;
-      border-radius: 30px;
+      padding: 8px 20px;
+      border-radius: 20px;
       text-decoration: none;
       font-weight: 700;
-      margin: 20px 0;
-      transition: all 0.3s;
+      margin: 15px 0;
+      font-size: 0.9rem;
     }
     
-    .back-btn:hover {
-      background: var(--gold-secondary);
-      transform: translateY(-2px);
+    /* Responsivo para tela */
+    @media screen and (max-width: 1024px) {
+      body { font-size: 10px; }
+      .legend-grid { grid-template-columns: repeat(3, 1fr); }
+      table { font-size: 0.75rem; }
+      th, td { padding: 5px 4px; }
+      .badge { font-size: 0.7rem; padding: 2px 5px; }
     }
     
-    /* Responsivo */
-    @media (max-width: 768px) {
-      .header h1 { font-size: 1.4rem; }
-      .header .subtitle { font-size: 0.9rem; }
+    @media screen and (max-width: 768px) {
+      .container { padding: 5mm; }
+      .legend-grid { grid-template-columns: repeat(2, 1fr); }
       
-      .legend-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      table { font-size: 0.8rem; }
-      th, td { padding: 10px 6px; }
-      
-      .warning-box { font-size: 0.9rem; }
+      /* Horizontal scroll na tabela mobile */
+      .table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      table { min-width: 900px; }
     }
     
-    @media (max-width: 480px) {
-      .legend-grid { grid-template-columns: 1fr; }
-      
-      /* Empilha colunas no mobile */
-      thead { display: none; }
-      tbody tr {
-        display: block;
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 10px;
-        background: white;
-      }
-      td {
-        display: block;
-        text-align: left;
-        padding: 8px 0;
-        border: none;
-        border-bottom: 1px solid #eee;
-      }
-      td:last-child { border-bottom: none; }
-      td::before {
-        content: attr(data-label);
-        font-weight: 700;
-        color: var(--black-bg);
-        display: block;
-        margin-bottom: 4px;
-        font-size: 0.9rem;
-      }
-    }
-    
-    /* Print */
+    /* === IMPRESSÃO A4 === */
     @media print {
-      body { background: white; }
-      .back-btn, .no-print { display: none; }
-      .container { padding: 0; }
-      .header { background: white; color: black; border-bottom: 3px solid #000; }
-      th { background: #f0f0f0 !important; color: #000 !important; -webkit-print-color-adjust: exact; }
-      .badge { border: 1px solid #000 !important; -webkit-print-color-adjust: exact; }
+      @page { 
+        size: A4; 
+        margin: 8mm;
+      }
+      
+      body { 
+        background: white; 
+        font-size: 10pt; /* Tamanho ideal para impressão */
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      
+      .back-btn, .no-print { display: none !important; }
+      
+      .container { 
+        max-width: 100%; 
+        padding: 0; 
+        margin: 0;
+      }
+      
+      .header { 
+        background: white !important; 
+        color: black !important; 
+        border-bottom: 2px solid #000;
+        padding: 10px 0;
+      }
+      .header h1 { color: #000 !important; font-size: 16pt; }
+      .header .subtitle { color: #333 !important; }
+      
+      th { 
+        background: #f0f0f0 !important; 
+        color: #000 !important; 
+        border: 1px solid #000 !important;
+        font-size: 9pt;
+      }
+      
+      td { 
+        border: 1px solid #000 !important;
+        font-size: 8.5pt;
+      }
+      
+      .badge { 
+        border: 1px solid #000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .badge-contem { background: #ffebee !important; color: #b30000 !important; }
+      .badge-nao-contem { background: #e8f5e9 !important; color: #2e7d32 !important; }
+      .badge-pode-conter { background: #fff3e0 !important; color: #e65100 !important; }
+      
+      .col-contem, .col-nao-contem, .col-pode-conter {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      
+      .warning-box {
+        border: 1px solid #000 !important;
+        background: #fff9e6 !important;
+        -webkit-print-color-adjust: exact;
+      }
+      
+      .footer {
+        border-top: 2px solid #000;
+        background: white !important;
+      }
+      
+      /* Evitar quebra de página no meio de linhas importantes */
+      tr { page-break-inside: avoid; }
+      .warning-box, .footer { page-break-inside: avoid; }
     }
   </style>
 </head>
@@ -365,8 +371,8 @@
 
 <div class="container">
 
-  <!-- Botão Voltar -->
-  <a href="index.html" class="back-btn">← Voltar para o Site</a>
+  <!-- Botão Voltar (oculto na impressão) -->
+  <a href="index.html" class="back-btn no-print">← Voltar para o Site</a>
 
   <div class="header">
     <h1>🔔 INFORMAÇÃO DE ALÉRGENOS</h1>
@@ -375,13 +381,12 @@
     <p class="anvisa">Conforme RDC nº 26/2015 e RDC nº 727/2022 da ANVISA</p>
   </div>
 
-  <!-- LEGENDA: 14 GRUPOS DE ALÉRGENOS (RDC 26/2015) -->
+  <!-- LEGENDA COMPACTA -->
   <div class="legend">
-    <h3>📋 ALÉRGENOS DE DECLARAÇÃO OBRIGATÓRIA</h3>
-    <p class="legend-subtitle">Lista completa conforme Resolução RDC nº 26/2015 da ANVISA:</p>
+    <h3>📋 Legenda de Ícones</h3>
     <div class="legend-grid">
-      <div class="legend-item"><span class="allergen-icon">🌾</span><span>Cereais com glúten</span></div>
-      <div class="legend-item"><span class="allergen-icon">🥛</span><span>Leite e lactose</span></div>
+      <div class="legend-item"><span class="allergen-icon">🌾</span><span>Cereais c/ glúten</span></div>
+      <div class="legend-item"><span class="allergen-icon">🥛</span><span>Leite/Lactose</span></div>
       <div class="legend-item"><span class="allergen-icon">🥚</span><span>Ovos</span></div>
       <div class="legend-item"><span class="allergen-icon">🥜</span><span>Amendoim</span></div>
       <div class="legend-item"><span class="allergen-icon">🫘</span><span>Soja</span></div>
@@ -391,581 +396,501 @@
       <div class="legend-item"><span class="allergen-icon">🦪</span><span>Moluscos</span></div>
       <div class="legend-item"><span class="allergen-icon">🧂</span><span>Sulfitos</span></div>
       <div class="legend-item"><span class="allergen-icon">🥥</span><span>Coco</span></div>
-      <div class="legend-item"><span class="allergen-icon">🧀</span><span>Derivados de leite</span></div>
+      <div class="legend-item"><span class="allergen-icon">🧀</span><span>Deriv. leite</span></div>
       <div class="legend-item"><span class="allergen-icon">🌿</span><span>Especiarias</span></div>
       <div class="legend-item"><span class="allergen-icon">🍯</span><span>Outros</span></div>
     </div>
   </div>
 
-  <!-- TABELA DE ALÉRGENOS - FORMATO PADRONIZADO -->
+  <!-- TABELA COM 3 COLUNAS DE ALÉRGENOS -->
   <div class="table-container">
     <table>
       <thead>
         <tr>
           <th>PRODUTO</th>
-          <th>DECLARAÇÃO DE ALÉRGENOS<br><small style="font-weight:400;font-size:0.8rem">(Conforme RDC 26/2015)</small></th>
-          <th>OBSERVAÇÕES TÉCNICAS</th>
+          <th class="col-contem">CONTÉM</th>
+          <th class="col-nao-contem">NÃO CONTÉM</th>
+          <th class="col-pode-conter">PODE CONTER TRAÇOS</th>
+          <th>OBS</th>
         </tr>
       </thead>
       <tbody>
         <!-- Bolo de Chocolate -->
         <tr>
-          <td data-label="Produto"><strong>Bolo de Chocolate</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-contem">🥚 Ovos</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🥛 Leite</span>
-                <span class="badge badge-nao-contem">🥜 Amendoim</span>
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🌰 Castanhas</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-                <span class="badge badge-nao-contem">🥥 Coco</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🥛 Leite</span>
-                <span class="badge badge-pode-conter">🫘 Soja</span>
-              </div>
+          <td><strong>Bolo de Chocolate</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🌾 Glúten</span>
+              <span class="badge badge-contem">🥚 Ovos</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box warning">
-              ⚠️ Chocolate em pó utilizado pode conter traços de leite e soja devido ao processo de fabricação do fornecedor.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🥛 Leite</span>
+              <span class="badge badge-nao-contem">🥜 Amendoim</span>
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🌰 Castanhas</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
+              <span class="badge badge-nao-contem">🥥 Coco</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🥛 Leite</span>
+              <span class="badge badge-pode-conter">🫘 Soja</span>
+            </div>
+          </td>
+          <td class="obs-box warning">⚠️ Chocolate em pó pode conter traços</td>
         </tr>
 
         <!-- Limão Siciliano e Mirtilo -->
         <tr>
-          <td data-label="Produto"><strong>Limão Siciliano e Mirtilo</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-contem">🥚 Ovos</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🥛 Leite</span>
-                <span class="badge badge-nao-contem">🥜 Amendoim</span>
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🌰 Castanhas</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-                <span class="badge badge-nao-contem">🥥 Coco</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🥛 Leite</span>
-                <span class="badge badge-pode-conter">🥜 Amendoim</span>
-              </div>
+          <td><strong>Limão Siciliano e Mirtilo</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🌾 Glúten</span>
+              <span class="badge badge-contem">🥚 Ovos</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box">
-              Contém frutas frescas (limão siciliano e mirtilo). Frutas podem variar conforme safra.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🥛 Leite</span>
+              <span class="badge badge-nao-contem">🥜 Amendoim</span>
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🌰 Castanhas</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
+              <span class="badge badge-nao-contem">🥥 Coco</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🥛 Leite</span>
+              <span class="badge badge-pode-conter">🥜 Amendoim</span>
+            </div>
+          </td>
+          <td class="obs-box">Frutas frescas</td>
         </tr>
 
         <!-- Bolo de Laranja -->
         <tr>
-          <td data-label="Produto"><strong>Bolo de Laranja</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-contem">🥚 Ovos</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🥛 Leite</span>
-                <span class="badge badge-nao-contem">🥜 Amendoim</span>
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🌰 Castanhas</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-                <span class="badge badge-nao-contem">🥥 Coco</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🥛 Leite</span>
-                <span class="badge badge-pode-conter">🥜 Amendoim</span>
-              </div>
+          <td><strong>Bolo de Laranja</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🌾 Glúten</span>
+              <span class="badge badge-contem">🥚 Ovos</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box">
-              Preparado com suco de laranja natural. Sem adição de corantes artificiais.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🥛 Leite</span>
+              <span class="badge badge-nao-contem">🥜 Amendoim</span>
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🌰 Castanhas</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
+              <span class="badge badge-nao-contem">🥥 Coco</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🥛 Leite</span>
+              <span class="badge badge-pode-conter">🥜 Amendoim</span>
+            </div>
+          </td>
+          <td class="obs-box">-</td>
         </tr>
 
         <!-- Bolo de Milho -->
         <tr>
-          <td data-label="Produto"><strong>Bolo de Milho</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🥛 Leite</span>
-                <span class="badge badge-contem">🥚 Ovos</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-nao-contem">🥜 Amendoim</span>
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🌰 Castanhas</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-                <span class="badge badge-nao-contem">🥥 Coco</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🌾 Cereais com glúten</span>
-                <span class="badge badge-pode-conter">🥜 Amendoim</span>
-              </div>
+          <td><strong>Bolo de Milho</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🥛 Leite</span>
+              <span class="badge badge-contem">🥚 Ovos</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box">
-              Base de fubá (milho). Receita tradicional sem farinha de trigo. Pode haver contaminação cruzada com glúten no ambiente de produção.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🌾 Glúten</span>
+              <span class="badge badge-nao-contem">🥜 Amendoim</span>
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🌰 Castanhas</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
+              <span class="badge badge-nao-contem">🥥 Coco</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🌾 Glúten</span>
+              <span class="badge badge-pode-conter">🥜 Amendoim</span>
+            </div>
+          </td>
+          <td class="obs-box">Base de fubá</td>
         </tr>
 
         <!-- Bolo de Cenoura -->
         <tr>
-          <td data-label="Produto"><strong>Bolo de Cenoura</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-contem">🥚 Ovos</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🥛 Leite</span>
-                <span class="badge badge-nao-contem">🥜 Amendoim</span>
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🌰 Castanhas</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-                <span class="badge badge-nao-contem">🥥 Coco</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🥛 Leite</span>
-                <span class="badge badge-pode-conter">🫘 Soja</span>
-              </div>
+          <td><strong>Bolo de Cenoura</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🌾 Glúten</span>
+              <span class="badge badge-contem">🥚 Ovos</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box warning">
-              ⚠️ Gotas de chocolate opcionais podem conter traços de leite e soja. Informar no pedido se deseja sem chocolate.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🥛 Leite</span>
+              <span class="badge badge-nao-contem">🥜 Amendoim</span>
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🌰 Castanhas</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
+              <span class="badge badge-nao-contem">🥥 Coco</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🥛 Leite</span>
+              <span class="badge badge-pode-conter">🫘 Soja</span>
+            </div>
+          </td>
+          <td class="obs-box warning">⚠️ Gotas de chocolate</td>
         </tr>
 
         <!-- Bolo de Limão -->
         <tr>
-          <td data-label="Produto"><strong>Bolo de Limão</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-contem">🥚 Ovos</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🥛 Leite</span>
-                <span class="badge badge-nao-contem">🥜 Amendoim</span>
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🌰 Castanhas</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-                <span class="badge badge-nao-contem">🥥 Coco</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🥛 Leite</span>
-                <span class="badge badge-pode-conter">🥜 Amendoim</span>
-              </div>
+          <td><strong>Bolo de Limão</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🌾 Glúten</span>
+              <span class="badge badge-contem">🥚 Ovos</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box">
-              Preparado com suco e raspas de limão natural. Sem corantes artificiais.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🥛 Leite</span>
+              <span class="badge badge-nao-contem">🥜 Amendoim</span>
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🌰 Castanhas</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
+              <span class="badge badge-nao-contem">🥥 Coco</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🥛 Leite</span>
+              <span class="badge badge-pode-conter">🥜 Amendoim</span>
+            </div>
+          </td>
+          <td class="obs-box">-</td>
         </tr>
 
         <!-- Bolo de Aipim -->
         <tr>
-          <td data-label="Produto"><strong>Bolo de Aipim</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🥚 Ovos</span>
-                <span class="badge badge-contem">🧀 Derivados de leite</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-nao-contem">🥛 Leite</span>
-                <span class="badge badge-nao-contem">🥜 Amendoim</span>
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🌰 Castanhas</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-                <span class="badge badge-nao-contem">🥥 Coco</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🌾 Cereais com glúten</span>
-                <span class="badge badge-pode-conter">🥛 Leite</span>
-              </div>
+          <td><strong>Bolo de Aipim</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🥚 Ovos</span>
+              <span class="badge badge-contem">🧀 Deriv. leite</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box">
-              Receita tradicional com aipim fresco e queijo parmesão. Sem farinha de trigo na formulação. Contaminação cruzada possível no ambiente de produção.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🌾 Glúten</span>
+              <span class="badge badge-nao-contem">🥛 Leite</span>
+              <span class="badge badge-nao-contem">🥜 Amendoim</span>
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🌰 Castanhas</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
+              <span class="badge badge-nao-contem">🥥 Coco</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🌾 Glúten</span>
+              <span class="badge badge-pode-conter">🥛 Leite</span>
+            </div>
+          </td>
+          <td class="obs-box">Receita c/ queijo</td>
         </tr>
 
         <!-- Bolo Mesclado -->
         <tr>
-          <td data-label="Produto"><strong>Bolo Mesclado</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-contem">🥚 Ovos</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🥛 Leite</span>
-                <span class="badge badge-nao-contem">🥜 Amendoim</span>
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🌰 Castanhas</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-                <span class="badge badge-nao-contem">🥥 Coco</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🥛 Leite</span>
-                <span class="badge badge-pode-conter">🫘 Soja</span>
-              </div>
+          <td><strong>Bolo Mesclado</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🌾 Glúten</span>
+              <span class="badge badge-contem">🥚 Ovos</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box warning">
-              ⚠️ Camada de chocolate pode conter traços de leite e soja. Massa de baunilha e cenoura sem lactose.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🥛 Leite</span>
+              <span class="badge badge-nao-contem">🥜 Amendoim</span>
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🌰 Castanhas</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
+              <span class="badge badge-nao-contem">🥥 Coco</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🥛 Leite</span>
+              <span class="badge badge-pode-conter">🫘 Soja</span>
+            </div>
+          </td>
+          <td class="obs-box warning">⚠️ Camada chocolate</td>
         </tr>
 
         <!-- Bolo de Amendoim -->
         <tr>
-          <td data-label="Produto"><strong>Bolo de Amendoim</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-contem">🥛 Leite</span>
-                <span class="badge badge-contem">🥚 Ovos</span>
-                <span class="badge badge-contem">🥜 Amendoim</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🌰 Castanhas</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-                <span class="badge badge-nao-contem">🥥 Coco</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🌰 Castanhas</span>
-                <span class="badge badge-pode-conter">🥥 Coco</span>
-              </div>
+          <td><strong>Bolo de Amendoim</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🌾 Glúten</span>
+              <span class="badge badge-contem">🥛 Leite</span>
+              <span class="badge badge-contem">🥚 Ovos</span>
+              <span class="badge badge-contem">🥜 Amendoim</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box critical">
-              ⚠️ <strong>CONTÉM AMENDOIM</strong> — Alérgeno de alto risco. Não recomendado para alérgicos. Fabricado em equipamento que também processa castanhas.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🌰 Castanhas</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
+              <span class="badge badge-nao-contem">🥥 Coco</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🌰 Castanhas</span>
+              <span class="badge badge-pode-conter">🥥 Coco</span>
+            </div>
+          </td>
+          <td class="obs-box critical">⚠️ ALTO RISCO</td>
         </tr>
 
         <!-- Bolo de Fubá -->
         <tr>
-          <td data-label="Produto"><strong>Bolo de Fubá</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-contem">🥛 Leite</span>
-                <span class="badge badge-contem">🥚 Ovos</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🥜 Amendoim</span>
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🌰 Castanhas</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-                <span class="badge badge-nao-contem">🥥 Coco</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🥜 Amendoim</span>
-                <span class="badge badge-pode-conter">🌰 Castanhas</span>
-              </div>
+          <td><strong>Bolo de Fubá</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🌾 Glúten</span>
+              <span class="badge badge-contem">🥛 Leite</span>
+              <span class="badge badge-contem">🥚 Ovos</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box">
-              Base de fubá com farinha de trigo. Receita tradicional mineira.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🥜 Amendoim</span>
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🌰 Castanhas</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
+              <span class="badge badge-nao-contem">🥥 Coco</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🥜 Amendoim</span>
+              <span class="badge badge-pode-conter">🌰 Castanhas</span>
+            </div>
+          </td>
+          <td class="obs-box">Base fubá+trigo</td>
         </tr>
 
         <!-- Fubá com Coco -->
         <tr>
-          <td data-label="Produto"><strong>Fubá com Coco</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-contem">🥛 Leite</span>
-                <span class="badge badge-contem">🥚 Ovos</span>
-                <span class="badge badge-contem">🥥 Coco</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🥜 Amendoim</span>
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🌰 Castanhas</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🥜 Amendoim</span>
-                <span class="badge badge-pode-conter">🌰 Castanhas</span>
-              </div>
+          <td><strong>Fubá com Coco</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🌾 Glúten</span>
+              <span class="badge badge-contem">🥛 Leite</span>
+              <span class="badge badge-contem">🥚 Ovos</span>
+              <span class="badge badge-contem">🥥 Coco</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box">
-              Contém coco ralado fresco. Coco é alérgeno de declaração obrigatória conforme RDC 26/2015.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🥜 Amendoim</span>
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🌰 Castanhas</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🥜 Amendoim</span>
+              <span class="badge badge-pode-conter">🌰 Castanhas</span>
+            </div>
+          </td>
+          <td class="obs-box">Contém coco</td>
         </tr>
 
         <!-- Laranja Bahia com Amora -->
         <tr>
-          <td data-label="Produto"><strong>Laranja Bahia com Amora</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-contem">🥚 Ovos</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🥛 Leite</span>
-                <span class="badge badge-nao-contem">🥜 Amendoim</span>
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🌰 Castanhas</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-                <span class="badge badge-nao-contem">🥥 Coco</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🥛 Leite</span>
-                <span class="badge badge-pode-conter">🥜 Amendoim</span>
-              </div>
+          <td><strong>Laranja Bahia c/ Amora</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🌾 Glúten</span>
+              <span class="badge badge-contem">🥚 Ovos</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box">
-              Contém frutas frescas/sazonais (laranja Bahia e amora). Disponibilidade sujeita à safra.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🥛 Leite</span>
+              <span class="badge badge-nao-contem">🥜 Amendoim</span>
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🌰 Castanhas</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
+              <span class="badge badge-nao-contem">🥥 Coco</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🥛 Leite</span>
+              <span class="badge badge-pode-conter">🥜 Amendoim</span>
+            </div>
+          </td>
+          <td class="obs-box">Frutas sazonais</td>
         </tr>
 
         <!-- Maçã com Nozes -->
         <tr>
-          <td data-label="Produto"><strong>Maçã com Nozes</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-contem">🥚 Ovos</span>
-                <span class="badge badge-contem">🌰 Castanhas</span>
-                <span class="badge badge-contem">🌿 Especiarias</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🥛 Leite</span>
-                <span class="badge badge-nao-contem">🥜 Amendoim</span>
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-                <span class="badge badge-nao-contem">🥥 Coco</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🥛 Leite</span>
-                <span class="badge badge-pode-conter">🥜 Amendoim</span>
-                <span class="badge badge-pode-conter">🥥 Coco</span>
-              </div>
+          <td><strong>Maçã com Nozes</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🌾 Glúten</span>
+              <span class="badge badge-contem">🥚 Ovos</span>
+              <span class="badge badge-contem">🌰 Castanhas</span>
+              <span class="badge badge-contem">🌿 Especiarias</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box critical">
-              ⚠️ <strong>CONTÉM NOZES E CANELA</strong> — Nozes são alérgeno de alto risco. Canela adicionada como especiaria natural.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🥛 Leite</span>
+              <span class="badge badge-nao-contem">🥜 Amendoim</span>
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
+              <span class="badge badge-nao-contem">🥥 Coco</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🥛 Leite</span>
+              <span class="badge badge-pode-conter">🥜 Amendoim</span>
+              <span class="badge badge-pode-conter">🥥 Coco</span>
+            </div>
+          </td>
+          <td class="obs-box critical">⚠️ Contém nozes</td>
         </tr>
 
         <!-- Maçã com Passas -->
         <tr>
-          <td data-label="Produto"><strong>Maçã com Passas</strong></td>
-          <td data-label="Declaração">
-            <div class="declaracao">
-              <strong class="contem">CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-contem">🌾 Cereais com glúten</span>
-                <span class="badge badge-contem">🥚 Ovos</span>
-                <span class="badge badge-contem">🌿 Especiarias</span>
-              </div>
-              <strong class="nao-contem">NÃO CONTÉM:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-nao-contem">🥛 Leite</span>
-                <span class="badge badge-nao-contem">🥜 Amendoim</span>
-                <span class="badge badge-nao-contem">🫘 Soja</span>
-                <span class="badge badge-nao-contem">🌰 Castanhas</span>
-                <span class="badge badge-nao-contem">🐟 Peixes</span>
-                <span class="badge badge-nao-contem">🦐 Crustáceos</span>
-                <span class="badge badge-nao-contem">🦪 Moluscos</span>
-                <span class="badge badge-nao-contem">🧂 Sulfitos</span>
-                <span class="badge badge-nao-contem">🥥 Coco</span>
-              </div>
-              <strong class="pode-conter">PODE CONTER TRAÇOS:</strong>
-              <div class="lista-alergenos">
-                <span class="badge badge-pode-conter">🥛 Leite</span>
-                <span class="badge badge-pode-conter">🥜 Amendoim</span>
-                <span class="badge badge-pode-conter">🌰 Castanhas</span>
-              </div>
+          <td><strong>Maçã com Passas</strong></td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-contem">🌾 Glúten</span>
+              <span class="badge badge-contem">🥚 Ovos</span>
+              <span class="badge badge-contem">🌿 Especiarias</span>
             </div>
           </td>
-          <td data-label="Observações">
-            <div class="obs-box">
-              Contém passas ao rum (sem álcool residual) e canela. Especiarias naturais sem aditivos.
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-nao-contem">🥛 Leite</span>
+              <span class="badge badge-nao-contem">🥜 Amendoim</span>
+              <span class="badge badge-nao-contem">🫘 Soja</span>
+              <span class="badge badge-nao-contem">🌰 Castanhas</span>
+              <span class="badge badge-nao-contem">🐟 Peixes</span>
+              <span class="badge badge-nao-contem">🦐 Crustáceos</span>
+              <span class="badge badge-nao-contem">🦪 Moluscos</span>
+              <span class="badge badge-nao-contem">🧂 Sulfitos</span>
+              <span class="badge badge-nao-contem">🥥 Coco</span>
             </div>
           </td>
+          <td>
+            <div class="badge-list">
+              <span class="badge badge-pode-conter">🥛 Leite</span>
+              <span class="badge badge-pode-conter">🥜 Amendoim</span>
+              <span class="badge badge-pode-conter">🌰 Castanhas</span>
+            </div>
+          </td>
+          <td class="obs-box">Passas e canela</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- AVISO DE CONTAMINAÇÃO CRUZADA (OBRIGATÓRIO) -->
+  <!-- AVISO DE CONTAMINAÇÃO CRUZADA -->
   <div class="warning-box">
     <strong>⚠️ AVISO DE CONTAMINAÇÃO CRUZADA:</strong> 
-    Todos os produtos da Casa Mondego são preparados em cozinha compartilhada que manipula 
-    <span style="color:#b30000; font-weight:bold;">🌾 cereais com glúten, 🥛 leite, 🥚 ovos, 🥜 amendoim, 🫘 soja, 🌰 castanhas, 🥥 coco, 🐟 peixes, 🦐 crustáceos, 🦪 moluscos e sulfitos</span>. 
-    Embora adotemos rigorosas boas práticas de fabricação (BPF) e procedimentos de limpeza entre produções, 
-    <strong>não podemos garantir ausência total de traços de alérgenos</strong>. 
-    Pessoas com alergias alimentares, intolerâncias ou restrições médicas devem consultar nossa equipe antes do consumo.
+    Todos os produtos são preparados em cozinha que manipula 
+    <span style="color:#b30000; font-weight:bold;">🌾 glúten, 🥛 leite, 🥚 ovos, 🥜 amendoim, 🫘 soja, 🌰 castanhas, 🥥 coco, 🐟 peixes, 🦐 crustáceos, 🦪 moluscos e sulfitos</span>. 
+    Embora adotemos boas práticas de fabricação, não podemos garantir ausência total de traços. 
+    <strong>Consulte nossa equipe em caso de alergia.</strong>
   </div>
 
-  <!-- FOOTER LEGAL -->
+  <!-- FOOTER -->
   <div class="footer">
     <div class="legal">
-      <strong>BASE LEGAL:</strong> 
-      Este quadro informativo segue as disposições da Resolução RDC nº 26, de 2 de julho de 2015, 
-      e da Resolução RDC nº 727, de 15 de dezembro de 2022, da ANVISA — Agência Nacional de Vigilância Sanitária, 
-      que determinam a declaração obrigatória de alérgenos em alimentos.
+      <strong>Base Legal:</strong> RDC nº 26/2015 e RDC nº 727/2022 da ANVISA. 
+      Declaração obrigatória de alérgenos em alimentos.
     </div>
     <div class="legal">
-      <strong>LEGENDA DE CORES:</strong> 
-      <span style="color:var(--contem-text);font-weight:600">🔴 CONTÉM</span> = Alérgeno presente na formulação do produto / 
-      <span style="color:var(--nao-contem-text);font-weight:600">🟢 NÃO CONTÉM</span> = Alérgeno não adicionado intencionalmente / 
-      <span style="color:var(--pode-conter-text);font-weight:600">🟠 PODE CONTER TRAÇOS</span> = Risco de contaminação cruzada no ambiente de produção
+      <strong>Legenda:</strong> 
+      <span style="color:var(--contem-text);font-weight:600">CONTÉM</span> = Presente na receita / 
+      <span style="color:var(--nao-contem-text);font-weight:600">NÃO CONTÉM</span> = Não adicionado / 
+      <span style="color:var(--pode-conter-text);font-weight:600">PODE CONTER</span> = Risco de contaminação cruzada
     </div>
     <div class="legal">
-      <strong>NOTA IMPORTANTE:</strong> 
-      As informações aqui apresentadas referem-se às receitas padrão da Casa Mondego. 
-      Alterações sazonais, substituições de fornecedores ou adaptações de receita podem ocorrer. 
-      Em caso de dúvida específica, consulte nossa equipe antes de consumir.
-    </div>
-    <div class="update">
-      <strong>Última atualização:</strong> <span id="updateDate"></span> • 
-      Dúvidas? Fale conosco: <a href="https://wa.me/5541991755009" style="color:var(--gold-primary);font-weight:600">(41) 99175-5009</a> • 
-      <a href="https://www.casamondego.com.br/" style="color:var(--gold-primary);font-weight:600">www.casamondego.com.br</a>
+      <strong>Atualização:</strong> <span id="updateDate"></span> • 
+      Dúvidas: <a href="https://wa.me/5541991755009" style="color:var(--gold-primary);">(41) 99175-5009</a>
     </div>
   </div>
 
   <p class="disclaimer no-print">
-    ℹ️ Este documento tem caráter informativo e complementar. 
-    Ícones e cores são recursos visuais para facilitar a compreensão, não substituindo a declaração textual exigida por lei.
+    ℹ️ Documento informativo. Ícones são recursos visuais complementares.
   </p>
 
 </div>
 
 <script>
-  // Atualiza a data automaticamente no rodapé
   document.getElementById('updateDate').textContent = new Date().toLocaleDateString('pt-BR', {
     year: 'numeric', month: 'long', day: 'numeric'
   });
