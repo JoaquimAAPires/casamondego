@@ -42,6 +42,8 @@
             --cream-bg: #fdfaf5;
             --text-dark: #333333;
             --text-light: #ffffff;
+            /* 🏢 CORPORATIVO */
+            --corporate-valid: #2e7d32;
         }
 
         * {
@@ -55,6 +57,28 @@
             background-color: var(--cream-bg);
             color: var(--text-dark);
             line-height: 1.6;
+        }
+
+        /* 🏢 BANNER CORPORATIVO (NOVO) */
+        #corporateBanner {
+            display: none;
+            background: var(--gold-primary);
+            color: var(--black-bg);
+            text-align: center;
+            padding: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        #corporateBanner a {
+            color: var(--black-bg);
+            text-decoration: underline;
+            margin-left: 10px;
+            font-weight: 600;
+            cursor: pointer;
         }
 
         /* Header do Cardápio */
@@ -294,6 +318,19 @@
             text-decoration: none;
         }
 
+        /* 🏢 Info Parceiro - NOVO */
+        .corporate-pickup-info {
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin: 10px 0;
+            border-left: 4px solid #1976d2;
+            display: none;
+            text-align: left;
+        }
+        .corporate-pickup-info strong { color: #0d47a1; }
+
         .cta-button {
             display: inline-block;
             background: var(--gold-primary);
@@ -328,9 +365,19 @@
             margin-top: 20px;
             font-style: italic;
         }
+
+        /* Ajuste header quando banner ativo */
+        body.corporate-active .menu-header {
+            padding-top: 35px;
+        }
     </style>
 </head>
 <body>
+
+    <!-- 🏢 BANNER CORPORATIVO (NOVO) -->
+    <div id="corporateBanner">
+        🏢 Modo Parceiro: <span id="partnerNameDisplay"></span> | <a onclick="removeCorporateAccess()">Sair</a>
+    </div>
 
     <!-- Header do Cardápio -->
     <header class="menu-header">
@@ -374,11 +421,21 @@
                     <p>Sábado: 10h às 16h</p>
                     <p>Domingo: Fechado</p>
                 </div>
-                <div class="footer-item">
+                
+                <!-- 🚗 Texto Padrão -->
+                <div class="footer-item" id="pickupInfoBox">
                     <h4>📍 Como Retirar</h4>
                     <p>• Pessoalmente na loja</p>
                     <p>• Via Uber/99 (após confirmação)</p>
                 </div>
+                
+                <!-- 🏢 Texto Parceiro - NOVO -->
+                <div class="footer-item" id="corporatePickupInfo">
+                    <h4>🏢 Entrega Agendada</h4>
+                    <p>• Entrega no ponto combinado</p>
+                    <p>• Retirada apenas com confirmação</p>
+                </div>
+                
                 <div class="footer-item">
                     <h4>💳 Pagamento</h4>
                     <p>• PIX (valor exato do pedido)</p>
@@ -418,6 +475,9 @@
 
         // ===== URL DO SITE PRINCIPAL =====
         const SITE_URL = "https://www.casamondego.com.br/";
+        
+        // 🏢 CONFIG CORPORATIVO (deve ser igual ao index.html)
+        const codigosCorporativos = { '1234': 'Condomínio Cinza' };
 
         // ===== RENDERIZAR CARDÁPIO =====
         function renderMenu() {
@@ -449,8 +509,54 @@
             loading.style.display = 'none';
         }
 
+        // 🏢 FUNÇÕES CORPORATIVAS
+        function updateCorporateUI() {
+            const stdPickup = document.getElementById('pickupInfoBox');
+            const corpPickup = document.getElementById('corporatePickupInfo');
+            
+            if (codigoCorporativoValido) {
+                // 🏢 Modo parceiro: esconde texto padrão, mostra texto corporativo
+                if(stdPickup) stdPickup.style.display = 'none';
+                if(corpPickup) corpPickup.style.display = 'block';
+            } else {
+                // 👤 Modo comum: mostra texto padrão, esconde corporativo
+                if(stdPickup) stdPickup.style.display = 'block';
+                if(corpPickup) corpPickup.style.display = 'none';
+            }
+        }
+
+        function showCorporateBanner(nome) {
+            const banner = document.getElementById('corporateBanner');
+            const nameDisplay = document.getElementById('partnerNameDisplay');
+            
+            if(nome) {
+                nameDisplay.textContent = nome;
+                banner.style.display = 'block';
+                document.body.classList.add('corporate-active');
+            }
+        }
+
+        function removeCorporateAccess() {
+            localStorage.removeItem('mondego_corp');
+            document.getElementById('corporateBanner').style.display = 'none';
+            document.body.classList.remove('corporate-active');
+            updateCorporateUI();
+            alert('Modo parceiro desativado.');
+        }
+
         // ===== INICIALIZAR =====
-        document.addEventListener('DOMContentLoaded', renderMenu);
+        // 🔄 Lê sessão corporativa do localStorage (persistência entre páginas)
+        let codigoCorporativoValido = localStorage.getItem('mondego_corp');
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMenu();
+            
+            // ✅ Se tiver sessão válida, aplica modo parceiro
+            if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
+                showCorporateBanner(codigosCorporativos[codigoCorporativoValido]);
+                updateCorporateUI();
+            }
+        });
     </script>
 </body>
 </html>
