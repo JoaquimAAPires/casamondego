@@ -681,6 +681,20 @@
     }
     .corporate-pickup-info strong { color: #0d47a1; }
     
+    /* 🏢 ENDEREÇO FIXO CORPORATIVO - NOVO */
+    .corporate-fixed-address {
+        background: #fff9c4;
+        padding: 12px 15px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        margin: 10px 0 15px;
+        border-left: 4px solid #fbc02d;
+        display: none;
+        color: var(--text-dark);
+        line-height: 1.4;
+    }
+    .corporate-fixed-address strong { color: #5d4037; }
+    
     .pix-section {
         text-align: center;
         padding: 20px;
@@ -878,13 +892,6 @@
             <span class="form-hint">🕒 Seg-Sex: 10h-18h | Sáb: 10h-16h | Dom: Fechado</span>
         </div>
         
-        <!-- 🏢 Campo Endereço de Entrega (apenas para parceiros) - NOVO -->
-        <div class="form-group" id="deliveryAddressGroup" style="display: none;">
-            <label for="deliveryAddress">📍 Endereço de Entrega *</label>
-            <input type="text" id="deliveryAddress" placeholder="Ex: Rua Exemplo, 123 - Condomínio Cinza, Bloco A, Apt 101" required>
-            <span class="form-hint">📌 Informe bloco, torre ou ponto de referência para facilitar a entrega</span>
-        </div>
-        
         <!-- 🚗 Texto Padrão (Cliente Comum) -->
         <div id="pickupInfoBox" class="pickup-info">
             <strong>🚗 Como receber seu pedido:</strong><br>
@@ -892,11 +899,17 @@
             📍 Rua Des. Hugo Simas, 1480 – Loja 5, Bom Retiro<br>
             • <strong>Ou envie um motorista</strong> (Uber/99) após nossa confirmação
         </div>
+        
         <!-- 🏢 Texto Parceiro (Condomínio/Empresa) - NOVO -->
         <div id="corporatePickupInfo" class="corporate-pickup-info">
             <strong>🏢 Entrega Agendada:</strong><br>
-            Seu pedido será entregue no endereço informado abaixo.<br>
-            <small>Retirada em loja disponível apenas mediante confirmação prévia de estoque.</small>
+            Seu pedido será entregue no endereço cadastrado abaixo.
+        </div>
+        
+        <!-- 🏢 ENDEREÇO FIXO CORPORATIVO - NOVO (exibido APÓS o texto de entrega) -->
+        <div id="corporateFixedAddress" class="corporate-fixed-address">
+            <strong>📍 Endereço de Entrega:</strong><br>
+            <span id="fixedAddressText"></span>
         </div>
         
         <!-- Pagamento PIX Otimizado -->
@@ -941,7 +954,6 @@
         <button class="checkout-close" onclick="closeCorporateModal()">&times;</button>
         
         <h3 class="checkout-title" style="font-size: 1.5rem;">🏢 Área Corporativa</h3>
-        <!-- ✅ ALTERAÇÃO: Texto corrigido para "entrega agendada" -->
         <p style="color: #666; margin-bottom: 20px;">Condomínios e empresas parceiros têm <strong>frete grátis</strong> em entrega agendada.</p>
         
         <div class="form-group">
@@ -1208,7 +1220,6 @@
         </div>
     </div>
     
-    <!-- ✅ ALTERAÇÃO: Links para Alérgenos e Cardápio no rodapé -->
     <div style="border-top: 1px solid #333; padding-top: 20px; font-size: 0.8rem; text-align: center;">
         <p>
             <a href="alergenos.html" style="color: var(--gold-primary); text-decoration: none; margin: 0 10px;">
@@ -1242,8 +1253,14 @@ const AIPIM_ID = 7;
 const AIPIM_MIN_HOUR = 14;
 
 // 🏢 CORPORATIVO: Lista de códigos e nomes (Alterar aqui quando for oficializar)
+// 🏢 AJUSTE: Agora usa objeto com {nome, codigo} para acesso correto via .nome
 const codigosCorporativos = {
-    '1234': 'Condomínio Cinza' // Senha: 1234 | Nome: Condomínio Cinza
+    '1234': { nome: 'Condomínio Cinza', codigo: '1234' }
+};
+
+// 🏢 AJUSTE: NOVO - Endereços fixos por código corporativo (não editáveis pelo usuário)
+const enderecosCorporativos = {
+    '1234': 'Rua Exemplo, 123 - Condomínio Cinza, Bloco A, Curitiba - PR'
 };
 
 // 🔄 Estado com persistência via localStorage
@@ -1388,6 +1405,7 @@ function renderCartItems() {
     // 🏢 Exibe badge corporativo se ativo
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
         badge.style.display = 'block';
+        // 🏢 AJUSTE: Acesso correto via .nome (objeto)
         badgeName.textContent = codigosCorporativos[codigoCorporativoValido].nome;
     } else {
         badge.style.display = 'none';
@@ -1455,6 +1473,7 @@ function showCorporateBanner(codigo) {
     const nameDisplay = document.getElementById('partnerNameDisplay');
     
     if(codigosCorporativos[codigo]) {
+        // 🏢 AJUSTE: Acesso via .nome
         nameDisplay.textContent = codigosCorporativos[codigo].nome;
         banner.style.display = 'block';
         document.body.classList.add('corporate-active'); // Ajusta header
@@ -1467,29 +1486,45 @@ function updateCorporateUI() {
     const lblDate = document.querySelector('label[for="pickupDate"]');
     const hintDate = document.querySelector('label[for="pickupDate"] + .form-hint');
     const lblTime = document.querySelector('label[for="pickupTime"]');
-    const deliveryGroup = document.getElementById('deliveryAddressGroup');
+    
+    // 🏢 AJUSTE: Referências aos elementos de endereço
+    const corporatePickupInfo = document.getElementById('corporatePickupInfo');
+    const corporateFixedAddress = document.getElementById('corporateFixedAddress');
+    const fixedAddressText = document.getElementById('fixedAddressText');
     
     if (codigoCorporativoValido) {
-        // 🏢 Modo parceiro: "Entrega" + campo endereço
+        // 🏢 Modo parceiro: "Entrega" + endereço fixo (não editável)
         if(lblDate) lblDate.textContent = '📅 Data para Entrega *';
         if(hintDate) hintDate.textContent = '📌 Pedidos feitos hoje são entregues amanhã';
         if(lblTime) lblTime.textContent = '🕒 Horário para Entrega *';
-        if(deliveryGroup) deliveryGroup.style.display = 'block';
         
-        // Troca texto de retirada
-        const std=document.getElementById('pickupInfoBox'), corp=document.getElementById('corporatePickupInfo');
-        if(std) std.style.display='none';
-        if(corp) corp.style.display='block';
+        // Exibe texto de entrega e endereço fixo
+        if(corporatePickupInfo) corporatePickupInfo.style.display = 'block';
+        if(corporateFixedAddress) {
+            corporateFixedAddress.style.display = 'block';
+            // 🏢 AJUSTE: Pega endereço do objeto fixo
+            if(enderecosCorporativos[codigoCorporativoValido]) {
+                fixedAddressText.textContent = enderecosCorporativos[codigoCorporativoValido];
+            }
+        }
+        
+        // Oculta texto padrão de retirada
+        const std = document.getElementById('pickupInfoBox');
+        if(std) std.style.display = 'none';
+        
     } else {
         // 👤 Modo comum: "Retirada" + sem campo endereço
         if(lblDate) lblDate.textContent = '📅 Data para Retirada *';
         if(hintDate) hintDate.textContent = '📌 Pedidos feitos hoje são retirados amanhã';
         if(lblTime) lblTime.textContent = '🕒 Horário para Retirada *';
-        if(deliveryGroup) deliveryGroup.style.display = 'none';
         
-        const std=document.getElementById('pickupInfoBox'), corp=document.getElementById('corporatePickupInfo');
-        if(std) std.style.display='block';
-        if(corp) corp.style.display='none';
+        // Oculta elementos corporativos
+        if(corporatePickupInfo) corporatePickupInfo.style.display = 'none';
+        if(corporateFixedAddress) corporateFixedAddress.style.display = 'none';
+        
+        // Exibe texto padrão de retirada
+        const std = document.getElementById('pickupInfoBox');
+        if(std) std.style.display = 'block';
     }
     
     // Atualiza badge no carrinho
@@ -1611,11 +1646,8 @@ function sendToWhatsApp() {
     if (!name || !phone || !date || !time) { alert('⚠️ Preencha todos os campos obrigatórios.'); return; }
     if (cart.length === 0) { alert('⚠️ Adicione pelo menos um bolo.'); return; }
     
-    // 🏢 Validação extra para parceiros: endereço obrigatório
-    if(codigoCorporativoValido) {
-        const addr = document.getElementById('deliveryAddress')?.value.trim();
-        if(!addr) { alert('⚠️ Parceiros devem informar o endereço de entrega.'); return; }
-    }
+    // 🏢 AJUSTE: Removida validação de input de endereço (agora é fixo)
+    // Endereço é obtido diretamente do objeto enderecosCorporativos
     
     if (!checkAipimAvailability()) {
         alert('⚠️ Bolo de Aipim só está disponível para retirada após as 14h.');
@@ -1628,11 +1660,14 @@ function sendToWhatsApp() {
     const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     const items = cart.map(i => `• ${i.quantity}x ${i.name} (R$ ${(i.quantity*i.price).toFixed(2).replace('.',',')})`).join('%0A');
     
-    // 🏢 Adiciona info corporativa na mensagem (com endereço)
+    // 🏢 AJUSTE: Usa endereço fixo do objeto, sem input do usuário
     let corporateInfo = '';
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
-        const addr = document.getElementById('deliveryAddress')?.value.trim() || 'Não informado';
-        corporateInfo = `🏢 *PARCEIRO*: ${codigosCorporativos[codigoCorporativoValido].nome}%0A✅ *FRETE GRÁTIS*%0A📍 *Endereço:* ${addr}%0A%0A`;
+        const partnerName = codigosCorporativos[codigoCorporativoValido].nome;
+        // 🏢 AJUSTE: Pega endereço fixo do objeto
+        const fixedAddress = enderecosCorporativos[codigoCorporativoValido] || 'Endereço não cadastrado';
+        
+        corporateInfo = `🏢 *PARCEIRO*: ${partnerName}%0A✅ *FRETE GRÁTIS*%0A📍 *Endereço:* ${fixedAddress}%0A%0A`;
     }
     
     const message = `🎂 *NOVO PEDIDO - CASA MONDEGO*%0A%0A` +
