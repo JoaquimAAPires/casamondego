@@ -119,6 +119,28 @@
         100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
 
+    /* 🏢 BANNER CORPORATIVO (NOVO) */
+    #corporateBanner {
+        display: none; /* Oculto por padrão */
+        background-color: var(--gold-primary);
+        color: var(--black-bg);
+        text-align: center;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        position: sticky;
+        top: 0;
+        z-index: 1001;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    #corporateBanner a {
+        color: var(--black-bg);
+        text-decoration: underline;
+        margin-left: 10px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
     /* Header */
     header.header-bar {
         background-color: var(--black-bg) !important;
@@ -130,10 +152,16 @@
         justify-content: space-between;
         align-items: center;
         position: sticky;
-        top: 0;
+        top: 35px; /* Ajustado para ficar abaixo do banner se ativo */
         z-index: 1000;
         box-sizing: border-box;
         height: 170px;
+        transition: top 0.3s;
+    }
+    
+    /* Ajuste quando banner está ativo */
+    body.corporate-active header.header-bar {
+        top: 45px;
     }
 
     .branding {
@@ -403,6 +431,7 @@
             flex-direction: column; 
             gap: 15px; 
             border-bottom: 2px solid var(--gold-primary);
+            top: 0 !important; /* Reset no mobile */
         }
         .logo-img { height: 90px; }
         .main-nav { 
@@ -757,6 +786,11 @@
 </head>
 <body>
 
+<!-- 🏢 BANNER CORPORATIVO (NOVO) -->
+<div id="corporateBanner">
+    🏢 Modo Parceiro Ativo: <span id="partnerNameDisplay"></span> | <a onclick="removeCorporateAccess()">Sair</a>
+</div>
+
 <!-- Botão WhatsApp Original -->
 <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um bolo da Casa Mondego. Qual é a disponibilidade?" class="whatsapp-float" title="Fale conosco no WhatsApp" target="_blank">
     <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
@@ -882,7 +916,8 @@
         <button class="checkout-close" onclick="closeCorporateModal()">&times;</button>
         
         <h3 class="checkout-title" style="font-size: 1.5rem;">🏢 Área Corporativa</h3>
-        <p style="color: #666; margin-bottom: 20px;">Condomínios e empresas parceiros têm <strong>frete grátis</strong> em retirada agendada.</p>
+        <!-- ✅ ALTERAÇÃO: Texto corrigido para "entrega agendada" -->
+        <p style="color: #666; margin-bottom: 20px;">Condomínios e empresas parceiros têm <strong>frete grátis</strong> em entrega agendada.</p>
         
         <div class="form-group">
             <label for="corporateCodeInput" style="text-align: left;">🔑 Código de Acesso:</label>
@@ -891,10 +926,10 @@
                    onkeypress="if(event.key==='Enter') checkCorporateCode()">
         </div>
         
-        <div id="corpMsgValid" class="corporate-msg valid">✅ Código válido! Benefício aplicado.</div>
+        <div id="corpMsgValid" class="corporate-msg valid">✅ Código válido! Redirecionando...</div>
         <div id="corpMsgInvalid" class="corporate-msg invalid">⚠️ Código não encontrado.</div>
         
-        <button class="btn-gold" onclick="checkCorporateCode()" style="width: 100%; margin-top: 15px;">Acessar Benefícios</button>
+        <button class="btn-gold" onclick="checkCorporateCode()" style="width: 100%; margin-top: 15px;">Acessar Cardápio</button>
         
         <p style="font-size: 0.8rem; color: #888; margin-top: 20px; font-style: italic;">
             Interessado em ser parceiro? <a href="https://wa.me/5541991755009?text=Olá! Gostaria de saber sobre parcerias corporativas." target="_blank" style="color: var(--gold-primary);">Fale conosco</a>.
@@ -1204,8 +1239,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const codigoUrl = urlParams.get('codigo');
     
     if (codigoUrl && codigosCorporativos[codigoUrl.toUpperCase()]) {
-        document.getElementById('corporateCodeInput').value = codigoUrl.toUpperCase();
-        checkCorporateCode();
+        // Simula login se vier por URL
+        codigoCorporativoValido = codigoUrl.toUpperCase();
+        showCorporateBanner(codigoCorporativoValido);
     }
     
     if (addCakeId) {
@@ -1326,8 +1362,13 @@ function renderCartItems() {
     }
 }
 
-// 🏢 FUNÇÕES CORPORATIVAS (Validação de Código)
+// 🏢 FUNÇÕES CORPORATIVAS
 function openCorporateModal() {
+    // Se já estiver logado, vai direto para os bolos
+    if(codigoCorporativoValido) {
+        document.getElementById('bolos').scrollIntoView({behavior: 'smooth'});
+        return;
+    }
     document.getElementById('corporateModal').classList.add('active');
     document.getElementById('corporateCodeInput').value = '';
     document.getElementById('corpMsgValid').style.display = 'none';
@@ -1354,16 +1395,43 @@ function checkCorporateCode() {
         codigoCorporativoValido = codigo;
         input.classList.add('valid');
         msgValid.style.display = 'block';
+        
+        // Mostra banner e redireciona
+        showCorporateBanner(codigo);
         renderCartItems(); // Atualiza o badge no checkout
         
-        showToast(`✅ ${codigosCorporativos[codigo].nome} - Frete Grátis ativado!`);
-        setTimeout(closeCorporateModal, 1500);
+        setTimeout(() => {
+            closeCorporateModal();
+            document.getElementById('bolos').scrollIntoView({behavior: 'smooth'});
+        }, 1000);
     } else {
         codigoCorporativoValido = null;
         input.classList.add('invalid');
         msgInvalid.style.display = 'block';
         renderCartItems();
     }
+}
+
+// Mostra o banner dourado
+function showCorporateBanner(codigo) {
+    const banner = document.getElementById('corporateBanner');
+    const nameDisplay = document.getElementById('partnerNameDisplay');
+    
+    if(codigosCorporativos[codigo]) {
+        nameDisplay.textContent = codigosCorporativos[codigo].nome;
+        banner.style.display = 'block';
+        document.body.classList.add('corporate-active'); // Ajusta header
+    }
+}
+
+// Remove o acesso corporativo
+function removeCorporateAccess() {
+    codigoCorporativoValido = null;
+    document.getElementById('corporateBanner').style.display = 'none';
+    document.body.classList.remove('corporate-active');
+    renderCartItems();
+    showToast('Modo parceiro desativado.');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ===== VERIFICAÇÃO BOLO DE AIPIM =====
