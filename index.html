@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--[if !(IE 6) | !(IE 7) | !(IE 8) ]><!-->
-<html lang="pt-BR" class="no-js">
-<!--<![endif]-->
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
@@ -66,7 +64,7 @@
         --whatsapp-green: #25D366;
         --instagram-color: #E4405F;
         --facebook-color: #1877F2;
-        /* 🏢 CORPORATIVO: Cores para validação de código */
+        /* 🏢 CORPORATIVO: Cores */
         --corporate-valid: #2e7d32;
         --corporate-invalid: #c62828;
         --corporate-bg: #e8f5e9;
@@ -160,6 +158,7 @@
         padding: 0;
         margin: 0;
         gap: 15px;
+        align-items: center;
     }
 
     .main-nav li a {
@@ -177,6 +176,24 @@
         color: var(--text-light) !important;
         background-color: rgba(212, 175, 55, 0.15);
         border-radius: 5px;
+    }
+
+    /* 🏢 Botão Corporativo no Menu */
+    .btn-corporate-menu {
+        background: transparent !important;
+        border: 1px solid var(--gold-primary);
+        color: var(--gold-primary) !important;
+        padding: 8px 15px !important;
+        border-radius: 20px;
+        font-size: 0.85rem !important;
+        letter-spacing: 0 !important;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .btn-corporate-menu:hover {
+        background: rgba(212, 175, 55, 0.2) !important;
     }
 
     /* Hero Section */
@@ -389,9 +406,9 @@
         }
         .logo-img { height: 90px; }
         .main-nav { 
-            flex-wrap: nowrap; 
+            flex-wrap: wrap; 
             justify-content: center; 
-            gap: 5px; 
+            gap: 10px; 
             width: 100%;
             overflow: hidden;
             border: none !important;
@@ -562,6 +579,19 @@
         border-left: 4px solid var(--gold-primary);
     }
     
+    /* 🏢 Badge Corporativo no Carrinho */
+    .corporate-badge-cart {
+        background: var(--corporate-bg);
+        color: var(--corporate-valid);
+        padding: 8px;
+        border-radius: 8px;
+        margin-top: 10px;
+        font-size: 0.9rem;
+        text-align: center;
+        font-weight: 600;
+        border: 1px dashed var(--corporate-valid);
+    }
+
     .form-group { margin-bottom: 15px; }
     .form-group label {
         display: block;
@@ -705,65 +735,20 @@
         display: none;
     }
 
-    /* 🏢 CORPORATIVO: Estilos para campo de código e validação */
-    .corporate-code-group {
-        background: var(--corporate-bg);
-        padding: 12px 15px;
-        border-radius: 8px;
-        margin: 15px 0;
-        border: 1px solid #c8e6c9;
-    }
-    .corporate-code-group label {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-weight: 600;
-        color: var(--corporate-valid);
-        margin-bottom: 8px;
-    }
-    .corporate-code-group input {
-        width: 100%;
-        padding: 10px 12px;
-        border: 2px solid #a5d6a7;
-        border-radius: 6px;
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    .corporate-code-group input.valid {
-        border-color: var(--corporate-valid);
-        background: #f1f8e9;
-    }
-    .corporate-code-group input.invalid {
-        border-color: var(--corporate-invalid);
-        background: #ffebee;
+    /* 🏢 Estilos do Modal Corporativo */
+    .corporate-modal-content {
+        max-width: 400px;
+        text-align: center;
     }
     .corporate-msg {
-        font-size: 0.8rem;
-        margin-top: 6px;
-        display: none;
-        font-weight: 500;
-    }
-    .corporate-msg.valid {
-        color: var(--corporate-valid);
-        display: block;
-    }
-    .corporate-msg.invalid {
-        color: var(--corporate-invalid);
-        display: block;
-    }
-    .corporate-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        background: var(--corporate-bg);
-        color: var(--corporate-valid);
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+        margin: 10px 0;
         font-weight: 600;
-        margin-top: 8px;
+        display: none;
     }
+    .corporate-msg.valid { color: var(--corporate-valid); display: block; }
+    .corporate-msg.invalid { color: var(--corporate-invalid); display: block; }
+
 </style>
 
 <!-- Biblioteca QR Code PIX -->
@@ -810,6 +795,12 @@
         </div>
         
         <div class="cart-items-list" id="cartItemsList"></div>
+        
+        <!-- 🏢 Badge de Benefício Corporativo -->
+        <div id="corporateBadge" class="corporate-badge-cart" style="display: none;">
+            🎁 Frete Grátis Ativo: <span id="corporateBadgeName"></span>
+        </div>
+
         <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
         
         <!-- Dados do Cliente -->
@@ -839,14 +830,6 @@
                 <option value="">🕒 Escolha a data para ver os horários disponíveis</option>
             </select>
             <span class="form-hint">🕒 Seg-Sex: 10h-18h | Sáb: 10h-16h | Dom: Fechado</span>
-        </div>
-        
-        <!-- 🏢 CORPORATIVO: Campo de Código Condomínio/Empresa -->
-        <div class="corporate-code-group">
-            <label for="corporateCode">🏢 Código do Condomínio/Empresa <small style="font-weight:400;color:#666">(opcional)</small></label>
-            <input type="text" id="corporateCode" placeholder="Ex: JARDINS24" oninput="validarCodigoCorporativo()">
-            <div id="corporateMsgValid" class="corporate-msg valid">✅ Código válido! Benefício aplicado.</div>
-            <div id="corporateMsgInvalid" class="corporate-msg invalid">⚠️ Código não encontrado. Verifique com seu síndico/RH.</div>
         </div>
         
         <!-- Informações de Retirada Otimizadas -->
@@ -893,6 +876,32 @@
     </div>
 </div>
 
+<!-- 🏢 Modal de Acesso Corporativo (NOVO) -->
+<div id="corporateModal" class="checkout-modal" style="z-index: 2500;">
+    <div class="checkout-content corporate-modal-content">
+        <button class="checkout-close" onclick="closeCorporateModal()">&times;</button>
+        
+        <h3 class="checkout-title" style="font-size: 1.5rem;">🏢 Área Corporativa</h3>
+        <p style="color: #666; margin-bottom: 20px;">Condomínios e empresas parceiros têm <strong>frete grátis</strong> em retirada agendada.</p>
+        
+        <div class="form-group">
+            <label for="corporateCodeInput" style="text-align: left;">🔑 Código de Acesso:</label>
+            <input type="text" id="corporateCodeInput" placeholder="Ex: 1234" 
+                   style="text-transform: uppercase; letter-spacing: 1px; text-align: center; font-weight: 600; font-size: 1.2rem;"
+                   onkeypress="if(event.key==='Enter') checkCorporateCode()">
+        </div>
+        
+        <div id="corpMsgValid" class="corporate-msg valid">✅ Código válido! Benefício aplicado.</div>
+        <div id="corpMsgInvalid" class="corporate-msg invalid">⚠️ Código não encontrado.</div>
+        
+        <button class="btn-gold" onclick="checkCorporateCode()" style="width: 100%; margin-top: 15px;">Acessar Benefícios</button>
+        
+        <p style="font-size: 0.8rem; color: #888; margin-top: 20px; font-style: italic;">
+            Interessado em ser parceiro? <a href="https://wa.me/5541991755009?text=Olá! Gostaria de saber sobre parcerias corporativas." target="_blank" style="color: var(--gold-primary);">Fale conosco</a>.
+        </p>
+    </div>
+</div>
+
 <header class="header-bar">
     <div class="branding">
         <a href="https://www.casamondego.com.br/">
@@ -906,6 +915,8 @@
             <li><a href="#bolos">BOLOS</a></li>
             <li><a href="#contato">CONTATO</a></li>
             <li><a href="https://wa.me/5541991755009?text=Olá! Tenho interesse em saber mais sobre como ser um franqueado da Casa Mondego." target="_blank">FRANQUIA</a></li>
+            <!-- 🏢 Botão Área Corporativa -->
+            <li><button class="btn-corporate-menu" onclick="openCorporateModal()">🏢 Área Corp.</button></li>
         </ul>
     </nav>
 </header>
@@ -1170,16 +1181,13 @@ const BUSINESS_HOURS = {
 const AIPIM_ID = 7;
 const AIPIM_MIN_HOUR = 14;
 
-// 🏢 CORPORATIVO: Lista de códigos válidos (fácil de expandir)
+// 🏢 CORPORATIVO: Lista de códigos e nomes (Alterar aqui quando for oficializar)
 const codigosCorporativos = {
-    'JARDINS24': { nome: 'Condomínio Jardins', beneficio: 'Frete Grátis' },
-    'CENTRO123': { nome: 'Empresa Centro', beneficio: 'Frete Grátis' },
-    'VERAO25': { nome: 'Promoção Verão', beneficio: 'Frete Grátis' }
-    // Adicione novos códigos aqui: 'CODIGO': { nome: 'Nome', beneficio: 'Descrição' }
+    '1234': 'Condomínio Cinza' // Senha: 1234 | Nome: Condomínio Cinza
 };
 
 let cart = JSON.parse(localStorage.getItem('cart_mondego')) || [];
-let codigoCorporativoValido = null; // 🏢 CORPORATIVO: Armazena código válido atual
+let codigoCorporativoValido = null; // Armazena código válido atual
 
 document.addEventListener('DOMContentLoaded', () => {
     updateCartFloat();
@@ -1190,12 +1198,44 @@ document.addEventListener('DOMContentLoaded', () => {
         checkAipimAvailability();
     });
     
-    // 🏢 CORPORATIVO: Auto-add via URL também suporta código
+    // Auto-add via URL
     const urlParams = new URLSearchParams(window.location.search);
+    const addCakeId = urlParams.get('add');
     const codigoUrl = urlParams.get('codigo');
+    
     if (codigoUrl && codigosCorporativos[codigoUrl.toUpperCase()]) {
-        document.getElementById('corporateCode').value = codigoUrl.toUpperCase();
-        validarCodigoCorporativo();
+        document.getElementById('corporateCodeInput').value = codigoUrl.toUpperCase();
+        checkCorporateCode();
+    }
+    
+    if (addCakeId) {
+        const cakeMap = {
+            '1': { name: 'Bolo de Chocolate', price: 26.00 },
+            '2': { name: 'Limão Siciliano e Mirtilo', price: 30.00 },
+            '3': { name: 'Bolo de Laranja', price: 26.00 },
+            '4': { name: 'Bolo de Milho', price: 26.00 },
+            '5': { name: 'Bolo de Cenoura', price: 26.00 },
+            '6': { name: 'Bolo de Limão', price: 26.00 },
+            '7': { name: 'Bolo de Aipim', price: 32.00 },
+            '8': { name: 'Bolo Mesclado', price: 26.00 },
+            '9': { name: 'Bolo de Amendoim', price: 26.00 },
+            '10': { name: 'Bolo de Fubá', price: 26.00 },
+            '11': { name: 'Fubá com Coco', price: 26.00 },
+            '12': { name: 'Laranja Bahia com Amora', price: 30.00 },
+            '13': { name: 'Maçã com Nozes', price: 30.00 },
+            '14': { name: 'Maçã com Passas', price: 30.00 }
+        };
+        
+        const cake = cakeMap[addCakeId];
+        if (cake) {
+            addToCart(parseInt(addCakeId), cake.name, cake.price);
+            setTimeout(() => {
+                showToast(`🎂 ${cake.name} adicionado ao carrinho!`);
+                setTimeout(() => {
+                    openCheckout();
+                }, 1500);
+            }, 500);
+        }
     }
 });
 
@@ -1259,54 +1299,70 @@ function updateProgress(step) {
 function renderCartItems() {
     const list = document.getElementById('cartItemsList');
     const totalEl = document.getElementById('cartTotal');
-    if (cart.length === 0) { list.innerHTML = '<p style="text-align:center;color:#666;padding:20px">🛒 Seu carrinho está vazio</p>'; totalEl.textContent = 'R$ 0,00'; return; }
+    const badge = document.getElementById('corporateBadge');
+    const badgeName = document.getElementById('corporateBadgeName');
+    
+    if (cart.length === 0) { 
+        list.innerHTML = '<p style="text-align:center;color:#666;padding:20px">🛒 Seu carrinho está vazio</p>'; 
+        totalEl.textContent = 'R$ 0,00'; 
+        badge.style.display = 'none';
+        return; 
+    }
+    
     let total = 0;
     list.innerHTML = cart.map(item => {
         const subtotal = item.quantity * item.price; total += subtotal;
         return `<div class="cart-item"><span>${item.name} × ${item.quantity}</span><div style="display:flex;align-items:center;gap:8px;"><span style="font-weight:600">R$ ${subtotal.toFixed(2).replace('.',',')}</span><button onclick="updateQuantity(${item.id},-1)" style="background:#ddd;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1.1rem">−</button><button onclick="updateQuantity(${item.id},1)" style="background:#ddd;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1.1rem">+</button><button onclick="removeFromCart(${item.id})" style="background:#ffcdd2;color:#c62828;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1rem">×</button></div></div>`;
     }).join('');
     
-    // 🏢 CORPORATIVO: Adiciona badge de benefício se código válido
-    let badge = '';
-    if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
-        const benef = codigosCorporativos[codigoCorporativoValido].beneficio;
-        badge = `<div class="corporate-badge">🎁 ${benef} aplicado</div>`;
-    }
+    totalEl.textContent = `R$ ${total.toFixed(2).replace('.',',')}`;
     
-    totalEl.innerHTML = `Total: <span id="cartTotalValue">R$ ${total.toFixed(2).replace('.',',')}</span>${badge}`;
+    // 🏢 Exibe badge corporativo se ativo
+    if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
+        badge.style.display = 'block';
+        badgeName.textContent = codigosCorporativos[codigoCorporativoValido].nome;
+    } else {
+        badge.style.display = 'none';
+    }
 }
 
-// 🏢 CORPORATIVO: Função de validação de código
-function validarCodigoCorporativo() {
-    const input = document.getElementById('corporateCode');
-    const msgValid = document.getElementById('corporateMsgValid');
-    const msgInvalid = document.getElementById('corporateMsgInvalid');
+// 🏢 FUNÇÕES CORPORATIVAS (Validação de Código)
+function openCorporateModal() {
+    document.getElementById('corporateModal').classList.add('active');
+    document.getElementById('corporateCodeInput').value = '';
+    document.getElementById('corpMsgValid').style.display = 'none';
+    document.getElementById('corpMsgInvalid').style.display = 'none';
+}
+
+function closeCorporateModal() {
+    document.getElementById('corporateModal').classList.remove('active');
+}
+
+function checkCorporateCode() {
+    const input = document.getElementById('corporateCodeInput');
+    const msgValid = document.getElementById('corpMsgValid');
+    const msgInvalid = document.getElementById('corpMsgInvalid');
     const codigo = input.value.trim().toUpperCase();
     
-    // Limpa estados
     input.classList.remove('valid', 'invalid');
-    msgValid.classList.remove('valid');
-    msgInvalid.classList.remove('invalid');
+    msgValid.style.display = 'none';
+    msgInvalid.style.display = 'none';
     
-    if (!codigo) {
-        codigoCorporativoValido = null;
-        renderCartItems(); // Remove badge se houver
-        return;
-    }
+    if (!codigo) return;
     
     if (codigosCorporativos[codigo]) {
-        // Código válido
         codigoCorporativoValido = codigo;
         input.classList.add('valid');
-        msgValid.classList.add('valid');
-        renderCartItems(); // Adiciona badge
-        showToast(`✅ ${codigosCorporativos[codigo].nome} - Benefício aplicado!`);
+        msgValid.style.display = 'block';
+        renderCartItems(); // Atualiza o badge no checkout
+        
+        showToast(`✅ ${codigosCorporativos[codigo].nome} - Frete Grátis ativado!`);
+        setTimeout(closeCorporateModal, 1500);
     } else {
-        // Código inválido
         codigoCorporativoValido = null;
         input.classList.add('invalid');
-        msgInvalid.classList.add('invalid');
-        renderCartItems(); // Remove badge
+        msgInvalid.style.display = 'block';
+        renderCartItems();
     }
 }
 
@@ -1414,23 +1470,22 @@ function sendToWhatsApp() {
     if (!name || !phone || !date || !time) { alert('⚠️ Preencha todos os campos obrigatórios.'); return; }
     if (cart.length === 0) { alert('⚠️ Adicione pelo menos um bolo.'); return; }
     
-    // Validação Bolo de Aipim
     if (!checkAipimAvailability()) {
-        alert('⚠️ Bolo de Aipim só está disponível para retirada após as 14h. Por favor, selecione um horário após as 14h.');
+        alert('⚠️ Bolo de Aipim só está disponível para retirada após as 14h.');
         return;
     }
     
     const selectedDate = new Date(date + 'T00:00:00');
-    if (selectedDate.getDay() === 0) { alert('⚠️ Não trabalhamos aos domingos. Escolha outra data.'); return; }
+    if (selectedDate.getDay() === 0) { alert('⚠️ Não trabalhamos aos domingos.'); return; }
     
     const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     const items = cart.map(i => `• ${i.quantity}x ${i.name} (R$ ${(i.quantity*i.price).toFixed(2).replace('.',',')})`).join('%0A');
     
-    // 🏢 CORPORATIVO: Adiciona info do código na mensagem
+    // 🏢 Adiciona info corporativa na mensagem
     let corporateInfo = '';
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
         const corp = codigosCorporativos[codigoCorporativoValido];
-        corporateInfo = `🏢 *Cliente Corporativo*\nLocal: ${corp.nome}\nCódigo: ${codigoCorporativoValido}\n✅ *${corp.beneficio}*\n\n`;
+        corporateInfo = `🏢 *CLIENTE CORPORATIVO*\nParceiro: ${corp.nome}\n✅ *FRETE GRÁTIS*\n\n`;
     }
     
     const message = `🎂 *NOVO PEDIDO - CASA MONDEGO*%0A%0A` +
@@ -1455,12 +1510,10 @@ function sendToWhatsApp() {
 }
 
 function formatDateBR(dateStr) { const [y,m,d] = dateStr.split('-'); return `${d}/${m}/${y}`; }
-function resetCart() { cart = []; saveCart(); updateCartFloat(); document.getElementById('customerName').value = ''; document.getElementById('customerPhone').value = ''; document.getElementById('pickupDate').value = ''; document.getElementById('pickupTime').innerHTML = '<option value="">🕒 Escolha a data para ver os horários disponíveis</option>'; document.getElementById('corporateCode').value = ''; codigoCorporativoValido = null; }
+function resetCart() { cart = []; saveCart(); updateCartFloat(); document.getElementById('customerName').value = ''; document.getElementById('customerPhone').value = ''; document.getElementById('pickupDate').value = ''; document.getElementById('pickupTime').innerHTML = '<option value="">🕒 Escolha a data para ver os horários disponíveis</option>'; document.getElementById('corporateCodeInput').value = ''; codigoCorporativoValido = null; }
 function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2500); }
 document.getElementById('checkoutModal')?.addEventListener('click', (e) => { if (e.target.id === 'checkoutModal') closeCheckout(); });
-
-// ===== AUTO-ADD AO CARRINHO VIA URL (PARA O CARDÁPIO DIGITAL) =====
-// (Já incluído no DOMContentLoaded acima para suportar ?codigo=)
+document.getElementById('corporateModal')?.addEventListener('click', (e) => { if (e.target.id === 'corporateModal') closeCorporateModal(); });
 </script>
 
 </body>
