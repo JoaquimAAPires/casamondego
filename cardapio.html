@@ -44,6 +44,7 @@
             --text-light: #ffffff;
             /* 🏢 CORPORATIVO */
             --corporate-valid: #2e7d32;
+            --corporate-bg: #e8f5e9;
         }
 
         * {
@@ -59,7 +60,7 @@
             line-height: 1.6;
         }
 
-        /* 🏢 BANNER CORPORATIVO (NOVO) */
+        /* 🏢 BANNER CORPORATIVO */
         #corporateBanner {
             display: none;
             background: var(--gold-primary);
@@ -318,7 +319,7 @@
             text-decoration: none;
         }
 
-        /* 🏢 Info Parceiro - NOVO */
+        /* 🏢 Info Parceiro */
         .corporate-pickup-info {
             background: #e3f2fd;
             padding: 12px;
@@ -330,6 +331,21 @@
             text-align: left;
         }
         .corporate-pickup-info strong { color: #0d47a1; }
+
+        /* 🏢 ENDEREÇO FIXO CORPORATIVO - NOVO */
+        .corporate-fixed-address {
+            background: #fff9c4;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin: 10px 0;
+            border-left: 4px solid #fbc02d;
+            display: none;
+            text-align: left;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+        .corporate-fixed-address strong { color: #5d4037; }
 
         .cta-button {
             display: inline-block;
@@ -374,7 +390,7 @@
 </head>
 <body>
 
-    <!-- 🏢 BANNER CORPORATIVO (NOVO) -->
+    <!-- 🏢 BANNER CORPORATIVO -->
     <div id="corporateBanner">
         🏢 Modo Parceiro: <span id="partnerNameDisplay"></span> | <a onclick="removeCorporateAccess()">Sair</a>
     </div>
@@ -416,24 +432,34 @@
         <div class="footer-content">
             <div class="footer-info">
                 <div class="footer-item">
-                    <h4>🕒 Horário de Retirada</h4>
+                    <h4>🕒 Horário de Entrega/Retirada</h4>
                     <p>Segunda a Sexta: 10h às 18h</p>
                     <p>Sábado: 10h às 16h</p>
                     <p>Domingo: Fechado</p>
                 </div>
                 
-                <!-- 🚗 Texto Padrão -->
+                <!-- 🚗 Texto Padrão (Cliente Comum) -->
                 <div class="footer-item" id="pickupInfoBox">
                     <h4>📍 Como Retirar</h4>
                     <p>• Pessoalmente na loja</p>
                     <p>• Via Uber/99 (após confirmação)</p>
+                    <p>📍 Rua Des. Hugo Simas, 1480 – Loja 5</p>
                 </div>
                 
-                <!-- 🏢 Texto Parceiro - NOVO -->
+                <!-- 🏢 Texto Parceiro (Condomínio/Empresa) -->
                 <div class="footer-item" id="corporatePickupInfo">
                     <h4>🏢 Entrega Agendada</h4>
                     <p>• Entrega no ponto combinado</p>
                     <p>• Retirada apenas com confirmação</p>
+                </div>
+                
+                <!-- 🏢 ENDEREÇO FIXO CORPORATIVO - NOVO (exibido APÓS o texto de entrega) -->
+                <div class="footer-item" id="corporateFixedAddress">
+                    <h4>📍 Endereço de Entrega</h4>
+                    <div class="corporate-fixed-address">
+                        <strong>Endereço cadastrado:</strong><br>
+                        <span id="fixedAddressText"></span>
+                    </div>
                 </div>
                 
                 <div class="footer-item">
@@ -455,7 +481,7 @@
     </footer>
 
     <script>
-        // ===== DADOS DOS 14 BOLOS (EXATAMENTE COMO NO SITE PRINCIPAL) =====
+        // ===== DADOS DOS 14 BOLOS =====
         const cakes = [
             { id: 2, name: "Limão Siciliano & Mirtilo", desc: "Refrescante e cítrico com mirtilos frescos.", price: 30.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" },
             { id: 13, name: "Maçã com Nozes", desc: "Clássico sabor de maçã com crocância de nozes.", price: 30.00, img: "bolo-maca-nozes.jpg" },
@@ -476,8 +502,14 @@
         // ===== URL DO SITE PRINCIPAL =====
         const SITE_URL = "https://www.casamondego.com.br/";
         
-        // 🏢 CONFIG CORPORATIVO (deve ser igual ao index.html)
-        const codigosCorporativos = { '1234': 'Condomínio Cinza' };
+        // 🏢 CONFIG CORPORATIVO - ATUALIZADO (igual ao index.html)
+        // ✅ Agora usa objeto { nome, endereco } para acesso consistente
+        const codigosCorporativos = {
+            '1234': { nome: 'Condomínio Cinza', endereco: 'Rua Exemplo, 123 - Condomínio Cinza, Bloco A, Curitiba - PR' }
+        };
+
+        // 🔄 Estado com persistência via localStorage
+        let codigoCorporativoValido = localStorage.getItem('mondego_corp');
 
         // ===== RENDERIZAR CARDÁPIO =====
         function renderMenu() {
@@ -485,7 +517,6 @@
             const loading = document.getElementById('loading');
 
             grid.innerHTML = cakes.map(cake => {
-                // URL que adiciona o bolo ao carrinho automaticamente
                 const orderUrl = `${SITE_URL}?add=${cake.id}`;
                 
                 return `
@@ -513,24 +544,36 @@
         function updateCorporateUI() {
             const stdPickup = document.getElementById('pickupInfoBox');
             const corpPickup = document.getElementById('corporatePickupInfo');
+            const corporateFixedAddress = document.getElementById('corporateFixedAddress');
+            const fixedAddressText = document.getElementById('fixedAddressText');
             
-            if (codigoCorporativoValido) {
-                // 🏢 Modo parceiro: esconde texto padrão, mostra texto corporativo
+            if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
+                // 🏢 Modo parceiro: esconde texto padrão, mostra texto corporativo + endereço fixo
                 if(stdPickup) stdPickup.style.display = 'none';
                 if(corpPickup) corpPickup.style.display = 'block';
+                
+                // 🏢 Exibe endereço fixo do objeto
+                if(corporateFixedAddress) {
+                    corporateFixedAddress.style.display = 'block';
+                    if(codigosCorporativos[codigoCorporativoValido].endereco) {
+                        fixedAddressText.textContent = codigosCorporativos[codigoCorporativoValido].endereco;
+                    }
+                }
             } else {
-                // 👤 Modo comum: mostra texto padrão, esconde corporativo
+                // 👤 Modo comum: mostra texto padrão, esconde corporativo + endereço
                 if(stdPickup) stdPickup.style.display = 'block';
                 if(corpPickup) corpPickup.style.display = 'none';
+                if(corporateFixedAddress) corporateFixedAddress.style.display = 'none';
             }
         }
 
-        function showCorporateBanner(nome) {
+        function showCorporateBanner(codigo) {
             const banner = document.getElementById('corporateBanner');
             const nameDisplay = document.getElementById('partnerNameDisplay');
             
-            if(nome) {
-                nameDisplay.textContent = nome;
+            // ✅ Acesso correto via .nome (objeto)
+            if(codigo && codigosCorporativos[codigo]) {
+                nameDisplay.textContent = codigosCorporativos[codigo].nome;
                 banner.style.display = 'block';
                 document.body.classList.add('corporate-active');
             }
@@ -538,22 +581,21 @@
 
         function removeCorporateAccess() {
             localStorage.removeItem('mondego_corp');
+            codigoCorporativoValido = null;
             document.getElementById('corporateBanner').style.display = 'none';
             document.body.classList.remove('corporate-active');
             updateCorporateUI();
-            alert('Modo parceiro desativado.');
+            // Redireciona para o index para manter consistência
+            window.location.href = 'https://www.casamondego.com.br/';
         }
 
         // ===== INICIALIZAR =====
-        // 🔄 Lê sessão corporativa do localStorage (persistência entre páginas)
-        let codigoCorporativoValido = localStorage.getItem('mondego_corp');
-        
         document.addEventListener('DOMContentLoaded', () => {
             renderMenu();
             
-            // ✅ Se tiver sessão válida, aplica modo parceiro
+            // ✅ Persistência: Lê sessão corporativa do localStorage
             if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
-                showCorporateBanner(codigosCorporativos[codigoCorporativoValido]);
+                showCorporateBanner(codigoCorporativoValido);
                 updateCorporateUI();
             }
         });
