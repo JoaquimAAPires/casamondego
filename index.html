@@ -629,7 +629,7 @@
         font-size: 0.95rem;
         color: var(--text-dark);
     }
-    .form-group input, .form-group select {
+    .form-group input, .form-group select, .form-group textarea {
         width: 100%;
         padding: 12px;
         border: 2px solid #ddd;
@@ -638,7 +638,7 @@
         box-sizing: border-box;
         transition: border-color 0.3s;
     }
-    .form-group input:focus, .form-group select:focus {
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
         outline: none;
         border-color: var(--gold-primary);
     }
@@ -878,6 +878,13 @@
             <span class="form-hint">🕒 Seg-Sex: 10h-18h | Sáb: 10h-16h | Dom: Fechado</span>
         </div>
         
+        <!-- 🏢 Campo Endereço de Entrega (apenas para parceiros) - NOVO -->
+        <div class="form-group" id="deliveryAddressGroup" style="display: none;">
+            <label for="deliveryAddress">📍 Endereço de Entrega *</label>
+            <input type="text" id="deliveryAddress" placeholder="Ex: Rua Exemplo, 123 - Condomínio Cinza, Bloco A, Apt 101" required>
+            <span class="form-hint">📌 Informe bloco, torre ou ponto de referência para facilitar a entrega</span>
+        </div>
+        
         <!-- 🚗 Texto Padrão (Cliente Comum) -->
         <div id="pickupInfoBox" class="pickup-info">
             <strong>🚗 Como receber seu pedido:</strong><br>
@@ -888,7 +895,7 @@
         <!-- 🏢 Texto Parceiro (Condomínio/Empresa) - NOVO -->
         <div id="corporatePickupInfo" class="corporate-pickup-info">
             <strong>🏢 Entrega Agendada:</strong><br>
-            Seu pedido será entregue no ponto combinado com o condomínio/empresa.<br>
+            Seu pedido será entregue no endereço informado abaixo.<br>
             <small>Retirada em loja disponível apenas mediante confirmação prévia de estoque.</small>
         </div>
         
@@ -1454,28 +1461,31 @@ function showCorporateBanner(codigo) {
     }
 }
 
-// 🔄 Atualiza UI corporativa (labels, hints, texto retirada, badge)
+// 🔄 Atualiza UI corporativa (labels, hints, endereço, texto retirada, badge)
 function updateCorporateUI() {
     // Troca labels e hints de data/horário
     const lblDate = document.querySelector('label[for="pickupDate"]');
     const hintDate = document.querySelector('label[for="pickupDate"] + .form-hint');
     const lblTime = document.querySelector('label[for="pickupTime"]');
+    const deliveryGroup = document.getElementById('deliveryAddressGroup');
     
     if (codigoCorporativoValido) {
-        // 🏢 Modo parceiro: "Entrega"
+        // 🏢 Modo parceiro: "Entrega" + campo endereço
         if(lblDate) lblDate.textContent = '📅 Data para Entrega *';
         if(hintDate) hintDate.textContent = '📌 Pedidos feitos hoje são entregues amanhã';
         if(lblTime) lblTime.textContent = '🕒 Horário para Entrega *';
+        if(deliveryGroup) deliveryGroup.style.display = 'block';
         
         // Troca texto de retirada
         const std=document.getElementById('pickupInfoBox'), corp=document.getElementById('corporatePickupInfo');
         if(std) std.style.display='none';
         if(corp) corp.style.display='block';
     } else {
-        // 👤 Modo comum: "Retirada"
+        // 👤 Modo comum: "Retirada" + sem campo endereço
         if(lblDate) lblDate.textContent = '📅 Data para Retirada *';
         if(hintDate) hintDate.textContent = '📌 Pedidos feitos hoje são retirados amanhã';
         if(lblTime) lblTime.textContent = '🕒 Horário para Retirada *';
+        if(deliveryGroup) deliveryGroup.style.display = 'none';
         
         const std=document.getElementById('pickupInfoBox'), corp=document.getElementById('corporatePickupInfo');
         if(std) std.style.display='block';
@@ -1601,6 +1611,12 @@ function sendToWhatsApp() {
     if (!name || !phone || !date || !time) { alert('⚠️ Preencha todos os campos obrigatórios.'); return; }
     if (cart.length === 0) { alert('⚠️ Adicione pelo menos um bolo.'); return; }
     
+    // 🏢 Validação extra para parceiros: endereço obrigatório
+    if(codigoCorporativoValido) {
+        const addr = document.getElementById('deliveryAddress')?.value.trim();
+        if(!addr) { alert('⚠️ Parceiros devem informar o endereço de entrega.'); return; }
+    }
+    
     if (!checkAipimAvailability()) {
         alert('⚠️ Bolo de Aipim só está disponível para retirada após as 14h.');
         return;
@@ -1612,11 +1628,11 @@ function sendToWhatsApp() {
     const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     const items = cart.map(i => `• ${i.quantity}x ${i.name} (R$ ${(i.quantity*i.price).toFixed(2).replace('.',',')})`).join('%0A');
     
-    // 🏢 Adiciona info corporativa na mensagem
+    // 🏢 Adiciona info corporativa na mensagem (com endereço)
     let corporateInfo = '';
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
-        const corp = codigosCorporativos[codigoCorporativoValido];
-        corporateInfo = `🏢 *CLIENTE CORPORATIVO*\nParceiro: ${corp.nome}\n✅ *FRETE GRÁTIS*\n\n`;
+        const addr = document.getElementById('deliveryAddress')?.value.trim() || 'Não informado';
+        corporateInfo = `🏢 *PARCEIRO*: ${codigosCorporativos[codigoCorporativoValido].nome}%0A✅ *FRETE GRÁTIS*%0A📍 *Endereço:* ${addr}%0A%0A`;
     }
     
     const message = `🎂 *NOVO PEDIDO - CASA MONDEGO*%0A%0A` +
@@ -1624,8 +1640,8 @@ function sendToWhatsApp() {
         `*WhatsApp:* ${phone}%0A%0A` +
         corporateInfo +
         `*Itens do Pedido:*%0A${items}%0A%0A` +
-        `*Retirada:* ${formatDateBR(date)} às ${time}%0A` +
-        `*Modalidade:* Cliente retira (pessoal ou via app)%0A%0A` +
+        `*Retirada/Entrega:* ${formatDateBR(date)} às ${time}%0A` +
+        `*Modalidade:* ${codigoCorporativoValido ? 'Entrega agendada (frete grátis)' : 'Cliente retira (pessoal ou via app)'}%0A%0A` +
         `*Total:* R$ ${total.toFixed(2).replace('.',',')}%0A` +
         `*Pagamento:* PIX confirmado%0A%0A` +
         `📸 *Enviarei o comprovante de pagamento em seguida!*%0A%0A` +
