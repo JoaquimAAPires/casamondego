@@ -669,6 +669,18 @@
     }
     .pickup-info strong { color: var(--text-dark); }
     
+    /* 🏢 Info Parceiro - NOVO */
+    .corporate-pickup-info {
+        background: #e3f2fd;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        margin: 15px 0;
+        border-left: 4px solid #1976d2;
+        display: none;
+    }
+    .corporate-pickup-info strong { color: #0d47a1; }
+    
     .pix-section {
         text-align: center;
         padding: 20px;
@@ -866,12 +878,18 @@
             <span class="form-hint">🕒 Seg-Sex: 10h-18h | Sáb: 10h-16h | Dom: Fechado</span>
         </div>
         
-        <!-- Informações de Retirada Otimizadas -->
-        <div class="pickup-info">
+        <!-- 🚗 Texto Padrão (Cliente Comum) -->
+        <div id="pickupInfoBox" class="pickup-info">
             <strong>🚗 Como receber seu pedido:</strong><br>
             • <strong>Retirada na loja:</strong> rápida e sem fila<br>
             📍 Rua Des. Hugo Simas, 1480 – Loja 5, Bom Retiro<br>
             • <strong>Ou envie um motorista</strong> (Uber/99) após nossa confirmação
+        </div>
+        <!-- 🏢 Texto Parceiro (Condomínio/Empresa) - NOVO -->
+        <div id="corporatePickupInfo" class="corporate-pickup-info">
+            <strong>🏢 Entrega Agendada:</strong><br>
+            Seu pedido será entregue no ponto combinado com o condomínio/empresa.<br>
+            <small>Retirada em loja disponível apenas mediante confirmação prévia de estoque.</small>
         </div>
         
         <!-- Pagamento PIX Otimizado -->
@@ -1221,10 +1239,17 @@ const codigosCorporativos = {
     '1234': 'Condomínio Cinza' // Senha: 1234 | Nome: Condomínio Cinza
 };
 
+// 🔄 Estado com persistência via localStorage
 let cart = JSON.parse(localStorage.getItem('cart_mondego')) || [];
-let codigoCorporativoValido = null; // Armazena código válido atual
+let codigoCorporativoValido = localStorage.getItem('mondego_corp') || null;
 
 document.addEventListener('DOMContentLoaded', () => {
+    // ✅ Carrega sessão corporativa se existir (persistência entre páginas)
+    if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
+        showCorporateBanner(codigoCorporativoValido);
+        updateCorporateUI();
+    }
+    
     updateCartFloat();
     setupPickupDate();
     document.getElementById('pixKeyDisplay').textContent = PIX_KEY;
@@ -1239,9 +1264,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const codigoUrl = urlParams.get('codigo');
     
     if (codigoUrl && codigosCorporativos[codigoUrl.toUpperCase()]) {
-        // Simula login se vier por URL
         codigoCorporativoValido = codigoUrl.toUpperCase();
         showCorporateBanner(codigoCorporativoValido);
+        updateCorporateUI();
     }
     
     if (addCakeId) {
@@ -1364,10 +1389,10 @@ function renderCartItems() {
 
 // 🏢 FUNÇÕES CORPORATIVAS
 function openCorporateModal() {
-    // Se já estiver logado, vai direto para os bolos
-    if(codigoCorporativoValido) {
-        document.getElementById('bolos').scrollIntoView({behavior: 'smooth'});
-        return;
+    // Se já estiver logado, vai direto para o cardápio
+    if(codigoCorporativoValido) { 
+        window.location.href = 'cardapio.html'; 
+        return; 
     }
     document.getElementById('corporateModal').classList.add('active');
     document.getElementById('corporateCodeInput').value = '';
@@ -1392,23 +1417,28 @@ function checkCorporateCode() {
     if (!codigo) return;
     
     if (codigosCorporativos[codigo]) {
+        // ✅ Código válido: salva no localStorage e redireciona
         codigoCorporativoValido = codigo;
+        localStorage.setItem('mondego_corp', codigo);
+        
         input.classList.add('valid');
         msgValid.style.display = 'block';
         
-        // Mostra banner e redireciona
+        // Mostra banner e atualiza UI
         showCorporateBanner(codigo);
-        renderCartItems(); // Atualiza o badge no checkout
+        updateCorporateUI();
         
+        // ✅ Redireciona para o cardápio digital após 1s
         setTimeout(() => {
             closeCorporateModal();
-            document.getElementById('bolos').scrollIntoView({behavior: 'smooth'});
+            window.location.href = 'cardapio.html';
         }, 1000);
     } else {
+        // Código inválido
         codigoCorporativoValido = null;
+        localStorage.removeItem('mondego_corp');
         input.classList.add('invalid');
         msgInvalid.style.display = 'block';
-        renderCartItems();
     }
 }
 
@@ -1424,12 +1454,32 @@ function showCorporateBanner(codigo) {
     }
 }
 
+// 🔄 Atualiza UI corporativa (troca texto de retirada + badge)
+function updateCorporateUI() {
+    const stdPickup = document.getElementById('pickupInfoBox');
+    const corpPickup = document.getElementById('corporatePickupInfo');
+    
+    if (codigoCorporativoValido) {
+        // 🏢 Modo parceiro: esconde texto padrão, mostra texto corporativo
+        if(stdPickup) stdPickup.style.display = 'none';
+        if(corpPickup) corpPickup.style.display = 'block';
+    } else {
+        // 👤 Modo comum: mostra texto padrão, esconde corporativo
+        if(stdPickup) stdPickup.style.display = 'block';
+        if(corpPickup) corpPickup.style.display = 'none';
+    }
+    
+    // Atualiza badge no carrinho
+    renderCartItems();
+}
+
 // Remove o acesso corporativo
 function removeCorporateAccess() {
     codigoCorporativoValido = null;
+    localStorage.removeItem('mondego_corp');
     document.getElementById('corporateBanner').style.display = 'none';
     document.body.classList.remove('corporate-active');
-    renderCartItems();
+    updateCorporateUI();
     showToast('Modo parceiro desativado.');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1578,7 +1628,15 @@ function sendToWhatsApp() {
 }
 
 function formatDateBR(dateStr) { const [y,m,d] = dateStr.split('-'); return `${d}/${m}/${y}`; }
-function resetCart() { cart = []; saveCart(); updateCartFloat(); document.getElementById('customerName').value = ''; document.getElementById('customerPhone').value = ''; document.getElementById('pickupDate').value = ''; document.getElementById('pickupTime').innerHTML = '<option value="">🕒 Escolha a data para ver os horários disponíveis</option>'; document.getElementById('corporateCodeInput').value = ''; codigoCorporativoValido = null; }
+function resetCart() { 
+    cart = []; saveCart(); updateCartFloat(); 
+    document.getElementById('customerName').value = ''; 
+    document.getElementById('customerPhone').value = ''; 
+    document.getElementById('pickupDate').value = ''; 
+    document.getElementById('pickupTime').innerHTML = '<option value="">🕒 Escolha a data para ver os horários disponíveis</option>'; 
+    document.getElementById('corporateCodeInput').value = ''; 
+    codigoCorporativoValido = null; 
+}
 function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2500); }
 document.getElementById('checkoutModal')?.addEventListener('click', (e) => { if (e.target.id === 'checkoutModal') closeCheckout(); });
 document.getElementById('corporateModal')?.addEventListener('click', (e) => { if (e.target.id === 'corporateModal') closeCorporateModal(); });
