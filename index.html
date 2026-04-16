@@ -859,7 +859,7 @@
             <input type="tel" id="customerPhone" placeholder="(41) 99999-9999" required>
         </div>
         
-        <!-- Data de Retirada -->
+        <!-- Data de Retirada/Entrega -->
         <div class="form-group">
             <label for="pickupDate">📅 Data para Retirada *</label>
             <input type="date" id="pickupDate" required>
@@ -1454,19 +1454,32 @@ function showCorporateBanner(codigo) {
     }
 }
 
-// 🔄 Atualiza UI corporativa (troca texto de retirada + badge)
+// 🔄 Atualiza UI corporativa (labels, hints, texto retirada, badge)
 function updateCorporateUI() {
-    const stdPickup = document.getElementById('pickupInfoBox');
-    const corpPickup = document.getElementById('corporatePickupInfo');
+    // Troca labels e hints de data/horário
+    const lblDate = document.querySelector('label[for="pickupDate"]');
+    const hintDate = document.querySelector('label[for="pickupDate"] + .form-hint');
+    const lblTime = document.querySelector('label[for="pickupTime"]');
     
     if (codigoCorporativoValido) {
-        // 🏢 Modo parceiro: esconde texto padrão, mostra texto corporativo
-        if(stdPickup) stdPickup.style.display = 'none';
-        if(corpPickup) corpPickup.style.display = 'block';
+        // 🏢 Modo parceiro: "Entrega"
+        if(lblDate) lblDate.textContent = '📅 Data para Entrega *';
+        if(hintDate) hintDate.textContent = '📌 Pedidos feitos hoje são entregues amanhã';
+        if(lblTime) lblTime.textContent = '🕒 Horário para Entrega *';
+        
+        // Troca texto de retirada
+        const std=document.getElementById('pickupInfoBox'), corp=document.getElementById('corporatePickupInfo');
+        if(std) std.style.display='none';
+        if(corp) corp.style.display='block';
     } else {
-        // 👤 Modo comum: mostra texto padrão, esconde corporativo
-        if(stdPickup) stdPickup.style.display = 'block';
-        if(corpPickup) corpPickup.style.display = 'none';
+        // 👤 Modo comum: "Retirada"
+        if(lblDate) lblDate.textContent = '📅 Data para Retirada *';
+        if(hintDate) hintDate.textContent = '📌 Pedidos feitos hoje são retirados amanhã';
+        if(lblTime) lblTime.textContent = '🕒 Horário para Retirada *';
+        
+        const std=document.getElementById('pickupInfoBox'), corp=document.getElementById('corporatePickupInfo');
+        if(std) std.style.display='block';
+        if(corp) corp.style.display='none';
     }
     
     // Atualiza badge no carrinho
