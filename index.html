@@ -66,6 +66,10 @@
         --whatsapp-green: #25D366;
         --instagram-color: #E4405F;
         --facebook-color: #1877F2;
+        /* 🏢 CORPORATIVO: Cores para validação de código */
+        --corporate-valid: #2e7d32;
+        --corporate-invalid: #c62828;
+        --corporate-bg: #e8f5e9;
     }
 
     body {
@@ -700,6 +704,66 @@
         border-left: 4px solid #c62828;
         display: none;
     }
+
+    /* 🏢 CORPORATIVO: Estilos para campo de código e validação */
+    .corporate-code-group {
+        background: var(--corporate-bg);
+        padding: 12px 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+        border: 1px solid #c8e6c9;
+    }
+    .corporate-code-group label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 600;
+        color: var(--corporate-valid);
+        margin-bottom: 8px;
+    }
+    .corporate-code-group input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 2px solid #a5d6a7;
+        border-radius: 6px;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .corporate-code-group input.valid {
+        border-color: var(--corporate-valid);
+        background: #f1f8e9;
+    }
+    .corporate-code-group input.invalid {
+        border-color: var(--corporate-invalid);
+        background: #ffebee;
+    }
+    .corporate-msg {
+        font-size: 0.8rem;
+        margin-top: 6px;
+        display: none;
+        font-weight: 500;
+    }
+    .corporate-msg.valid {
+        color: var(--corporate-valid);
+        display: block;
+    }
+    .corporate-msg.invalid {
+        color: var(--corporate-invalid);
+        display: block;
+    }
+    .corporate-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: var(--corporate-bg);
+        color: var(--corporate-valid);
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-top: 8px;
+    }
 </style>
 
 <!-- Biblioteca QR Code PIX -->
@@ -775,6 +839,14 @@
                 <option value="">🕒 Escolha a data para ver os horários disponíveis</option>
             </select>
             <span class="form-hint">🕒 Seg-Sex: 10h-18h | Sáb: 10h-16h | Dom: Fechado</span>
+        </div>
+        
+        <!-- 🏢 CORPORATIVO: Campo de Código Condomínio/Empresa -->
+        <div class="corporate-code-group">
+            <label for="corporateCode">🏢 Código do Condomínio/Empresa <small style="font-weight:400;color:#666">(opcional)</small></label>
+            <input type="text" id="corporateCode" placeholder="Ex: JARDINS24" oninput="validarCodigoCorporativo()">
+            <div id="corporateMsgValid" class="corporate-msg valid">✅ Código válido! Benefício aplicado.</div>
+            <div id="corporateMsgInvalid" class="corporate-msg invalid">⚠️ Código não encontrado. Verifique com seu síndico/RH.</div>
         </div>
         
         <!-- Informações de Retirada Otimizadas -->
@@ -1082,43 +1154,6 @@
 
 <!-- === JAVASCRIPT COM TODAS AS FUNCIONALIDADES === -->
 <script>
-// ===== AUTO-ADD AO CARRINHO VIA URL (PARA O CARDÁPIO DIGITAL) =====
-window.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const addCakeId = urlParams.get('add');
-    
-    if (addCakeId) {
-        const cakeMap = {
-            '1': { name: 'Bolo de Chocolate', price: 26.00 },
-            '2': { name: 'Limão Siciliano e Mirtilo', price: 30.00 },
-            '3': { name: 'Bolo de Laranja', price: 26.00 },
-            '4': { name: 'Bolo de Milho', price: 26.00 },
-            '5': { name: 'Bolo de Cenoura', price: 26.00 },
-            '6': { name: 'Bolo de Limão', price: 26.00 },
-            '7': { name: 'Bolo de Aipim', price: 32.00 },
-            '8': { name: 'Bolo Mesclado', price: 26.00 },
-            '9': { name: 'Bolo de Amendoim', price: 26.00 },
-            '10': { name: 'Bolo de Fubá', price: 26.00 },
-            '11': { name: 'Fubá com Coco', price: 26.00 },
-            '12': { name: 'Laranja Bahia com Amora', price: 30.00 },
-            '13': { name: 'Maçã com Nozes', price: 30.00 },
-            '14': { name: 'Maçã com Passas', price: 30.00 }
-        };
-        
-        const cake = cakeMap[addCakeId];
-        if (cake) {
-            addToCart(parseInt(addCakeId), cake.name, cake.price);
-            setTimeout(() => {
-                showToast(`🎂 ${cake.name} adicionado ao carrinho!`);
-                setTimeout(() => {
-                    openCheckout();
-                }, 1500);
-            }, 500);
-        }
-    }
-});
-// ===== FIM AUTO-ADD =====
-
 // ===== CONFIGURAÇÕES REAIS =====
 const WHATSAPP_NUMBER = "5541991755009";
 const PIX_KEY = "a193c533-4855-433b-a31b-2fa22f6f106e";
@@ -1135,7 +1170,16 @@ const BUSINESS_HOURS = {
 const AIPIM_ID = 7;
 const AIPIM_MIN_HOUR = 14;
 
+// 🏢 CORPORATIVO: Lista de códigos válidos (fácil de expandir)
+const codigosCorporativos = {
+    'JARDINS24': { nome: 'Condomínio Jardins', beneficio: 'Frete Grátis' },
+    'CENTRO123': { nome: 'Empresa Centro', beneficio: 'Frete Grátis' },
+    'VERAO25': { nome: 'Promoção Verão', beneficio: 'Frete Grátis' }
+    // Adicione novos códigos aqui: 'CODIGO': { nome: 'Nome', beneficio: 'Descrição' }
+};
+
 let cart = JSON.parse(localStorage.getItem('cart_mondego')) || [];
+let codigoCorporativoValido = null; // 🏢 CORPORATIVO: Armazena código válido atual
 
 document.addEventListener('DOMContentLoaded', () => {
     updateCartFloat();
@@ -1145,6 +1189,14 @@ document.addEventListener('DOMContentLoaded', () => {
         setupPickupTimeOptions();
         checkAipimAvailability();
     });
+    
+    // 🏢 CORPORATIVO: Auto-add via URL também suporta código
+    const urlParams = new URLSearchParams(window.location.search);
+    const codigoUrl = urlParams.get('codigo');
+    if (codigoUrl && codigosCorporativos[codigoUrl.toUpperCase()]) {
+        document.getElementById('corporateCode').value = codigoUrl.toUpperCase();
+        validarCodigoCorporativo();
+    }
 });
 
 // ===== CARRINHO =====
@@ -1213,7 +1265,49 @@ function renderCartItems() {
         const subtotal = item.quantity * item.price; total += subtotal;
         return `<div class="cart-item"><span>${item.name} × ${item.quantity}</span><div style="display:flex;align-items:center;gap:8px;"><span style="font-weight:600">R$ ${subtotal.toFixed(2).replace('.',',')}</span><button onclick="updateQuantity(${item.id},-1)" style="background:#ddd;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1.1rem">−</button><button onclick="updateQuantity(${item.id},1)" style="background:#ddd;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1.1rem">+</button><button onclick="removeFromCart(${item.id})" style="background:#ffcdd2;color:#c62828;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1rem">×</button></div></div>`;
     }).join('');
-    totalEl.textContent = `R$ ${total.toFixed(2).replace('.',',')}`;
+    
+    // 🏢 CORPORATIVO: Adiciona badge de benefício se código válido
+    let badge = '';
+    if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
+        const benef = codigosCorporativos[codigoCorporativoValido].beneficio;
+        badge = `<div class="corporate-badge">🎁 ${benef} aplicado</div>`;
+    }
+    
+    totalEl.innerHTML = `Total: <span id="cartTotalValue">R$ ${total.toFixed(2).replace('.',',')}</span>${badge}`;
+}
+
+// 🏢 CORPORATIVO: Função de validação de código
+function validarCodigoCorporativo() {
+    const input = document.getElementById('corporateCode');
+    const msgValid = document.getElementById('corporateMsgValid');
+    const msgInvalid = document.getElementById('corporateMsgInvalid');
+    const codigo = input.value.trim().toUpperCase();
+    
+    // Limpa estados
+    input.classList.remove('valid', 'invalid');
+    msgValid.classList.remove('valid');
+    msgInvalid.classList.remove('invalid');
+    
+    if (!codigo) {
+        codigoCorporativoValido = null;
+        renderCartItems(); // Remove badge se houver
+        return;
+    }
+    
+    if (codigosCorporativos[codigo]) {
+        // Código válido
+        codigoCorporativoValido = codigo;
+        input.classList.add('valid');
+        msgValid.classList.add('valid');
+        renderCartItems(); // Adiciona badge
+        showToast(`✅ ${codigosCorporativos[codigo].nome} - Benefício aplicado!`);
+    } else {
+        // Código inválido
+        codigoCorporativoValido = null;
+        input.classList.add('invalid');
+        msgInvalid.classList.add('invalid');
+        renderCartItems(); // Remove badge
+    }
 }
 
 // ===== VERIFICAÇÃO BOLO DE AIPIM =====
@@ -1332,9 +1426,17 @@ function sendToWhatsApp() {
     const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     const items = cart.map(i => `• ${i.quantity}x ${i.name} (R$ ${(i.quantity*i.price).toFixed(2).replace('.',',')})`).join('%0A');
     
+    // 🏢 CORPORATIVO: Adiciona info do código na mensagem
+    let corporateInfo = '';
+    if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
+        const corp = codigosCorporativos[codigoCorporativoValido];
+        corporateInfo = `🏢 *Cliente Corporativo*\nLocal: ${corp.nome}\nCódigo: ${codigoCorporativoValido}\n✅ *${corp.beneficio}*\n\n`;
+    }
+    
     const message = `🎂 *NOVO PEDIDO - CASA MONDEGO*%0A%0A` +
         `*Cliente:* ${name}%0A` +
         `*WhatsApp:* ${phone}%0A%0A` +
+        corporateInfo +
         `*Itens do Pedido:*%0A${items}%0A%0A` +
         `*Retirada:* ${formatDateBR(date)} às ${time}%0A` +
         `*Modalidade:* Cliente retira (pessoal ou via app)%0A%0A` +
@@ -1353,9 +1455,12 @@ function sendToWhatsApp() {
 }
 
 function formatDateBR(dateStr) { const [y,m,d] = dateStr.split('-'); return `${d}/${m}/${y}`; }
-function resetCart() { cart = []; saveCart(); updateCartFloat(); document.getElementById('customerName').value = ''; document.getElementById('customerPhone').value = ''; document.getElementById('pickupDate').value = ''; document.getElementById('pickupTime').innerHTML = '<option value="">🕒 Escolha a data para ver os horários disponíveis</option>'; }
+function resetCart() { cart = []; saveCart(); updateCartFloat(); document.getElementById('customerName').value = ''; document.getElementById('customerPhone').value = ''; document.getElementById('pickupDate').value = ''; document.getElementById('pickupTime').innerHTML = '<option value="">🕒 Escolha a data para ver os horários disponíveis</option>'; document.getElementById('corporateCode').value = ''; codigoCorporativoValido = null; }
 function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2500); }
 document.getElementById('checkoutModal')?.addEventListener('click', (e) => { if (e.target.id === 'checkoutModal') closeCheckout(); });
+
+// ===== AUTO-ADD AO CARRINHO VIA URL (PARA O CARDÁPIO DIGITAL) =====
+// (Já incluído no DOMContentLoaded acima para suportar ?codigo=)
 </script>
 
 </body>
