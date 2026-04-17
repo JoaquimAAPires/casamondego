@@ -111,7 +111,11 @@
         .footer-item p { font-size: 0.9rem; margin: 5px 0; }
         .footer-item a { color: var(--gold-primary); text-decoration: none; }
         
-        /* 🏢 Info Parceiro */
+        /* 🏢 Info Parceiro - FORÇAR OCULTO POR PADRÃO */
+        #corporatePickupInfo,
+        #corporateFixedAddress {
+            display: none !important;
+        }
         .corporate-pickup-info { background: #e3f2fd; padding: 12px; border-radius: 8px; font-size: 0.85rem; margin: 10px 0; border-left: 4px solid #1976d2; display: none; text-align: left; }
         .corporate-pickup-info strong { color: #0d47a1; }
         
@@ -163,7 +167,7 @@
     <div class="loading" id="loading">Carregando cardápio...</div>
     <div class="cakes-grid" id="cakesGrid"></div>
 
-    <!-- Footer -->
+    <!-- ✅ FOOTER CORRIGIDO: Elementos corporativos com style="display:none" inline -->
     <footer class="menu-footer">
         <div class="footer-content">
             <div class="footer-info">
@@ -174,7 +178,7 @@
                     <p>Domingo: Fechado</p>
                 </div>
                 
-                <!-- 🚗 Texto Padrão -->
+                <!-- 🚗 Texto Padrão (VISÍVEL por padrão) -->
                 <div class="footer-item" id="pickupInfoBox">
                     <h4>📍 Como Retirar</h4>
                     <p>• Pessoalmente na loja</p>
@@ -182,17 +186,17 @@
                     <p>📍 Rua Des. Hugo Simas, 1480 – Loja 5</p>
                 </div>
                 
-                <!-- 🏢 Texto Parceiro -->
-                <div class="footer-item" id="corporatePickupInfo">
+                <!-- 🏢 Texto Parceiro (OCULTO por padrão) -->
+                <div class="footer-item" id="corporatePickupInfo" style="display:none;">
                     <h4>🏢 Entrega Agendada</h4>
                     <p>• Entrega no ponto combinado</p>
                     <p>• Retirada apenas com confirmação</p>
                 </div>
                 
-                <!-- 🏢 Endereço fixo -->
-                <div class="footer-item" id="corporateFixedAddress">
+                <!-- 🏢 Endereço fixo (OCULTO por padrão) -->
+                <div class="footer-item" id="corporateFixedAddress" style="display:none;">
                     <h4>📍 Endereço de Entrega</h4>
-                    <div class="corporate-fixed-address">
+                    <div class="corporate-fixed-address" style="display:block;">
                         <strong>Endereço cadastrado:</strong><br>
                         <span id="fixedAddressText"></span>
                     </div>
@@ -252,14 +256,18 @@
             }
         }
 
-        // 🏢 UI Corporativa
+        // 🏢 UI Corporativa - CORRIGIDA: chamada SEMPRE ao carregar
         function updateCorporateUI() {
             const stdPickup = document.getElementById('pickupInfoBox');
             const corpPickup = document.getElementById('corporatePickupInfo');
             const corporateFixedAddress = document.getElementById('corporateFixedAddress');
             const fixedAddressText = document.getElementById('fixedAddressText');
             
-            if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
+            // Verifica se há sessão corporativa válida
+            const isCorporate = codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido];
+            
+            if (isCorporate) {
+                // 🏢 MODO PARCEIRO: mostra elementos corporativos, esconde comum
                 if(stdPickup) stdPickup.style.display = 'none';
                 if(corpPickup) corpPickup.style.display = 'block';
                 if(corporateFixedAddress) {
@@ -269,6 +277,7 @@
                     }
                 }
             } else {
+                // 👤 MODO COMUM: mostra elemento padrão, esconde corporativos
                 if(stdPickup) stdPickup.style.display = 'block';
                 if(corpPickup) corpPickup.style.display = 'none';
                 if(corporateFixedAddress) corporateFixedAddress.style.display = 'none';
@@ -321,10 +330,12 @@
             }).join('');
             loading.style.display = 'none';
             
-            // Aplica sessão corporativa se existir
+            // ✅ CORREÇÃO CRÍTICA: Chamar updateCorporateUI() SEMPRE, independente do modo
+            updateCorporateUI();
+            
+            // Se houver sessão corporativa, aplica banner também
             if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
                 showCorporateBanner(codigoCorporativoValido);
-                updateCorporateUI();
             }
         });
     </script>
