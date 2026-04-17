@@ -367,7 +367,7 @@
             border-bottom: 2px solid var(--gold-primary);
             top: 0 !important;
         }
-        body.corporate-active header.header-bar { top: 45px !important; } /* ✅ Banner respeitado no mobile */
+        body.corporate-active header.header-bar { top: 45px !important; }
         .logo-img { height: 90px; }
         .main-nav { flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; overflow: hidden; border: none !important; }
         .main-nav li { border: none !important; }
@@ -576,7 +576,7 @@
     }
     .corporate-pickup-info strong { color: #0d47a1; }
     
-    /* ✅ Endereço fixo corporativo */
+    /* ✅ Endereço fixo corporativo (apenas no checkout modal) */
     .corporate-fixed-address {
         background: #fff9c4;
         padding: 12px 15px;
@@ -771,7 +771,7 @@
             Seu pedido será entregue no endereço cadastrado abaixo.
         </div>
         
-        <!-- Endereço fixo corporativo -->
+        <!-- Endereço fixo corporativo (APENAS no checkout, nunca no footer) -->
         <div id="corporateFixedAddress" class="corporate-fixed-address">
             <strong>📍 Endereço de Entrega:</strong><br>
             <span id="fixedAddressText"></span>
@@ -875,11 +875,13 @@
     </div>
 </section>
 
+<!-- ✅ FOOTER AJUSTADO: Vídeo local + apenas endereço da loja (nunca de parceiros) -->
 <footer id="contato">
     <div class="footer-grid">
         <div class="footer-section">
-            <video class="footer-logo-video" autoplay muted loop playsinline>
-                <source src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/logo-footer.mp4" type="video/mp4">
+            <!-- ✅ Vídeo apontando para pasta local + poster para melhor UX -->
+            <video class="footer-logo-video" autoplay muted loop playsinline poster="https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/uFUuILwJmMetvATy.png">
+                <source src="./assets/videos/logo-footer.mp4" type="video/mp4">
                 Seu navegador não suporta vídeos.
             </video>
             <p>Tradição e sabor em cada detalhe. Bolos feitos à mão com receitas de família. A melhor confeitaria artesanal de Curitiba.</p>
@@ -935,7 +937,7 @@ const AIPIM_MIN_HOUR = 14;
 
 // 🏢 CORPORATIVO (objeto com nome + endereco)
 const codigosCorporativos = {
-    '1234': { nome: 'Condomínio Cinza', endereco: 'Rua Exemplo, 123 - Condomínio Cinza, Bloco A, Curitiba - PR' }
+    '5555': { nome: 'Condomínio Cinza', endereco: 'Rua Exemplo, 123 - Condomínio Cinza, Bloco A, Curitiba - PR' }
 };
 
 // 🔄 Estado com persistência
@@ -1008,7 +1010,7 @@ function openCheckout() {
     renderCartItems(); 
     setupPickupTimeOptions(); 
     generatePixQR();
-    checkAipimAvailability(); // ✅ Valida ao abrir
+    checkAipimAvailability();
     updateProgress(1);
     document.getElementById('checkoutModal').classList.add('active'); 
 }
@@ -1180,7 +1182,6 @@ function generatePixQR() {
     const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     const payload = generatePixPayload(PIX_KEY, PIX_NAME, PIX_CITY, total);
     const qrContainer = document.getElementById('qrcode');
-    // ✅ Fallback se biblioteca não carregar
     if (typeof QRCode === 'undefined') {
         qrContainer.innerHTML = `<p style="color:#666;font-size:0.9rem;text-align:center">⚠️ Não foi possível gerar o QR Code.<br>Use a chave PIX abaixo:</p><div class="pix-key">${PIX_KEY}</div><button class="btn-gold" onclick="copyPixKey()" style="padding:8px 20px;font-size:0.85rem">📋 Copiar chave</button>`;
         return;
@@ -1238,7 +1239,6 @@ function resetCart() {
     document.getElementById('pickupDate').value = ''; 
     document.getElementById('pickupTime').innerHTML = '<option value="">🕒 Escolha a data para ver os horários disponíveis</option>'; 
     document.getElementById('corporateCodeInput').value = ''; 
-    // ✅ CORREÇÃO: Remove do localStorage também
     codigoCorporativoValido = null;
     localStorage.removeItem('mondego_corp');
     updateCorporateUI();
@@ -1249,7 +1249,6 @@ document.getElementById('corporateModal')?.addEventListener('click', (e) => { if
 
 // ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', async () => {
-    // Carrega e renderiza bolos do JSON
     const bolos = await carregarBolos();
     const grid = document.getElementById('bolosGrid');
     grid.innerHTML = bolos.map(b => `
@@ -1267,7 +1266,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         </div>
     `).join('');
     
-    // Restante da inicialização
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
         showCorporateBanner(codigoCorporativoValido);
         updateCorporateUI();
@@ -1277,7 +1275,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('pixKeyDisplay').textContent = PIX_KEY;
     document.getElementById('pickupDate')?.addEventListener('change', () => { setupPickupTimeOptions(); checkAipimAvailability(); });
     
-    // Auto-add via URL
     const urlParams = new URLSearchParams(window.location.search);
     const addCakeId = urlParams.get('add');
     const codigoUrl = urlParams.get('codigo');
