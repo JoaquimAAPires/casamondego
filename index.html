@@ -4,16 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
-<!-- Favicon package -->
+<!-- Favicon -->
 <link rel="icon" type="image/png" sizes="32x32" href="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/oicqteltreWtywgP.png">
 <link rel="icon" type="image/png" sizes="192x192" href="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/ItsHjbpupNQQxemS.png">
 <link rel="icon" type="image/png" sizes="512x512" href="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nCpjQxDKMgQxdXDa.png">
 <link rel="apple-touch-icon" sizes="180x180" href="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/QEgXQWrJyUvHsmda.png">
 <meta name="theme-color" content="#000000">
-
 <link rel="profile" href="https://gmpg.org/xfn/11" />
 
-<!-- SEO Local -->
+<!-- SEO -->
 <title>Casa Mondego - Melhor Bolo Caseiro em Curitiba | Confeitaria no Bom Retiro</title>
 <meta name="description" content="Casa Mondego: bolos caseiros artesanais em Curitiba. Receitas de família, ingredientes premium. Confeitaria no Bom Retiro. Encomende seu bolo agora!" />
 <meta name="keywords" content="bolo caseiro Curitiba, confeitaria artesanal, bolos premium, bolo de chocolate, bolo de limão, Bom Retiro, confeitaria Curitiba" />
@@ -53,6 +52,9 @@
 </script>
 
 <style id='casa-mondego-custom-css' type='text/css'>
+    /* ✅ CORREÇÃO: Box-sizing global para consistência */
+    *, *::before, *::after { box-sizing: border-box; }
+
     :root {
         --gold-primary: #d4af37;
         --gold-secondary: #c5a028;
@@ -64,7 +66,6 @@
         --whatsapp-green: #25D366;
         --instagram-color: #E4405F;
         --facebook-color: #1877F2;
-        /* 🏢 CORPORATIVO: Cores */
         --corporate-valid: #2e7d32;
         --corporate-invalid: #c62828;
         --corporate-bg: #e8f5e9;
@@ -79,7 +80,7 @@
         scroll-behavior: smooth;
     }
 
-    /* Botão Flutuante de WhatsApp */
+    /* Botão WhatsApp */
     .whatsapp-float {
         position: fixed;
         width: 60px;
@@ -99,29 +100,17 @@
         animation: pulse-whatsapp 2s infinite;
         box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
     }
-
-    .whatsapp-float:hover {
-        background-color: #1ead12;
-        transform: scale(1.1);
-        animation: none;
-    }
-
-    .whatsapp-float svg {
-        width: 35px;
-        height: 35px;
-        fill: white;
-        display: block;
-    }
-
+    .whatsapp-float:hover { background-color: #1ead12; transform: scale(1.1); animation: none; }
+    .whatsapp-float svg { width: 35px; height: 35px; fill: white; display: block; }
     @keyframes pulse-whatsapp {
         0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
         70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
         100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
 
-    /* 🏢 BANNER CORPORATIVO (NOVO) */
+    /* Banner Corporativo */
     #corporateBanner {
-        display: none; /* Oculto por padrão */
+        display: none;
         background-color: var(--gold-primary);
         color: var(--black-bg);
         text-align: center;
@@ -152,43 +141,19 @@
         justify-content: space-between;
         align-items: center;
         position: sticky;
-        top: 35px; /* Ajustado para ficar abaixo do banner se ativo */
+        top: 35px;
         z-index: 1000;
         box-sizing: border-box;
         height: 170px;
         transition: top 0.3s;
     }
-    
-    /* Ajuste quando banner está ativo */
-    body.corporate-active header.header-bar {
-        top: 45px;
-    }
+    body.corporate-active header.header-bar { top: 45px; }
 
-    .branding {
-        display: flex;
-        align-items: center;
-        height: 100%;
-        width: auto;
-    }
-
-    .logo-img {
-        height: 145px;
-        width: auto;
-        display: block;
-        transition: transform 0.3s ease;
-    }
-
+    .branding { display: flex; align-items: center; height: 100%; width: auto; }
+    .logo-img { height: 145px; width: auto; display: block; transition: transform 0.3s ease; }
     .logo-img:hover { transform: scale(1.05); }
 
-    .main-nav {
-        display: flex;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        gap: 15px;
-        align-items: center;
-    }
-
+    .main-nav { display: flex; list-style: none; padding: 0; margin: 0; gap: 15px; align-items: center; }
     .main-nav li a {
         color: var(--gold-primary) !important;
         text-decoration: none;
@@ -199,14 +164,12 @@
         transition: all 0.3s ease;
         text-transform: uppercase;
     }
-
     .main-nav li a:hover {
         color: var(--text-light) !important;
         background-color: rgba(212, 175, 55, 0.15);
         border-radius: 5px;
     }
 
-    /* 🏢 Botão Corporativo no Menu */
     .btn-corporate-menu {
         background: transparent !important;
         border: 1px solid var(--gold-primary);
@@ -220,11 +183,9 @@
         align-items: center;
         gap: 5px;
     }
-    .btn-corporate-menu:hover {
-        background: rgba(212, 175, 55, 0.2) !important;
-    }
+    .btn-corporate-menu:hover { background: rgba(212, 175, 55, 0.2) !important; }
 
-    /* Hero Section */
+    /* Hero */
     .hero-section {
         background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/MTeBtuAOcldRYVSu.jpg');
         background-size: cover;
@@ -234,7 +195,6 @@
         text-align: center;
         border-bottom: 5px solid var(--gold-primary);
     }
-
     .hero-section h1 {
         font-family: 'Courgette', cursive;
         color: var(--gold-primary);
@@ -242,15 +202,9 @@
         margin-bottom: 20px;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
+    .hero-section p { font-size: 1.3rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
 
-    .hero-section p {
-        font-size: 1.3rem;
-        max-width: 800px;
-        margin: 0 auto;
-        line-height: 1.6;
-    }
-
-    /* Seção de Bolos */
+    /* Seção Bolos */
     .section-title {
         text-align: center;
         color: var(--black-bg);
@@ -259,7 +213,6 @@
         margin: 60px 0 40px;
         position: relative;
     }
-
     .section-title::after {
         content: '';
         display: block;
@@ -268,7 +221,6 @@
         background: var(--gold-primary);
         margin: 15px auto;
     }
-
     .disclaimer-images {
         text-align: center;
         font-size: 0.85rem;
@@ -287,7 +239,6 @@
         max-width: 1400px;
         margin: 0 auto;
     }
-
     @media (min-width: 1200px) { .bolos-grid { grid-template-columns: repeat(4, 1fr); } }
     @media (min-width: 768px) and (max-width: 1199px) { .bolos-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 767px) { .bolos-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -302,17 +253,14 @@
         display: flex;
         flex-direction: column;
     }
-
     .bolo-card:hover {
         transform: translateY(-15px);
         box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
         border-color: var(--gold-primary);
     }
-
     .bolo-img-container { width: 100%; height: 220px; overflow: hidden; }
     .bolo-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
     .bolo-card:hover .bolo-img { transform: scale(1.1); }
-
     .bolo-info {
         padding: 20px;
         text-align: center;
@@ -321,7 +269,6 @@
         flex-direction: column;
         justify-content: space-between;
     }
-
     .bolo-info h3 { color: var(--black-bg); margin-bottom: 12px; font-size: 1.1rem; font-weight: 700; }
     .bolo-info p { font-size: 0.9rem; line-height: 1.4; margin-bottom: 15px; }
 
@@ -341,10 +288,9 @@
         text-align: center;
         cursor: pointer;
     }
-
     .btn-gold:hover { background-color: transparent; color: var(--gold-primary); }
 
-    /* Nossa História */
+    /* História */
     .historia-section {
         background-color: var(--black-bg);
         color: var(--text-light);
@@ -354,7 +300,6 @@
         background-attachment: fixed;
         background-size: cover;
     }
-
     .historia-content { max-width: 900px; margin: 0 auto; text-align: center; }
     .historia-content h2 { font-family: 'Courgette', cursive; color: var(--gold-primary); font-size: 3rem; margin-bottom: 20px; }
     .historia-content p { margin-bottom: 15px; }
@@ -367,7 +312,6 @@
         text-align: center;
         border-top: 3px solid var(--gold-primary);
     }
-
     .footer-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -376,10 +320,8 @@
         margin: 0 auto 40px;
         text-align: left;
     }
-
     .footer-section h4 { color: var(--gold-primary); margin-bottom: 20px; font-size: 1.2rem; }
     .footer-section p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 10px; }
-
     .footer-logo-video {
         width: 100%;
         max-width: 280px;
@@ -388,7 +330,6 @@
         display: block;
         margin: 0 auto 20px;
     }
-
     .contact-link {
         color: #888;
         text-decoration: none;
@@ -398,18 +339,12 @@
         margin-bottom: 10px;
         transition: color 0.3s ease;
     }
-
     .contact-link:hover { color: var(--gold-primary); }
     .contact-link svg { width: 20px; height: 20px; fill: var(--gold-primary); }
-
     .social-links { display: flex; gap: 15px; margin-top: 20px; }
     .social-links a { 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        width: 35px; 
-        height: 35px; 
-        border-radius: 8px; 
+        display: flex; align-items: center; justify-content: center; 
+        width: 35px; height: 35px; border-radius: 8px; 
         transition: transform 0.3s ease;
         text-decoration: none;
     }
@@ -419,7 +354,6 @@
         background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285ae1 90%);
     }
     .social-facebook { background-color: #1877F2; }
-
     .map-container { width: 100%; height: 180px; border-radius: 10px; overflow: hidden; margin-top: 15px; border: 1px solid #333; }
 
     /* Responsive */
@@ -431,29 +365,18 @@
             flex-direction: column; 
             gap: 15px; 
             border-bottom: 2px solid var(--gold-primary);
-            top: 0 !important; /* Reset no mobile */
+            top: 0 !important;
         }
+        body.corporate-active header.header-bar { top: 45px !important; } /* ✅ Banner respeitado no mobile */
         .logo-img { height: 90px; }
-        .main-nav { 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 10px; 
-            width: 100%;
-            overflow: hidden;
-            border: none !important;
-        }
+        .main-nav { flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; overflow: hidden; border: none !important; }
         .main-nav li { border: none !important; }
-        .main-nav li a { 
-            font-size: 0.75rem; 
-            padding: 5px 8px; 
-            letter-spacing: 0.5px;
-            border: none !important;
-        }
+        .main-nav li a { font-size: 0.75rem; padding: 5px 8px; letter-spacing: 0.5px; border: none !important; }
         .hero-section h1 { font-size: 2.2rem; }
         .hero-section p { font-size: 1.1rem; }
     }
 
-    /* === FUNCIONALIDADES E-COMMERCE === */
+    /* E-commerce */
     .cart-float {
         position: fixed;
         bottom: 100px;
@@ -488,7 +411,6 @@
         padding: 20px;
     }
     .checkout-modal.active { display: flex; }
-    
     .checkout-content {
         background: var(--cream-bg);
         border-radius: 15px;
@@ -500,7 +422,6 @@
         position: relative;
         border: 3px solid var(--gold-primary);
     }
-    
     .checkout-close {
         position: absolute;
         top: 15px;
@@ -512,7 +433,6 @@
         color: var(--black-bg);
         font-weight: bold;
     }
-    
     .checkout-title {
         font-family: 'Courgette', cursive;
         color: var(--gold-primary);
@@ -520,15 +440,12 @@
         text-align: center;
         margin-bottom: 10px;
     }
-
     .checkout-subtitle {
         text-align: center;
         font-size: 0.95rem;
         color: #666;
         margin-bottom: 20px;
     }
-    
-    /* Progress Bar */
     .progress-bar {
         display: flex;
         justify-content: space-between;
@@ -553,14 +470,8 @@
         padding: 0 10px;
         text-align: center;
     }
-    .progress-step.active .step-number {
-        background: var(--gold-primary);
-        color: var(--black-bg);
-    }
-    .progress-step.completed .step-number {
-        background: var(--whatsapp-green);
-        color: white;
-    }
+    .progress-step.active .step-number { background: var(--gold-primary); color: var(--black-bg); }
+    .progress-step.completed .step-number { background: var(--whatsapp-green); color: white; }
     .step-number {
         width: 30px;
         height: 30px;
@@ -574,11 +485,7 @@
         font-size: 0.9rem;
         margin: 0 auto 5px;
     }
-    .step-label {
-        font-size: 0.75rem;
-        color: #666;
-        white-space: nowrap;
-    }
+    .step-label { font-size: 0.75rem; color: #666; white-space: nowrap; }
     
     .cart-items-list {
         margin-bottom: 20px;
@@ -587,7 +494,6 @@
         max-height: 200px;
         overflow-y: auto;
     }
-    
     .cart-item {
         display: flex;
         justify-content: space-between;
@@ -595,7 +501,6 @@
         padding: 8px 0;
         font-size: 0.95rem;
     }
-    
     .cart-total {
         text-align: right;
         font-weight: bold;
@@ -607,8 +512,6 @@
         border-radius: 8px;
         border-left: 4px solid var(--gold-primary);
     }
-    
-    /* 🏢 Badge Corporativo no Carrinho */
     .corporate-badge-cart {
         background: var(--corporate-bg);
         color: var(--corporate-valid);
@@ -642,12 +545,7 @@
         outline: none;
         border-color: var(--gold-primary);
     }
-    .form-hint {
-        font-size: 0.8rem;
-        color: #666;
-        margin-top: 5px;
-        display: block;
-    }
+    .form-hint { font-size: 0.8rem; color: #666; margin-top: 5px; display: block; }
     .security-note {
         font-size: 0.75rem;
         color: #888;
@@ -658,7 +556,6 @@
         justify-content: center;
         gap: 5px;
     }
-    
     .pickup-info {
         background: #e8f5e9;
         padding: 15px;
@@ -668,8 +565,6 @@
         border-left: 4px solid var(--whatsapp-green);
     }
     .pickup-info strong { color: var(--text-dark); }
-    
-    /* 🏢 Info Parceiro - NOVO */
     .corporate-pickup-info {
         background: #e3f2fd;
         padding: 15px;
@@ -681,7 +576,7 @@
     }
     .corporate-pickup-info strong { color: #0d47a1; }
     
-    /* 🏢 ENDEREÇO FIXO CORPORATIVO - NOVO */
+    /* ✅ Endereço fixo corporativo */
     .corporate-fixed-address {
         background: #fff9c4;
         padding: 12px 15px;
@@ -703,9 +598,7 @@
         margin: 15px 0;
         border: 2px dashed var(--gold-primary);
     }
-    
     #qrcode { margin: 15px auto; display: flex; justify-content: center; }
-    
     .pix-key {
         background: #f9f9f9;
         padding: 10px;
@@ -716,7 +609,6 @@
         margin: 10px 0;
         border: 1px solid #ddd;
     }
-    
     .confirmation-box {
         background: #fff3cd;
         padding: 15px;
@@ -726,7 +618,6 @@
     }
     .confirmation-box strong { color: #856404; }
     .confirmation-box p { color: #856404; font-size: 0.9rem; margin: 5px 0; }
-    
     .upsell-box {
         background: linear-gradient(135deg, #fff5f5, #ffe5e5);
         padding: 15px;
@@ -778,7 +669,6 @@
         from { opacity: 0; transform: translate(-50%, 20px); }
         to { opacity: 1; transform: translate(-50%, 0); }
     }
-
     .aipim-warning {
         background: #ffebee;
         color: #c62828;
@@ -789,81 +679,60 @@
         border-left: 4px solid #c62828;
         display: none;
     }
-
-    /* 🏢 Estilos do Modal Corporativo */
-    .corporate-modal-content {
-        max-width: 400px;
-        text-align: center;
-    }
-    .corporate-msg {
-        font-size: 0.9rem;
-        margin: 10px 0;
-        font-weight: 600;
-        display: none;
-    }
+    .corporate-modal-content { max-width: 400px; text-align: center; }
+    .corporate-msg { font-size: 0.9rem; margin: 10px 0; font-weight: 600; display: none; }
     .corporate-msg.valid { color: var(--corporate-valid); display: block; }
     .corporate-msg.invalid { color: var(--corporate-invalid); display: block; }
-
 </style>
 
-<!-- Biblioteca QR Code PIX -->
+<!-- QR Code Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <link rel='stylesheet' id='google-fonts-css' href='https://fonts.googleapis.com/css?family=Montserrat%3A400%2C700%7CCourgette&display=swap' type='text/css' media='all' />
 </head>
 <body>
 
-<!-- 🏢 BANNER CORPORATIVO (NOVO) -->
+<!-- Banner Corporativo -->
 <div id="corporateBanner">
     🏢 Modo Parceiro Ativo: <span id="partnerNameDisplay"></span> | <a onclick="removeCorporateAccess()">Sair</a>
 </div>
 
-<!-- Botão WhatsApp Original -->
-<a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um bolo da Casa Mondego. Qual é a disponibilidade?" class="whatsapp-float" title="Fale conosco no WhatsApp" target="_blank">
+<!-- Botão WhatsApp -->
+<a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um bolo da Casa Mondego. Qual é a disponibilidade?" 
+   class="whatsapp-float" 
+   title="Fale conosco no WhatsApp" 
+   target="_blank"
+   aria-label="Abrir conversa no WhatsApp para encomendar bolos">
     <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
         <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.5 2.5-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.9 4.4 26.5 3.8 36.5 2.3 11.1-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
     </svg>
 </a>
 
 <!-- Botão Carrinho -->
-<div id="cartFloat" class="cart-float hidden" onclick="openCheckout()">
+<div id="cartFloat" class="cart-float hidden" onclick="openCheckout()" 
+     role="button" tabindex="0" aria-label="Abrir carrinho de compras"
+     onkeypress="if(event.key==='Enter') openCheckout()">
     🛒<span id="cartCount">0</span>
 </div>
 
 <!-- Modal Checkout -->
 <div id="checkoutModal" class="checkout-modal">
     <div class="checkout-content">
-        <button class="checkout-close" onclick="closeCheckout()">&times;</button>
-        
-        <!-- Título Otimizado -->
+        <button class="checkout-close" onclick="closeCheckout()" aria-label="Fechar modal">&times;</button>
         <h3 class="checkout-title">🛒 Finalize seu pedido em 1 minuto</h3>
         <p class="checkout-subtitle">📌 Usaremos seus dados apenas para confirmar este pedido</p>
         
-        <!-- Barra de Progresso -->
         <div class="progress-bar">
-            <div class="progress-step active" id="step1">
-                <div class="step-number">1</div>
-                <div class="step-label">Dados</div>
-            </div>
-            <div class="progress-step" id="step2">
-                <div class="step-number">2</div>
-                <div class="step-label">Pagamento</div>
-            </div>
-            <div class="progress-step" id="step3">
-                <div class="step-number">3</div>
-                <div class="step-label">Confirmação</div>
-            </div>
+            <div class="progress-step active" id="step1"><div class="step-number">1</div><div class="step-label">Dados</div></div>
+            <div class="progress-step" id="step2"><div class="step-number">2</div><div class="step-label">Pagamento</div></div>
+            <div class="progress-step" id="step3"><div class="step-number">3</div><div class="step-label">Confirmação</div></div>
         </div>
         
         <div class="cart-items-list" id="cartItemsList"></div>
-        
-        <!-- 🏢 Badge de Benefício Corporativo -->
         <div id="corporateBadge" class="corporate-badge-cart" style="display: none;">
             🎁 Frete Grátis Ativo: <span id="corporateBadgeName"></span>
         </div>
-
         <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
         
-        <!-- Dados do Cliente -->
         <div class="form-group">
             <label for="customerName">👤 Seu Nome *</label>
             <input type="text" id="customerName" placeholder="Ex: Maria Silva" required>
@@ -873,7 +742,6 @@
             <input type="tel" id="customerPhone" placeholder="(41) 99999-9999" required>
         </div>
         
-        <!-- Data de Retirada/Entrega -->
         <div class="form-group">
             <label for="pickupDate">📅 Data para Retirada *</label>
             <input type="date" id="pickupDate" required>
@@ -883,7 +751,6 @@
             </div>
         </div>
         
-        <!-- Horário -->
         <div class="form-group">
             <label for="pickupTime">🕒 Horário para Retirada *</label>
             <select id="pickupTime" required>
@@ -892,7 +759,6 @@
             <span class="form-hint">🕒 Seg-Sex: 10h-18h | Sáb: 10h-16h | Dom: Fechado</span>
         </div>
         
-        <!-- 🚗 Texto Padrão (Cliente Comum) -->
         <div id="pickupInfoBox" class="pickup-info">
             <strong>🚗 Como receber seu pedido:</strong><br>
             • <strong>Retirada na loja:</strong> rápida e sem fila<br>
@@ -900,47 +766,41 @@
             • <strong>Ou envie um motorista</strong> (Uber/99) após nossa confirmação
         </div>
         
-        <!-- 🏢 Texto Parceiro (Condomínio/Empresa) - NOVO -->
         <div id="corporatePickupInfo" class="corporate-pickup-info">
             <strong>🏢 Entrega Agendada:</strong><br>
             Seu pedido será entregue no endereço cadastrado abaixo.
         </div>
         
-        <!-- 🏢 ENDEREÇO FIXO CORPORATIVO - NOVO (exibido APÓS o texto de entrega) -->
+        <!-- Endereço fixo corporativo -->
         <div id="corporateFixedAddress" class="corporate-fixed-address">
             <strong>📍 Endereço de Entrega:</strong><br>
             <span id="fixedAddressText"></span>
         </div>
         
-        <!-- Pagamento PIX Otimizado -->
         <div class="pix-section">
             <strong>💳 Pagamento via PIX (rápido e seguro)</strong>
             <p style="font-size: 0.9rem; margin: 10px 0;">Escaneie o QR Code ou copie a chave abaixo:</p>
             <div id="qrcode"></div>
             <div class="pix-key" id="pixKeyDisplay">carregando...</div>
-            <button class="btn-gold" onclick="copyPixKey()" style="padding: 10px 25px; font-size: 0.9rem;">📋 Copiar chave</button>
+            <button class="btn-gold" onclick="copyPixKey()" style="padding: 10px 25px; font-size: 0.9rem;" aria-label="Copiar chave PIX">📋 Copiar chave</button>
             <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">QR Code gerado com o valor exato do seu pedido</p>
         </div>
         
-        <!-- Confirmação do Pedido (MELHORADO) -->
         <div class="confirmation-box">
             <strong>📸 Confirmação do Pedido</strong>
             <p>Após o pagamento, clique no botão abaixo e envie o comprovante pelo WhatsApp.</p>
             <p style="font-weight: 600; margin-top: 8px;">👉 Seu pedido só será reservado após a confirmação do pagamento.</p>
         </div>
         
-        <!-- Upsell Box -->
         <div class="upsell-box">
             <p>💡 <strong>Dica:</strong> Nossos clientes costumam levar 2 ou mais sabores para aproveitar melhor! 🍰</p>
         </div>
         
-        <!-- Botão Final Otimizado -->
-        <button class="btn-whatsapp-final" onclick="sendToWhatsApp()">
+        <button class="btn-whatsapp-final" onclick="sendToWhatsApp()" aria-label="Confirmar pedido via WhatsApp">
             <svg width="22" height="22" viewBox="0 0 448 512" fill="white"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.5 2.5-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.9 4.4 26.5 3.8 36.5 2.3 11.1-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
             📲 Confirmar pedido no WhatsApp
         </button>
         
-        <!-- Nota de Segurança -->
         <p class="security-note">
             <svg width="14" height="14" viewBox="0 0 512 512" fill="#888"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c0 178.4-90 342.1-236.7 426.8c-2.2 1.3-4.6 1.9-7 1.9s-4.8-.6-7-1.9C98.8 482 8.8 318.3 8.8 140c0-26.2 16.3-47.9 38.3-57.2L234.6 2.9C238.8 1 243.4 0 248 0h8z"/></svg>
             🔒 Seus dados são usados apenas para este pedido
@@ -948,11 +808,10 @@
     </div>
 </div>
 
-<!-- 🏢 Modal de Acesso Corporativo (NOVO) -->
+<!-- Modal Corporativo -->
 <div id="corporateModal" class="checkout-modal" style="z-index: 2500;">
     <div class="checkout-content corporate-modal-content">
-        <button class="checkout-close" onclick="closeCorporateModal()">&times;</button>
-        
+        <button class="checkout-close" onclick="closeCorporateModal()" aria-label="Fechar modal">&times;</button>
         <h3 class="checkout-title" style="font-size: 1.5rem;">🏢 Área Corporativa</h3>
         <p style="color: #666; margin-bottom: 20px;">Condomínios e empresas parceiros têm <strong>frete grátis</strong> em entrega agendada.</p>
         
@@ -966,7 +825,7 @@
         <div id="corpMsgValid" class="corporate-msg valid">✅ Código válido! Redirecionando...</div>
         <div id="corpMsgInvalid" class="corporate-msg invalid">⚠️ Código não encontrado.</div>
         
-        <button class="btn-gold" onclick="checkCorporateCode()" style="width: 100%; margin-top: 15px;">Acessar Cardápio</button>
+        <button class="btn-gold" onclick="checkCorporateCode()" style="width: 100%; margin-top: 15px;" aria-label="Acessar cardápio corporativo">Acessar Cardápio</button>
         
         <p style="font-size: 0.8rem; color: #888; margin-top: 20px; font-style: italic;">
             Interessado em ser parceiro? <a href="https://wa.me/5541991755009?text=Olá! Gostaria de saber sobre parcerias corporativas." target="_blank" style="color: var(--gold-primary);">Fale conosco</a>.
@@ -976,7 +835,7 @@
 
 <header class="header-bar">
     <div class="branding">
-        <a href="https://www.casamondego.com.br/">
+        <a href="https://www.casamondego.com.br/" aria-label="Voltar para página inicial">
             <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/uFUuILwJmMetvATy.png" alt="Casa Mondego" class="logo-img">
         </a>
     </div>
@@ -987,8 +846,7 @@
             <li><a href="#bolos">BOLOS</a></li>
             <li><a href="#contato">CONTATO</a></li>
             <li><a href="https://wa.me/5541991755009?text=Olá! Tenho interesse em saber mais sobre como ser um franqueado da Casa Mondego." target="_blank">FRANQUIA</a></li>
-            <!-- 🏢 Botão Área Corporativa -->
-            <li><button class="btn-corporate-menu" onclick="openCorporateModal()">🏢 Área Corp.</button></li>
+            <li><button class="btn-corporate-menu" onclick="openCorporateModal()" aria-label="Acessar área corporativa">🏢 Área Corp.</button></li>
         </ul>
     </nav>
 </header>
@@ -1000,178 +858,13 @@
     <a href="#bolos" class="btn-gold">CONHEÇA NOSSOS BOLOS</a>
 </section>
 
-<!-- SEÇÃO DE BOLOS -->
+<!-- SEÇÃO DE BOLOS (carregada via JS) -->
 <div id="bolos">
     <h2 class="section-title">Nossas Delícias - 14 Sabores Artesanais</h2>
     <p class="disclaimer-images">📸 As imagens dos bolos são meramente ilustrativas</p>
-    <div class="bolos-grid">
-        <!-- Bolo de Chocolate - R$26 -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/PRdTFbGPPJRfxGUn.png" alt="Bolo de Chocolate" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Bolo de Chocolate</h3>
-                <p>Massa fofinha e super chocolatuda, com sabor intenso e caseiro.</p>
-                <button class="btn-gold" onclick="addToCart(1, 'Bolo de Chocolate', 26.00)">Encomendar • R$ 26,00</button>
-            </div>
-        </div>
-
-        <!-- Bolo de Limão Siciliano e Mirtilo - R$30 -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" alt="Bolo de Limão Siciliano e Mirtilo" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Limão Siciliano e Mirtilo</h3>
-                <p>Refrescante com limão siciliano e mirtilos frescos na massa.</p>
-                <button class="btn-gold" onclick="addToCart(2, 'Limão Siciliano e Mirtilo', 30.00)">Encomendar • R$ 30,00</button>
-            </div>
-        </div>
-
-        <!-- Bolo de Laranja - R$26 -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" alt="Bolo de Laranja" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Bolo de Laranja</h3>
-                <p>Clássico molhadinho com suco de laranja natural cítrico.</p>
-                <button class="btn-gold" onclick="addToCart(3, 'Bolo de Laranja', 26.00)">Encomendar • R$ 26,00</button>
-            </div>
-        </div>
-
-        <!-- Bolo de Milho - R$26 -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/VezOWuffxYCYNPbw.jpg" alt="Bolo de Milho" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Bolo de Milho</h3>
-                <p>Sabor caseiro autêntico com milho selecionado e macio.</p>
-                <button class="btn-gold" onclick="addToCart(4, 'Bolo de Milho', 26.00)">Encomendar • R$ 26,00</button>
-            </div>
-        </div>
-
-        <!-- Bolo de Cenoura - R$26 -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/vVPrthhQxhwSdbwg.jpg" alt="Bolo de Cenoura" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Bolo de Cenoura</h3>
-                <p>Cenoura fresca, massa úmida com sabor caseiro irresistível.</p>
-                <button class="btn-gold" onclick="addToCart(5, 'Bolo de Cenoura', 26.00)">Encomendar • R$ 26,00</button>
-            </div>
-        </div>
-
-        <!-- Bolo de Limão - R$26 -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nTMHyturkMHdoCAC.jpg" alt="Bolo de Limão" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Bolo de Limão</h3>
-                <p>Leve, fofinho e azedinho com frescor natural de limão.</p>
-                <button class="btn-gold" onclick="addToCart(6, 'Bolo de Limão', 26.00)">Encomendar • R$ 26,00</button>
-            </div>
-        </div>
-
-        <!-- Bolo de Aipim - R$32 (REGRA ESPECIAL: só após 14h) -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/xrjxIXkkOVwzaNRN.jpeg" alt="Bolo de Aipim" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Bolo de Aipim</h3>
-                <p>Macio e molhadinho com aipim fresco e sabor tradicional.</p>
-                <button class="btn-gold" onclick="addToCart(7, 'Bolo de Aipim', 32.00)">Encomendar • R$ 32,00</button>
-            </div>
-        </div>
-
-        <!-- Bolo Mesclado - R$26 -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/OueHUtJwlOElMHWm.jpg" alt="Bolo Mesclado" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Bolo Mesclado</h3>
-                <p>Cenoura + chocolate em camadas intensas e irresistíveis.</p>
-                <button class="btn-gold" onclick="addToCart(8, 'Bolo Mesclado', 26.00)">Encomendar • R$ 26,00</button>
-            </div>
-        </div>
-
-        <!-- Bolo de Amendoim - R$26 -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/GzjpPKjJMHZsTvvg.jpg" alt="Bolo de Amendoim" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Bolo de Amendoim</h3>
-                <p>Sabor intenso de amendoim, com textura macia e um sabor marcante.</p>
-                <button class="btn-gold" onclick="addToCart(9, 'Bolo de Amendoim', 26.00)">Encomendar • R$ 26,00</button>
-            </div>
-        </div>
-
-        <!-- Bolo de Fubá - R$26 -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nmFrKFeTPKNYkwcD.jpg" alt="Bolo de Fubá" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Bolo de Fubá</h3>
-                <p>Clássico fofinho, sabor autêntico de fubá caseiro como os da vó.</p>
-                <button class="btn-gold" onclick="addToCart(10, 'Bolo de Fubá', 26.00)">Encomendar • R$ 26,00</button>
-            </div>
-        </div>
-
-        <!-- Bolo de Fubá com Coco - R$26 -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="bolo-fuba-coco.jpg" alt="Bolo de Fubá com Coco" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Fubá com Coco</h3>
-                <p>Fubá tradicional com pedacinhos de coco.</p>
-                <button class="btn-gold" onclick="addToCart(11, 'Fubá com Coco', 26.00)">Encomendar • R$ 26,00</button>
-            </div>
-        </div>
-
-        <!-- Bolo de Laranja Bahia com Amora - R$30 -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="bolo-laranja-amora.jpg" alt="Bolo de Laranja Bahia com Amora" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Laranja Bahia com Amora</h3>
-                <p>Aroma de laranja com o toque de amora.</p>
-                <button class="btn-gold" onclick="addToCart(12, 'Laranja Bahia com Amora', 30.00)">Encomendar • R$ 30,00</button>
-            </div>
-        </div>
-
-        <!-- Bolo de Maçã com Nozes - R$30 -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="bolo-maca-nozes.jpg" alt="Bolo de Maçã com Nozes" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Maçã com Nozes</h3>
-                <p>Clássico sabor de maçã com crocância de nozes.</p>
-                <button class="btn-gold" onclick="addToCart(13, 'Maçã com Nozes', 30.00)">Encomendar • R$ 30,00</button>
-            </div>
-        </div>
-
-        <!-- Bolo de Maçã com Passas - R$30 -->
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="bolo-maca-passas.jpg" alt="Bolo de Maçã com Passas" class="bolo-img" loading="lazy">
-            </div>
-            <div class="bolo-info">
-                <h3>Maçã com Passas</h3>
-                <p>Aveludado com a doçura das passas.</p>
-                <button class="btn-gold" onclick="addToCart(14, 'Maçã com Passas', 30.00)">Encomendar • R$ 30,00</button>
-            </div>
-        </div>
+    <div class="bolos-grid" id="bolosGrid">
+        <!-- Bolos serão inseridos via JavaScript -->
+        <p style="text-align:center;grid-column:1/-1;color:#666">Carregando cardápio...</p>
     </div>
 </div>
 
@@ -1186,7 +879,7 @@
     <div class="footer-grid">
         <div class="footer-section">
             <video class="footer-logo-video" autoplay muted loop playsinline>
-                <source src="logo-footer.mp4" type="video/mp4">
+                <source src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/logo-footer.mp4" type="video/mp4">
                 Seu navegador não suporta vídeos.
             </video>
             <p>Tradição e sabor em cada detalhe. Bolos feitos à mão com receitas de família. A melhor confeitaria artesanal de Curitiba.</p>
@@ -1210,10 +903,10 @@
                 contato@casamondego.com.br
             </a>
             <div class="social-links">
-                <a href="https://www.instagram.com/casa.mondego/" target="_blank" class="social-instagram">
+                <a href="https://www.instagram.com/casa.mondego/" target="_blank" class="social-instagram" aria-label="Instagram Casa Mondego">
                     <svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
                 </a>
-                <a href="https://www.facebook.com/profile.php?id=61586239534835" target="_blank" class="social-facebook">
+                <a href="https://www.facebook.com/profile.php?id=61586239534835" target="_blank" class="social-facebook" aria-label="Facebook Casa Mondego">
                     <svg viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
                 </a>
             </div>
@@ -1222,107 +915,60 @@
     
     <div style="border-top: 1px solid #333; padding-top: 20px; font-size: 0.8rem; text-align: center;">
         <p>
-            <a href="alergenos.html" style="color: var(--gold-primary); text-decoration: none; margin: 0 10px;">
-                ⚠️ Informações sobre Alérgenos
-            </a> | 
-            <a href="cardapio.html" style="color: var(--gold-primary); text-decoration: none; margin: 0 10px;">
-                📱 Cardápio Digital
-            </a>
+            <a href="alergenos.html" style="color: var(--gold-primary); text-decoration: none; margin: 0 10px;">⚠️ Informações sobre Alérgenos</a> | 
+            <a href="cardapio.html" style="color: var(--gold-primary); text-decoration: none; margin: 0 10px;">📱 Cardápio Digital</a>
         </p>
         <p>&copy; 2026 Casa Mondego - Todos os direitos reservados.</p>
     </div>
-    
 </footer>
 
-<!-- === JAVASCRIPT COM TODAS AS FUNCIONALIDADES === -->
+<!-- === JAVASCRIPT === -->
 <script>
-// ===== CONFIGURAÇÕES REAIS =====
+// ===== CONFIGURAÇÕES =====
 const WHATSAPP_NUMBER = "5541991755009";
 const PIX_KEY = "a193c533-4855-433b-a31b-2fa22f6f106e";
 const PIX_NAME = "Casa Mondego";
 const PIX_CITY = "Curitiba";
-
-// Horário de funcionamento
-const BUSINESS_HOURS = {
-    weekday: { start: 10, end: 18 },
-    saturday: { start: 10, end: 16 }
-};
-
-// Regra do Bolo de Aipim (ID 7) - só disponível após 14h
+const BUSINESS_HOURS = { weekday: { start: 10, end: 18 }, saturday: { start: 10, end: 16 } };
 const AIPIM_ID = 7;
 const AIPIM_MIN_HOUR = 14;
 
-// 🏢 CORPORATIVO: Lista de códigos e nomes (Alterar aqui quando for oficializar)
-// 🏢 AJUSTE: Agora usa objeto com {nome, codigo} para acesso correto via .nome
+// 🏢 CORPORATIVO (objeto com nome + endereco)
 const codigosCorporativos = {
-    '1234': { nome: 'Condomínio Cinza', codigo: '1234' }
+    '1234': { nome: 'Condomínio Cinza', endereco: 'Rua Exemplo, 123 - Condomínio Cinza, Bloco A, Curitiba - PR' }
 };
 
-// 🏢 AJUSTE: NOVO - Endereços fixos por código corporativo (não editáveis pelo usuário)
-const enderecosCorporativos = {
-    '1234': 'Rua Exemplo, 123 - Condomínio Cinza, Bloco A, Curitiba - PR'
-};
-
-// 🔄 Estado com persistência via localStorage
+// 🔄 Estado com persistência
 let cart = JSON.parse(localStorage.getItem('cart_mondego')) || [];
-let codigoCorporativoValido = localStorage.getItem('mondego_corp') || null;
+let codigoCorporativoValido = localStorage.getItem('mondego_corp');
 
-document.addEventListener('DOMContentLoaded', () => {
-    // ✅ Carrega sessão corporativa se existir (persistência entre páginas)
-    if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
-        showCorporateBanner(codigoCorporativoValido);
-        updateCorporateUI();
+// ✅ Função para carregar bolos do JSON + fallback
+async function carregarBolos() {
+    const fallback = [
+        { id: 1, name: "Bolo de Chocolate", desc: "Massa fofinha e super chocolatuda, com sabor intenso e caseiro.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/PRdTFbGPPJRfxGUn.png" },
+        { id: 2, name: "Limão Siciliano e Mirtilo", desc: "Refrescante com limão siciliano e mirtilos frescos na massa.", price: 30.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" },
+        { id: 3, name: "Bolo de Laranja", desc: "Clássico molhadinho com suco de laranja natural cítrico.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" },
+        { id: 4, name: "Bolo de Milho", desc: "Sabor caseiro autêntico com milho selecionado e macio.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/VezOWuffxYCYNPbw.jpg" },
+        { id: 5, name: "Bolo de Cenoura", desc: "Cenoura fresca, massa úmida com sabor caseiro irresistível.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/vVPrthhQxhwSdbwg.jpg" },
+        { id: 6, name: "Bolo de Limão", desc: "Leve, fofinho e azedinho com frescor natural de limão.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nTMHyturkMHdoCAC.jpg" },
+        { id: 7, name: "Bolo de Aipim", desc: "Macio e molhadinho com aipim fresco e sabor tradicional.", price: 32.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/xrjxIXkkOVwzaNRN.jpeg" },
+        { id: 8, name: "Bolo Mesclado", desc: "Cenoura + chocolate em camadas intensas e irresistíveis.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/OueHUtJwlOElMHWm.jpg" },
+        { id: 9, name: "Bolo de Amendoim", desc: "Sabor intenso de amendoim, com textura macia e um sabor marcante.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/GzjpPKjJMHZsTvvg.jpg" },
+        { id: 10, name: "Bolo de Fubá", desc: "Clássico fofinho, sabor autêntico de fubá caseiro como os da vó.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nmFrKFeTPKNYkwcD.jpg" },
+        { id: 11, name: "Fubá com Coco", desc: "Fubá tradicional com pedacinhos de coco.", price: 26.00, img: "./assets/img/bolo-fuba-coco.jpg" },
+        { id: 12, name: "Laranja Bahia com Amora", desc: "Aroma de laranja com o toque de amora.", price: 30.00, img: "./assets/img/bolo-laranja-amora.jpg" },
+        { id: 13, name: "Maçã com Nozes", desc: "Clássico sabor de maçã com crocância de nozes.", price: 30.00, img: "./assets/img/bolo-maca-nozes.jpg" },
+        { id: 14, name: "Maçã com Passas", desc: "Aveludado com a doçura das passas.", price: 30.00, img: "./assets/img/bolo-maca-passas.jpg" }
+    ];
+    try {
+        const res = await fetch('./assets/data/cakes.json');
+        if (!res.ok) throw new Error('JSON não encontrado');
+        return await res.json();
+    } catch (err) {
+        console.warn('⚠️ Usando dados locais (fallback):', err);
+        return fallback;
     }
-    
-    updateCartFloat();
-    setupPickupDate();
-    document.getElementById('pixKeyDisplay').textContent = PIX_KEY;
-    document.getElementById('pickupDate')?.addEventListener('change', () => {
-        setupPickupTimeOptions();
-        checkAipimAvailability();
-    });
-    
-    // Auto-add via URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const addCakeId = urlParams.get('add');
-    const codigoUrl = urlParams.get('codigo');
-    
-    if (codigoUrl && codigosCorporativos[codigoUrl.toUpperCase()]) {
-        codigoCorporativoValido = codigoUrl.toUpperCase();
-        showCorporateBanner(codigoCorporativoValido);
-        updateCorporateUI();
-    }
-    
-    if (addCakeId) {
-        const cakeMap = {
-            '1': { name: 'Bolo de Chocolate', price: 26.00 },
-            '2': { name: 'Limão Siciliano e Mirtilo', price: 30.00 },
-            '3': { name: 'Bolo de Laranja', price: 26.00 },
-            '4': { name: 'Bolo de Milho', price: 26.00 },
-            '5': { name: 'Bolo de Cenoura', price: 26.00 },
-            '6': { name: 'Bolo de Limão', price: 26.00 },
-            '7': { name: 'Bolo de Aipim', price: 32.00 },
-            '8': { name: 'Bolo Mesclado', price: 26.00 },
-            '9': { name: 'Bolo de Amendoim', price: 26.00 },
-            '10': { name: 'Bolo de Fubá', price: 26.00 },
-            '11': { name: 'Fubá com Coco', price: 26.00 },
-            '12': { name: 'Laranja Bahia com Amora', price: 30.00 },
-            '13': { name: 'Maçã com Nozes', price: 30.00 },
-            '14': { name: 'Maçã com Passas', price: 30.00 }
-        };
-        
-        const cake = cakeMap[addCakeId];
-        if (cake) {
-            addToCart(parseInt(addCakeId), cake.name, cake.price);
-            setTimeout(() => {
-                showToast(`🎂 ${cake.name} adicionado ao carrinho!`);
-                setTimeout(() => {
-                    openCheckout();
-                }, 1500);
-            }, 500);
-        }
-    }
-});
+}
 
 // ===== CARRINHO =====
 function addToCart(id, name, price) {
@@ -1333,7 +979,6 @@ function addToCart(id, name, price) {
     updateCartFloat();
     showToast(`✅ ${name} adicionado ao carrinho!`);
 }
-
 function removeFromCart(id) {
     cart = cart.filter(item => item.id !== id);
     saveCart();
@@ -1341,7 +986,6 @@ function removeFromCart(id) {
     updateCartFloat();
     checkAipimAvailability();
 }
-
 function updateQuantity(id, change) {
     const item = cart.find(i => i.id === id);
     if (item) {
@@ -1350,9 +994,7 @@ function updateQuantity(id, change) {
         else { saveCart(); renderCartItems(); }
     }
 }
-
 function saveCart() { localStorage.setItem('cart_mondego', JSON.stringify(cart)); }
-
 function updateCartFloat() {
     const float = document.getElementById('cartFloat');
     const count = document.getElementById('cartCount');
@@ -1366,12 +1008,11 @@ function openCheckout() {
     renderCartItems(); 
     setupPickupTimeOptions(); 
     generatePixQR();
-    checkAipimAvailability();
+    checkAipimAvailability(); // ✅ Valida ao abrir
     updateProgress(1);
     document.getElementById('checkoutModal').classList.add('active'); 
 }
 function closeCheckout() { document.getElementById('checkoutModal').classList.remove('active'); }
-
 function updateProgress(step) {
     for (let i = 1; i <= 3; i++) {
         const el = document.getElementById(`step${i}`);
@@ -1380,158 +1021,102 @@ function updateProgress(step) {
         if (i === step) el.classList.add('active');
     }
 }
-
 function renderCartItems() {
     const list = document.getElementById('cartItemsList');
     const totalEl = document.getElementById('cartTotal');
     const badge = document.getElementById('corporateBadge');
     const badgeName = document.getElementById('corporateBadgeName');
-    
     if (cart.length === 0) { 
         list.innerHTML = '<p style="text-align:center;color:#666;padding:20px">🛒 Seu carrinho está vazio</p>'; 
         totalEl.textContent = 'R$ 0,00'; 
         badge.style.display = 'none';
         return; 
     }
-    
     let total = 0;
     list.innerHTML = cart.map(item => {
         const subtotal = item.quantity * item.price; total += subtotal;
-        return `<div class="cart-item"><span>${item.name} × ${item.quantity}</span><div style="display:flex;align-items:center;gap:8px;"><span style="font-weight:600">R$ ${subtotal.toFixed(2).replace('.',',')}</span><button onclick="updateQuantity(${item.id},-1)" style="background:#ddd;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1.1rem">−</button><button onclick="updateQuantity(${item.id},1)" style="background:#ddd;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1.1rem">+</button><button onclick="removeFromCart(${item.id})" style="background:#ffcdd2;color:#c62828;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1rem">×</button></div></div>`;
+        return `<div class="cart-item"><span>${item.name} × ${item.quantity}</span><div style="display:flex;align-items:center;gap:8px;"><span style="font-weight:600">R$ ${subtotal.toFixed(2).replace('.',',')}</span><button onclick="updateQuantity(${item.id},-1)" style="background:#ddd;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1.1rem" aria-label="Remover um ${item.name}">−</button><button onclick="updateQuantity(${item.id},1)" style="background:#ddd;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1.1rem" aria-label="Adicionar um ${item.name}">+</button><button onclick="removeFromCart(${item.id})" style="background:#ffcdd2;color:#c62828;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1rem" aria-label="Remover ${item.name} do carrinho">×</button></div></div>`;
     }).join('');
-    
     totalEl.textContent = `R$ ${total.toFixed(2).replace('.',',')}`;
-    
-    // 🏢 Exibe badge corporativo se ativo
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
         badge.style.display = 'block';
-        // 🏢 AJUSTE: Acesso correto via .nome (objeto)
         badgeName.textContent = codigosCorporativos[codigoCorporativoValido].nome;
-    } else {
-        badge.style.display = 'none';
-    }
+    } else { badge.style.display = 'none'; }
 }
 
-// 🏢 FUNÇÕES CORPORATIVAS
+// 🏢 CORPORATIVO
 function openCorporateModal() {
-    // Se já estiver logado, vai direto para o cardápio
-    if(codigoCorporativoValido) { 
-        window.location.href = 'cardapio.html'; 
-        return; 
-    }
+    if(codigoCorporativoValido) { window.location.href = 'cardapio.html'; return; }
     document.getElementById('corporateModal').classList.add('active');
     document.getElementById('corporateCodeInput').value = '';
     document.getElementById('corpMsgValid').style.display = 'none';
     document.getElementById('corpMsgInvalid').style.display = 'none';
 }
-
-function closeCorporateModal() {
-    document.getElementById('corporateModal').classList.remove('active');
-}
-
+function closeCorporateModal() { document.getElementById('corporateModal').classList.remove('active'); }
 function checkCorporateCode() {
     const input = document.getElementById('corporateCodeInput');
     const msgValid = document.getElementById('corpMsgValid');
     const msgInvalid = document.getElementById('corpMsgInvalid');
     const codigo = input.value.trim().toUpperCase();
-    
     input.classList.remove('valid', 'invalid');
     msgValid.style.display = 'none';
     msgInvalid.style.display = 'none';
-    
     if (!codigo) return;
-    
     if (codigosCorporativos[codigo]) {
-        // ✅ Código válido: salva no localStorage e redireciona
         codigoCorporativoValido = codigo;
         localStorage.setItem('mondego_corp', codigo);
-        
         input.classList.add('valid');
         msgValid.style.display = 'block';
-        
-        // Mostra banner e atualiza UI
         showCorporateBanner(codigo);
         updateCorporateUI();
-        
-        // ✅ Redireciona para o cardápio digital após 1s
-        setTimeout(() => {
-            closeCorporateModal();
-            window.location.href = 'cardapio.html';
-        }, 1000);
+        setTimeout(() => { closeCorporateModal(); window.location.href = 'cardapio.html'; }, 1000);
     } else {
-        // Código inválido
         codigoCorporativoValido = null;
         localStorage.removeItem('mondego_corp');
         input.classList.add('invalid');
         msgInvalid.style.display = 'block';
     }
 }
-
-// Mostra o banner dourado
 function showCorporateBanner(codigo) {
     const banner = document.getElementById('corporateBanner');
     const nameDisplay = document.getElementById('partnerNameDisplay');
-    
     if(codigosCorporativos[codigo]) {
-        // 🏢 AJUSTE: Acesso via .nome
         nameDisplay.textContent = codigosCorporativos[codigo].nome;
         banner.style.display = 'block';
-        document.body.classList.add('corporate-active'); // Ajusta header
+        document.body.classList.add('corporate-active');
     }
 }
-
-// 🔄 Atualiza UI corporativa (labels, hints, endereço, texto retirada, badge)
 function updateCorporateUI() {
-    // Troca labels e hints de data/horário
     const lblDate = document.querySelector('label[for="pickupDate"]');
     const hintDate = document.querySelector('label[for="pickupDate"] + .form-hint');
     const lblTime = document.querySelector('label[for="pickupTime"]');
-    
-    // 🏢 AJUSTE: Referências aos elementos de endereço
     const corporatePickupInfo = document.getElementById('corporatePickupInfo');
     const corporateFixedAddress = document.getElementById('corporateFixedAddress');
     const fixedAddressText = document.getElementById('fixedAddressText');
-    
-    if (codigoCorporativoValido) {
-        // 🏢 Modo parceiro: "Entrega" + endereço fixo (não editável)
+    if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
         if(lblDate) lblDate.textContent = '📅 Data para Entrega *';
         if(hintDate) hintDate.textContent = '📌 Pedidos feitos hoje são entregues amanhã';
         if(lblTime) lblTime.textContent = '🕒 Horário para Entrega *';
-        
-        // Exibe texto de entrega e endereço fixo
         if(corporatePickupInfo) corporatePickupInfo.style.display = 'block';
         if(corporateFixedAddress) {
             corporateFixedAddress.style.display = 'block';
-            // 🏢 AJUSTE: Pega endereço do objeto fixo
-            if(enderecosCorporativos[codigoCorporativoValido]) {
-                fixedAddressText.textContent = enderecosCorporativos[codigoCorporativoValido];
+            if(codigosCorporativos[codigoCorporativoValido].endereco) {
+                fixedAddressText.textContent = codigosCorporativos[codigoCorporativoValido].endereco;
             }
         }
-        
-        // Oculta texto padrão de retirada
         const std = document.getElementById('pickupInfoBox');
         if(std) std.style.display = 'none';
-        
     } else {
-        // 👤 Modo comum: "Retirada" + sem campo endereço
         if(lblDate) lblDate.textContent = '📅 Data para Retirada *';
         if(hintDate) hintDate.textContent = '📌 Pedidos feitos hoje são retirados amanhã';
         if(lblTime) lblTime.textContent = '🕒 Horário para Retirada *';
-        
-        // Oculta elementos corporativos
         if(corporatePickupInfo) corporatePickupInfo.style.display = 'none';
         if(corporateFixedAddress) corporateFixedAddress.style.display = 'none';
-        
-        // Exibe texto padrão de retirada
         const std = document.getElementById('pickupInfoBox');
         if(std) std.style.display = 'block';
     }
-    
-    // Atualiza badge no carrinho
     renderCartItems();
 }
-
-// Remove o acesso corporativo
 function removeCorporateAccess() {
     codigoCorporativoValido = null;
     localStorage.removeItem('mondego_corp');
@@ -1542,24 +1127,20 @@ function removeCorporateAccess() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ===== VERIFICAÇÃO BOLO DE AIPIM =====
+// ===== AIPIM =====
 function checkAipimAvailability() {
     const warning = document.getElementById('aipimWarning');
     const hasAipim = cart.some(item => item.id === AIPIM_ID);
     const timeValue = document.getElementById('pickupTime').value;
-    
     if (hasAipim && timeValue) {
         const hour = parseInt(timeValue.split(':')[0]);
-        if (hour < AIPIM_MIN_HOUR) {
-            warning.style.display = 'block';
-            return false;
-        }
+        if (hour < AIPIM_MIN_HOUR) { warning.style.display = 'block'; return false; }
     }
     warning.style.display = 'none';
     return true;
 }
 
-// ===== RETIRADA =====
+// ===== DATAS/HORÁRIOS =====
 function setupPickupDate() {
     const input = document.getElementById('pickupDate');
     const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
@@ -1568,7 +1149,6 @@ function setupPickupDate() {
     input.max = nextWeek.toISOString().split('T')[0];
     input.setAttribute('onchange', 'blockSundays(this)');
 }
-
 function blockSundays(input) {
     const date = new Date(input.value);
     if (date.getDay() === 0) {
@@ -1577,30 +1157,17 @@ function blockSundays(input) {
         showToast('⚠️ Não trabalhamos aos domingos');
     }
 }
-
 function setupPickupTimeOptions() {
     const select = document.getElementById('pickupTime');
     const dateVal = document.getElementById('pickupDate').value;
     if (!dateVal) { select.innerHTML = '<option value="">🕒 Escolha a data para ver os horários disponíveis</option>'; return; }
-    
     select.innerHTML = '<option value="">Selecione um horário</option>';
     const selectedDate = new Date(dateVal + 'T00:00:00');
     const dayOfWeek = selectedDate.getDay();
-    
-    if (dayOfWeek === 0) {
-        select.innerHTML = '<option value="" disabled>❌ Domingo: não trabalhamos</option>';
-        return;
-    }
-    
+    if (dayOfWeek === 0) { select.innerHTML = '<option value="" disabled>❌ Domingo: não trabalhamos</option>'; return; }
     let startHour, endHour;
-    if (dayOfWeek === 6) {
-        startHour = BUSINESS_HOURS.saturday.start;
-        endHour = BUSINESS_HOURS.saturday.end;
-    } else {
-        startHour = BUSINESS_HOURS.weekday.start;
-        endHour = BUSINESS_HOURS.weekday.end;
-    }
-    
+    if (dayOfWeek === 6) { startHour = BUSINESS_HOURS.saturday.start; endHour = BUSINESS_HOURS.saturday.end; }
+    else { startHour = BUSINESS_HOURS.weekday.start; endHour = BUSINESS_HOURS.weekday.end; }
     for (let h = startHour; h < endHour; h++) {
         const label = `${h.toString().padStart(2,'0')}:00 - ${(h+1).toString().padStart(2,'0')}:00`;
         const value = `${h.toString().padStart(2,'0')}:00`;
@@ -1608,14 +1175,19 @@ function setupPickupTimeOptions() {
     }
 }
 
-// ===== PIX QR CODE DINÂMICO =====
+// ===== PIX =====
 function generatePixQR() {
     const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     const payload = generatePixPayload(PIX_KEY, PIX_NAME, PIX_CITY, total);
-    document.getElementById('qrcode').innerHTML = '';
-    new QRCode(document.getElementById("qrcode"), { text: payload, width: 180, height: 180, correctLevel: QRCode.CorrectLevel.M });
+    const qrContainer = document.getElementById('qrcode');
+    // ✅ Fallback se biblioteca não carregar
+    if (typeof QRCode === 'undefined') {
+        qrContainer.innerHTML = `<p style="color:#666;font-size:0.9rem;text-align:center">⚠️ Não foi possível gerar o QR Code.<br>Use a chave PIX abaixo:</p><div class="pix-key">${PIX_KEY}</div><button class="btn-gold" onclick="copyPixKey()" style="padding:8px 20px;font-size:0.85rem">📋 Copiar chave</button>`;
+        return;
+    }
+    qrContainer.innerHTML = '';
+    new QRCode(qrContainer, { text: payload, width: 180, height: 180, correctLevel: QRCode.CorrectLevel.M });
 }
-
 function generatePixPayload(key, name, city, amount) {
     const cleanKey = key.replace(/[^a-zA-Z0-9@._-]/g, '');
     const amountStr = amount.toFixed(2);
@@ -1624,7 +1196,6 @@ function generatePixPayload(key, name, city, amount) {
     const crc = calculateCRC16(base);
     return base.replace("6304", "6304" + crc);
 }
-
 function calculateCRC16(str) {
     let crc = 0xFFFF; const poly = 0x1021;
     for (let i = 0; i < str.length; i++) {
@@ -1633,7 +1204,6 @@ function calculateCRC16(str) {
     }
     return crc.toString(16).toUpperCase().padStart(4, '0');
 }
-
 function copyPixKey() { navigator.clipboard.writeText(PIX_KEY).then(() => showToast('📋 Chave PIX copiada!')); }
 
 // ===== WHATSAPP =====
@@ -1642,55 +1212,24 @@ function sendToWhatsApp() {
     const phone = document.getElementById('customerPhone').value.trim();
     const date = document.getElementById('pickupDate').value;
     const time = document.getElementById('pickupTime').value;
-    
     if (!name || !phone || !date || !time) { alert('⚠️ Preencha todos os campos obrigatórios.'); return; }
     if (cart.length === 0) { alert('⚠️ Adicione pelo menos um bolo.'); return; }
-    
-    // 🏢 AJUSTE: Removida validação de input de endereço (agora é fixo)
-    // Endereço é obtido diretamente do objeto enderecosCorporativos
-    
-    if (!checkAipimAvailability()) {
-        alert('⚠️ Bolo de Aipim só está disponível para retirada após as 14h.');
-        return;
-    }
-    
+    if (!checkAipimAvailability()) { alert('⚠️ Bolo de Aipim só está disponível para retirada após as 14h.'); return; }
     const selectedDate = new Date(date + 'T00:00:00');
     if (selectedDate.getDay() === 0) { alert('⚠️ Não trabalhamos aos domingos.'); return; }
-    
     const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     const items = cart.map(i => `• ${i.quantity}x ${i.name} (R$ ${(i.quantity*i.price).toFixed(2).replace('.',',')})`).join('%0A');
-    
-    // 🏢 AJUSTE: Usa endereço fixo do objeto, sem input do usuário
     let corporateInfo = '';
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
         const partnerName = codigosCorporativos[codigoCorporativoValido].nome;
-        // 🏢 AJUSTE: Pega endereço fixo do objeto
-        const fixedAddress = enderecosCorporativos[codigoCorporativoValido] || 'Endereço não cadastrado';
-        
+        const fixedAddress = codigosCorporativos[codigoCorporativoValido].endereco || 'Endereço não cadastrado';
         corporateInfo = `🏢 *PARCEIRO*: ${partnerName}%0A✅ *FRETE GRÁTIS*%0A📍 *Endereço:* ${fixedAddress}%0A%0A`;
     }
-    
-    const message = `🎂 *NOVO PEDIDO - CASA MONDEGO*%0A%0A` +
-        `*Cliente:* ${name}%0A` +
-        `*WhatsApp:* ${phone}%0A%0A` +
-        corporateInfo +
-        `*Itens do Pedido:*%0A${items}%0A%0A` +
-        `*Retirada/Entrega:* ${formatDateBR(date)} às ${time}%0A` +
-        `*Modalidade:* ${codigoCorporativoValido ? 'Entrega agendada (frete grátis)' : 'Cliente retira (pessoal ou via app)'}%0A%0A` +
-        `*Total:* R$ ${total.toFixed(2).replace('.',',')}%0A` +
-        `*Pagamento:* PIX confirmado%0A%0A` +
-        `📸 *Enviarei o comprovante de pagamento em seguida!*%0A%0A` +
-        `Aguardo confirmação! 🙏`;
-    
+    const message = `🎂 *NOVO PEDIDO - CASA MONDEGO*%0A%0A*Cliente:* ${name}%0A*WhatsApp:* ${phone}%0A%0A${corporateInfo}*Itens do Pedido:*%0A${items}%0A%0A*Retirada/Entrega:* ${formatDateBR(date)} às ${time}%0A*Modalidade:* ${codigoCorporativoValido ? 'Entrega agendada (frete grátis)' : 'Cliente retira (pessoal ou via app)'}%0A%0A*Total:* R$ ${total.toFixed(2).replace('.',',')}%0A*Pagamento:* PIX confirmado%0A%0A📸 *Enviarei o comprovante de pagamento em seguida!*%0A%0AAguardo confirmação! 🙏`;
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
     updateProgress(3);
-    setTimeout(() => {
-        closeCheckout(); 
-        window.open(url, '_blank'); 
-        resetCart();
-    }, 500);
+    setTimeout(() => { closeCheckout(); window.open(url, '_blank'); resetCart(); }, 500);
 }
-
 function formatDateBR(dateStr) { const [y,m,d] = dateStr.split('-'); return `${d}/${m}/${y}`; }
 function resetCart() { 
     cart = []; saveCart(); updateCartFloat(); 
@@ -1699,12 +1238,62 @@ function resetCart() {
     document.getElementById('pickupDate').value = ''; 
     document.getElementById('pickupTime').innerHTML = '<option value="">🕒 Escolha a data para ver os horários disponíveis</option>'; 
     document.getElementById('corporateCodeInput').value = ''; 
-    codigoCorporativoValido = null; 
+    // ✅ CORREÇÃO: Remove do localStorage também
+    codigoCorporativoValido = null;
+    localStorage.removeItem('mondego_corp');
+    updateCorporateUI();
 }
 function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2500); }
 document.getElementById('checkoutModal')?.addEventListener('click', (e) => { if (e.target.id === 'checkoutModal') closeCheckout(); });
 document.getElementById('corporateModal')?.addEventListener('click', (e) => { if (e.target.id === 'corporateModal') closeCorporateModal(); });
-</script>
 
+// ===== INICIALIZAÇÃO =====
+document.addEventListener('DOMContentLoaded', async () => {
+    // Carrega e renderiza bolos do JSON
+    const bolos = await carregarBolos();
+    const grid = document.getElementById('bolosGrid');
+    grid.innerHTML = bolos.map(b => `
+        <div class="bolo-card">
+            <div class="bolo-img-container">
+                <img src="${b.img}" alt="${b.name}" class="bolo-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop'">
+            </div>
+            <div class="bolo-info">
+                <h3>${b.name}</h3>
+                <p>${b.desc}</p>
+                <button class="btn-gold" onclick="addToCart(${b.id}, '${b.name}', ${b.price.toFixed(2)})" aria-label="Adicionar ${b.name} ao carrinho por R$ ${b.price.toFixed(2).replace('.',',')}">
+                    Encomendar • R$ ${b.price.toFixed(2).replace('.',',')}
+                </button>
+            </div>
+        </div>
+    `).join('');
+    
+    // Restante da inicialização
+    if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
+        showCorporateBanner(codigoCorporativoValido);
+        updateCorporateUI();
+    }
+    updateCartFloat();
+    setupPickupDate();
+    document.getElementById('pixKeyDisplay').textContent = PIX_KEY;
+    document.getElementById('pickupDate')?.addEventListener('change', () => { setupPickupTimeOptions(); checkAipimAvailability(); });
+    
+    // Auto-add via URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const addCakeId = urlParams.get('add');
+    const codigoUrl = urlParams.get('codigo');
+    if (codigoUrl && codigosCorporativos[codigoUrl.toUpperCase()]) {
+        codigoCorporativoValido = codigoUrl.toUpperCase();
+        showCorporateBanner(codigoCorporativoValido);
+        updateCorporateUI();
+    }
+    if (addCakeId) {
+        const cake = bolos.find(c => c.id == addCakeId);
+        if (cake) {
+            addToCart(parseInt(addCakeId), cake.name, cake.price);
+            setTimeout(() => { showToast(`🎂 ${cake.name} adicionado ao carrinho!`); setTimeout(() => openCheckout(), 1500); }, 500);
+        }
+    }
+});
+</script>
 </body>
 </html>
