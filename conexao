@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Mondego | Conexão Digital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #FFF8F0 0%, #FFECD2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #4A4A4A;
+        }
+        .container { max-width: 420px; margin: 0 auto; text-align: center; }
+        
+        .header {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+        .logo-circle {
+            width: 100px; height: 100px;
+            background: #D4A574;
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 36px; font-weight: bold;
+            margin: 0 auto 15px;
+            box-shadow: 0 4px 10px rgba(212,165,116,0.4);
+        }
+        h1 { color: #8B6914; font-size: 1.6rem; margin-bottom: 5px; }
+        .tagline { color: #A67B5B; font-style: italic; font-size: 0.95rem; }
+        
+        .hours {
+            background: #FFF5EB;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: left;
+            border-left: 4px solid #D4A574;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        /* Botões Principais */
+        .btn {
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; padding: 16px; margin: 10px 0;
+            border-radius: 50px; text-decoration: none;
+            color: white; font-weight: 600; font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+            border: none; cursor: pointer;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.18); }
+        .btn i { margin-right: 10px; font-size: 1.2rem; }
+        
+        .whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
+        .site { background: linear-gradient(135deg, #D4A574, #8B6914); }
+        .instagram { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
+        .google { background: linear-gradient(135deg, #4285F4, #34A853); }
+        .pix { background: linear-gradient(135deg, #32BCAD, #26A69A); }
+        
+        /* Card de Wi-Fi */
+        .wifi-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: left;
+        }
+        .wifi-header { display: flex; align-items: center; margin-bottom: 10px; }
+        .wifi-header i { font-size: 1.5rem; color: #6C757D; margin-right: 10px; }
+        .wifi-header h3 { font-size: 1.1rem; color: #333; }
+        
+        .wifi-info { background: #F8F9FA; padding: 12px; border-radius: 8px; margin-bottom: 10px; }
+        .wifi-label { font-size: 0.8rem; color: #888; text-transform: uppercase; font-weight: bold; }
+        .wifi-value { font-size: 1rem; color: #333; font-family: monospace; }
+        
+        .btn-copy {
+            width: 100%;
+            padding: 10px;
+            background: #E9ECEF;
+            color: #495057;
+            border: 1px solid #CED4DA;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .btn-copy:active { background: #DEE2E6; }
+        .btn-copy i { margin-right: 8px; }
+
+        .footer { margin-top: 25px; color: #888; font-size: 0.8rem; }
+        
+        /* Toast de notificação */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 50px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        #toast.show { visibility: visible; opacity: 1; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-circle">CM</div>
+            <h1>Casa Mondego</h1>
+            <p class="tagline">"Receitas de família com o verdadeiro sabor do aconchego"</p>
+        </div>
+
+        <div class="hours">
+            <strong>🕐 Funcionamento:</strong><br>
+            Seg a Sex: 10h às 18h • Sáb: 10h às 16h<br>
+             Bom Retiro, Curitiba/PR
+        </div>
+
+        <!-- BOTÕES PRINCIPAIS -->
+        <a href="https://wa.me/5541991755009?text=Olá!%20Vim%20pelo%20cartão%20NFC!" class="btn whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i> Fazer Pedido
+        </a>
+
+        <a href="https://www.casamondego.com.br" class="btn site" target="_blank">
+            <i class="fas fa-utensils"></i> Ver Cardápio
+        </a>
+
+        <a href="https://instagram.com/casa.mondego" class="btn instagram" target="_blank">
+            <i class="fab fa-instagram"></i> Instagram
+        </a>
+
+        <a href="https://g.page/r/SEU_LINK_AQUI/review" class="btn google" target="_blank">
+            <i class="fas fa-star"></i> Avaliar no Google
+        </a>
+
+        <!-- CARD DE WI-FI -->
+        <div class="wifi-card">
+            <div class="wifi-header">
+                <i class="fas fa-wifi"></i>
+                <h3>Wi-Fi da Loja</h3>
+            </div>
+            <div class="wifi-info">
+                <div class="wifi-label">Rede (SSID)</div>
+                <div class="wifi-value">CasaMondego_WiFi</div>
+            </div>
+            <div class="wifi-info">
+                <div class="wifi-label">Senha</div>
+                <div class="wifi-value" id="wifi-pass">mondego2024</div>
+            </div>
+            <button class="btn-copy" onclick="copiarTexto('mondego2024')">
+                <i class="fas fa-copy"></i> Copiar Senha
+            </button>
+        </div>
+
+        <!-- BOTÃO PIX -->
+        <button class="btn pix" onclick="copiarTexto('contato@casamondego.com.br')">
+            <i class="fas fa-qrcode"></i> Copiar Chave Pix
+        </button>
+
+        <div class="footer">
+            <p> (41) 99175-5009</p>
+            <p style="margin-top:8px;">© 2026 Casa Mondego</p>
+        </div>
+    </div>
+
+    <!-- Notificação Flutuante -->
+    <div id="toast">Copiado para a área de transferência!</div>
+
+    <script>
+        function copiarTexto(texto) {
+            navigator.clipboard.writeText(texto).then(function() {
+                var toast = document.getElementById("toast");
+                toast.className = "show";
+                setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+            }, function(err) {
+                alert('Erro ao copiar. Tente selecionar o texto manualmente.');
+            });
+        }
+    </script>
+</body>
+</html>
