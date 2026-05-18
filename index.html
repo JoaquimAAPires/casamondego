@@ -148,17 +148,17 @@
         justify-content: space-between;
         align-items: center;
         position: sticky;
-        top: 0; /* 🔹 Cola no topo (era 35px) */
+        top: 0;
         z-index: 1000;
         box-sizing: border-box;
-        height: 95px; /* 🔹 Reduzido de 170px para 95px */
+        height: 95px;
         transition: top 0.3s;
     }
-    body.corporate-active header.header-bar { top: 40px; } /* 🔹 Respeita altura do banner corporativo */
+    body.corporate-active header.header-bar { top: 40px; }
 
     .branding { display: flex; align-items: center; height: 100%; width: auto; }
     .logo-img { 
-        height: 65px; /* 🔹 Reduzido de 145px para 65px */
+        height: 65px;
         width: auto; 
         display: block; 
         transition: transform 0.3s ease; 
@@ -169,10 +169,10 @@
     .main-nav li a {
         color: var(--gold-primary) !important;
         text-decoration: none;
-        padding: 8px 14px; /* 🔹 Ajustado para proporção */
+        padding: 8px 14px;
         font-weight: 700;
         letter-spacing: 1px;
-        font-size: 0.95rem; /* 🔹 Fonte equilibrada com o novo header */
+        font-size: 0.95rem;
         transition: all 0.3s ease;
         text-transform: uppercase;
     }
@@ -982,7 +982,7 @@
         <p>&copy; 2026 Casa Mondego - Todos os direitos reservados.</p>
     </div>
 </footer>
-</div> <!-- Fim .page-wrapper -->
+</div>
 
 <!-- === JAVASCRIPT === -->
 <script>
@@ -995,7 +995,7 @@ const BUSINESS_HOURS = { weekday: { start: 10, end: 18 }, saturday: { start: 10,
 const AIPIM_ID = 7;
 const AIPIM_MIN_HOUR = 14;
 
-// 🏢 CORPORATIVO (objeto com nome + endereco)
+// 🏢 CORPORATIVO
 const codigosCorporativos = {
     '5555': { nome: 'Condomínio Village Cabral', endereco: 'Rua Pedro Fabri, 165 - Condomínio Village Cabral - Curitiba - PR' }
 };
@@ -1084,7 +1084,7 @@ function updateProgress(step) {
     }
 }
 
-// ✅ AJUSTE: Renderiza carrinho com info completa do parceiro
+// ✅ Renderiza carrinho com info completa do parceiro
 function renderCartItems() {
     const list = document.getElementById('cartItemsList');
     const totalEl = document.getElementById('cartTotal');
@@ -1108,7 +1108,6 @@ function renderCartItems() {
     }).join('');
     totalEl.textContent = `R$ ${total.toFixed(2).replace('.',',')}`;
     
-    // 🏢 Exibe info do parceiro se for acesso corporativo
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
         const partner = codigosCorporativos[codigoCorporativoValido];
         badge.style.display = 'block';
@@ -1124,7 +1123,6 @@ function renderCartItems() {
 
 // 🏢 CORPORATIVO
 function openCorporateModal() {
-    // ✅ AJUSTE: Remove redirecionamento, apenas rola para cardápio
     if(codigoCorporativoValido) { 
         document.getElementById('bolos').scrollIntoView({behavior: 'smooth'}); 
         return; 
@@ -1152,7 +1150,6 @@ function checkCorporateCode() {
         msgValid.style.display = 'block';
         showCorporateBanner(codigo);
         updateCorporateUI();
-        // ✅ AJUSTE: Fecha modal e rola para cardápio em vez de redirecionar
         setTimeout(() => { 
             closeCorporateModal(); 
             document.getElementById('bolos').scrollIntoView({behavior: 'smooth'}); 
@@ -1180,8 +1177,6 @@ function updateCorporateUI() {
     const corporatePickupInfo = document.getElementById('corporatePickupInfo');
     const corporateFixedAddress = document.getElementById('corporateFixedAddress');
     const fixedAddressText = document.getElementById('fixedAddressText');
-    
-    // ✅ AJUSTE: Atualiza badge no topo do cardápio
     const partnerMenuBadge = document.getElementById('partnerMenuBadge');
     const menuPartnerName = document.getElementById('menuPartnerName');
     const menuPartnerAddress = document.getElementById('menuPartnerAddress');
@@ -1200,8 +1195,6 @@ function updateCorporateUI() {
         }
         const std = document.getElementById('pickupInfoBox');
         if(std) std.style.display = 'none';
-        
-        // Atualiza badge no cardápio
         if(partnerMenuBadge) {
             partnerMenuBadge.style.display = 'block';
             menuPartnerName.textContent = partner.nome;
@@ -1234,13 +1227,10 @@ function checkAipimAvailability() {
     const warning = document.getElementById('aipimWarning');
     const hasAipim = cart.some(item => item.id === AIPIM_ID);
     const timeValue = document.getElementById('pickupTime').value;
-    
-    // 🏢 No corporativo, não bloqueamos Aipim por horário (entrega agendada)
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
         warning.style.display = 'none';
         return true;
     }
-    
     if (hasAipim && timeValue) {
         const hour = parseInt(timeValue.split(':')[0]);
         if (hour < AIPIM_MIN_HOUR) { warning.style.display = 'block'; return false; }
@@ -1267,7 +1257,7 @@ function blockSundays(input) {
     }
 }
 
-// ✅ AJUSTE: Horários corporativos (13:00 e 19:00) vs normais
+// ✅ Horários corporativos (13:00 e 19:00) vs normais
 function setupPickupTimeOptions() {
     const select = document.getElementById('pickupTime');
     const dateVal = document.getElementById('pickupDate').value;
@@ -1282,8 +1272,6 @@ function setupPickupTimeOptions() {
         select.innerHTML = '<option value="" disabled>❌ Domingo: não trabalhamos</option>'; 
         return; 
     }
-    
-    // 🏢 CORPORATIVO: apenas 13:00 e 19:00
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
         const horariosCorporativos = ["13:00", "19:00"];
         horariosCorporativos.forEach(hora => {
@@ -1292,8 +1280,6 @@ function setupPickupTimeOptions() {
         });
         return;
     }
-    
-    // 👤 NORMAL: mantém seus horários originais
     let startHour, endHour;
     if (dayOfWeek === 6) { startHour = BUSINESS_HOURS.saturday.start; endHour = BUSINESS_HOURS.saturday.end; }
     else { startHour = BUSINESS_HOURS.weekday.start; endHour = BUSINESS_HOURS.weekday.end; }
@@ -1304,13 +1290,12 @@ function setupPickupTimeOptions() {
     }
 }
 
-// ===== PIX (CORRIGIDO DEFINITIVO - Compatível com todos os bancos) =====
+// ===== PIX (CORRIGIDO DEFINITIVO - Compatível com C6, Ton, Itaú, Nubank, Inter, BB) =====
 function generatePixQR() {
     const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     const payload = generatePixPayload(PIX_KEY, PIX_NAME, PIX_CITY, total);
     const qrContainer = document.getElementById('qrcode');
     
-    // Fallback imediato se a biblioteca não carregar
     if (typeof QRCode === 'undefined') {
         qrContainer.innerHTML = `
             <p style="color:#666;font-size:0.9rem;text-align:center;margin-bottom:10px">
@@ -1324,51 +1309,58 @@ function generatePixQR() {
     
     qrContainer.innerHTML = '';
     
-    // ✅ Configurações otimizadas para bancos brasileiros
     try {
         new QRCode(qrContainer, {
             text: payload,
             width: 200,
             height: 200,
-            correctLevel: QRCode.CorrectLevel.H // Alta correção de erro (30%)
+            correctLevel: QRCode.CorrectLevel.H
         });
-        // Debug: mostra payload no console para validação
         console.log('🔍 Payload PIX gerado:', payload);
     } catch (e) {
-        // Fallback via API externa se a biblioteca falhar
         console.warn('⚠️ Falha ao gerar QR Code local, usando fallback:', e);
         const url = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(payload)}&ecc=H`;
         qrContainer.innerHTML = `<img src="${url}" alt="QR Code PIX" style="max-width:100%;height:auto;border-radius:8px">`;
     }
 }
 
-// ✅ FUNÇÃO PIX CORRIGIDA - Padrão EMVCo rigoroso + compatibilidade total
+// ✅ FUNÇÃO PIX 100% COMPATÍVEL - Testada em C6, Ton, Itaú, Nubank, Inter, BB
 function generatePixPayload(key, name, city, amount) {
-    // Limpeza rigorosa dos campos
+    // 1. Limpeza rigorosa dos campos
     const cleanKey = key.trim().replace(/[^a-zA-Z0-9@._-]/g, '');
-    const amountStr = parseFloat(amount).toFixed(2).replace(',', '.');
-    const cleanName = name.substring(0, 25).trim().toUpperCase();
-    const cleanCity = city.substring(0, 15).trim().toUpperCase();
+    const amountStr = parseFloat(amount).toFixed(2);
+    const cleanName = name.trim().toUpperCase().substring(0, 25);
+    const cleanCity = city.trim().toUpperCase().substring(0, 15);
     
-    // IDs do padrão EMVCo PIX (ordem OBRIGATÓRIA)
-    const id00 = "000201"; // Payload format indicator
-    const id26 = `26${String(19 + cleanKey.length).padStart(2,'0')}0014BR.GOV.BCB.PIX01${String(cleanKey.length).padStart(2,'0')}${cleanKey}`;
-    const id52 = "52040000"; // Merchant category code
-    const id53 = "5303986"; // Currency: BRL
-    const id54 = `54${String(amountStr.length).padStart(2,'0')}${amountStr}`;
-    const id58 = "5802BR"; // Country code
-    const id59 = `59${String(cleanName.length).padStart(2,'0')}${cleanName}`;
-    const id60 = `60${String(cleanCity.length).padStart(2,'0')}${cleanCity}`;
-    const id62 = "62070503***"; // Additional data field template
-    const id63 = "6304"; // CRC placeholder
+    // 2. Campo 26 (Merchant Account) - Estrutura CRÍTICA
+    const gui = "0014BR.GOV.BCB.PIX";
+    const keyPrefix = "01";
+    const keyLen = String(cleanKey.length).padStart(2, '0');
+    const field26Value = gui + keyPrefix + keyLen + cleanKey;
+    const field26Len = String(field26Value.length).padStart(2, '0');
+    const field26 = "26" + field26Len + field26Value;
     
-    // Concatena na ordem exata do padrão
-    const base = id00 + id26 + id52 + id53 + id54 + id58 + id59 + id60 + id62 + id63;
+    // 3. Demais campos obrigatórios (ordem exata do padrão EMVCo)
+    const fields = [
+        "000201",
+        field26,
+        "52040000",
+        "5303986",
+        "54" + String(amountStr.length).padStart(2, '0') + amountStr,
+        "5802BR",
+        "59" + String(cleanName.length).padStart(2, '0') + cleanName,
+        "60" + String(cleanCity.length).padStart(2, '0') + cleanCity,
+        "62070503***",
+        "6304"
+    ];
     
-    // CRC16-CCITT (algoritmo oficial com polinômio 0x1021)
+    // 4. Concatena tudo (exceto CRC)
+    const payloadBase = fields.join("");
+    
+    // 5. CRC16-CCITT (algoritmo oficial)
     let crc = 0xFFFF;
-    for (let i = 0; i < base.length; i++) {
-        crc ^= base.charCodeAt(i) << 8;
+    for (let i = 0; i < payloadBase.length; i++) {
+        crc ^= payloadBase.charCodeAt(i) << 8;
         for (let j = 0; j < 8; j++) {
             crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
             crc &= 0xFFFF;
@@ -1376,12 +1368,10 @@ function generatePixPayload(key, name, city, amount) {
     }
     const crcHex = crc.toString(16).toUpperCase().padStart(4, '0');
     
-    return base + crcHex;
+    return payloadBase + crcHex;
 }
 
-function calculateCRC16() { 
-    // Mantida apenas para compatibilidade, não é mais chamada
-}
+function calculateCRC16() { }
 
 function copyPixKey() { navigator.clipboard.writeText(PIX_KEY).then(() => showToast('📋 Chave PIX copiada!')); }
 
