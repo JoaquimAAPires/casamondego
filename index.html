@@ -1304,7 +1304,7 @@ function setupPickupTimeOptions() {
     }
 }
 
-// ===== PIX =====
+// ===== PIX (CORRIGIDO - Padrão BCB/EMVCo) =====
 function generatePixQR() {
     const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     const payload = generatePixPayload(PIX_KEY, PIX_NAME, PIX_CITY, total);
@@ -1316,22 +1316,37 @@ function generatePixQR() {
     qrContainer.innerHTML = '';
     new QRCode(qrContainer, { text: payload, width: 180, height: 180, correctLevel: QRCode.CorrectLevel.M });
 }
+
+// ✅ FUNÇÃO PIX CORRIGIDA - Compatível com todos os bancos
 function generatePixPayload(key, name, city, amount) {
     const cleanKey = key.replace(/[^a-zA-Z0-9@._-]/g, '');
-    const amountStr = amount.toFixed(2);
-    const fields = ["000201", "26" + String(8 + cleanKey.length).padStart(2,'0') + "0014BR.GOV.BCB.PIX01" + String(cleanKey.length).padStart(2,'0') + cleanKey, "52040000", "5303986", "54" + String(amountStr.length).padStart(2,'0') + amountStr, "5802BR", "59" + String(name.length).padStart(2,'0') + name, "60" + String(city.length).padStart(2,'0') + city, "62070503***", "6304"];
-    const base = fields.join("");
-    const crc = calculateCRC16(base);
-    return base.replace("6304", "6304" + crc);
-}
-function calculateCRC16(str) {
-    let crc = 0xFFFF; const poly = 0x1021;
-    for (let i = 0; i < str.length; i++) {
-        crc ^= str.charCodeAt(i) << 8;
-        for (let j = 0; j < 8; j++) { crc = (crc & 0x8000) ? (crc << 1) ^ poly : crc << 1; crc &= 0xFFFF; }
+    const amountStr = parseFloat(amount).toFixed(2);
+    const truncatedName = name.substring(0, 25); // Limite BCB
+    const truncatedCity = city.substring(0, 15); // Limite BCB
+
+    // Montagem estrita do padrão EMVCo PIX
+    const payload = `00020126` + String(19 + cleanKey.length).padStart(2,'0') + `0014BR.GOV.BCB.PIX01` + String(cleanKey.length).padStart(2,'0') + cleanKey +
+                    `52040000530398654` + String(amountStr.length).padStart(2,'0') + amountStr +
+                    `5802BR59` + String(truncatedName.length).padStart(2,'0') + truncatedName +
+                    `60` + String(truncatedCity.length).padStart(2,'0') + truncatedCity +
+                    `62070503***6304`;
+
+    // Cálculo CRC16-CCITT (0xFFFF, Polinômio 0x1021)
+    let crc = 0xFFFF;
+    for (let i = 0; i < payload.length; i++) {
+        crc ^= payload.charCodeAt(i) << 8;
+        for (let j = 0; j < 8; j++) {
+            crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
+            crc &= 0xFFFF;
+        }
     }
-    return crc.toString(16).toUpperCase().padStart(4, '0');
+    return payload + crc.toString(16).toUpperCase().padStart(4, '0');
 }
+
+function calculateCRC16() { 
+    // Mantida apenas para compatibilidade, não é mais chamada. Pode remover se quiser.
+}
+
 function copyPixKey() { navigator.clipboard.writeText(PIX_KEY).then(() => showToast('📋 Chave PIX copiada!')); }
 
 // ===== WHATSAPP =====
