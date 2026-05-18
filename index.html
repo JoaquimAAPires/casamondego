@@ -1304,47 +1304,83 @@ function setupPickupTimeOptions() {
     }
 }
 
-// ===== PIX (CORRIGIDO - Padrão BCB/EMVCo) =====
+// ===== PIX (CORRIGIDO DEFINITIVO - Compatível com todos os bancos) =====
 function generatePixQR() {
     const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     const payload = generatePixPayload(PIX_KEY, PIX_NAME, PIX_CITY, total);
     const qrContainer = document.getElementById('qrcode');
+    
+    // Fallback imediato se a biblioteca não carregar
     if (typeof QRCode === 'undefined') {
-        qrContainer.innerHTML = `<p style="color:#666;font-size:0.9rem;text-align:center">⚠️ Não foi possível gerar o QR Code.<br>Use a chave PIX abaixo:</p><div class="pix-key">${PIX_KEY}</div><button class="btn-gold" onclick="copyPixKey()" style="padding:8px 20px;font-size:0.85rem">📋 Copiar chave</button>`;
+        qrContainer.innerHTML = `
+            <p style="color:#666;font-size:0.9rem;text-align:center;margin-bottom:10px">
+                ⚠️ QR Code indisponível. Use a chave abaixo:
+            </p>
+            <div class="pix-key" style="font-size:0.8rem;padding:8px;word-break:break-all">${PIX_KEY}</div>
+            <button class="btn-gold" onclick="copyPixKey()" style="padding:8px 16px;font-size:0.85rem;margin-top:8px">📋 Copiar chave</button>
+        `;
         return;
     }
+    
     qrContainer.innerHTML = '';
-    new QRCode(qrContainer, { text: payload, width: 180, height: 180, correctLevel: QRCode.CorrectLevel.M });
+    
+    // ✅ Configurações otimizadas para bancos brasileiros
+    try {
+        new QRCode(qrContainer, {
+            text: payload,
+            width: 200,
+            height: 200,
+            correctLevel: QRCode.CorrectLevel.H // Alta correção de erro (30%)
+        });
+        // Debug: mostra payload no console para validação
+        console.log('🔍 Payload PIX gerado:', payload);
+    } catch (e) {
+        // Fallback via API externa se a biblioteca falhar
+        console.warn('⚠️ Falha ao gerar QR Code local, usando fallback:', e);
+        const url = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(payload)}&ecc=H`;
+        qrContainer.innerHTML = `<img src="${url}" alt="QR Code PIX" style="max-width:100%;height:auto;border-radius:8px">`;
+    }
 }
 
-// ✅ FUNÇÃO PIX CORRIGIDA - Compatível com todos os bancos
+// ✅ FUNÇÃO PIX CORRIGIDA - Padrão EMVCo rigoroso + compatibilidade total
 function generatePixPayload(key, name, city, amount) {
-    const cleanKey = key.replace(/[^a-zA-Z0-9@._-]/g, '');
-    const amountStr = parseFloat(amount).toFixed(2);
-    const truncatedName = name.substring(0, 25); // Limite BCB
-    const truncatedCity = city.substring(0, 15); // Limite BCB
-
-    // Montagem estrita do padrão EMVCo PIX
-    const payload = `00020126` + String(19 + cleanKey.length).padStart(2,'0') + `0014BR.GOV.BCB.PIX01` + String(cleanKey.length).padStart(2,'0') + cleanKey +
-                    `52040000530398654` + String(amountStr.length).padStart(2,'0') + amountStr +
-                    `5802BR59` + String(truncatedName.length).padStart(2,'0') + truncatedName +
-                    `60` + String(truncatedCity.length).padStart(2,'0') + truncatedCity +
-                    `62070503***6304`;
-
-    // Cálculo CRC16-CCITT (0xFFFF, Polinômio 0x1021)
+    // Limpeza rigorosa dos campos
+    const cleanKey = key.trim().replace(/[^a-zA-Z0-9@._-]/g, '');
+    const amountStr = parseFloat(amount).toFixed(2).replace(',', '.');
+    const cleanName = name.substring(0, 25).trim().toUpperCase();
+    const cleanCity = city.substring(0, 15).trim().toUpperCase();
+    
+    // IDs do padrão EMVCo PIX (ordem OBRIGATÓRIA)
+    const id00 = "000201"; // Payload format indicator
+    const id26 = `26${String(19 + cleanKey.length).padStart(2,'0')}0014BR.GOV.BCB.PIX01${String(cleanKey.length).padStart(2,'0')}${cleanKey}`;
+    const id52 = "52040000"; // Merchant category code
+    const id53 = "5303986"; // Currency: BRL
+    const id54 = `54${String(amountStr.length).padStart(2,'0')}${amountStr}`;
+    const id58 = "5802BR"; // Country code
+    const id59 = `59${String(cleanName.length).padStart(2,'0')}${cleanName}`;
+    const id60 = `60${String(cleanCity.length).padStart(2,'0')}${cleanCity}`;
+    const id62 = "62070503***"; // Additional data field template
+    const id63 = "6304"; // CRC placeholder
+    
+    // Concatena na ordem exata do padrão
+    const base = id00 + id26 + id52 + id53 + id54 + id58 + id59 + id60 + id62 + id63;
+    
+    // CRC16-CCITT (algoritmo oficial com polinômio 0x1021)
     let crc = 0xFFFF;
-    for (let i = 0; i < payload.length; i++) {
-        crc ^= payload.charCodeAt(i) << 8;
+    for (let i = 0; i < base.length; i++) {
+        crc ^= base.charCodeAt(i) << 8;
         for (let j = 0; j < 8; j++) {
             crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
             crc &= 0xFFFF;
         }
     }
-    return payload + crc.toString(16).toUpperCase().padStart(4, '0');
+    const crcHex = crc.toString(16).toUpperCase().padStart(4, '0');
+    
+    return base + crcHex;
 }
 
 function calculateCRC16() { 
-    // Mantida apenas para compatibilidade, não é mais chamada. Pode remover se quiser.
+    // Mantida apenas para compatibilidade, não é mais chamada
 }
 
 function copyPixKey() { navigator.clipboard.writeText(PIX_KEY).then(() => showToast('📋 Chave PIX copiada!')); }
