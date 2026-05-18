@@ -982,7 +982,7 @@
         <p>&copy; 2026 Casa Mondego - Todos os direitos reservados.</p>
     </div>
 </footer>
-</div>
+</div> <!-- Fim .page-wrapper -->
 
 <!-- === JAVASCRIPT === -->
 <script>
@@ -1032,6 +1032,15 @@ async function carregarBolos() {
     }
 }
 
+// ✅ NOVA FUNÇÃO: Atualiza checkout se estiver aberto
+function refreshCheckoutIfOpen() {
+    if (document.getElementById('checkoutModal').classList.contains('active')) {
+        renderCartItems();
+        generatePixQR();
+        checkAipimAvailability();
+    }
+}
+
 // ===== CARRINHO =====
 function addToCart(id, name, price) {
     const existing = cart.find(item => item.id === id);
@@ -1040,6 +1049,7 @@ function addToCart(id, name, price) {
     saveCart();
     updateCartFloat();
     showToast(`✅ ${name} adicionado ao carrinho!`);
+    refreshCheckoutIfOpen(); // ✅ Atualiza PIX se checkout aberto
 }
 function removeFromCart(id) {
     cart = cart.filter(item => item.id !== id);
@@ -1047,13 +1057,18 @@ function removeFromCart(id) {
     renderCartItems();
     updateCartFloat();
     checkAipimAvailability();
+    refreshCheckoutIfOpen(); // ✅ Atualiza PIX se checkout aberto
 }
 function updateQuantity(id, change) {
     const item = cart.find(i => i.id === id);
     if (item) {
         item.quantity += change;
         if (item.quantity <= 0) removeFromCart(id);
-        else { saveCart(); renderCartItems(); }
+        else { 
+            saveCart(); 
+            renderCartItems(); 
+            refreshCheckoutIfOpen(); // ✅ Atualiza PIX se checkout aberto
+        }
     }
 }
 function saveCart() { localStorage.setItem('cart_mondego', JSON.stringify(cart)); }
