@@ -128,6 +128,7 @@
         top: 0;
         z-index: 1001;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
     }
     #corporateBanner a {
         color: var(--black-bg);
@@ -151,25 +152,11 @@
         z-index: 1002;
         box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         border-bottom: 2px solid var(--gold-primary);
+        transition: all 0.3s ease;
     }
     #holidayBanner strong { color: var(--gold-primary); }
-    body.holiday-active #corporateBanner { top: 45px; }
-    body.holiday-active header.header-bar { top: 85px; }
-    body.holiday-active.corporate-active header.header-bar { top: 130px; }
 
-    .holiday-warning {
-        background: #ffebee;
-        color: #c62828;
-        padding: 10px;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        margin-top: 10px;
-        border-left: 4px solid #c62828;
-        display: none;
-        font-weight: 600;
-    }
-
-    /* ✅ CABEÇALHO AJUSTADO (Desktop compacto e sem espaço vazio) */
+    /* ✅ CABEÇALHO AJUSTADO (Lógica de posicionamento à prova de falhas) */
     header.header-bar {
         background-color: var(--black-bg) !important;
         border-bottom: 2px solid var(--gold-primary);
@@ -184,9 +171,11 @@
         z-index: 1000;
         box-sizing: border-box;
         height: 95px;
-        transition: top 0.3s;
+        transition: top 0.3s ease;
     }
     body.corporate-active header.header-bar { top: 40px; }
+    body.holiday-active header.header-bar { top: 45px; }
+    body.corporate-active.holiday-active header.header-bar { top: 85px; }
 
     .branding { display: flex; align-items: center; height: 100%; width: auto; }
     .logo-img { 
@@ -415,7 +404,7 @@
     .social-facebook { background-color: #1877F2; }
     .map-container { width: 100%; height: 180px; border-radius: 10px; overflow: hidden; margin-top: 15px; border: 1px solid #333; }
 
-    /* Responsive */
+    /* ✅ RESPONSIVO CORRIGIDO (Elimina espaço em branco no mobile) */
     @media (max-width: 768px) {
         header.header-bar { 
             position: relative !important; 
@@ -426,9 +415,9 @@
             border-bottom: 2px solid var(--gold-primary);
             top: 0 !important;
         }
-        body.corporate-active header.header-bar { top: 45px !important; }
-        body.holiday-active header.header-bar { top: 85px !important; }
-        body.holiday-active.corporate-active header.header-bar { top: 130px !important; }
+        body.corporate-active header.header-bar { top: 0 !important; }
+        body.holiday-active header.header-bar { top: 0 !important; }
+        body.corporate-active.holiday-active header.header-bar { top: 0 !important; }
         .logo-img { height: 90px; }
         .main-nav { flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; overflow: hidden; border: none !important; }
         .main-nav li { border: none !important; }
@@ -758,6 +747,17 @@
         border-left: 4px solid #c62828;
         display: none;
     }
+    .holiday-warning {
+        background: #ffebee;
+        color: #c62828;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        border-left: 4px solid #c62828;
+        display: none;
+        font-weight: 600;
+    }
     .corporate-modal-content { max-width: 400px; text-align: center; }
     .corporate-msg { font-size: 0.9rem; margin: 10px 0; font-weight: 600; display: none; }
     .corporate-msg.valid { color: var(--corporate-valid); display: block; }
@@ -909,7 +909,7 @@
         
         <div class="form-group">
             <label for="corporateCodeInput" style="text-align: left;">🔑 Código de Acesso:</label>
-            <input type="text" id="corporateCodeInput" placeholder="Ex: 1234" 
+            <input type="text" id="corporateCodeInput" placeholder="Ex: 0165" 
                    style="text-transform: uppercase; letter-spacing: 1px; text-align: center; font-weight: 600; font-size: 1.2rem;"
                    onkeypress="if(event.key==='Enter') checkCorporateCode()">
         </div>
@@ -951,7 +951,7 @@
 
 <!-- SEÇÃO DE BOLOS -->
 <div id="bolos">
-    <h2 class="section-title">Nossas Delícias - 14 Sabores Artesanais</h2>
+    <h2 class="section-title">Nossas Delícias - Sabores Artesanais</h2>
     
     <!-- ✅ Badge do Parceiro -->
     <div id="partnerMenuBadge">
@@ -1023,7 +1023,7 @@
 </footer>
 </div> <!-- Fim .page-wrapper -->
 
-<!-- === JAVASCRIPT === -->
+<!-- === JAVASCRIPT COMPLETO E INTEGRAL === -->
 <script>
 // ===== CONFIGURAÇÕES =====
 const WHATSAPP_NUMBER = "5541991755009";
@@ -1050,7 +1050,8 @@ let FERIADOS = [];
 // ===== 📅 NOVO: CARREGAR FERIADOS DO ARQUIVO JSON =====
 async function carregarFeriados() {
     try {
-        const res = await fetch('./assets/data/feriados.json');
+        // O '?v=' + Date.now() força o navegador a baixar o arquivo novo, ignorando o cache
+        const res = await fetch('./assets/data/feriados.json?v=' + Date.now());
         if (!res.ok) throw new Error('Arquivo feriados.json não encontrado');
         return await res.json();
     } catch (err) {
@@ -1162,7 +1163,8 @@ async function carregarBolos() {
         { id: 14, name: "Maçã com Passas", desc: "Aveludado com a doçura das passas.", price: 30.00, img: "./assets/img/bolo-maca-passas.jpg" }
     ];
     try {
-        const res = await fetch('./assets/data/cakes.json');
+        // O '?v=' + Date.now() força o navegador a baixar o arquivo novo, ignorando o cache
+        const res = await fetch('./assets/data/cakes.json?v=' + Date.now());
         if (!res.ok) throw new Error('JSON não encontrado');
         return await res.json();
     } catch (err) {
@@ -1419,6 +1421,7 @@ function blockSundaysAndHolidays(input) {
     setupPickupTimeOptions();
 }
 
+// ✅ AJUSTE SOLICITADO: Sábados para parceiros têm apenas entrega às 13:00
 function setupPickupTimeOptions() {
     const select = document.getElementById('pickupTime');
     const dateVal = document.getElementById('pickupDate').value;
@@ -1433,14 +1436,25 @@ function setupPickupTimeOptions() {
         select.innerHTML = '<option value="" disabled>❌ Domingo: não trabalhamos</option>'; 
         return; 
     }
+    
+    // ✅ LÓGICA DE HORÁRIO CORPORATIVO AJUSTADA PARA SÁBADOS
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
-        const horariosCorporativos = ["13:00", "19:00"];
+        let horariosCorporativos;
+        if (dayOfWeek === 6) {
+            // Sábado: apenas 13:00
+            horariosCorporativos = ["13:00"];
+        } else {
+            // Segunda a Sexta: 13:00 e 19:00
+            horariosCorporativos = ["13:00", "19:00"];
+        }
         horariosCorporativos.forEach(hora => {
             const label = `${hora} - ${(parseInt(hora)+1).toString().padStart(2,'0')}:00`;
             select.innerHTML += `<option value="${hora}">${label}</option>`;
         });
         return;
     }
+    
+    // Horário normal (não corporativo)
     let startHour, endHour;
     if (dayOfWeek === 6) { startHour = BUSINESS_HOURS.saturday.start; endHour = BUSINESS_HOURS.saturday.end; }
     else { startHour = BUSINESS_HOURS.weekday.start; endHour = BUSINESS_HOURS.weekday.end; }
