@@ -1,0 +1,121 @@
+[
+  {
+    "data": "2026-01-01",
+    "nome": "Confraternização Universal",
+    "tipo": "nacional",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-02-16",
+    "nome": "Carnaval",
+    "tipo": "ponto_facultativo",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-02-17",
+    "nome": "Carnaval",
+    "tipo": "ponto_facultativo",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-03-29",
+    "nome": "Aniversário de Curitiba",
+    "tipo": "municipal_curitiba",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-04-03",
+    "nome": "Sexta-feira Santa",
+    "tipo": "nacional",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-04-21",
+    "nome": "Tiradentes",
+    "tipo": "nacional",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-05-01",
+    "nome": "Dia do Trabalho",
+    "tipo": "nacional",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-06-04",
+    "nome": "Corpus Christi",
+    "tipo": "ponto_facultativo",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-09-07",
+    "nome": "Independência do Brasil",
+    "tipo": "nacional",
+    "status_loja": "aberto_normal",
+    "afeta": ["site"]
+  },
+  {
+    "data": "2026-10-12",
+    "nome": "N. Sra. Aparecida",
+    "tipo": "nacional",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-11-02",
+    "nome": "Finados",
+    "tipo": "nacional",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-11-15",
+    "nome": "Proclamação da República",
+    "tipo": "nacional",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-11-20",
+    "nome": "Dia da Consciência Negra",
+    "tipo": "nacional",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-12-24",
+    "nome": "Véspera de Natal",
+    "tipo": "corporativo",
+    "status_loja": "aberto_horario_reduzido",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-12-25",
+    "nome": "Natal",
+    "tipo": "nacional",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2026-12-31",
+    "nome": "Véspera de Ano Novo",
+    "tipo": "corporativo",
+    "status_loja": "aberto_horario_reduzido",
+    "afeta": ["site", "corporativo"]
+  },
+  {
+    "data": "2027-01-01",
+    "nome": "Confraternização Universal",
+    "tipo": "nacional",
+    "status_loja": "fechado",
+    "afeta": ["site", "corporativo"]
+  }
+]
