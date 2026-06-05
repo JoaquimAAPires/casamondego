@@ -125,8 +125,8 @@
         font-size: 0.9rem;
         font-weight: 700;
         position: sticky;
-        top: 0;
-        z-index: 1001;
+        top: 0; /* Sempre grudado no topo absoluto */
+        z-index: 1002;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         transition: all 0.3s ease;
     }
@@ -148,13 +148,18 @@
         font-size: 0.95rem;
         font-weight: 700;
         position: sticky;
-        top: 0;
-        z-index: 1002;
+        top: 0; /* Padrão: quando é o único ativo */
+        z-index: 1001;
         box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         border-bottom: 2px solid var(--gold-primary);
         transition: all 0.3s ease;
     }
     #holidayBanner strong { color: var(--gold-primary); }
+
+    /* ✅ CORREÇÃO CRUCIAL: Quando AMBOS estão ativos, o feriado fica ABAIXO do corporativo */
+    body.corporate-active.holiday-active #holidayBanner {
+        top: 40px; /* Altura exata do banner corporativo */
+    }
 
     /* ✅ CABEÇALHO AJUSTADO (Lógica de posicionamento à prova de falhas) */
     header.header-bar {
@@ -167,7 +172,7 @@
         justify-content: space-between;
         align-items: center;
         position: sticky;
-        top: 0;
+        top: 0; /* Padrão: sem faixas */
         z-index: 1000;
         box-sizing: border-box;
         height: 95px;
@@ -175,7 +180,7 @@
     }
     body.corporate-active header.header-bar { top: 40px; }
     body.holiday-active header.header-bar { top: 45px; }
-    body.corporate-active.holiday-active header.header-bar { top: 85px; }
+    body.corporate-active.holiday-active header.header-bar { top: 85px; } /* Soma das duas alturas */
 
     .branding { display: flex; align-items: center; height: 100%; width: auto; }
     .logo-img { 
@@ -404,8 +409,12 @@
     .social-facebook { background-color: #1877F2; }
     .map-container { width: 100%; height: 180px; border-radius: 10px; overflow: hidden; margin-top: 15px; border: 1px solid #333; }
 
-    /* ✅ RESPONSIVO CORRIGIDO (Elimina espaço em branco no mobile) */
+    /* ✅ RESPONSIVO CORRIGIDO (Elimina espaço em branco e bugs de scroll no mobile) */
     @media (max-width: 768px) {
+        #corporateBanner, #holidayBanner {
+            position: relative !important;
+            top: 0 !important;
+        }
         header.header-bar { 
             position: relative !important; 
             height: auto; 
@@ -415,9 +424,6 @@
             border-bottom: 2px solid var(--gold-primary);
             top: 0 !important;
         }
-        body.corporate-active header.header-bar { top: 0 !important; }
-        body.holiday-active header.header-bar { top: 0 !important; }
-        body.corporate-active.holiday-active header.header-bar { top: 0 !important; }
         .logo-img { height: 90px; }
         .main-nav { flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; overflow: hidden; border: none !important; }
         .main-nav li { border: none !important; }
@@ -909,7 +915,8 @@
         
         <div class="form-group">
             <label for="corporateCodeInput" style="text-align: left;">🔑 Código de Acesso:</label>
-            <input type="text" id="corporateCodeInput" placeholder="Ex: 0165" 
+            <!-- ✅ AJUSTE: Placeholder genérico para segurança -->
+            <input type="text" id="corporateCodeInput" placeholder="Ex: 0123" 
                    style="text-transform: uppercase; letter-spacing: 1px; text-align: center; font-weight: 600; font-size: 1.2rem;"
                    onkeypress="if(event.key==='Enter') checkCorporateCode()">
         </div>
@@ -1144,7 +1151,7 @@ function formatarDataBR(dataStr) {
     return `${d}/${m}/${y}`;
 }
 
-// ===== FUNÇÃO PARA CARREGAR BOLOS =====
+// ===== FUNÇÃO PARA CARREGAR BOLOS (COM 14 ITENS COMPLETOS NO FALLBACK) =====
 async function carregarBolos() {
     const fallback = [
         { id: 1, name: "Bolo de Chocolate", desc: "Massa fofinha e super chocolatuda, com sabor intenso e caseiro.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/PRdTFbGPPJRfxGUn.png" },
@@ -1421,7 +1428,7 @@ function blockSundaysAndHolidays(input) {
     setupPickupTimeOptions();
 }
 
-// ✅ AJUSTE SOLICITADO: Sábados para parceiros têm apenas entrega às 13:00
+// ✅ AJUSTE: Sábados para parceiros têm apenas entrega às 13:00
 function setupPickupTimeOptions() {
     const select = document.getElementById('pickupTime');
     const dateVal = document.getElementById('pickupDate').value;
@@ -1437,7 +1444,6 @@ function setupPickupTimeOptions() {
         return; 
     }
     
-    // ✅ LÓGICA DE HORÁRIO CORPORATIVO AJUSTADA PARA SÁBADOS
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
         let horariosCorporativos;
         if (dayOfWeek === 6) {
