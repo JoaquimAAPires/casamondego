@@ -137,6 +137,38 @@
         cursor: pointer;
     }
 
+    /* 📅 NOVO: Banner de Feriados */
+    #holidayBanner {
+        display: none;
+        background-color: #c62828;
+        color: white;
+        text-align: center;
+        padding: 10px 15px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        position: sticky;
+        top: 0;
+        z-index: 1002;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        border-bottom: 2px solid var(--gold-primary);
+    }
+    #holidayBanner strong { color: var(--gold-primary); }
+    body.holiday-active #corporateBanner { top: 45px; }
+    body.holiday-active header.header-bar { top: 85px; }
+    body.holiday-active.corporate-active header.header-bar { top: 130px; }
+
+    .holiday-warning {
+        background: #ffebee;
+        color: #c62828;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        border-left: 4px solid #c62828;
+        display: none;
+        font-weight: 600;
+    }
+
     /* ✅ CABEÇALHO AJUSTADO (Desktop compacto e sem espaço vazio) */
     header.header-bar {
         background-color: var(--black-bg) !important;
@@ -395,6 +427,8 @@
             top: 0 !important;
         }
         body.corporate-active header.header-bar { top: 45px !important; }
+        body.holiday-active header.header-bar { top: 85px !important; }
+        body.holiday-active.corporate-active header.header-bar { top: 130px !important; }
         .logo-img { height: 90px; }
         .main-nav { flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; overflow: hidden; border: none !important; }
         .main-nav li { border: none !important; }
@@ -742,6 +776,11 @@
     🏢 Modo Parceiro Ativo: <span id="partnerNameDisplay"></span> | <a onclick="removeCorporateAccess()">Sair</a>
 </div>
 
+<!-- 📅 NOVO: Banner de Feriados -->
+<div id="holidayBanner">
+    📅 <strong>Atenção:</strong> <span id="holidayMessage"></span>
+</div>
+
 <!-- Botão WhatsApp -->
 <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um bolo da Casa Mondego. Qual é a disponibilidade?" 
    class="whatsapp-float" 
@@ -994,6 +1033,7 @@ const PIX_CITY = "Curitiba";
 const BUSINESS_HOURS = { weekday: { start: 10, end: 18 }, saturday: { start: 10, end: 16 } };
 const AIPIM_ID = 7;
 const AIPIM_MIN_HOUR = 14;
+const DIAS_AVISO_PREVIO = 2; // 📅 Dias de antecedência para o banner de feriado aparecer
 
 // 🏢 CORPORATIVO
 const codigosCorporativos = {
@@ -1004,7 +1044,106 @@ const codigosCorporativos = {
 let cart = JSON.parse(localStorage.getItem('cart_mondego')) || [];
 let codigoCorporativoValido = localStorage.getItem('mondego_corp');
 
-// ✅ Função para carregar bolos do JSON + fallback
+// 📅 NOVO: Variável global que será preenchida pelo arquivo feriados.json
+let FERIADOS = [];
+
+// ===== 📅 NOVO: CARREGAR FERIADOS DO ARQUIVO JSON =====
+async function carregarFeriados() {
+    try {
+        const res = await fetch('./assets/data/feriados.json');
+        if (!res.ok) throw new Error('Arquivo feriados.json não encontrado');
+        return await res.json();
+    } catch (err) {
+        console.warn('⚠️ Usando feriados padrão (fallback):', err);
+        return [
+            { data: "2026-01-01", nome: "Confraternização Universal", tipo: "nacional", status_loja: "fechado", afeta: ["site", "corporativo"] },
+            { data: "2026-12-25", nome: "Natal", tipo: "nacional", status_loja: "fechado", afeta: ["site", "corporativo"] }
+        ];
+    }
+}
+
+// ===== 📅 NOVO: LÓGICA DE FERIADOS =====
+function checarFeriados() {
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    const banner = document.getElementById('holidayBanner');
+    const msgEl = document.getElementById('holidayMessage');
+    
+    let feriadoProximo = null;
+    
+    for (let feriado of FERIADOS) {
+        const dataFeriado = new Date(feriado.data + 'T00:00:00');
+        const diffTime = dataFeriado.getTime() - hoje.getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays >= 0 && diffDays <= DIAS_AVISO_PREVIO) {
+            const publicoAtual = codigoCorporativoValido ? 'corporativo' : 'site';
+            if (feriado.afeta.includes(publicoAtual)) {
+                feriadoProximo = feriado;
+                break;
+            }
+        }
+    }
+    
+    if (feriadoProximo) {
+        const dataFormatada = formatarDataBR(feriadoProximo.data);
+        let msg = "";
+        
+        if (feriadoProximo.status_loja === "fechado") {
+            msg = `Dia ${dataFormatada} (${feriadoProximo.nome}) estaremos <strong>FECHADOS</strong>. Programe seu pedido!`;
+        } else if (feriadoProximo.status_loja === "aberto_horario_reduzido") {
+            msg = `Dia ${dataFormatada} (${feriadoProximo.nome}) teremos <strong>horário reduzido</strong>.`;
+        } else if (feriadoProximo.status_loja === "aberto_normal") {
+            msg = `Dia ${dataFormatada} (${feriadoProximo.nome}) estaremos <strong>ABERTOS</strong> normalmente!`;
+        }
+        
+        msgEl.innerHTML = msg;
+        banner.style.display = 'block';
+        document.body.classList.add('holiday-active');
+    } else {
+        banner.style.display = 'none';
+        document.body.classList.remove('holiday-active');
+    }
+}
+
+// ===== 📅 NOVO: VERIFICAR FERIADO NO CHECKOUT =====
+function verificarFeriadoNoCheckout() {
+    let el = document.getElementById('holidayWarningCheckout');
+    const dateVal = document.getElementById('pickupDate').value;
+    
+    if (!el) {
+        const div = document.createElement('div');
+        div.id = 'holidayWarningCheckout';
+        div.className = 'holiday-warning';
+        document.getElementById('pickupDate').parentNode.appendChild(div);
+        el = div;
+    }
+    
+    if (!dateVal) {
+        el.style.display = 'none';
+        return;
+    }
+    
+    const publicoAtual = codigoCorporativoValido ? 'corporativo' : 'site';
+    const feriado = FERIADOS.find(f => f.data === dateVal && f.afeta.includes(publicoAtual));
+    
+    if (feriado && feriado.status_loja === "fechado") {
+        el.innerHTML = `⚠️ <strong>Atenção:</strong> Dia ${formatarDataBR(feriado.data)} é feriado (${feriado.nome}). Estaremos <strong>FECHADOS</strong>. Por favor, escolha outro dia.`;
+        el.style.display = 'block';
+    } else if (feriado && feriado.status_loja === "aberto_horario_reduzido") {
+        el.innerHTML = `ℹ️ <strong>Atenção:</strong> Dia ${formatarDataBR(feriado.data)} é feriado (${feriado.nome}). Teremos horário reduzido.`;
+        el.style.display = 'block';
+    } else {
+        el.style.display = 'none';
+    }
+}
+
+function formatarDataBR(dataStr) {
+    const [y, m, d] = dataStr.split('-');
+    return `${d}/${m}/${y}`;
+}
+
+// ===== FUNÇÃO PARA CARREGAR BOLOS =====
 async function carregarBolos() {
     const fallback = [
         { id: 1, name: "Bolo de Chocolate", desc: "Massa fofinha e super chocolatuda, com sabor intenso e caseiro.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/PRdTFbGPPJRfxGUn.png" },
@@ -1027,21 +1166,19 @@ async function carregarBolos() {
         if (!res.ok) throw new Error('JSON não encontrado');
         return await res.json();
     } catch (err) {
-        console.warn('⚠️ Usando dados locais (fallback):', err);
         return fallback;
     }
 }
 
-// ✅ NOVA FUNÇÃO: Atualiza checkout se estiver aberto
 function refreshCheckoutIfOpen() {
     if (document.getElementById('checkoutModal').classList.contains('active')) {
         renderCartItems();
         generatePixQR();
         checkAipimAvailability();
+        verificarFeriadoNoCheckout();
     }
 }
 
-// ===== CARRINHO =====
 function addToCart(id, name, price) {
     const existing = cart.find(item => item.id === id);
     if (existing) existing.quantity += 1;
@@ -1049,7 +1186,7 @@ function addToCart(id, name, price) {
     saveCart();
     updateCartFloat();
     showToast(`✅ ${name} adicionado ao carrinho!`);
-    refreshCheckoutIfOpen(); // ✅ Atualiza PIX se checkout aberto
+    refreshCheckoutIfOpen();
 }
 function removeFromCart(id) {
     cart = cart.filter(item => item.id !== id);
@@ -1057,18 +1194,14 @@ function removeFromCart(id) {
     renderCartItems();
     updateCartFloat();
     checkAipimAvailability();
-    refreshCheckoutIfOpen(); // ✅ Atualiza PIX se checkout aberto
+    refreshCheckoutIfOpen();
 }
 function updateQuantity(id, change) {
     const item = cart.find(i => i.id === id);
     if (item) {
         item.quantity += change;
         if (item.quantity <= 0) removeFromCart(id);
-        else { 
-            saveCart(); 
-            renderCartItems(); 
-            refreshCheckoutIfOpen(); // ✅ Atualiza PIX se checkout aberto
-        }
+        else { saveCart(); renderCartItems(); refreshCheckoutIfOpen(); }
     }
 }
 function saveCart() { localStorage.setItem('cart_mondego', JSON.stringify(cart)); }
@@ -1080,12 +1213,12 @@ function updateCartFloat() {
     else float.classList.add('hidden');
 }
 
-// ===== CHECKOUT =====
 function openCheckout() { 
     renderCartItems(); 
     setupPickupTimeOptions(); 
     generatePixQR();
     checkAipimAvailability();
+    verificarFeriadoNoCheckout();
     updateProgress(1);
     document.getElementById('checkoutModal').classList.add('active'); 
 }
@@ -1099,7 +1232,6 @@ function updateProgress(step) {
     }
 }
 
-// ✅ Renderiza carrinho com info completa do parceiro
 function renderCartItems() {
     const list = document.getElementById('cartItemsList');
     const totalEl = document.getElementById('cartTotal');
@@ -1136,7 +1268,6 @@ function renderCartItems() {
     }
 }
 
-// 🏢 CORPORATIVO
 function openCorporateModal() {
     if(codigoCorporativoValido) { 
         document.getElementById('bolos').scrollIntoView({behavior: 'smooth'}); 
@@ -1165,6 +1296,7 @@ function checkCorporateCode() {
         msgValid.style.display = 'block';
         showCorporateBanner(codigo);
         updateCorporateUI();
+        checarFeriados(); // 📅 Re-checa feriados pois o público mudou
         setTimeout(() => { 
             closeCorporateModal(); 
             document.getElementById('bolos').scrollIntoView({behavior: 'smooth'}); 
@@ -1233,11 +1365,11 @@ function removeCorporateAccess() {
     document.getElementById('corporateBanner').style.display = 'none';
     document.body.classList.remove('corporate-active');
     updateCorporateUI();
+    checarFeriados(); // 📅 Re-checa feriados
     showToast('Modo parceiro desativado.');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ===== AIPIM =====
 function checkAipimAvailability() {
     const warning = document.getElementById('aipimWarning');
     const hasAipim = cart.some(item => item.id === AIPIM_ID);
@@ -1254,25 +1386,39 @@ function checkAipimAvailability() {
     return true;
 }
 
-// ===== DATAS/HORÁRIOS =====
 function setupPickupDate() {
     const input = document.getElementById('pickupDate');
     const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
     input.min = tomorrow.toISOString().split('T')[0];
     const nextWeek = new Date(); nextWeek.setDate(nextWeek.getDate() + 7);
     input.max = nextWeek.toISOString().split('T')[0];
-    input.setAttribute('onchange', 'blockSundays(this)');
+    input.setAttribute('onchange', 'blockSundaysAndHolidays(this)');
 }
-function blockSundays(input) {
-    const date = new Date(input.value);
+
+// 📅 ALTERADO: Agora bloqueia domingos E feriados
+function blockSundaysAndHolidays(input) {
+    const date = new Date(input.value + 'T00:00:00');
+    verificarFeriadoNoCheckout();
+    
     if (date.getDay() === 0) {
         input.value = '';
         document.getElementById('pickupTime').innerHTML = '<option value="">🕒 Escolha a data para ver os horários disponíveis</option>';
         showToast('⚠️ Não trabalhamos aos domingos');
+        return;
     }
+    
+    const publicoAtual = codigoCorporativoValido ? 'corporativo' : 'site';
+    const feriado = FERIADOS.find(f => f.data === input.value && f.afeta.includes(publicoAtual));
+    if (feriado && feriado.status_loja === "fechado") {
+        input.value = '';
+        document.getElementById('pickupTime').innerHTML = '<option value="">🕒 Escolha a data para ver os horários disponíveis</option>';
+        showToast(`⚠️ Não trabalhamos no feriado de ${feriado.nome}`);
+        return;
+    }
+    
+    setupPickupTimeOptions();
 }
 
-// ✅ Horários corporativos (13:00 e 19:00) vs normais
 function setupPickupTimeOptions() {
     const select = document.getElementById('pickupTime');
     const dateVal = document.getElementById('pickupDate').value;
@@ -1305,7 +1451,6 @@ function setupPickupTimeOptions() {
     }
 }
 
-// ===== PIX (CORRIGIDO DEFINITIVO - Compatível com C6, Ton, Itaú, Nubank, Inter, BB) =====
 function generatePixQR() {
     const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     const payload = generatePixPayload(PIX_KEY, PIX_NAME, PIX_CITY, total);
@@ -1323,7 +1468,6 @@ function generatePixQR() {
     }
     
     qrContainer.innerHTML = '';
-    
     try {
         new QRCode(qrContainer, {
             text: payload,
@@ -1331,48 +1475,32 @@ function generatePixQR() {
             height: 200,
             correctLevel: QRCode.CorrectLevel.H
         });
-        console.log('🔍 Payload PIX gerado:', payload);
     } catch (e) {
-        console.warn('⚠️ Falha ao gerar QR Code local, usando fallback:', e);
         const url = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(payload)}&ecc=H`;
         qrContainer.innerHTML = `<img src="${url}" alt="QR Code PIX" style="max-width:100%;height:auto;border-radius:8px">`;
     }
 }
 
-// ✅ FUNÇÃO PIX 100% COMPATÍVEL - Testada em C6, Ton, Itaú, Nubank, Inter, BB
 function generatePixPayload(key, name, city, amount) {
-    // 1. Limpeza rigorosa dos campos
     const cleanKey = key.trim().replace(/[^a-zA-Z0-9@._-]/g, '');
     const amountStr = parseFloat(amount).toFixed(2);
     const cleanName = name.trim().toUpperCase().substring(0, 25);
     const cleanCity = city.trim().toUpperCase().substring(0, 15);
-    
-    // 2. Campo 26 (Merchant Account) - Estrutura CRÍTICA
     const gui = "0014BR.GOV.BCB.PIX";
     const keyPrefix = "01";
     const keyLen = String(cleanKey.length).padStart(2, '0');
     const field26Value = gui + keyPrefix + keyLen + cleanKey;
     const field26Len = String(field26Value.length).padStart(2, '0');
     const field26 = "26" + field26Len + field26Value;
-    
-    // 3. Demais campos obrigatórios (ordem exata do padrão EMVCo)
     const fields = [
-        "000201",
-        field26,
-        "52040000",
-        "5303986",
+        "000201", field26, "52040000", "5303986",
         "54" + String(amountStr.length).padStart(2, '0') + amountStr,
         "5802BR",
         "59" + String(cleanName.length).padStart(2, '0') + cleanName,
         "60" + String(cleanCity.length).padStart(2, '0') + cleanCity,
-        "62070503***",
-        "6304"
+        "62070503***", "6304"
     ];
-    
-    // 4. Concatena tudo (exceto CRC)
     const payloadBase = fields.join("");
-    
-    // 5. CRC16-CCITT (algoritmo oficial)
     let crc = 0xFFFF;
     for (let i = 0; i < payloadBase.length; i++) {
         crc ^= payloadBase.charCodeAt(i) << 8;
@@ -1381,16 +1509,11 @@ function generatePixPayload(key, name, city, amount) {
             crc &= 0xFFFF;
         }
     }
-    const crcHex = crc.toString(16).toUpperCase().padStart(4, '0');
-    
-    return payloadBase + crcHex;
+    return payloadBase + crc.toString(16).toUpperCase().padStart(4, '0');
 }
-
-function calculateCRC16() { }
 
 function copyPixKey() { navigator.clipboard.writeText(PIX_KEY).then(() => showToast('📋 Chave PIX copiada!')); }
 
-// ===== WHATSAPP =====
 function sendToWhatsApp() {
     const name = document.getElementById('customerName').value.trim();
     const phone = document.getElementById('customerPhone').value.trim();
@@ -1401,6 +1524,15 @@ function sendToWhatsApp() {
     if (!checkAipimAvailability()) { alert('⚠️ Bolo de Aipim só está disponível para retirada após as 14h.'); return; }
     const selectedDate = new Date(date + 'T00:00:00');
     if (selectedDate.getDay() === 0) { alert('⚠️ Não trabalhamos aos domingos.'); return; }
+    
+    // 📅 NOVO: Bloqueia envio se for feriado fechado
+    const publicoAtual = codigoCorporativoValido ? 'corporativo' : 'site';
+    const feriado = FERIADOS.find(f => f.data === date && f.afeta.includes(publicoAtual));
+    if (feriado && feriado.status_loja === "fechado") {
+        alert(`⚠️ Não podemos aceitar pedidos para o dia ${formatarDataBR(date)} (${feriado.nome}), pois estaremos fechados.`);
+        return;
+    }
+
     const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     const items = cart.map(i => `• ${i.quantity}x ${i.name} (R$ ${(i.quantity*i.price).toFixed(2).replace('.',',')})`).join('%0A');
     let corporateInfo = '';
@@ -1409,12 +1541,12 @@ function sendToWhatsApp() {
         const fixedAddress = codigosCorporativos[codigoCorporativoValido].endereco || 'Endereço não cadastrado';
         corporateInfo = `🏢 *PARCEIRO*: ${partnerName}%0A✅ *FRETE GRÁTIS*%0A📍 *Endereço:* ${fixedAddress}%0A%0A`;
     }
-    const message = `🎂 *NOVO PEDIDO - CASA MONDEGO*%0A%0A*Cliente:* ${name}%0A*WhatsApp:* ${phone}%0A%0A${corporateInfo}*Itens do Pedido:*%0A${items}%0A%0A*Retirada/Entrega:* ${formatDateBR(date)} às ${time}%0A*Modalidade:* ${codigoCorporativoValido ? 'Entrega agendada (frete grátis)' : 'Cliente retira (pessoal ou via app)'}%0A%0A*Total:* R$ ${total.toFixed(2).replace('.',',')}%0A*Pagamento:* PIX confirmado%0A%0A📸 *Enviarei o comprovante de pagamento em seguida!*%0A%0AAguardo confirmação! 🙏`;
+    const message = `🎂 *NOVO PEDIDO - CASA MONDEGO*%0A%0A*Cliente:* ${name}%0A*WhatsApp:* ${phone}%0A%0A${corporateInfo}*Itens do Pedido:*%0A${items}%0A%0A*Retirada/Entrega:* ${formatarDataBR(date)} às ${time}%0A*Modalidade:* ${codigoCorporativoValido ? 'Entrega agendada (frete grátis)' : 'Cliente retira (pessoal ou via app)'}%0A%0A*Total:* R$ ${total.toFixed(2).replace('.',',')}%0A*Pagamento:* PIX confirmado%0A%0A📸 *Enviarei o comprovante de pagamento em seguida!*%0A%0AAguardo confirmação! 🙏`;
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
     updateProgress(3);
     setTimeout(() => { closeCheckout(); window.open(url, '_blank'); resetCart(); }, 500);
 }
-function formatDateBR(dateStr) { const [y,m,d] = dateStr.split('-'); return `${d}/${m}/${y}`; }
+
 function resetCart() { 
     cart = []; saveCart(); updateCartFloat(); 
     document.getElementById('customerName').value = ''; 
@@ -1425,13 +1557,17 @@ function resetCart() {
     codigoCorporativoValido = null;
     localStorage.removeItem('mondego_corp');
     updateCorporateUI();
+    checarFeriados(); // 📅 Re-checa feriados
 }
 function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2500); }
+
 document.getElementById('checkoutModal')?.addEventListener('click', (e) => { if (e.target.id === 'checkoutModal') closeCheckout(); });
 document.getElementById('corporateModal')?.addEventListener('click', (e) => { if (e.target.id === 'corporateModal') closeCorporateModal(); });
 
-// ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', async () => {
+    // 📅 NOVO: Carrega feriados do arquivo externo PRIMEIRO
+    FERIADOS = await carregarFeriados();
+    
     const bolos = await carregarBolos();
     const grid = document.getElementById('bolosGrid');
     grid.innerHTML = bolos.map(b => `
@@ -1453,10 +1589,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         showCorporateBanner(codigoCorporativoValido);
         updateCorporateUI();
     }
+    checarFeriados(); // 📅 NOVO: Checa feriados ao carregar a página
     updateCartFloat();
     setupPickupDate();
     document.getElementById('pixKeyDisplay').textContent = PIX_KEY;
-    document.getElementById('pickupDate')?.addEventListener('change', () => { setupPickupTimeOptions(); checkAipimAvailability(); });
+    document.getElementById('pickupDate')?.addEventListener('change', () => { 
+        setupPickupTimeOptions(); 
+        checkAipimAvailability(); 
+        verificarFeriadoNoCheckout(); 
+    });
     
     const urlParams = new URLSearchParams(window.location.search);
     const addCakeId = urlParams.get('add');
@@ -1465,6 +1606,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         codigoCorporativoValido = codigoUrl.toUpperCase();
         showCorporateBanner(codigoCorporativoValido);
         updateCorporateUI();
+        checarFeriados(); // 📅 Re-checa feriados
     }
     if (addCakeId) {
         const cake = bolos.find(c => c.id == addCakeId);
