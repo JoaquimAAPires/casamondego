@@ -1,0 +1,18 @@
+{
+  "0165": {
+    "nome": "Condomínio Village Cabral",
+    "endereco": "Rua Pedro Fabri, 165 - Condomínio Village Cabral - Curitiba - PR"
+  },
+  "0200": {
+    "nome": "Edifício Solar das Águas",
+    "endereco": "Av. das Águas, 200 - Centro - Curitiba - PR"
+  },
+  "0350": {
+    "nome": "Empresa Tech Solutions",
+    "endereco": "Rua das Inovações, 350 - Sala 10 - Curitiba - PR"
+  },
+  "0999": {
+    "nome": "Condomínio Jardins",
+    "endereco": "Rua das Flores, 999 - Jardim Botânico - Curitiba - PR"
+  }
+}
