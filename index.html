@@ -1042,10 +1042,8 @@ const AIPIM_ID = 7;
 const AIPIM_MIN_HOUR = 14;
 const DIAS_AVISO_PREVIO = 2; // 📅 Dias de antecedência para o banner de feriado aparecer
 
-// 🏢 CORPORATIVO
-const codigosCorporativos = {
-    '0165': { nome: 'Condomínio Village Cabral', endereco: 'Rua Pedro Fabri, 165 - Condomínio Village Cabral - Curitiba - PR' }
-};
+// 🏢 PARCEIROS: Variável global que será preenchida pelo arquivo parceiros.json
+let codigosCorporativos = {};
 
 // 🔄 Estado com persistência
 let cart = JSON.parse(localStorage.getItem('cart_mondego')) || [];
@@ -1053,6 +1051,21 @@ let codigoCorporativoValido = localStorage.getItem('mondego_corp');
 
 // 📅 NOVO: Variável global que será preenchida pelo arquivo feriados.json
 let FERIADOS = [];
+
+// ===== 🏢 NOVO: CARREGAR PARCEIROS DO ARQUIVO JSON =====
+async function carregarParceiros() {
+    try {
+        // O '?v=' + Date.now() força o navegador a baixar o arquivo novo, ignorando o cache
+        const res = await fetch('./assets/data/parceiros.json?v=' + Date.now());
+        if (!res.ok) throw new Error('Arquivo parceiros.json não encontrado');
+        return await res.json();
+    } catch (err) {
+        console.warn('⚠️ Usando parceiros padrão (fallback):', err);
+        return {
+            '0165': { nome: 'Condomínio Village Cabral', endereco: 'Rua Pedro Fabri, 165 - Condomínio Village Cabral - Curitiba - PR' }
+        };
+    }
+}
 
 // ===== 📅 NOVO: CARREGAR FERIADOS DO ARQUIVO JSON =====
 async function carregarFeriados() {
@@ -1585,7 +1598,10 @@ document.getElementById('checkoutModal')?.addEventListener('click', (e) => { if 
 document.getElementById('corporateModal')?.addEventListener('click', (e) => { if (e.target.id === 'corporateModal') closeCorporateModal(); });
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // 📅 NOVO: Carrega feriados do arquivo externo PRIMEIRO
+    // 🏢 NOVO: Carrega parceiros do arquivo externo
+    codigosCorporativos = await carregarParceiros();
+    
+    // 📅 NOVO: Carrega feriados do arquivo externo
     FERIADOS = await carregarFeriados();
     
     const bolos = await carregarBolos();
