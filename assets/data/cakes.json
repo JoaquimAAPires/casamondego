@@ -1,13 +1,13 @@
 [
   { "id": 1, "name": "Bolo de Chocolate", "desc": "Massa fofinha e super chocolatuda, com sabor intenso e caseiro.", "price": 26.00, "img": "./assets/img/chocolatejp.jpeg" },
   { "id": 2, "name": "Limão Siciliano e Mirtilo", "desc": "Refrescante com limão siciliano e mirtilos frescos na massa.", "price": 30.00, "img": "./assets/img/Limãocommirtilojp.jpeg" },
-  { "id": 3, "name": "Bolo de Laranja", "desc": "Clássico molhadinho com suco de laranja natural cítrico.", "price": 26.00, "img": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" },
+  { "id": 3, "name": "Bolo de Laranja", "desc": "Clássico molhadinho com suco de laranja natural cítrico.", "price": 26.00, "img": "./assets/img/laranjajp.jpeg" },
   { "id": 4, "name": "Bolo de Milho", "desc": "Sabor caseiro autêntico com milho selecionado e macio.", "price": 26.00, "img": "./assets/img/milhojp.jpeg" },
-  { "id": 5, "name": "Bolo de Cenoura", "desc": "Cenoura fresca, massa úmida com sabor caseiro irresistível.", "price": 26.00, "img": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/vVPrthhQxhwSdbwg.jpg" },
-  { "id": 6, "name": "Bolo de Limão", "desc": "Leve, fofinho e azedinho com frescor natural de limão.", "price": 26.00, "img": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nTMHyturkMHdoCAC.jpg" },
+  { "id": 5, "name": "Bolo de Cenoura", "desc": "Cenoura fresca, massa úmida com sabor caseiro irresistível.", "price": 26.00, "img": "./assets/img/cenourajp.jpeg" },
+  { "id": 6, "name": "Bolo de Limão", "desc": "Leve, fofinho e azedinho com frescor natural de limão.", "price": 26.00, "img": "./assets/img/limaojp.jpeg" },
   { "id": 7, "name": "Bolo de Aipim", "desc": "Macio e molhadinho com aipim fresco e sabor tradicional.", "price": 32.00, "img": "./assets/img/aipimjp.jpeg" },
   { "id": 8, "name": "Bolo Mesclado", "desc": "Cenoura + chocolate em camadas intensas e irresistíveis.", "price": 26.00, "img": "./assets/img/mescladojp.jpeg" },
-  { "id": 9, "name": "Bolo de Amendoim", "desc": "Sabor intenso de amendoim, com textura macia e um sabor marcante.", "price": 26.00, "img": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/GzjpPKjJMHZsTvvg.jpg" },
+  { "id": 9, "name": "Bolo de Amendoim", "desc": "Sabor intenso de amendoim, com textura macia e um sabor marcante.", "price": 26.00, "img": "./assets/img/amendoimjp.jpeg" },
   { "id": 10, "name": "Bolo de Fubá", "desc": "Clássico fofinho, sabor autêntico de fubá caseiro como os da vó.", "price": 26.00, "img": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nmFrKFeTPKNYkwcD.jpg" },
   { "id": 11, "name": "Bolo de Fubá com Coco", "desc": "Fubá tradicional com pedacinhos de coco.", "price": 26.00, "img": "./assets/img/fubacocojp.png" },
   { "id": 12, "name": "Laranja Bahia com Amora", "desc": "Aroma de laranja com o toque de amora.", "price": 30.00, "img": "./assets/img/laranjabahiajp.jpeg" },
@@ -19,5 +19,5 @@
   { "id": 18, "name": "Bolo de Banana", "desc": "Doce na medida certa, com o aconchego das receitas caseiras.", "price": 26.00, "img": "./assets/img/bananajp.jpeg" },
   { "id": 19, "name": "Lima da Pérsia com Frutas Vermelhas", "desc": "Frescor delicado e frutado em uma combinação sofisticada.", "price": 30.00, "img": "./assets/img/limajp.jpeg" },
   { "id": 20, "name": "Bolo de Maçã com Passas", "desc": "Uma receita clássica repleta de sabor e tradição.", "price": 30.00, "img": "./assets/img/passasjp.jpeg" },
-{ "id": 20, "name": "Bolo Formigueiro", "desc": "Uma receita clássica repleta de sabor e tradição.", "price": 30.00, "img": "./assets/img/formigueirojp.jpeg" }  
+{ "id": 20, "name": "Bolo Formigueiro", "desc": "Massa fofinha e granulado na medida da sua felicidade.", "price": 30.00, "img": "./assets/img/formigueirojp.jpeg" }  
 ]
