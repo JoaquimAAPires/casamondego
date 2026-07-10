@@ -1,6 +1,6 @@
 [
   { "id": 1, "name": "Bolo de Chocolate", "desc": "Massa fofinha e super chocolatuda, com sabor intenso e caseiro.", "price": 26.00, "img": "./assets/img/chocolatejp.jpeg" },
-  { "id": 2, "name": "Limão Siciliano e Mirtilo", "desc": "Refrescante com limão siciliano e mirtilos frescos na massa.", "price": 30.00, "img": "./assets/img/limaocommirtilojp.jpeg" },
+  { "id": 2, "name": "Limão Siciliano e Mirtilo", "desc": "Refrescante com limão siciliano e mirtilos frescos na massa.", "price": 30.00, "img": "./assets/img/limãocommirtilojp.jpeg" },
   { "id": 3, "name": "Bolo de Laranja", "desc": "Clássico molhadinho com suco de laranja natural cítrico.", "price": 26.00, "img": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" },
   { "id": 4, "name": "Bolo de Milho", "desc": "Sabor caseiro autêntico com milho selecionado e macio.", "price": 26.00, "img": "./assets/img/milhojp.jpeg" },
   { "id": 5, "name": "Bolo de Cenoura", "desc": "Cenoura fresca, massa úmida com sabor caseiro irresistível.", "price": 26.00, "img": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/vVPrthhQxhwSdbwg.jpg" },
