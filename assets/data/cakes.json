@@ -1,6 +1,6 @@
 [
   { "id": 1, "name": "Bolo de Chocolate", "desc": "Massa fofinha e super chocolatuda, com sabor intenso e caseiro.", "price": 26.00, "img": "./assets/img/chocolatejp.jpeg" },
-  { "id": 2, "name": "Limão Siciliano e Mirtilo", "desc": "Refrescante com limão siciliano e mirtilos frescos na massa.", "price": 30.00, "img": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" },
+  { "id": 2, "name": "Limão Siciliano e Mirtilo", "desc": "Refrescante com limão siciliano e mirtilos frescos na massa.", "price": 30.00, "img": "./assets/img/limaocommirtilojp.jpeg" },
   { "id": 3, "name": "Bolo de Laranja", "desc": "Clássico molhadinho com suco de laranja natural cítrico.", "price": 26.00, "img": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" },
   { "id": 4, "name": "Bolo de Milho", "desc": "Sabor caseiro autêntico com milho selecionado e macio.", "price": 26.00, "img": "./assets/img/milhojp.jpeg" },
   { "id": 5, "name": "Bolo de Cenoura", "desc": "Cenoura fresca, massa úmida com sabor caseiro irresistível.", "price": 26.00, "img": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/vVPrthhQxhwSdbwg.jpg" },
@@ -13,7 +13,7 @@
   { "id": 12, "name": "Laranja Bahia com Amora", "desc": "Aroma de laranja com o toque de amora.", "price": 30.00, "img": "./assets/img/laranjabahiajp.jpeg" },
   { "id": 13, "name": "Bolo de Maçã com Nozes", "desc": "Clássico sabor de maçã com crocância de nozes.", "price": 30.00, "img": "./assets/img/nozesjp.jpeg" },
   { "id": 14, "name": "Bolo de Coco", "desc": "Macio, delicado e com o sabor irresistível do coco.", "price": 26.00, "img": "./assets/img/fubacocojp.png" },
-  { "id": 15, "name": "Bolo de Fubá com Goiabada", "desc": "Uma combinação brasileira que atravessa gerações.", "price": 26.00, "img": "./assets/img/fubagoiabadajp.png" },
+  { "id": 15, "name": "Bolo de Fubá com Goiabada", "desc": "Uma combinação brasileira que atravessa gerações.", "price": 26.00, "img": "./assets/img/fubacomgoiabadajp.png" },
   { "id": 16, "name": "Bolo de Fubá com Laranja", "desc": "A suavidade do fubá enriquecida pelo aroma da laranja.", "price": 26.00, "img": "./assets/img/fubalaranjajp.png" },
   { "id": 17, "name": "Bolo de Fubá com Erva Doce", "desc": "Sabor tradicional com o toque aromático da erva-doce.", "price": 26.00, "img": "./assets/img/fubaervadocejp.jpeg" },
   { "id": 18, "name": "Bolo de Banana", "desc": "Doce na medida certa, com o aconchego das receitas caseiras.", "price": 26.00, "img": "./assets/img/bananajp.jpeg" },
