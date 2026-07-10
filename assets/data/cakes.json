@@ -18,5 +18,6 @@
   { "id": 17, "name": "Bolo de Fubá com Erva Doce", "desc": "Sabor tradicional com o toque aromático da erva-doce.", "price": 26.00, "img": "./assets/img/fubaervadocejp.jpeg" },
   { "id": 18, "name": "Bolo de Banana", "desc": "Doce na medida certa, com o aconchego das receitas caseiras.", "price": 26.00, "img": "./assets/img/bananajp.jpeg" },
   { "id": 19, "name": "Lima da Pérsia com Frutas Vermelhas", "desc": "Frescor delicado e frutado em uma combinação sofisticada.", "price": 30.00, "img": "./assets/img/limajp.jpeg" },
-  { "id": 20, "name": "Bolo de Maçã com Passas", "desc": "Uma receita clássica repleta de sabor e tradição.", "price": 30.00, "img": "./assets/img/passasjp.jpeg" }
+  { "id": 20, "name": "Bolo de Maçã com Passas", "desc": "Uma receita clássica repleta de sabor e tradição.", "price": 30.00, "img": "./assets/img/passasjp.jpeg" },
+{ "id": 20, "name": "Bolo Formigueiro", "desc": "Uma receita clássica repleta de sabor e tradição.", "price": 30.00, "img": "./assets/img/formigueirojp.jpeg" }  
 ]
