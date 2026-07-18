@@ -20,5 +20,5 @@
   { "id": 19, "name": "Lima da Pérsia com Frutas Vermelhas", "desc": "Frescor delicado e frutado em uma combinação sofisticada.", "price": 30.00, "img": "./assets/img/limajp.jpeg" },
   { "id": 20, "name": "Bolo de Maçã com Passas", "desc": "Uma receita clássica repleta de sabor e tradição.", "price": 30.00, "img": "./assets/img/passasjp.jpeg" },
   { "id": 21, "name": "Bolo Formigueiro", "desc": "Massa fofinha e granulado na medida da sua felicidade.", "price": 26.00, "img": "./assets/img/formigueirojp.jpeg"  },
-{ "id": 22, "name": "Calda", "desc": "Caldas artesanais que tornam cada pedaço ainda mais saboroso, Chocolate, 4 leites, Goiabada e Doce de leite, escolha o seu sabor!", "price": 12.00, "img": "./assets/img/caldas.jpeg" }  
+{ "id": 22, "name": "Escolha sua Calda !!", "desc": "Caldas artesanais que tornam cada pedaço ainda mais saboroso, Temos potes de 200ml: Chocolate, 4 leites, Goiabada e Doce de leite, escolha o seu sabor!", "price": 12.00, "img": "./assets/img/caldas.jpeg" }  
 ]
