@@ -10,6 +10,14 @@
 <link rel="icon" type="image/png" sizes="512x512" href="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nCpjQxDKMgQxdXDa.png">
 <link rel="apple-touch-icon" sizes="180x180" href="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/QEgXQWrJyUvHsmda.png">
 <meta name="theme-color" content="#000000">
+
+<!-- 🚀 PWA - Progressive Web App -->
+<link rel="manifest" href="/manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Casa Mondego">
+
 <link rel="profile" href="https://gmpg.org/xfn/11" />
 
 <!-- SEO -->
@@ -125,7 +133,7 @@
         font-size: 0.9rem;
         font-weight: 700;
         position: sticky;
-        top: 0; /* Sempre grudado no topo absoluto */
+        top: 0;
         z-index: 1002;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         transition: all 0.3s ease;
@@ -138,7 +146,7 @@
         cursor: pointer;
     }
 
-    /* 📅 NOVO: Banner de Feriados */
+    /* 📅 Banner de Feriados */
     #holidayBanner {
         display: none;
         background-color: #c62828;
@@ -148,7 +156,7 @@
         font-size: 0.95rem;
         font-weight: 700;
         position: sticky;
-        top: 0; /* Padrão: quando é o único ativo */
+        top: 0;
         z-index: 1001;
         box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         border-bottom: 2px solid var(--gold-primary);
@@ -156,12 +164,9 @@
     }
     #holidayBanner strong { color: var(--gold-primary); }
 
-    /* ✅ CORREÇÃO CRUCIAL: Quando AMBOS estão ativos, o feriado fica ABAIXO do corporativo */
-    body.corporate-active.holiday-active #holidayBanner {
-        top: 40px; /* Altura exata do banner corporativo */
-    }
+    body.corporate-active.holiday-active #holidayBanner { top: 40px; }
 
-    /* ✅ CABEÇALHO AJUSTADO (Lógica de posicionamento à prova de falhas) */
+    /* ✅ CABEÇALHO AJUSTADO */
     header.header-bar {
         background-color: var(--black-bg) !important;
         border-bottom: 2px solid var(--gold-primary);
@@ -172,7 +177,7 @@
         justify-content: space-between;
         align-items: center;
         position: sticky;
-        top: 0; /* Padrão: sem faixas */
+        top: 0;
         z-index: 1000;
         box-sizing: border-box;
         height: 95px;
@@ -180,7 +185,7 @@
     }
     body.corporate-active header.header-bar { top: 40px; }
     body.holiday-active header.header-bar { top: 45px; }
-    body.corporate-active.holiday-active header.header-bar { top: 85px; } /* Soma das duas alturas */
+    body.corporate-active.holiday-active header.header-bar { top: 85px; }
 
     .branding { display: flex; align-items: center; height: 100%; width: auto; }
     .logo-img { 
@@ -305,6 +310,7 @@
         border: 1px solid #f0f0f0;
         display: flex;
         flex-direction: column;
+        position: relative; /* Necessário para a tag absoluta */
     }
     .bolo-card:hover {
         transform: translateY(-15px);
@@ -409,12 +415,9 @@
     .social-facebook { background-color: #1877F2; }
     .map-container { width: 100%; height: 180px; border-radius: 10px; overflow: hidden; margin-top: 15px; border: 1px solid #333; }
 
-    /* ✅ RESPONSIVO CORRIGIDO (Elimina espaço em branco e bugs de scroll no mobile) */
+    /* ✅ RESPONSIVO CORRIGIDO */
     @media (max-width: 768px) {
-        #corporateBanner, #holidayBanner {
-            position: relative !important;
-            top: 0 !important;
-        }
+        #corporateBanner, #holidayBanner { position: relative !important; top: 0 !important; }
         header.header-bar { 
             position: relative !important; 
             height: auto; 
@@ -768,6 +771,150 @@
     .corporate-msg { font-size: 0.9rem; margin: 10px 0; font-weight: 600; display: none; }
     .corporate-msg.valid { color: var(--corporate-valid); display: block; }
     .corporate-msg.invalid { color: var(--corporate-invalid); display: block; }
+
+    /* ============================================
+       🏷️ TAGS DE EXCLUSIVIDADE (PROMO, NOVO, CORTESIA)
+       ============================================ */
+    .bolo-tag {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        z-index: 10;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        color: white;
+        pointer-events: none;
+    }
+    .bolo-tag.promo {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        animation: pulse-tag 2s infinite;
+    }
+    .bolo-tag.novo {
+        background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    }
+    .bolo-tag.cortesia {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        animation: pulse-tag 1.5s infinite;
+    }
+    .bolo-tag.exclusivo {
+        background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-secondary) 100%);
+        color: var(--black-bg);
+    }
+    @keyframes pulse-tag {
+        0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
+        50% { transform: scale(1.08); box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+    }
+
+    /* Preço antigo (riscado) para promoções */
+    .bolo-price-old {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 0.85rem;
+        margin-right: 6px;
+        font-weight: 400;
+    }
+    .bolo-price-new {
+        color: #c62828;
+        font-weight: 800;
+        font-size: 1.1rem;
+    }
+
+    /* ============================================
+       📲 BANNER "INSTALAR APP" (PWA)
+       ============================================ */
+    #installBanner {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, var(--black-bg) 0%, #1a1a1a 100%);
+        color: white;
+        padding: 15px 20px;
+        z-index: 1500;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+        border-top: 2px solid var(--gold-primary);
+        animation: slideUpBanner 0.4s ease;
+    }
+    @keyframes slideUpBanner {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+    }
+    .install-banner-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1400px;
+        margin: 0 auto;
+        gap: 15px;
+    }
+    .install-banner-text {
+        flex: 1;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    .install-banner-text strong {
+        color: var(--gold-primary);
+        display: block;
+        margin-bottom: 3px;
+        font-size: 1rem;
+    }
+    .install-banner-close {
+        background: transparent;
+        border: none;
+        color: #888;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 5px 10px;
+        line-height: 1;
+    }
+    .install-banner-close:hover { color: white; }
+    .btn-install-app {
+        background: var(--gold-primary);
+        color: var(--black-bg);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .btn-install-app:hover {
+        background: var(--gold-secondary);
+        transform: scale(1.05);
+    }
+    @media (max-width: 480px) {
+        .install-banner-text { font-size: 0.8rem; }
+        .btn-install-app { padding: 8px 14px; font-size: 0.75rem; }
+    }
+
+    /* ============================================
+       🏢 BADGE "EXCLUSIVO DO CONDOMÍNIO" NO CARDÁPIO
+       ============================================ */
+    .exclusivo-notice {
+        max-width: 800px;
+        margin: 15px auto 25px;
+        background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+        padding: 14px 20px;
+        border-radius: 12px;
+        border-left: 4px solid var(--gold-primary);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        display: none;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
+    }
+    .exclusivo-notice strong { color: #5d4037; }
 </style>
 
 <!-- QR Code Library -->
@@ -782,7 +929,7 @@
     🏢 Modo Parceiro Ativo: <span id="partnerNameDisplay"></span> | <a onclick="removeCorporateAccess()">Sair</a>
 </div>
 
-<!-- 📅 NOVO: Banner de Feriados -->
+<!-- 📅 Banner de Feriados -->
 <div id="holidayBanner">
     📅 <strong>Atenção:</strong> <span id="holidayMessage"></span>
 </div>
@@ -869,7 +1016,6 @@
             Seu pedido será entregue no endereço cadastrado abaixo.
         </div>
         
-        <!-- Endereço fixo corporativo (APENAS no checkout, nunca no footer) -->
         <div id="corporateFixedAddress" class="corporate-fixed-address">
             <strong>📍 Endereço de Entrega:</strong><br>
             <span id="fixedAddressText"></span>
@@ -915,7 +1061,6 @@
         
         <div class="form-group">
             <label for="corporateCodeInput" style="text-align: left;">🔑 Código de Acesso:</label>
-            <!-- ✅ AJUSTE: Placeholder genérico para segurança -->
             <input type="text" id="corporateCodeInput" placeholder="Ex: 0123" 
                    style="text-transform: uppercase; letter-spacing: 1px; text-align: center; font-weight: 600; font-size: 1.2rem;"
                    onkeypress="if(event.key==='Enter') checkCorporateCode()">
@@ -967,8 +1112,11 @@
     </div>
     
     <p class="disclaimer-images">📸 As imagens dos bolos são meramente ilustrativas</p>
+    
+    <!-- 🆕 Aviso de ofertas exclusivas do parceiro -->
+    <div id="exclusivoNotice" class="exclusivo-notice"></div>
+    
     <div class="bolos-grid" id="bolosGrid">
-        <!-- Bolos serão inseridos via JavaScript -->
         <p style="text-align:center;grid-column:1/-1;color:#666">Carregando cardápio...</p>
     </div>
 </div>
@@ -980,11 +1128,10 @@
     </div>
 </section>
 
-<!-- ✅ FOOTER AJUSTADO: Vídeo local + apenas endereço da loja (nunca de parceiros) -->
+<!-- ✅ FOOTER AJUSTADO -->
 <footer id="contato">
     <div class="footer-grid">
         <div class="footer-section">
-            <!-- ✅ Vídeo apontando para pasta local + poster para melhor UX -->
             <video class="footer-logo-video" autoplay muted loop playsinline poster="https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/uFUuILwJmMetvATy.png">
                 <source src="./assets/videos/logo-footer.mp4" type="video/mp4">
                 Seu navegador não suporta vídeos.
@@ -1030,6 +1177,20 @@
 </footer>
 </div> <!-- Fim .page-wrapper -->
 
+<!-- 📲 Banner de Instalação do App -->
+<div id="installBanner">
+    <div class="install-banner-content">
+        <div class="install-banner-text">
+            <strong>📲 Instale nosso App!</strong>
+            Tenha a Casa Mondego na tela do seu celular com 1 clique
+        </div>
+        <button class="btn-install-app" id="btnInstallApp" onclick="instalarPWA()">
+            ⬇️ Instalar
+        </button>
+        <button class="install-banner-close" onclick="fecharBannerInstall()" aria-label="Fechar">&times;</button>
+    </div>
+</div>
+
 <!-- === JAVASCRIPT COMPLETO E INTEGRAL === -->
 <script>
 // ===== CONFIGURAÇÕES =====
@@ -1040,22 +1201,16 @@ const PIX_CITY = "Curitiba";
 const BUSINESS_HOURS = { weekday: { start: 10, end: 18 }, saturday: { start: 10, end: 16 } };
 const AIPIM_ID = 7;
 const AIPIM_MIN_HOUR = 14;
-const DIAS_AVISO_PREVIO = 2; // 📅 Dias de antecedência para o banner de feriado aparecer
+const DIAS_AVISO_PREVIO = 2;
 
-// 🏢 PARCEIROS: Variável global que será preenchida pelo arquivo parceiros.json
 let codigosCorporativos = {};
-
-// 🔄 Estado com persistência
 let cart = JSON.parse(localStorage.getItem('cart_mondego')) || [];
 let codigoCorporativoValido = localStorage.getItem('mondego_corp');
-
-// 📅 NOVO: Variável global que será preenchida pelo arquivo feriados.json
 let FERIADOS = [];
 
-// ===== 🏢 NOVO: CARREGAR PARCEIROS DO ARQUIVO JSON =====
+// ===== 🏢 CARREGAR PARCEIROS =====
 async function carregarParceiros() {
     try {
-        // O '?v=' + Date.now() força o navegador a baixar o arquivo novo, ignorando o cache
         const res = await fetch('./assets/data/parceiros.json?v=' + Date.now());
         if (!res.ok) throw new Error('Arquivo parceiros.json não encontrado');
         return await res.json();
@@ -1067,10 +1222,9 @@ async function carregarParceiros() {
     }
 }
 
-// ===== 📅 NOVO: CARREGAR FERIADOS DO ARQUIVO JSON =====
+// ===== 📅 CARREGAR FERIADOS =====
 async function carregarFeriados() {
     try {
-        // O '?v=' + Date.now() força o navegador a baixar o arquivo novo, ignorando o cache
         const res = await fetch('./assets/data/feriados.json?v=' + Date.now());
         if (!res.ok) throw new Error('Arquivo feriados.json não encontrado');
         return await res.json();
@@ -1083,13 +1237,12 @@ async function carregarFeriados() {
     }
 }
 
-// ===== 📅 NOVO: LÓGICA DE FERIADOS =====
+// ===== 📅 LÓGICA DE FERIADOS =====
 function checarFeriados() {
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
     const banner = document.getElementById('holidayBanner');
     const msgEl = document.getElementById('holidayMessage');
-    
     let feriadoProximo = null;
     
     for (let feriado of FERIADOS) {
@@ -1109,15 +1262,13 @@ function checarFeriados() {
     if (feriadoProximo) {
         const dataFormatada = formatarDataBR(feriadoProximo.data);
         let msg = "";
-        
         if (feriadoProximo.status_loja === "fechado") {
             msg = `Dia ${dataFormatada} (${feriadoProximo.nome}) estaremos <strong>FECHADOS</strong>. Programe seu pedido!`;
         } else if (feriadoProximo.status_loja === "aberto_horario_reduzido") {
             msg = `Dia ${dataFormatada} (${feriadoProximo.nome}) teremos <strong>horário reduzido</strong>.`;
-        } else if (feriadoProximo.status_loja === "aberto_normal") {
+        } else {
             msg = `Dia ${dataFormatada} (${feriadoProximo.nome}) estaremos <strong>ABERTOS</strong> normalmente!`;
         }
-        
         msgEl.innerHTML = msg;
         banner.style.display = 'block';
         document.body.classList.add('holiday-active');
@@ -1127,11 +1278,9 @@ function checarFeriados() {
     }
 }
 
-// ===== 📅 NOVO: VERIFICAR FERIADO NO CHECKOUT =====
 function verificarFeriadoNoCheckout() {
     let el = document.getElementById('holidayWarningCheckout');
     const dateVal = document.getElementById('pickupDate').value;
-    
     if (!el) {
         const div = document.createElement('div');
         div.id = 'holidayWarningCheckout';
@@ -1139,11 +1288,7 @@ function verificarFeriadoNoCheckout() {
         document.getElementById('pickupDate').parentNode.appendChild(div);
         el = div;
     }
-    
-    if (!dateVal) {
-        el.style.display = 'none';
-        return;
-    }
+    if (!dateVal) { el.style.display = 'none'; return; }
     
     const publicoAtual = codigoCorporativoValido ? 'corporativo' : 'site';
     const feriado = FERIADOS.find(f => f.data === dateVal && f.afeta.includes(publicoAtual));
@@ -1164,32 +1309,40 @@ function formatarDataBR(dataStr) {
     return `${d}/${m}/${y}`;
 }
 
-// ===== FUNÇÃO PARA CARREGAR BOLOS (COM 14 ITENS COMPLETOS NO FALLBACK) =====
+// ===== FUNÇÃO PARA CARREGAR BOLOS (ATUALIZADA COM NOVOS CAMPOS) =====
 async function carregarBolos() {
     const fallback = [
-        { id: 1, name: "Bolo de Chocolate", desc: "Massa fofinha e super chocolatuda, com sabor intenso e caseiro.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/PRdTFbGPPJRfxGUn.png" },
-        { id: 2, name: "Limão Siciliano e Mirtilo", desc: "Refrescante com limão siciliano e mirtilos frescos na massa.", price: 30.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" },
-        { id: 3, name: "Bolo de Laranja", desc: "Clássico molhadinho com suco de laranja natural cítrico.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" },
-        { id: 4, name: "Bolo de Milho", desc: "Sabor caseiro autêntico com milho selecionado e macio.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/VezOWuffxYCYNPbw.jpg" },
-        { id: 5, name: "Bolo de Cenoura", desc: "Cenoura fresca, massa úmida com sabor caseiro irresistível.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/vVPrthhQxhwSdbwg.jpg" },
-        { id: 6, name: "Bolo de Limão", desc: "Leve, fofinho e azedinho com frescor natural de limão.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nTMHyturkMHdoCAC.jpg" },
-        { id: 7, name: "Bolo de Aipim", desc: "Macio e molhadinho com aipim fresco e sabor tradicional.", price: 32.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/xrjxIXkkOVwzaNRN.jpeg" },
-        { id: 8, name: "Bolo Mesclado", desc: "Cenoura + chocolate em camadas intensas e irresistíveis.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/OueHUtJwlOElMHWm.jpg" },
-        { id: 9, name: "Bolo de Amendoim", desc: "Sabor intenso de amendoim, com textura macia e um sabor marcante.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/GzjpPKjJMHZsTvvg.jpg" },
-        { id: 10, name: "Bolo de Fubá", desc: "Clássico fofinho, sabor autêntico de fubá caseiro como os da vó.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nmFrKFeTPKNYkwcD.jpg" },
-        { id: 11, name: "Fubá com Coco", desc: "Fubá tradicional com pedacinhos de coco.", price: 26.00, img: "./assets/img/bolo-fuba-coco.jpg" },
-        { id: 12, name: "Laranja Bahia com Amora", desc: "Aroma de laranja com o toque de amora.", price: 30.00, img: "./assets/img/bolo-laranja-amora.jpg" },
-        { id: 13, name: "Maçã com Nozes", desc: "Clássico sabor de maçã com crocância de nozes.", price: 30.00, img: "./assets/img/bolo-maca-nozes.jpg" },
-        { id: 14, name: "Maçã com Passas", desc: "Aveludado com a doçura das passas.", price: 30.00, img: "./assets/img/bolo-maca-passas.jpg" }
+        { id: 1, name: "Bolo de Chocolate", desc: "Massa fofinha e super chocolatuda, com sabor intenso e caseiro.", price: 26.00, price_old: null, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/PRdTFbGPPJRfxGUn.png", exclusivo_para: [], tag: null },
+        { id: 2, name: "Limão Siciliano e Mirtilo", desc: "Refrescante com limão siciliano e mirtilos frescos na massa.", price: 30.00, price_old: null, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp", exclusivo_para: [], tag: null },
+        { id: 3, name: "Bolo de Laranja", desc: "Clássico molhadinho com suco de laranja natural cítrico.", price: 26.00, price_old: null, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg", exclusivo_para: [], tag: null },
+        { id: 4, name: "Bolo de Milho", desc: "Sabor caseiro autêntico com milho selecionado e macio.", price: 26.00, price_old: null, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/VezOWuffxYCYNPbw.jpg", exclusivo_para: [], tag: null },
+        { id: 5, name: "Bolo de Cenoura", desc: "Cenoura fresca, massa úmida com sabor caseiro irresistível.", price: 26.00, price_old: null, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/vVPrthhQxhwSdbwg.jpg", exclusivo_para: [], tag: null },
+        { id: 6, name: "Bolo de Limão", desc: "Leve, fofinho e azedinho com frescor natural de limão.", price: 26.00, price_old: null, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nTMHyturkMHdoCAC.jpg", exclusivo_para: [], tag: null },
+        { id: 7, name: "Bolo de Aipim", desc: "Macio e molhadinho com aipim fresco e sabor tradicional.", price: 32.00, price_old: null, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/xrjxIXkkOVwzaNRN.jpeg", exclusivo_para: [], tag: null },
+        { id: 8, name: "Bolo Mesclado", desc: "Cenoura + chocolate em camadas intensas e irresistíveis.", price: 26.00, price_old: null, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/OueHUtJwlOElMHWm.jpg", exclusivo_para: [], tag: null },
+        { id: 9, name: "Bolo de Amendoim", desc: "Sabor intenso de amendoim, com textura macia e um sabor marcante.", price: 26.00, price_old: null, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/GzjpPKjJMHZsTvvg.jpg", exclusivo_para: [], tag: null },
+        { id: 10, name: "Bolo de Fubá", desc: "Clássico fofinho, sabor autêntico de fubá caseiro como os da vó.", price: 26.00, price_old: null, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nmFrKFeTPKNYkwcD.jpg", exclusivo_para: [], tag: null },
+        { id: 11, name: "Fubá com Coco", desc: "Fubá tradicional com pedacinhos de coco.", price: 26.00, price_old: null, img: "./assets/img/bolo-fuba-coco.jpg", exclusivo_para: [], tag: null },
+        { id: 12, name: "Laranja Bahia com Amora", desc: "Aroma de laranja com o toque de amora.", price: 30.00, price_old: null, img: "./assets/img/bolo-laranja-amora.jpg", exclusivo_para: [], tag: null },
+        { id: 13, name: "Maçã com Nozes", desc: "Clássico sabor de maçã com crocância de nozes.", price: 30.00, price_old: null, img: "./assets/img/bolo-maca-nozes.jpg", exclusivo_para: [], tag: null },
+        { id: 14, name: "Maçã com Passas", desc: "Aveludado com a doçura das passas.", price: 30.00, price_old: null, img: "./assets/img/bolo-maca-passas.jpg", exclusivo_para: [], tag: null }
     ];
     try {
-        // O '?v=' + Date.now() força o navegador a baixar o arquivo novo, ignorando o cache
         const res = await fetch('./assets/data/cakes.json?v=' + Date.now());
         if (!res.ok) throw new Error('JSON não encontrado');
         return await res.json();
     } catch (err) {
         return fallback;
     }
+}
+
+// 🆕 FILTRO INTELIGENTE: mostra itens públicos + exclusivos do parceiro ativo
+function filtrarBolosPorParceiro(todosBolos) {
+    return todosBolos.filter(bolo => {
+        if (!bolo.exclusivo_para || bolo.exclusivo_para.length === 0) return true;
+        if (codigoCorporativoValido && bolo.exclusivo_para.includes(codigoCorporativoValido)) return true;
+        return false;
+    });
 }
 
 function refreshCheckoutIfOpen() {
@@ -1318,7 +1471,7 @@ function checkCorporateCode() {
         msgValid.style.display = 'block';
         showCorporateBanner(codigo);
         updateCorporateUI();
-        checarFeriados(); // 📅 Re-checa feriados pois o público mudou
+        checarFeriados();
         setTimeout(() => { 
             closeCorporateModal(); 
             document.getElementById('bolos').scrollIntoView({behavior: 'smooth'}); 
@@ -1387,7 +1540,7 @@ function removeCorporateAccess() {
     document.getElementById('corporateBanner').style.display = 'none';
     document.body.classList.remove('corporate-active');
     updateCorporateUI();
-    checarFeriados(); // 📅 Re-checa feriados
+    checarFeriados();
     showToast('Modo parceiro desativado.');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1417,7 +1570,6 @@ function setupPickupDate() {
     input.setAttribute('onchange', 'blockSundaysAndHolidays(this)');
 }
 
-// 📅 ALTERADO: Agora bloqueia domingos E feriados
 function blockSundaysAndHolidays(input) {
     const date = new Date(input.value + 'T00:00:00');
     verificarFeriadoNoCheckout();
@@ -1437,11 +1589,9 @@ function blockSundaysAndHolidays(input) {
         showToast(`⚠️ Não trabalhamos no feriado de ${feriado.nome}`);
         return;
     }
-    
     setupPickupTimeOptions();
 }
 
-// ✅ AJUSTE: Sábados para parceiros têm apenas entrega às 13:00
 function setupPickupTimeOptions() {
     const select = document.getElementById('pickupTime');
     const dateVal = document.getElementById('pickupDate').value;
@@ -1458,14 +1608,7 @@ function setupPickupTimeOptions() {
     }
     
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
-        let horariosCorporativos;
-        if (dayOfWeek === 6) {
-            // Sábado: apenas 13:00
-            horariosCorporativos = ["13:00"];
-        } else {
-            // Segunda a Sexta: 13:00 e 19:00
-            horariosCorporativos = ["13:00", "19:00"];
-        }
+        let horariosCorporativos = (dayOfWeek === 6) ? ["13:00"] : ["13:00", "19:00"];
         horariosCorporativos.forEach(hora => {
             const label = `${hora} - ${(parseInt(hora)+1).toString().padStart(2,'0')}:00`;
             select.innerHTML += `<option value="${hora}">${label}</option>`;
@@ -1473,7 +1616,6 @@ function setupPickupTimeOptions() {
         return;
     }
     
-    // Horário normal (não corporativo)
     let startHour, endHour;
     if (dayOfWeek === 6) { startHour = BUSINESS_HOURS.saturday.start; endHour = BUSINESS_HOURS.saturday.end; }
     else { startHour = BUSINESS_HOURS.weekday.start; endHour = BUSINESS_HOURS.weekday.end; }
@@ -1490,24 +1632,13 @@ function generatePixQR() {
     const qrContainer = document.getElementById('qrcode');
     
     if (typeof QRCode === 'undefined') {
-        qrContainer.innerHTML = `
-            <p style="color:#666;font-size:0.9rem;text-align:center;margin-bottom:10px">
-                ⚠️ QR Code indisponível. Use a chave abaixo:
-            </p>
-            <div class="pix-key" style="font-size:0.8rem;padding:8px;word-break:break-all">${PIX_KEY}</div>
-            <button class="btn-gold" onclick="copyPixKey()" style="padding:8px 16px;font-size:0.85rem;margin-top:8px">📋 Copiar chave</button>
-        `;
+        qrContainer.innerHTML = `<p style="color:#666;font-size:0.9rem;text-align:center;margin-bottom:10px">⚠️ QR Code indisponível. Use a chave abaixo:</p><div class="pix-key" style="font-size:0.8rem;padding:8px;word-break:break-all">${PIX_KEY}</div><button class="btn-gold" onclick="copyPixKey()" style="padding:8px 16px;font-size:0.85rem;margin-top:8px">📋 Copiar chave</button>`;
         return;
     }
     
     qrContainer.innerHTML = '';
     try {
-        new QRCode(qrContainer, {
-            text: payload,
-            width: 200,
-            height: 200,
-            correctLevel: QRCode.CorrectLevel.H
-        });
+        new QRCode(qrContainer, { text: payload, width: 200, height: 200, correctLevel: QRCode.CorrectLevel.H });
     } catch (e) {
         const url = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(payload)}&ecc=H`;
         qrContainer.innerHTML = `<img src="${url}" alt="QR Code PIX" style="max-width:100%;height:auto;border-radius:8px">`;
@@ -1558,7 +1689,6 @@ function sendToWhatsApp() {
     const selectedDate = new Date(date + 'T00:00:00');
     if (selectedDate.getDay() === 0) { alert('⚠️ Não trabalhamos aos domingos.'); return; }
     
-    // 📅 NOVO: Bloqueia envio se for feriado fechado
     const publicoAtual = codigoCorporativoValido ? 'corporativo' : 'site';
     const feriado = FERIADOS.find(f => f.data === date && f.afeta.includes(publicoAtual));
     if (feriado && feriado.status_loja === "fechado") {
@@ -1590,7 +1720,7 @@ function resetCart() {
     codigoCorporativoValido = null;
     localStorage.removeItem('mondego_corp');
     updateCorporateUI();
-    checarFeriados(); // 📅 Re-checa feriados
+    checarFeriados();
 }
 function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2500); }
 
@@ -1598,34 +1728,59 @@ document.getElementById('checkoutModal')?.addEventListener('click', (e) => { if 
 document.getElementById('corporateModal')?.addEventListener('click', (e) => { if (e.target.id === 'corporateModal') closeCorporateModal(); });
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // 🏢 NOVO: Carrega parceiros do arquivo externo
     codigosCorporativos = await carregarParceiros();
-    
-    // 📅 NOVO: Carrega feriados do arquivo externo
     FERIADOS = await carregarFeriados();
     
-    const bolos = await carregarBolos();
+    const todosBolos = await carregarBolos();
+    const bolos = filtrarBolosPorParceiro(todosBolos); // 🆕 APLICA O FILTRO
     const grid = document.getElementById('bolosGrid');
-    grid.innerHTML = bolos.map(b => `
-        <div class="bolo-card">
-            <div class="bolo-img-container">
-                <img src="${b.img}" alt="${b.name}" class="bolo-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop'">
+    
+    // 🆕 Mostra aviso se houver itens exclusivos ativos
+    const exclusivosAtivos = todosBolos.filter(b => 
+        b.exclusivo_para && b.exclusivo_para.length > 0 && 
+        codigoCorporativoValido && b.exclusivo_para.includes(codigoCorporativoValido)
+    );
+    const avisoExclusivo = document.getElementById('exclusivoNotice');
+    if (avisoExclusivo) {
+        if (exclusivosAtivos.length > 0 && codigoCorporativoValido) {
+            const partner = codigosCorporativos[codigoCorporativoValido];
+            avisoExclusivo.innerHTML = `✨ <strong>Ofertas exclusivas</strong> disponíveis para ${partner.nome}! Confira abaixo 👇`;
+            avisoExclusivo.style.display = 'block';
+        } else {
+            avisoExclusivo.style.display = 'none';
+        }
+    }
+
+    grid.innerHTML = bolos.map(b => {
+        const precoHTML = b.price_old 
+            ? `<span class="bolo-price-old">R$ ${b.price_old.toFixed(2).replace('.',',')}</span><span class="bolo-price-new">R$ ${b.price.toFixed(2).replace('.',',')}</span>`
+            : `R$ ${b.price.toFixed(2).replace('.',',')}`;
+        
+        const tagHTML = b.tag ? `<div class="bolo-tag ${b.tag.toLowerCase()}">${b.tag}</div>` : '';
+        const btnTexto = b.price === 0 ? '🎁 PEDIR CORTESIA' : `Encomendar • ${precoHTML}`;
+        
+        return `
+            <div class="bolo-card">
+                ${tagHTML}
+                <div class="bolo-img-container">
+                    <img src="${b.img}" alt="${b.name}" class="bolo-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop'">
+                </div>
+                <div class="bolo-info">
+                    <h3>${b.name}</h3>
+                    <p>${b.desc}</p>
+                    <button class="btn-gold" onclick="addToCart(${b.id}, '${b.name.replace(/'/g, "\\'")}', ${b.price.toFixed(2)})" aria-label="Adicionar ${b.name} ao carrinho">
+                        ${btnTexto}
+                    </button>
+                </div>
             </div>
-            <div class="bolo-info">
-                <h3>${b.name}</h3>
-                <p>${b.desc}</p>
-                <button class="btn-gold" onclick="addToCart(${b.id}, '${b.name}', ${b.price.toFixed(2)})" aria-label="Adicionar ${b.name} ao carrinho por R$ ${b.price.toFixed(2).replace('.',',')}">
-                    Encomendar • R$ ${b.price.toFixed(2).replace('.',',')}
-                </button>
-            </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
     
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
         showCorporateBanner(codigoCorporativoValido);
         updateCorporateUI();
     }
-    checarFeriados(); // 📅 NOVO: Checa feriados ao carregar a página
+    checarFeriados();
     updateCartFloat();
     setupPickupDate();
     document.getElementById('pixKeyDisplay').textContent = PIX_KEY;
@@ -1642,7 +1797,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         codigoCorporativoValido = codigoUrl.toUpperCase();
         showCorporateBanner(codigoCorporativoValido);
         updateCorporateUI();
-        checarFeriados(); // 📅 Re-checa feriados
+        checarFeriados();
     }
     if (addCakeId) {
         const cake = bolos.find(c => c.id == addCakeId);
@@ -1652,6 +1807,54 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 });
+
+// ============================================
+// 📲 LÓGICA DE INSTALAÇÃO DO PWA
+// ============================================
+let deferredPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (!localStorage.getItem('mondego_pwa_dismissed')) {
+        setTimeout(() => {
+            document.getElementById('installBanner').style.display = 'block';
+        }, 3000);
+    }
+});
+
+function instalarPWA() {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                showToast('✅ App instalado com sucesso!');
+                localStorage.setItem('mondego_pwa_installed', 'true');
+            }
+            deferredPrompt = null;
+            fecharBannerInstall();
+        });
+    } else {
+        showToast('📱 No iPhone: toque em "Compartilhar" → "Adicionar à Tela de Início"');
+        fecharBannerInstall();
+    }
+}
+
+function fecharBannerInstall() {
+    document.getElementById('installBanner').style.display = 'none';
+    localStorage.setItem('mondego_pwa_dismissed', 'true');
+}
+
+// ============================================
+// 🔄 REGISTRAR SERVICE WORKER
+// ============================================
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then((reg) => console.log('[PWA] Service Worker registrado'))
+            .catch((err) => console.warn('[PWA] Falha ao registrar SW:', err));
+    });
+}
 </script>
 </body>
 </html>
