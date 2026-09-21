@@ -4,27 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Cardápio Digital - Casa Mondego</title>
-    <meta name="description" content="Cardápio digital da Casa Mondego - Bolos artesanais em Curitiba. 14 sabores deliciosos!">
+    <meta name="description" content="Cardápio digital da Casa Mondego - Bolos artesanais em Curitiba.">
+    
+    <!-- 🚀 PWA - Progressive Web App -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Casa Mondego">
+    <meta name="theme-color" content="#000000">
     
     <!-- Open Graph -->
-    <meta property="fb:app_id" content="5799834" />
-    <meta property="og:title" content="Cardápio Digital-Casa Mondego" />
-    <meta property="og:description" content="Bolos artesanais em Curitiba !!" />
+    <meta property="og:title" content="Cardápio Digital - Casa Mondego" />
+    <meta property="og:description" content="Bolos artesanais em Curitiba! Peça agora pelo app." />
     <meta property="og:image" content="https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/uFUuILwJmMetvATy.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://www.casamondego.com.br/cardapio.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Casa Mondego" />
-    <meta property="og:locale" content="pt_BR" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="🎂 Cardápio Digital - Casa Mondego" />
-    <meta name="twitter:description" content="Bolos artesanais em Curitiba. 14 sabores deliciosos. Peça agora!" />
-    <meta name="twitter:image" content="https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/uFUuILwJmMetvATy.png" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/oicqteltreWtywgP.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/ItsHjbpupNQQxemS.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/QEgXQWrJyUvHsmda.png">
     
     <!-- Fonts -->
@@ -33,9 +31,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Courgette&display=swap" rel="stylesheet">
     
     <style>
-        /* ✅ Box-sizing global */
-        *, *::before, *::after { box-sizing: border-box; }
-        
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
             --gold-primary: #d4af37;
             --gold-secondary: #c5a028;
@@ -43,10 +39,7 @@
             --cream-bg: #fdfaf5;
             --text-dark: #333333;
             --text-light: #ffffff;
-            --corporate-valid: #2e7d32;
-            --corporate-bg: #e8f5e9;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', 'Segoe UI', sans-serif; background-color: var(--cream-bg); color: var(--text-dark); line-height: 1.6; }
         
         /* Banner Corporativo */
@@ -64,6 +57,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         #corporateBanner a { color: var(--black-bg); text-decoration: underline; margin-left: 10px; font-weight: 600; cursor: pointer; }
+        body.corporate-active .menu-header { padding-top: 35px; }
         
         /* Header */
         .menu-header { background: linear-gradient(135deg, var(--black-bg), #1a1a1a); color: var(--text-light); padding: 25px 20px; text-align: center; border-bottom: 4px solid var(--gold-primary); }
@@ -89,45 +83,59 @@
         @media (max-width: 767px) { .cakes-grid { grid-template-columns: repeat(2, 1fr); } }
         
         /* Card */
-        .cake-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: inherit; display: block; }
+        .cake-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: inherit; display: block; position: relative; }
         .cake-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3); border: 2px solid var(--gold-primary); }
         .cake-image { width: 100%; height: 220px; overflow: hidden; position: relative; }
         .cake-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .cake-card:hover .cake-image img { transform: scale(1.1); }
-        .cake-overlay { position: absolute; top: 10px; right: 10px; background: var(--gold-primary); color: var(--black-bg); padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 0.85rem; }
+        .cake-overlay { position: absolute; top: 10px; right: 10px; background: var(--gold-primary); color: var(--black-bg); padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 0.85rem; z-index: 2; }
         .cake-info { padding: 20px; }
         .cake-name { font-size: 1.1rem; font-weight: 700; color: var(--black-bg); margin-bottom: 8px; line-height: 1.3; }
         .cake-description { font-size: 0.85rem; color: #666; margin-bottom: 12px; line-height: 1.4; min-height: 40px; }
         .cake-price { font-size: 1.3rem; font-weight: 700; color: var(--gold-primary); }
         .click-hint { font-size: 0.75rem; color: #999; text-align: center; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #ddd; }
-        .click-hint svg { width: 14px; height: 14px; vertical-align: middle; margin-right: 5px; }
         
         /* Footer */
         .menu-footer { background: var(--black-bg); color: #888; padding: 30px 20px; text-align: center; border-top: 4px solid var(--gold-primary); }
         .footer-content { max-width: 1200px; margin: 0 auto; }
-        .footer-info { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin-bottom: 20px; }
+        .footer-info { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin-bottom: 20px; text-align: left; }
         .footer-item { flex: 1; min-width: 200px; }
         .footer-item h4 { color: var(--gold-primary); margin-bottom: 10px; font-size: 1rem; }
         .footer-item p { font-size: 0.9rem; margin: 5px 0; }
         .footer-item a { color: var(--gold-primary); text-decoration: none; }
         
-        /* 🏢 Info Parceiro - FORÇAR OCULTO POR PADRÃO */
-        #corporatePickupInfo,
-        #corporateFixedAddress {
-            display: none !important;
-        }
-        .corporate-pickup-info { background: #e3f2fd; padding: 12px; border-radius: 8px; font-size: 0.85rem; margin: 10px 0; border-left: 4px solid #1976d2; display: none; text-align: left; }
-        .corporate-pickup-info strong { color: #0d47a1; }
-        
-        /* 🏢 Endereço fixo */
-        .corporate-fixed-address { background: #fff9c4; padding: 12px; border-radius: 8px; font-size: 0.85rem; margin: 10px 0; border-left: 4px solid #fbc02d; display: none; text-align: left; color: var(--text-dark); line-height: 1.4; }
-        .corporate-fixed-address strong { color: #5d4037; }
-        
         .cta-button { display: inline-block; background: var(--gold-primary); color: var(--black-bg); padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.1rem; margin-top: 20px; transition: all 0.3s ease; }
         .cta-button:hover { background: var(--gold-secondary); transform: scale(1.05); }
         .loading { text-align: center; padding: 50px; font-size: 1.2rem; color: #666; }
         .disclaimer { text-align: center; font-size: 0.8rem; color: #999; margin-top: 20px; font-style: italic; }
-        body.corporate-active .menu-header { padding-top: 35px; }
+
+        /* 📲 Banner de Instalação do App (PWA) */
+        #installBanner {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--black-bg) 0%, #1a1a1a 100%);
+            color: white;
+            padding: 15px 20px;
+            z-index: 1500;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+            border-top: 2px solid var(--gold-primary);
+            animation: slideUpBanner 0.4s ease;
+        }
+        @keyframes slideUpBanner { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .install-banner-content { display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; gap: 15px; }
+        .install-banner-text { flex: 1; font-size: 0.9rem; line-height: 1.4; }
+        .install-banner-text strong { color: var(--gold-primary); display: block; margin-bottom: 3px; font-size: 1rem; }
+        .install-banner-close { background: transparent; border: none; color: #888; font-size: 1.5rem; cursor: pointer; padding: 5px 10px; }
+        .install-banner-close:hover { color: white; }
+        .btn-install-app { background: var(--gold-primary); color: var(--black-bg); border: none; padding: 10px 20px; border-radius: 25px; font-weight: 700; font-size: 0.85rem; cursor: pointer; white-space: nowrap; transition: all 0.3s; }
+        .btn-install-app:hover { background: var(--gold-secondary); transform: scale(1.05); }
+        @media (max-width: 480px) {
+            .install-banner-text { font-size: 0.8rem; }
+            .btn-install-app { padding: 8px 14px; font-size: 0.75rem; }
+        }
     </style>
 </head>
 <body>
@@ -141,18 +149,18 @@
     <header class="menu-header">
         <div class="header-content">
             <div class="logo-section">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/uFUuILwJmMetvATy.png" alt="Casa Mondego">
+                <!-- ✅ LOGO CORRIGIDA: Usando caminho local -->
+                <img src="./assets/img/logo-casa-mondego.png" alt="Casa Mondego" onerror="this.style.display='none'; this.parentElement.innerHTML='<h2 style=\'color:var(--gold-primary)\'>Casa Mondego</h2>'">
             </div>
             <div class="contact-info">
                 <p>📍 Rua Desembargador Hugo Simas, 1480, Loja 5</p>
                 <p>🏘️ Bairro Bom Retiro - Curitiba/PR</p>
                 <p>📱 <a href="https://wa.me/5541991755009" target="_blank">(41) 99175-5009</a></p>
-                <p>🌐 <a href="https://www.casamondego.com.br/" target="_blank">www.casamondego.com.br</a></p>
                 <p>📸 @casa.mondego</p>
             </div>
             <div class="qr-section">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.casamondego.com.br/" alt="QR Code Casa Mondego">
-                <p>Faça sua encomenda</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.casamondego.com.br/cardapio.html" alt="QR Code Casa Mondego">
+                <p>Escaneie para pedir</p>
             </div>
         </div>
     </header>
@@ -160,52 +168,34 @@
     <!-- Título -->
     <section class="menu-title">
         <h1>Nossas Delícias – Bolos Artesanais</h1>
-        <p>📸 Clique em qualquer bolo para pedir agora!</p>
+        <p>📸 Clique em qualquer bolo para abrir o app e pedir agora!</p>
     </section>
 
     <!-- Grid -->
     <div class="loading" id="loading">Carregando cardápio...</div>
     <div class="cakes-grid" id="cakesGrid"></div>
 
-    <!-- ✅ FOOTER CORRIGIDO: Elementos corporativos com style="display:none" inline -->
+    <!-- Footer -->
     <footer class="menu-footer">
         <div class="footer-content">
             <div class="footer-info">
                 <div class="footer-item">
-                    <h4>🕒 Horário de Entrega/Retirada</h4>
-                    <p>Segunda a Sexta: 10h às 18h</p>
+                    <h4>🕒 Horário</h4>
+                    <p>Seg a Sex: 10h às 18h</p>
                     <p>Sábado: 10h às 16h</p>
-                    <p>Domingo: Fechado</p>
                 </div>
-                
-                <!-- 🚗 Texto Padrão (VISÍVEL por padrão) -->
                 <div class="footer-item" id="pickupInfoBox">
                     <h4>📍 Como Retirar</h4>
                     <p>• Pessoalmente na loja</p>
-                    <p>• Via Uber/99 (após confirmação)</p>
-                    <p>📍 Rua Des. Hugo Simas, 1480 – Loja 5</p>
-                </div>
-                
-                <!-- 🏢 Texto Parceiro (OCULTO por padrão) -->
+                    <p>• Via Uber/99</p>
+               0</div>
                 <div class="footer-item" id="corporatePickupInfo" style="display:none;">
                     <h4>🏢 Entrega Agendada</h4>
                     <p>• Entrega no ponto combinado</p>
-                    <p>• Retirada apenas com confirmação</p>
                 </div>
-                
-                <!-- 🏢 Endereço fixo (OCULTO por padrão) -->
                 <div class="footer-item" id="corporateFixedAddress" style="display:none;">
                     <h4>📍 Endereço de Entrega</h4>
-                    <div class="corporate-fixed-address" style="display:block;">
-                        <strong>Endereço cadastrado:</strong><br>
-                        <span id="fixedAddressText"></span>
-                    </div>
-                </div>
-                
-                <div class="footer-item">
-                    <h4>💳 Pagamento</h4>
-                    <p>• PIX (valor exato do pedido)</p>
-                    <p>• Confirmação via WhatsApp</p>
+                    <p id="fixedAddressText" style="color: white;"></p>
                 </div>
             </div>
 
@@ -218,36 +208,38 @@
         </div>
     </footer>
 
+    <!-- 📲 Banner de Instalação do App -->
+    <div id="installBanner">
+        <div class="install-banner-content">
+            <div class="install-banner-text">
+                <strong>📲 Instale nosso App!</strong>
+                Tenha a Casa Mondego na tela do seu celular com 1 clique
+            </div>
+            <button class="btn-install-app" onclick="instalarPWA()">⬇️ Instalar</button>
+            <button class="install-banner-close" onclick="fecharBannerInstall()">&times;</button>
+        </div>
+    </div>
+
     <script>
         const SITE_URL = "https://www.casamondego.com.br/";
         
-        // 🏢 CORPORATIVO (objeto com nome + endereco)
+        // 🏢 CORPORATIVO (Exemplo, deve bater com o do index.html ou vir do JSON)
         const codigosCorporativos = {
-            '1234': { nome: 'Condomínio Cinza', endereco: 'Rua Exemplo, 123 - Condomínio Cinza, Bloco A, Curitiba - PR' }
+            '0165': { nome: 'Condomínio Village Cabral', endereco: 'Rua Pedro Fabri, 165 - Condomínio Village Cabral - Curitiba - PR' }
         };
         
         let codigoCorporativoValido = localStorage.getItem('mondego_corp');
 
-        // ✅ Função para carregar bolos do JSON + fallback
         async function carregarBolos() {
+            // ✅ FALLBACK ATUALIZADO com os novos campos do JSON
             const fallback = [
-                { id: 1, name: "Bolo de Chocolate", desc: "Massa fofinha e super chocolatuda, com sabor intenso e caseiro.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/PRdTFbGPPJRfxGUn.png" },
-                { id: 2, name: "Limão Siciliano e Mirtilo", desc: "Refrescante com limão siciliano e mirtilos frescos na massa.", price: 30.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/IAIUVGDVDmdKSqtJ.webp" },
-                { id: 3, name: "Bolo de Laranja", desc: "Clássico molhadinho com suco de laranja natural cítrico.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/qLOXDnBPKWUVLiVj.jpg" },
-                { id: 4, name: "Bolo de Milho", desc: "Sabor caseiro autêntico com milho selecionado e macio.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/VezOWuffxYCYNPbw.jpg" },
-                { id: 5, name: "Bolo de Cenoura", desc: "Cenoura fresca, massa úmida com sabor caseiro irresistível.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/vVPrthhQxhwSdbwg.jpg" },
-                { id: 6, name: "Bolo de Limão", desc: "Leve, fofinho e azedinho com frescor natural de limão.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nTMHyturkMHdoCAC.jpg" },
-                { id: 7, name: "Bolo de Aipim", desc: "Macio e molhadinho com aipim fresco e sabor tradicional.", price: 32.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/xrjxIXkkOVwzaNRN.jpeg" },
-                { id: 8, name: "Bolo Mesclado", desc: "Cenoura + chocolate em camadas intensas e irresistíveis.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/OueHUtJwlOElMHWm.jpg" },
-                { id: 9, name: "Bolo de Amendoim", desc: "Sabor intenso de amendoim, com textura macia e um sabor marcante.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/GzjpPKjJMHZsTvvg.jpg" },
-                { id: 10, name: "Bolo de Fubá", desc: "Clássico fofinho, sabor autêntico de fubá caseiro como os da vó.", price: 26.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/nmFrKFeTPKNYkwcD.jpg" },
-                { id: 11, name: "Fubá com Coco", desc: "Fubá tradicional com pedacinhos de coco.", price: 26.00, img: "./assets/img/bolo-fuba-coco.jpg" },
-                { id: 12, name: "Laranja Bahia com Amora", desc: "Aroma de laranja com o toque de amora.", price: 30.00, img: "./assets/img/bolo-laranja-amora.jpg" },
-                { id: 13, name: "Maçã com Nozes", desc: "Clássico sabor de maçã com crocância de nozes.", price: 30.00, img: "./assets/img/bolo-maca-nozes.jpg" },
-                { id: 14, name: "Maçã com Passas", desc: "Aveludado com a doçura das passas.", price: 30.00, img: "./assets/img/bolo-maca-passas.jpg" }
+                { id: 1, name: "Bolo de Chocolate", desc: "Massa fofinha e super chocolatuda.", price: 26.00, price_old: null, img: "./assets/img/chocolatejp.jpeg", exclusivo_para: [], tag: null },
+                { id: 2, name: "Limão Siciliano e Mirtilo", desc: "Refrescante com limão siciliano e mirtilos.", price: 30.00, price_old: null, img: "./assets/img/Limãocommirtilojp.jpeg", exclusivo_para: [], tag: null },
+                { id: 3, name: "Bolo de Laranja", desc: "Clássico com laranja natural em sua massa.", price: 26.00, price_old: null, img: "./assets/img/laranjajp.jpeg", exclusivo_para: [], tag: null },
+                { id: 7, name: "Bolo de Aipim", desc: "Macio e molhadinho com aipim fresco.", price: 32.00, price_old: null, img: "./assets/img/aipimjp.jpeg", exclusivo_para: [], tag: null }
             ];
             try {
-                const res = await fetch('./assets/data/cakes.json');
+                const res = await fetch('./assets/data/cakes.json?v=' + Date.now());
                 if (!res.ok) throw new Error('JSON não encontrado');
                 return await res.json();
             } catch (err) {
@@ -256,28 +248,22 @@
             }
         }
 
-        // 🏢 UI Corporativa - CORRIGIDA: chamada SEMPRE ao carregar
         function updateCorporateUI() {
             const stdPickup = document.getElementById('pickupInfoBox');
             const corpPickup = document.getElementById('corporatePickupInfo');
             const corporateFixedAddress = document.getElementById('corporateFixedAddress');
             const fixedAddressText = document.getElementById('fixedAddressText');
             
-            // Verifica se há sessão corporativa válida
             const isCorporate = codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido];
             
             if (isCorporate) {
-                // 🏢 MODO PARCEIRO: mostra elementos corporativos, esconde comum
                 if(stdPickup) stdPickup.style.display = 'none';
                 if(corpPickup) corpPickup.style.display = 'block';
                 if(corporateFixedAddress) {
                     corporateFixedAddress.style.display = 'block';
-                    if(codigosCorporativos[codigoCorporativoValido].endereco) {
-                        fixedAddressText.textContent = codigosCorporativos[codigoCorporativoValido].endereco;
-                    }
+                    fixedAddressText.textContent = codigosCorporativos[codigoCorporativoValido].endereco;
                 }
             } else {
-                // 👤 MODO COMUM: mostra elemento padrão, esconde corporativos
                 if(stdPickup) stdPickup.style.display = 'block';
                 if(corpPickup) corpPickup.style.display = 'none';
                 if(corporateFixedAddress) corporateFixedAddress.style.display = 'none';
@@ -300,7 +286,6 @@
             document.getElementById('corporateBanner').style.display = 'none';
             document.body.classList.remove('corporate-active');
             updateCorporateUI();
-            window.location.href = 'https://www.casamondego.com.br/';
         }
 
         // ===== INICIALIZAÇÃO =====
@@ -309,35 +294,77 @@
             const grid = document.getElementById('cakesGrid');
             const loading = document.getElementById('loading');
 
-            grid.innerHTML = bolos.map(b => {
-                const orderUrl = `${SITE_URL}?add=${b.id}`;
+            // Filtra bolos (mostra públicos + exclusivos do parceiro)
+            const bolosVisiveis = bolos.filter(b => {
+                if (!b.exclusivo_para || b.exclusivo_para.length === 0) return true;
+                if (codigoCorporativoValido && b.exclusivo_para.includes(codigoCorporativoValido)) return true;
+                return false;
+            });
+
+            grid.innerHTML = bolosVisiveis.map(b => {
+                const orderUrl = `${SITE_URL}?add=${b.id}${codigoCorporativoValido ? '&codigo=' + codigoCorporativoValido : ''}`;
+                const precoHTML = b.price_old 
+                    ? `<span style="text-decoration:line-through;color:#999;font-size:0.9rem">R$ ${b.price_old.toFixed(2).replace('.',',')}</span> <span style="color:#c62828">R$ ${b.price.toFixed(2).replace('.',',')}</span>`
+                    : `R$ ${b.price.toFixed(2).replace('.',',')}`;
+                
+                const tagHTML = b.tag ? `<div style="position:absolute;top:10px;left:10px;background:${b.tag==='PROMO'?'#ff6b6b':(b.tag==='CORTESIA'?'#f093fb':'#4ecdc4')};color:white;padding:4px 10px;border-radius:15px;font-size:0.75rem;font-weight:bold;z-index:2">${b.tag}</div>` : '';
+
                 return `
-                    <a href="${orderUrl}" target="_blank" class="cake-card" aria-label="Pedir ${b.name}, R$ ${b.price.toFixed(2).replace('.',',')}">
+                    <a href="${orderUrl}" target="_blank" class="cake-card">
+                        ${tagHTML}
                         <div class="cake-image">
                             <img src="${b.img}" alt="${b.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop'">
-                            <div class="cake-overlay">R$ ${b.price.toFixed(2).replace('.',',')}</div>
+                            <div class="cake-overlay">${precoHTML}</div>
                         </div>
                         <div class="cake-info">
                             <h3 class="cake-name">${b.name}</h3>
                             <p class="cake-description">${b.desc}</p>
-                            <div class="click-hint">
-                                <svg viewBox="0 0 448 512" fill="#999"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.5 2.5-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.9 4.4 26.5 3.8 36.5 2.3 11.1-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
-                                Clique para pedir
-                            </div>
+                            <div class="click-hint">📱 Clique para pedir no App</div>
                         </div>
                     </a>
                 `;
             }).join('');
             loading.style.display = 'none';
             
-            // ✅ CORREÇÃO CRÍTICA: Chamar updateCorporateUI() SEMPRE, independente do modo
             updateCorporateUI();
-            
-            // Se houver sessão corporativa, aplica banner também
             if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
                 showCorporateBanner(codigoCorporativoValido);
             }
         });
+
+        // ============================================
+        // 📲 LÓGICA DE INSTALAÇÃO DO PWA
+        // ============================================
+        let deferredPrompt = null;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (!localStorage.getItem('mondego_pwa_dismissed')) {
+                setTimeout(() => { document.getElementById('installBanner').style.display = 'block'; }, 2000);
+            }
+        });
+
+        function instalarPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        localStorage.setItem('mondego_pwa_installed', 'true');
+                        alert('✅ App instalado com sucesso!');
+                    }
+                    deferredPrompt = null;
+                    fecharBannerInstall();
+                });
+            } else {
+                alert('📱 No iPhone: toque em "Compartilhar" (ícone quadrado com seta) e depois em "Adicionar à Tela de Início".');
+                fecharBannerInstall();
+            }
+        }
+
+        function fecharBannerInstall() {
+            document.getElementById('installBanner').style.display = 'none';
+            localStorage.setItem('mondego_pwa_dismissed', 'true');
+        }
     </script>
 </body>
 </html>
