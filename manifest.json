@@ -22,22 +22,6 @@
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
-    },
-    {
-      "src": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/QEgXQWrJyUvHsmda.png",
-      "type": "image/png",
-      "sizes": "180x180",
-      "purpose": "any"
-    }
-  ],
-  "screenshots": [],
-  "shortcuts": [
-    {
-      "name": "Ver Cardápio",
-      "short_name": "Cardápio",
-      "description": "Veja nossos bolos artesanais",
-      "url": "/#bolos",
-      "icons": [{ "src": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/ItsHjbpupNQQxemS.png", "sizes": "192x192" }]
     }
   ]
 }
