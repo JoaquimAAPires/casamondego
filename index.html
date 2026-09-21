@@ -60,7 +60,6 @@
 </script>
 
 <style id='casa-mondego-custom-css' type='text/css'>
-    /* ✅ CORREÇÃO: Box-sizing global para consistência */
     *, *::before, *::after { box-sizing: border-box; }
 
     :root {
@@ -90,7 +89,6 @@
         -webkit-text-size-adjust: 100%;
     }
 
-    /* ✅ AJUSTE DESKTOP: Centraliza e evita esticamento */
     .page-wrapper { max-width: 1400px; margin: 0 auto; width: 100%; }
     header.header-bar, .hero-section, .section-title, .disclaimer-images, .historia-section, footer { max-width: 100%; }
     .hero-section, .historia-section, footer { padding-left: 20px; padding-right: 20px; }
@@ -274,7 +272,6 @@
         padding: 0 20px;
     }
 
-    /* ✅ Badge do Parceiro no Cardápio */
     #partnerMenuBadge {
         max-width: 800px;
         margin: -10px auto 25px;
@@ -289,17 +286,24 @@
     }
     #partnerMenuBadge strong { color: var(--corporate-valid); }
 
+    /* ✅ GRID CORRIGIDO: 2 colunas no mobile */
     .bolos-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
         padding: 20px;
         max-width: 1400px;
         margin: 0 auto;
     }
     @media (min-width: 1200px) { .bolos-grid { grid-template-columns: repeat(4, 1fr); } }
     @media (min-width: 768px) and (max-width: 1199px) { .bolos-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 767px) { .bolos-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 767px) { 
+        .bolos-grid { 
+            grid-template-columns: repeat(2, 1fr) !important; 
+            gap: 12px !important;
+            padding: 15px !important;
+        } 
+    }
 
     .bolo-card {
         background: white;
@@ -310,7 +314,7 @@
         border: 1px solid #f0f0f0;
         display: flex;
         flex-direction: column;
-        position: relative; /* Necessário para a tag absoluta */
+        position: relative;
     }
     .bolo-card:hover {
         transform: translateY(-15px);
@@ -434,11 +438,7 @@
         .hero-section h1 { font-size: 2.2rem; }
         .hero-section p { font-size: 1.1rem; }
         .historia-section { background-attachment: scroll; }
-        .bolos-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
         #partnerMenuBadge { margin: 0 15px 20px; font-size: 0.85rem; }
-    }
-    @media (max-width: 480px) {
-        .bolos-grid { grid-template-columns: 1fr; }
     }
 
     /* E-commerce */
@@ -772,9 +772,6 @@
     .corporate-msg.valid { color: var(--corporate-valid); display: block; }
     .corporate-msg.invalid { color: var(--corporate-invalid); display: block; }
 
-    /* ============================================
-       🏷️ TAGS DE EXCLUSIVIDADE (PROMO, NOVO, CORTESIA)
-       ============================================ */
     .bolo-tag {
         position: absolute;
         top: 12px;
@@ -810,7 +807,6 @@
         50% { transform: scale(1.08); box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
     }
 
-    /* Preço antigo (riscado) para promoções */
     .bolo-price-old {
         text-decoration: line-through;
         color: #999;
@@ -824,9 +820,6 @@
         font-size: 1.1rem;
     }
 
-    /* ============================================
-       📲 BANNER "INSTALAR APP" (PWA)
-       ============================================ */
     #installBanner {
         display: none;
         position: fixed;
@@ -898,9 +891,6 @@
         .btn-install-app { padding: 8px 14px; font-size: 0.75rem; }
     }
 
-    /* ============================================
-       🏢 BADGE "EXCLUSIVO DO CONDOMÍNIO" NO CARDÁPIO
-       ============================================ */
     .exclusivo-notice {
         max-width: 800px;
         margin: 15px auto 25px;
@@ -924,17 +914,14 @@
 <body>
 
 <div class="page-wrapper">
-<!-- Banner Corporativo -->
 <div id="corporateBanner">
     🏢 Modo Parceiro Ativo: <span id="partnerNameDisplay"></span> | <a onclick="removeCorporateAccess()">Sair</a>
 </div>
 
-<!-- 📅 Banner de Feriados -->
 <div id="holidayBanner">
-    📅 <strong>Atenção:</strong> <span id="holidayMessage"></span>
+     <strong>Atenção:</strong> <span id="holidayMessage"></span>
 </div>
 
-<!-- Botão WhatsApp -->
 <a href="https://wa.me/5541991755009?text=Olá! Gostaria de encomendar um bolo da Casa Mondego. Qual é a disponibilidade?" 
    class="whatsapp-float" 
    title="Fale conosco no WhatsApp" 
@@ -945,14 +932,12 @@
     </svg>
 </a>
 
-<!-- Botão Carrinho -->
 <div id="cartFloat" class="cart-float hidden" onclick="openCheckout()" 
      role="button" tabindex="0" aria-label="Abrir carrinho de compras"
      onkeypress="if(event.key==='Enter') openCheckout()">
     🛒<span id="cartCount">0</span>
 </div>
 
-<!-- Modal Checkout -->
 <div id="checkoutModal" class="checkout-modal">
     <div class="checkout-content">
         <button class="checkout-close" onclick="closeCheckout()" aria-label="Fechar modal">&times;</button>
@@ -988,9 +973,9 @@
         </div>
         
         <div class="form-group">
-            <label for="pickupDate">📅 Data para Retirada *</label>
+            <label for="pickupDate"> Data para Retirada *</label>
             <input type="date" id="pickupDate" required>
-            <span class="form-hint">📌 Pedidos feitos hoje são retirados amanhã</span>
+            <span class="form-hint"> Pedidos feitos hoje são retirados amanhã</span>
             <div id="aipimWarning" class="aipim-warning">
                 ⚠️ <strong>Atenção:</strong> Bolo de Aipim só está disponível para retirada após as 14h
             </div>
@@ -1012,7 +997,7 @@
         </div>
         
         <div id="corporatePickupInfo" class="corporate-pickup-info">
-            <strong>🏢 Entrega Agendada:</strong><br>
+            <strong> Entrega Agendada:</strong><br>
             Seu pedido será entregue no endereço cadastrado abaixo.
         </div>
         
@@ -1031,7 +1016,7 @@
         </div>
         
         <div class="confirmation-box">
-            <strong>📸 Confirmação do Pedido</strong>
+            <strong> Confirmação do Pedido</strong>
             <p>Após o pagamento, clique no botão abaixo e envie o comprovante pelo WhatsApp.</p>
             <p style="font-weight: 600; margin-top: 8px;">👉 Seu pedido só será reservado após a confirmação do pagamento.</p>
         </div>
@@ -1052,7 +1037,6 @@
     </div>
 </div>
 
-<!-- Modal Corporativo -->
 <div id="corporateModal" class="checkout-modal" style="z-index: 2500;">
     <div class="checkout-content corporate-modal-content">
         <button class="checkout-close" onclick="closeCorporateModal()" aria-label="Fechar modal">&times;</button>
@@ -1067,7 +1051,7 @@
         </div>
         
         <div id="corpMsgValid" class="corporate-msg valid">✅ Código válido! Redirecionando...</div>
-        <div id="corpMsgInvalid" class="corporate-msg invalid">⚠️ Código não encontrado.</div>
+        <div id="corpMsgInvalid" class="corporate-msg invalid">️ Código não encontrado.</div>
         
         <button class="btn-gold" onclick="checkCorporateCode()" style="width: 100%; margin-top: 15px;" aria-label="Acessar cardápio corporativo">Acessar Cardápio</button>
         
@@ -1079,10 +1063,9 @@
 
 <header class="header-bar">
     <div class="branding">
-        <!-- NOVO CÓDIGO (Usando a imagem local) -->
-<a href="https://www.casamondego.com.br/" aria-label="Voltar para página inicial">
-    <img src="./assets/img/logo-casa-mondego.png" alt="Casa Mondego" class="logo-img">
-</a>
+        <a href="https://www.casamondego.com.br/" aria-label="Voltar para página inicial">
+            <img src="./assets/img/logo-casa-mondego.png" alt="Casa Mondego" class="logo-img">
+        </a>
     </div>
     <nav>
         <ul class="main-nav">
@@ -1102,19 +1085,16 @@
     <a href="#bolos" class="btn-gold">CONHEÇA NOSSOS BOLOS</a>
 </section>
 
-<!-- SEÇÃO DE BOLOS -->
 <div id="bolos">
     <h2 class="section-title">Nossas Delícias - Sabores Artesanais</h2>
     
-    <!-- ✅ Badge do Parceiro -->
     <div id="partnerMenuBadge">
         🏢 <strong>Parceiro Ativo:</strong> <span id="menuPartnerName"></span><br>
-        📍 <span id="menuPartnerAddress"></span>
+         <span id="menuPartnerAddress"></span>
     </div>
     
     <p class="disclaimer-images">📸 As imagens dos bolos são meramente ilustrativas</p>
     
-    <!-- 🆕 Aviso de ofertas exclusivas do parceiro -->
     <div id="exclusivoNotice" class="exclusivo-notice"></div>
     
     <div class="bolos-grid" id="bolosGrid">
@@ -1129,7 +1109,6 @@
     </div>
 </section>
 
-<!-- ✅ FOOTER AJUSTADO -->
 <footer id="contato">
     <div class="footer-grid">
         <div class="footer-section">
@@ -1176,13 +1155,12 @@
         <p>&copy; 2026 Casa Mondego - Todos os direitos reservados.</p>
     </div>
 </footer>
-</div> <!-- Fim .page-wrapper -->
+</div>
 
-<!-- 📲 Banner de Instalação do App -->
 <div id="installBanner">
     <div class="install-banner-content">
         <div class="install-banner-text">
-            <strong>📲 Instale nosso App!</strong>
+            <strong> Instale nosso App!</strong>
             Tenha a Casa Mondego na tela do seu celular com 1 clique
         </div>
         <button class="btn-install-app" id="btnInstallApp" onclick="instalarPWA()">
@@ -1192,7 +1170,6 @@
     </div>
 </div>
 
-<!-- === JAVASCRIPT COMPLETO E INTEGRAL === -->
 <script>
 // ===== CONFIGURAÇÕES =====
 const WHATSAPP_NUMBER = "5541991755009";
@@ -1209,16 +1186,20 @@ let cart = JSON.parse(localStorage.getItem('cart_mondego')) || [];
 let codigoCorporativoValido = localStorage.getItem('mondego_corp');
 let FERIADOS = [];
 
-// ===== 🏢 CARREGAR PARCEIROS =====
+// =====  CARREGAR PARCEIROS =====
 async function carregarParceiros() {
     try {
         const res = await fetch('./assets/data/parceiros.json?v=' + Date.now());
         if (!res.ok) throw new Error('Arquivo parceiros.json não encontrado');
         return await res.json();
     } catch (err) {
-        console.warn('⚠️ Usando parceiros padrão (fallback):', err);
+        console.warn('️ Usando parceiros padrão (fallback):', err);
         return {
-            '0165': { nome: 'Condomínio Village Cabral', endereco: 'Rua Pedro Fabri, 165 - Condomínio Village Cabral - Curitiba - PR' }
+            '0165': { 
+                nome: 'Condomínio Village Cabral', 
+                endereco: 'Rua Pedro Fabri, 165 - Condomínio Village Cabral - Curitiba - PR',
+                grupoWhatsapp: 'https://chat.whatsapp.com/SEU_LINK_DO_GRUPO_AQUI'
+            }
         };
     }
 }
@@ -1310,7 +1291,7 @@ function formatarDataBR(dataStr) {
     return `${d}/${m}/${y}`;
 }
 
-// ===== FUNÇÃO PARA CARREGAR BOLOS (ATUALIZADA COM NOVOS CAMPOS) =====
+// ===== FUNÇÃO PARA CARREGAR BOLOS =====
 async function carregarBolos() {
     const fallback = [
         { id: 1, name: "Bolo de Chocolate", desc: "Massa fofinha e super chocolatuda, com sabor intenso e caseiro.", price: 26.00, price_old: null, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/PRdTFbGPPJRfxGUn.png", exclusivo_para: [], tag: null },
@@ -1337,7 +1318,6 @@ async function carregarBolos() {
     }
 }
 
-// 🆕 FILTRO INTELIGENTE: mostra itens públicos + exclusivos do parceiro ativo
 function filtrarBolosPorParceiro(todosBolos) {
     return todosBolos.filter(bolo => {
         if (!bolo.exclusivo_para || bolo.exclusivo_para.length === 0) return true;
@@ -1524,7 +1504,7 @@ function updateCorporateUI() {
             menuPartnerAddress.textContent = partner.endereco || 'Endereço não cadastrado';
         }
     } else {
-        if(lblDate) lblDate.textContent = '📅 Data para Retirada *';
+        if(lblDate) lblDate.textContent = ' Data para Retirada *';
         if(hintDate) hintDate.textContent = '📌 Pedidos feitos hoje são retirados amanhã';
         if(lblTime) lblTime.textContent = '🕒 Horário para Retirada *';
         if(corporatePickupInfo) corporatePickupInfo.style.display = 'none';
@@ -1679,6 +1659,7 @@ function generatePixPayload(key, name, city, amount) {
 
 function copyPixKey() { navigator.clipboard.writeText(PIX_KEY).then(() => showToast('📋 Chave PIX copiada!')); }
 
+// ===== 🆕 FUNÇÃO ATUALIZADA: Envia pedido E mostra modal do grupo =====
 function sendToWhatsApp() {
     const name = document.getElementById('customerName').value.trim();
     const phone = document.getElementById('customerPhone').value.trim();
@@ -1699,16 +1680,67 @@ function sendToWhatsApp() {
 
     const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     const items = cart.map(i => `• ${i.quantity}x ${i.name} (R$ ${(i.quantity*i.price).toFixed(2).replace('.',',')})`).join('%0A');
+    
     let corporateInfo = '';
+    let grupoLink = '';
+    
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
-        const partnerName = codigosCorporativos[codigoCorporativoValido].nome;
-        const fixedAddress = codigosCorporativos[codigoCorporativoValido].endereco || 'Endereço não cadastrado';
-        corporateInfo = `🏢 *PARCEIRO*: ${partnerName}%0A✅ *FRETE GRÁTIS*%0A📍 *Endereço:* ${fixedAddress}%0A%0A`;
+        const partner = codigosCorporativos[codigoCorporativoValido];
+        corporateInfo = ` *PARCEIRO*: ${partner.nome}%0A✅ *FRETE GRÁTIS*%0A📍 *Endereço:* ${partner.endereco}%0A%0A`;
+        grupoLink = partner.grupoWhatsapp || '';
     }
+    
     const message = `🎂 *NOVO PEDIDO - CASA MONDEGO*%0A%0A*Cliente:* ${name}%0A*WhatsApp:* ${phone}%0A%0A${corporateInfo}*Itens do Pedido:*%0A${items}%0A%0A*Retirada/Entrega:* ${formatarDataBR(date)} às ${time}%0A*Modalidade:* ${codigoCorporativoValido ? 'Entrega agendada (frete grátis)' : 'Cliente retira (pessoal ou via app)'}%0A%0A*Total:* R$ ${total.toFixed(2).replace('.',',')}%0A*Pagamento:* PIX confirmado%0A%0A📸 *Enviarei o comprovante de pagamento em seguida!*%0A%0AAguardo confirmação! 🙏`;
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+    
     updateProgress(3);
-    setTimeout(() => { closeCheckout(); window.open(url, '_blank'); resetCart(); }, 500);
+    
+    // 1. Abre o WhatsApp com o pedido
+    window.open(url, '_blank');
+    
+    // 2. Se for parceiro e tiver link de grupo, mostra o modal de convite
+    if (codigoCorporativoValido && grupoLink) {
+        setTimeout(() => {
+            mostrarModalGrupo(grupoLink, codigosCorporativos[codigoCorporativoValido].nome);
+        }, 500);
+    } else {
+        // Se não for parceiro, apenas reseta o carrinho e fecha o checkout
+        setTimeout(() => { closeCheckout(); resetCart(); }, 500);
+    }
+}
+
+// 🆕 NOVA FUNÇÃO: Modal de Convite para o Grupo
+function mostrarModalGrupo(linkGrupo, nomeCondominio) {
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.8); z-index: 3000; display: flex;
+        align-items: center; justify-content: center; padding: 20px;
+    `;
+    
+    modal.innerHTML = `
+        <div style="background: white; border-radius: 20px; padding: 30px; max-width: 400px; width: 100%; text-align: center; border: 3px solid var(--gold-primary);">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🎉</div>
+            <h3 style="color: var(--black-bg); font-family: 'Courgette', cursive; font-size: 1.8rem; margin-bottom: 10px;">Pedido Enviado!</h3>
+            <p style="color: #666; margin-bottom: 20px; font-size: 0.95rem;">
+                Agora, entre no grupo exclusivo do <strong>${nomeCondominio}</strong> para receber avisos de "Bolo do Dia" e promoções relâmpago!
+            </p>
+            <a href="${linkGrupo}" target="_blank" style="
+                display: block; background: #25D366; color: white; text-decoration: none;
+                padding: 15px; border-radius: 30px; font-weight: bold; font-size: 1.1rem;
+                margin-bottom: 15px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            ">
+                💬 Entrar no Grupo do Condomínio
+            </a>
+            <button onclick="this.parentElement.parentElement.remove(); closeCheckout(); resetCart();" style="
+                background: transparent; border: none; color: #999; font-size: 0.9rem; cursor: pointer; text-decoration: underline;
+            ">
+                Agora não, obrigado
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
 }
 
 function resetCart() { 
@@ -1716,7 +1748,7 @@ function resetCart() {
     document.getElementById('customerName').value = ''; 
     document.getElementById('customerPhone').value = ''; 
     document.getElementById('pickupDate').value = ''; 
-    document.getElementById('pickupTime').innerHTML = '<option value="">🕒 Escolha a data para ver os horários disponíveis</option>'; 
+    document.getElementById('pickupTime').innerHTML = '<option value=""> Escolha a data para ver os horários disponíveis</option>'; 
     document.getElementById('corporateCodeInput').value = ''; 
     codigoCorporativoValido = null;
     localStorage.removeItem('mondego_corp');
@@ -1733,10 +1765,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     FERIADOS = await carregarFeriados();
     
     const todosBolos = await carregarBolos();
-    const bolos = filtrarBolosPorParceiro(todosBolos); // 🆕 APLICA O FILTRO
+    const bolos = filtrarBolosPorParceiro(todosBolos);
     const grid = document.getElementById('bolosGrid');
     
-    // 🆕 Mostra aviso se houver itens exclusivos ativos
     const exclusivosAtivos = todosBolos.filter(b => 
         b.exclusivo_para && b.exclusivo_para.length > 0 && 
         codigoCorporativoValido && b.exclusivo_para.includes(codigoCorporativoValido)
@@ -1777,11 +1808,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         `;
     }).join('');
     
-    if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
+    //  ATIVAÇÃO AUTOMÁTICA VIA URL (ex: ?codigo=0165)
+    const urlParams = new URLSearchParams(window.location.search);
+    const addCakeId = urlParams.get('add');
+    const codigoUrl = urlParams.get('codigo');
+    
+    if (codigoUrl && codigosCorporativos[codigoUrl.toUpperCase()]) {
+        codigoCorporativoValido = codigoUrl.toUpperCase();
+        localStorage.setItem('mondego_corp', codigoCorporativoValido); // Salva para sempre no celular!
+        showCorporateBanner(codigoCorporativoValido);
+        updateCorporateUI();
+        checarFeriados();
+    } else if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
         showCorporateBanner(codigoCorporativoValido);
         updateCorporateUI();
     }
-    checarFeriados();
+    
     updateCartFloat();
     setupPickupDate();
     document.getElementById('pixKeyDisplay').textContent = PIX_KEY;
@@ -1791,15 +1833,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         verificarFeriadoNoCheckout(); 
     });
     
-    const urlParams = new URLSearchParams(window.location.search);
-    const addCakeId = urlParams.get('add');
-    const codigoUrl = urlParams.get('codigo');
-    if (codigoUrl && codigosCorporativos[codigoUrl.toUpperCase()]) {
-        codigoCorporativoValido = codigoUrl.toUpperCase();
-        showCorporateBanner(codigoCorporativoValido);
-        updateCorporateUI();
-        checarFeriados();
-    }
     if (addCakeId) {
         const cake = bolos.find(c => c.id == addCakeId);
         if (cake) {
