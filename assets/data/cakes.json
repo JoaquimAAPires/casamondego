@@ -226,7 +226,7 @@
     "price": 20.00,
     "price_old": 26.00,
     "img": "./assets/img/chocolatejp.jpeg",
-    "exclusivo_para": ["0165"],
+    "exclusivo_para": ["99999"],
     "tag": "PROMO"
   },
   {
@@ -236,7 +236,7 @@
     "price": 0.00,
     "price_old": null,
     "img": "./assets/img/chocolatejp.jpeg",
-    "exclusivo_para": ["0165", "0166"],
+    "exclusivo_para": ["99999", "99999"],
     "tag": "CORTESIA"
   }
 ]
