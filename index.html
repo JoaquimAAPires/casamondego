@@ -93,7 +93,6 @@
     header.header-bar, .hero-section, .section-title, .disclaimer-images, .historia-section, footer { max-width: 100%; }
     .hero-section, .historia-section, footer { padding-left: 20px; padding-right: 20px; }
 
-    /* Botão WhatsApp */
     .whatsapp-float {
         position: fixed;
         width: 60px;
@@ -121,7 +120,6 @@
         100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
 
-    /* Banner Corporativo */
     #corporateBanner {
         display: none;
         background-color: var(--gold-primary);
@@ -144,7 +142,6 @@
         cursor: pointer;
     }
 
-    /* 📅 Banner de Feriados */
     #holidayBanner {
         display: none;
         background-color: #c62828;
@@ -164,7 +161,6 @@
 
     body.corporate-active.holiday-active #holidayBanner { top: 40px; }
 
-    /* ✅ CABEÇALHO AJUSTADO */
     header.header-bar {
         background-color: var(--black-bg) !important;
         border-bottom: 2px solid var(--gold-primary);
@@ -226,7 +222,6 @@
     }
     .btn-corporate-menu:hover { background: rgba(212, 175, 55, 0.2) !important; }
 
-    /* Hero */
     .hero-section {
         background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028551654/MTeBtuAOcldRYVSu.jpg');
         background-size: cover;
@@ -245,7 +240,6 @@
     }
     .hero-section p { font-size: 1.3rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
 
-    /* Seção Bolos */
     .section-title {
         text-align: center;
         color: var(--black-bg);
@@ -286,7 +280,6 @@
     }
     #partnerMenuBadge strong { color: var(--corporate-valid); }
 
-    /* ✅ GRID CORRIGIDO: 2 colunas no mobile */
     .bolos-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -353,7 +346,6 @@
     }
     .btn-gold:hover { background-color: transparent; color: var(--gold-primary); }
 
-    /* História */
     .historia-section {
         background-color: var(--black-bg);
         color: var(--text-light);
@@ -367,7 +359,6 @@
     .historia-content h2 { font-family: 'Courgette', cursive; color: var(--gold-primary); font-size: 3rem; margin-bottom: 20px; }
     .historia-content p { margin-bottom: 15px; }
 
-    /* Footer */
     footer {
         background-color: var(--black-bg) !important;
         color: #888;
@@ -419,7 +410,6 @@
     .social-facebook { background-color: #1877F2; }
     .map-container { width: 100%; height: 180px; border-radius: 10px; overflow: hidden; margin-top: 15px; border: 1px solid #333; }
 
-    /* ✅ RESPONSIVO CORRIGIDO */
     @media (max-width: 768px) {
         #corporateBanner, #holidayBanner { position: relative !important; top: 0 !important; }
         header.header-bar { 
@@ -441,7 +431,6 @@
         #partnerMenuBadge { margin: 0 15px 20px; font-size: 0.85rem; }
     }
 
-    /* E-commerce */
     .cart-float {
         position: fixed;
         bottom: 100px;
@@ -907,7 +896,6 @@
     .exclusivo-notice strong { color: #5d4037; }
 </style>
 
-<!-- QR Code Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <link rel='stylesheet' id='google-fonts-css' href='https://fonts.googleapis.com/css?family=Montserrat%3A400%2C700%7CCourgette&display=swap' type='text/css' media='all' />
 </head>
@@ -1064,7 +1052,7 @@
 <header class="header-bar">
     <div class="branding">
         <a href="https://www.casamondego.com.br/" aria-label="Voltar para página inicial">
-            <img src="./assets/img/logo-casa-mondego.png" alt="Casa Mondego" class="logo-img">
+            <img src="./assets/img/logo-casa-mondego.png" alt="Casa Mondego" class="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<h2 style=\'color:var(--gold-primary)\'>Casa Mondego</h2>'">
         </a>
     </div>
     <nav>
@@ -1198,7 +1186,7 @@ async function carregarParceiros() {
             '0165': { 
                 nome: 'Condomínio Village Cabral', 
                 endereco: 'Rua Pedro Fabri, 165 - Condomínio Village Cabral - Curitiba - PR',
-                grupoWhatsapp: 'https://chat.whatsapp.com/SEU_LINK_DO_GRUPO_AQUI'
+                grupoWhatsapp: 'https://chat.whatsapp.com/BpXqM8uMPgMIbOOFMngp9b?s=sw&p=a&mlu=4&ilr=4'
             }
         };
     }
@@ -1686,7 +1674,7 @@ function sendToWhatsApp() {
     
     if (codigoCorporativoValido && codigosCorporativos[codigoCorporativoValido]) {
         const partner = codigosCorporativos[codigoCorporativoValido];
-        corporateInfo = ` *PARCEIRO*: ${partner.nome}%0A✅ *FRETE GRÁTIS*%0A📍 *Endereço:* ${partner.endereco}%0A%0A`;
+        corporateInfo = `🏢 *PARCEIRO*: ${partner.nome}%0A✅ *FRETE GRÁTIS*%0A📍 *Endereço:* ${partner.endereco}%0A%0A`;
         grupoLink = partner.grupoWhatsapp || '';
     }
     
