@@ -1,18 +1,22 @@
 {
   "0165": {
     "nome": "Condomínio Village Cabral",
-    "endereco": "Rua Pedro Fabri, 165 - Condomínio Village Cabral - Curitiba - PR"
+    "endereco": "Rua Pedro Fabri, 165 - Condomínio Village Cabral - Curitiba - PR",
+    "grupoWhatsapp": "https://chat.whatsapp.com/BpXqM8uMPgMIbOOFMngp9b?s=sw&p=a&mlu=4&ilr=4"
   },
   "0200": {
     "nome": "Edifício Solar das Águas",
-    "endereco": "Av. das Águas, 200 - Centro - Curitiba - PR"
+    "endereco": "Av. das Águas, 200 - Centro - Curitiba - PR",
+    "grupoWhatsapp": "https://chat.whatsapp.com/SEU_LINK_DO_GRUPO_AQUI"
   },
   "0350": {
     "nome": "Empresa Tech Solutions",
-    "endereco": "Rua das Inovações, 350 - Sala 10 - Curitiba - PR"
+    "endereco": "Rua das Inovações, 350 - Sala 10 - Curitiba - PR",
+    "grupoWhatsapp": "https://chat.whatsapp.com/SEU_LINK_DO_GRUPO_AQUI"
   },
   "0999": {
     "nome": "Condomínio Jardins",
-    "endereco": "Rua das Flores, 999 - Jardim Botânico - Curitiba - PR"
+    "endereco": "Rua das Flores, 999 - Jardim Botânico - Curitiba - PR",
+    "grupoWhatsapp": "https://chat.whatsapp.com/SEU_LINK_DO_GRUPO_AQUI"
   }
 }
