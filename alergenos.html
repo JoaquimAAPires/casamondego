@@ -4,38 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Informações sobre Alérgenos - Casa Mondego</title>
-  <meta name="description" content="Informações detalhadas sobre alérgenos em nossos bolos artesanais. Consulte antes de pedir!">
-  
-  <!-- Open Graph para WhatsApp -->
-  <meta property="og:title" content="⚠️ Informações sobre Alérgenos - Casa Mondego" />
-  <meta property="og:description" content="Consulte quais alérgenos estão presentes em cada bolo antes de fazer seu pedido." />
-  <meta property="og:image" content="https://files.manuscdn.com/user_upload_by_module/session_file/310519663297933797/uFUuILwJmMetvATy.png" />
-  <meta property="og:url" content="https://www.casamondego.com.br/alergenos.html" />
-  <meta property="og:type" content="website" />
+  <meta name="description" content="Informações detalhadas sobre alérgenos em nossos bolos artesanais.">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Courgette&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Courgette&display=swap" rel="stylesheet">
   
   <style>
     :root {
       --gold-primary: #d4af37;
-      --gold-secondary: #c5a028;
       --black-bg: #000000;
       --cream-bg: #fdfaf5;
       --text-dark: #333333;
-      --text-light: #ffffff;
-      /* Cores semânticas para alérgenos */
-      --contem-bg: #ffebee;
-      --contem-text: #b30000;
-      --contem-border: #ffcdd2;
-      --nao-contem-bg: #e8f5e9;
-      --nao-contem-text: #2e7d32;
-      --nao-contem-border: #c8e6c9;
-      --pode-conter-bg: #fff3e0;
-      --pode-conter-text: #e65100;
-      --pode-conter-border: #ffe0b2;
+      --contem-bg: #ffebee; --contem-text: #b30000; --contem-border: #ffcdd2;
+      --nao-contem-bg: #e8f5e9; --nao-contem-text: #2e7d32; --nao-contem-border: #c8e6c9;
+      --pode-conter-bg: #fff3e0; --pode-conter-text: #e65100; --pode-conter-border: #ffe0b2;
     }
     
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,17 +27,15 @@
     body { 
       font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; 
       font-size: 11px;
-      line-height: 1.4;
+      line-height: 1.3;
       color: var(--text-dark);
       background: var(--cream-bg);
-      margin: 0;
-      padding: 0;
     }
     
     .container { 
       max-width: 210mm;
       margin: 0 auto; 
-      padding: 10mm;
+      padding: 15mm;
     }
     
     /* Header */
@@ -63,836 +45,321 @@
       padding: 15px 10px; 
       margin-bottom: 15px;
       background: var(--black-bg);
-      color: var(--text-light);
+      color: white;
       border-radius: 0 0 10px 10px;
     }
+    .header h1 { margin: 0 0 5px; font-family: 'Courgette', cursive; font-size: 1.5rem; color: var(--gold-primary); }
+    .header .subtitle { font-size: 0.9rem; color: var(--gold-primary); font-weight: 600; }
+    .header .address { font-size: 0.8rem; color: #aaa; font-style: italic; margin-top: 3px; }
     
-    .header h1 { 
-      margin: 0 0 8px; 
-      font-family: 'Courgette', cursive;
-      font-size: 1.4rem; 
-      color: var(--gold-primary);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    .header .subtitle {
-      font-size: 0.9rem;
-      color: var(--gold-primary);
-      margin: 3px 0;
-      font-weight: 600;
-    }
-    
-    .header .address {
-      font-size: 0.8rem;
-      color: #aaa;
-      font-style: italic;
-      margin: 2px 0;
-    }
-    
-    .header .anvisa {
-      font-size: 0.75rem;
-      color: #888;
-      margin-top: 5px;
-    }
-    
-    /* Legenda compacta */
+    /* Legenda */
     .legend {
-      background: white;
-      border: 1px solid var(--gold-primary);
-      border-radius: 8px;
-      padding: 12px;
-      margin: 15px 0 20px;
-      font-size: 0.8rem;
+      background: white; border: 1px solid var(--gold-primary); border-radius: 8px;
+      padding: 10px; margin: 15px 0; font-size: 0.8rem;
     }
+    .legend h3 { margin: 0 0 8px; font-size: 0.95rem; color: var(--black-bg); font-family: 'Courgette', cursive; }
+    .legend-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+    .legend-item { display: flex; align-items: center; gap: 4px; font-size: 0.75rem; }
     
-    .legend h3 {
-      margin: 0 0 8px;
-      font-size: 0.95rem;
-      color: var(--black-bg);
-      font-family: 'Courgette', cursive;
-    }
-    
-    .legend-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 4px;
-    }
-    
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.75rem;
-    }
-    
-    .allergen-icon { font-size: 0.9rem; }
-    
-    /* Badges compactos para tabela */
+    /* Badges */
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      margin: 1px 3px 1px 0;
-      white-space: nowrap;
-      cursor: help;
+      display: inline-flex; align-items: center; gap: 3px;
+      padding: 2px 5px; border-radius: 3px; font-size: 0.7rem; font-weight: 600;
+      margin: 1px 2px 1px 0; white-space: nowrap;
     }
-    .badge-contem {
-      background: var(--contem-bg);
-      color: var(--contem-text);
-      border: 1px solid var(--contem-border);
-    }
-    .badge-nao-contem {
-      background: var(--nao-contem-bg);
-      color: var(--nao-contem-text);
-      border: 1px solid var(--nao-contem-border);
-    }
-    .badge-pode-conter {
-      background: var(--pode-conter-bg);
-      color: var(--pode-conter-text);
-      border: 1px solid var(--pode-conter-border);
+    .badge-contem { background: var(--contem-bg); color: var(--contem-text); border: 1px solid var(--contem-border); }
+    .badge-nao-contem { background: var(--nao-contem-bg); color: var(--nao-contem-text); border: 1px solid var(--nao-contem-border); }
+    .badge-pode-conter { background: var(--pode-conter-bg); color: var(--pode-conter-text); border: 1px solid var(--pode-conter-border); }
+    
+    /* GRID DE IMPRESSÃO (A MÁGICA DAS 2 COLUNAS) */
+    .print-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+      gap: 15px;
+      align-items: start;
     }
     
-    /* Tabela */
     .table-container {
-      overflow-x: auto;
-      background: white;
-      border-radius: 8px;
+      background: white; border-radius: 8px;
       box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-      margin: 15px 0;
-      border: 1px solid #ddd;
+      border: 1px solid #ddd; overflow: hidden;
     }
     
-    table { 
-      width: 100%; 
-      border-collapse: collapse; 
-      font-size: 0.8rem;
-      table-layout: fixed;
-    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.75rem; table-layout: fixed; }
     
     th { 
-      background: var(--black-bg);
-      color: var(--gold-primary);
-      border: 1px solid #444; 
-      padding: 8px 5px; 
-      text-align: left; 
-      font-weight: 700;
-      font-size: 0.8rem;
-      vertical-align: top;
-      position: relative;
+      background: var(--black-bg); color: var(--gold-primary);
+      border: 1px solid #444; padding: 6px 4px; text-align: left; font-weight: 700; font-size: 0.75rem;
     }
+    .col-contem { background: var(--contem-bg) !important; color: var(--contem-text) !important; }
+    .col-nao-contem { background: var(--nao-contem-bg) !important; color: var(--nao-contem-text) !important; }
+    .col-pode-conter { background: var(--pode-conter-bg) !important; color: var(--pode-conter-text) !important; }
     
-    th[title] { cursor: help; border-bottom: 2px dashed var(--gold-primary); }
-    
-    td { 
-      border: 1px solid #ddd; 
-      padding: 6px 5px; 
-      vertical-align: top;
-      font-size: 0.8rem;
-    }
-    
+    td { border: 1px solid #ddd; padding: 5px 4px; vertical-align: top; font-size: 0.75rem; }
     tr:nth-child(even) { background: #fafafa; }
     
-    /* Larguras das colunas */
-    th:nth-child(1), td:nth-child(1) { width: 18%; font-weight: 600; }
-    th:nth-child(2), td:nth-child(2) { width: 22%; }
-    th:nth-child(3), td:nth-child(3) { width: 17%; }
-    th:nth-child(4), td:nth-child(4) { width: 33%; }
-    th:nth-child(5), td:nth-child(5) { width: 10%; }
+    /* Larguras otimizadas para coluna estreita */
+    th:nth-child(1), td:nth-child(1) { width: 25%; font-weight: 600; }
+    th:nth-child(2), td:nth-child(2) { width: 25%; }
+    th:nth-child(3), td:nth-child(3) { width: 25%; }
+    th:nth-child(4), td:nth-child(4) { width: 25%; }
     
-    /* Cabeçalhos coloridos */
-    .col-contem { background: var(--contem-bg) !important; color: var(--contem-text) !important; border-bottom: 2px solid var(--contem-border); }
-    .col-nao-contem { background: var(--nao-contem-bg) !important; color: var(--nao-contem-text) !important; border-bottom: 2px solid var(--nao-contem-border); }
-    .col-pode-conter { background: var(--pode-conter-bg) !important; color: var(--pode-conter-text) !important; border-bottom: 2px solid var(--pode-conter-border); }
+    .badge-list { display: flex; flex-wrap: wrap; gap: 2px; line-height: 1.2; }
+    .obs-box { font-size: 0.7rem; color: #555; line-height: 1.2; }
+    .obs-box.warning { color: var(--contem-text); font-weight: 600; }
     
-    /* Lista de badges */
-    .badge-list { display: flex; flex-wrap: wrap; gap: 2px; line-height: 1.3; }
-    
-    /* Observações */
-    .obs-box { font-size: 0.75rem; color: #555; line-height: 1.3; }
-    .obs-box.critical { color: var(--contem-text); font-weight: 600; }
-    .obs-box.warning { color: var(--pode-conter-text); }
-    
-    /* Aviso de contaminação */
+    /* Aviso e Footer */
     .warning-box { 
-      background: #fff3cd; 
-      border: 1px solid #ffc107;
-      border-left: 4px solid #ffc107;
-      padding: 12px 15px; 
-      margin: 20px 0;
-      font-size: 0.85rem;
-      border-radius: 0 6px 6px 0;
+      background: #fff3cd; border: 1px solid #ffc107; border-left: 4px solid #ffc107;
+      padding: 10px 12px; margin: 15px 0; font-size: 0.8rem; border-radius: 0 6px 6px 0;
     }
-    .warning-box strong { color: #856404; }
-    
-    /* Footer */
     .footer { 
-      font-size: 0.75rem; 
-      color: #555; 
-      border-top: 2px solid var(--gold-primary); 
-      padding-top: 15px;
-      margin-top: 20px;
-      background: white;
-      padding: 15px 10px;
-      border-radius: 8px 8px 0 0;
-      line-height: 1.4;
+      font-size: 0.7rem; color: #555; border-top: 2px solid var(--gold-primary); 
+      padding-top: 10px; margin-top: 15px; background: white; padding: 12px; border-radius: 8px 8px 0 0;
     }
     
-    .footer .legal { margin-bottom: 8px; }
-    
-    .disclaimer {
-      font-size: 0.7rem;
-      color: #888;
-      text-align: center;
-      margin-top: 10px;
-      font-style: italic;
-    }
-    
-    /* Botão Voltar */
     .back-btn {
-      display: inline-block;
-      background: var(--gold-primary);
-      color: var(--black-bg);
-      padding: 8px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: 700;
-      margin: 15px 0;
-      font-size: 0.9rem;
+      display: inline-block; background: var(--gold-primary); color: var(--black-bg);
+      padding: 8px 20px; border-radius: 20px; text-decoration: none; font-weight: 700;
+      margin-bottom: 15px; font-size: 0.9rem;
     }
-    
-    /* Responsivo */
-    @media screen and (max-width: 1024px) {
-      body { font-size: 10px; }
-      .legend-grid { grid-template-columns: repeat(3, 1fr); }
-      table { font-size: 0.75rem; }
-      th, td { padding: 5px 4px; }
-      .badge { font-size: 0.7rem; padding: 2px 5px; }
-    }
-    
-    @media screen and (max-width: 768px) {
-      .container { padding: 5mm; }
-      .legend-grid { grid-template-columns: repeat(2, 1fr); }
-      .table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      table { min-width: 900px; }
-    }
-    
-    /* Impressão A4 */
+
+    /* ==========================================
+       CONFIGURAÇÕES EXCLUSIVAS DE IMPRESSÃO
+       ========================================== */
     @media print {
-      @page { size: A4; margin: 8mm; }
-      body { background: white; font-size: 10pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .back-btn, .no-print { display: none !important; }
+      @page { size: A4 portrait; margin: 10mm; } /* Mude para 'A3 portrait' se preferir A3 */
+      
+      body { background: white; font-size: 8.5pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .container { max-width: 100%; padding: 0; margin: 0; }
-      .header { background: white !important; color: black !important; border-bottom: 2px solid #000; padding: 10px 0; }
+      .back-btn, .no-print { display: none !important; }
+      
+      .header { background: white !important; color: black !important; border-bottom: 2px solid #000; padding: 5px 0; }
       .header h1 { color: #000 !important; font-size: 16pt; }
-      .header .subtitle { color: #333 !important; }
-      th { background: #f0f0f0 !important; color: #000 !important; border: 1px solid #000 !important; font-size: 9pt; }
-      td { border: 1px solid #000 !important; font-size: 8.5pt; }
-      .badge { border: 1px solid #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .header .subtitle, .header .address { color: #333 !important; }
+      
+      /* Força as duas colunas na impressão */
+      .print-grid { 
+        display: grid !important; 
+        grid-template-columns: 1fr 1fr !important; 
+        gap: 10mm; 
+      }
+      
+      .table-container { box-shadow: none; border: 1px solid #000; break-inside: avoid; }
+      th { background: #f0f0f0 !important; color: #000 !important; border: 1px solid #000 !important; font-size: 8pt; padding: 4px; }
+      td { border: 1px solid #000 !important; font-size: 7.5pt; padding: 4px; }
+      
+      .badge { border: 1px solid #000 !important; font-size: 7pt; padding: 1px 3px; }
       .badge-contem { background: #ffebee !important; color: #b30000 !important; }
       .badge-nao-contem { background: #e8f5e9 !important; color: #2e7d32 !important; }
       .badge-pode-conter { background: #fff3e0 !important; color: #e65100 !important; }
-      .col-contem, .col-nao-contem, .col-pode-conter { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .warning-box { border: 1px solid #000 !important; background: #fff9e6 !important; -webkit-print-color-adjust: exact; }
-      .footer { border-top: 2px solid #000; background: white !important; }
-      tr { page-break-inside: avoid; }
-      .warning-box, .footer { page-break-inside: avoid; }
+      
+      .warning-box { border: 1px solid #000 !important; background: #fff9e6 !important; break-inside: avoid; }
+      .footer { border-top: 2px solid #000; background: white !important; break-inside: avoid; }
+      
+      tr { break-inside: avoid; } /* Evita que um bolo seja cortado entre páginas */
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-
   <a href="index.html" class="back-btn no-print">← Voltar para o Site</a>
 
   <div class="header">
     <h1>🔔 INFORMAÇÃO DE ALÉRGENOS</h1>
     <p class="subtitle"><strong>Casa Mondego</strong> • Bolos Artesanais</p>
     <p class="address">Rua Des. Hugo Simas, 1480 – Loja 5, Bom Retiro, Curitiba/PR</p>
-    <p class="anvisa">Conforme RDC nº 26/2015 e RDC nº 727/2022 da ANVISA</p>
   </div>
 
-  <!-- LEGENDA COM EXPLICAÇÃO -->
   <div class="legend">
-    <h3>📋 Como Ler Esta Tabela</h3>
-    <div style="margin-bottom:10px;font-size:0.8rem">
-      <strong style="color:var(--contem-text)">● CONTÉM</strong>: Ingrediente presente na receita<br>
-      <strong style="color:var(--nao-contem-text)">● NÃO CONTÉM</strong>: Alérgeno comum que NÃO é usado na receita<br>
-      <strong style="color:var(--pode-conter-text)">● PODE CONTER</strong>: Risco de contaminação cruzada na cozinha*
+    <h3>📋 Legenda</h3>
+    <div style="margin-bottom:8px;font-size:0.8rem">
+      <strong style="color:var(--contem-text)">● CONTÉM</strong>: Na receita &nbsp;|&nbsp; 
+      <strong style="color:var(--nao-contem-text)">● NÃO CONTÉM</strong>: Não adicionado &nbsp;|&nbsp; 
+      <strong style="color:var(--pode-conter-text)">● PODE CONTER</strong>: Risco de contaminação cruzada*
     </div>
-    <div style="font-size:0.75rem;color:#666;font-style:italic">
-      *Todos os produtos são manipulados em ambiente que utiliza glúten, leite, ovos, amendoim, soja, castanhas, coco e sulfitos (em frutas secas).
+    <div style="font-size:0.7rem;color:#666;font-style:italic;margin-bottom:8px">
+      *Manipulamos glúten, leite, ovos, amendoim, soja, castanhas, coco e sulfitos na mesma cozinha.
     </div>
-    <div class="legend-grid" style="margin-top:10px">
-      <div class="legend-item"><span class="allergen-icon">🌾</span><span>Cereais c/ glúten</span></div>
-      <div class="legend-item"><span class="allergen-icon">🥛</span><span>Leite/Lactose</span></div>
-      <div class="legend-item"><span class="allergen-icon">🥚</span><span>Ovos</span></div>
-      <div class="legend-item"><span class="allergen-icon">🧀</span><span>Queijo</span></div>
-      <div class="legend-item"><span class="allergen-icon">🥜</span><span>Amendoim</span></div>
-      <div class="legend-item"><span class="allergen-icon">🫘</span><span>Soja</span></div>
-      <div class="legend-item"><span class="allergen-icon">🌰</span><span>Castanhas</span></div>
-      <div class="legend-item"><span class="allergen-icon">🧂</span><span>Sulfitos</span></div>
-      <div class="legend-item"><span class="allergen-icon">🥥</span><span>Coco</span></div>
-      <div class="legend-item"><span class="allergen-icon">🧀</span><span>Deriv. leite</span></div>
-      <div class="legend-item"><span class="allergen-icon">🌿</span><span>Canela</span></div>
-      <div class="legend-item"><span class="allergen-icon">🍯</span><span>Outros</span></div>
+    <div class="legend-grid">
+      <div class="legend-item">🌾 Glúten</div>
+      <div class="legend-item">🥛 Leite</div>
+      <div class="legend-item">🥚 Ovos</div>
+      <div class="legend-item">🥜 Amendoim</div>
+      <div class="legend-item">🫘 Soja</div>
+      <div class="legend-item">🌰 Castanhas</div>
+      <div class="legend-item">🥥 Coco</div>
+      <div class="legend-item">🧂 Sulfitos</div>
     </div>
   </div>
 
-  <!-- TABELA CORRIGIDA -->
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>PRODUTO</th>
-          <th class="col-contem" title="Ingredientes presentes na receita">CONTÉM</th>
-          <th class="col-nao-contem" title="Alérgenos comuns NÃO adicionados na receita">NÃO CONTÉM</th>
-          <th class="col-pode-conter" title="Risco de contaminação cruzada na manipulação">PODE CONTER TRAÇOS</th>
-          <th>OBS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Bolo de Chocolate -->
-        <tr>
-          <td><strong>Bolo de Chocolate</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem" title="Presente na receita">🌾 Glúten</span>
-              <span class="badge badge-contem" title="Presente na receita">🥚 Ovos</span>
-              <span class="badge badge-contem" title="Presente na receita">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem" title="Não adicionado na receita">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem" title="Não adicionado na receita">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem" title="Não adicionado na receita">🥥 Coco</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">🥛 Traços de Leite</span>
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box warning">⚠️ Chocolate em pó pode conter traços de leite</td>
-        </tr>
+  <!-- CONTAINER QUE DIVIDE EM 2 COLUNAS -->
+  <div class="print-grid">
+    
+    <!-- COLUNA 1 (Bolos 1 a 8) -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>PRODUTO</th>
+            <th class="col-contem">CONTÉM</th>
+            <th class="col-nao-contem">NÃO CONTÉM</th>
+            <th class="col-pode-conter">PODE CONTER</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bolo de Chocolate</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">🥛 Leite</span><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Limão Siciliano e Mirtilo</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span><span class="badge badge-nao-contem">🥛 Leite</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Bolo de Laranja</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span><span class="badge badge-nao-contem">🥛 Leite</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Bolo de Milho</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🥛 Leite</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Bolo de Cenoura</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span><span class="badge badge-nao-contem">🥛 Leite</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">🥛 Leite</span><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Bolo de Limão</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span><span class="badge badge-nao-contem">🥛 Leite</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Bolo de Aipim</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🥛 Leite</span><span class="badge badge-contem">🥥 Coco</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Bolo Mesclado</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">🥛 Leite</span><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-        <!-- Limão Siciliano e Mirtilo -->
-        <tr>
-          <td><strong>Limão Siciliano e Mirtilo</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-              <span class="badge badge-nao-contem">🥛 Leite</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-              </div>
-          </td>
-          <td class="obs-box">Frutas</td>
-        </tr>
+    <!-- COLUNA 2 (Bolos 9 a 16) -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>PRODUTO</th>
+            <th class="col-contem">CONTÉM</th>
+            <th class="col-nao-contem">NÃO CONTÉM</th>
+            <th class="col-pode-conter">PODE CONTER</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bolo de Amendoim</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥛 Leite</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🥜 Amendoim</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Bolo de Fubá</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥛 Leite</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Fubá com Coco</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥛 Leite</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🥥 Coco</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Fubá c/ Goiabada</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥛 Leite</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Fubá c/ Laranja</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span><span class="badge badge-nao-contem">🥛 Leite</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Bolo de Banana</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥛 Leite</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Bolo Formigueiro</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥛 Leite</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Lima Pérsia c/ Frutas</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span><span class="badge badge-nao-contem">🥛 Leite</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Laranja Bahia c/ Amora</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span><span class="badge badge-nao-contem">🥛 Leite</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Maçã com Nozes</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🌰 Castanhas</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🥥 Coco</span><span class="badge badge-nao-contem">🥛 Leite</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+          <tr>
+            <td><strong>Maçã com Passas</strong></td>
+            <td><div class="badge-list"><span class="badge badge-contem">🌾 Glúten</span><span class="badge badge-contem">🥚 Ovos</span><span class="badge badge-contem">🧂 Sulfitos</span><span class="badge badge-contem">🫘 Soja</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-nao-contem">🥛 Leite</span><span class="badge badge-nao-contem">🥜 Amendoim</span><span class="badge badge-nao-contem">🌰 Castanhas</span><span class="badge badge-nao-contem">🥥 Coco</span></div></td>
+            <td><div class="badge-list"><span class="badge badge-pode-conter">⚠️ Cont. Cruzada</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div> <!-- Fim do print-grid -->
 
-        <!-- Bolo de Laranja -->
-        <tr>
-          <td><strong>Bolo de Laranja</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-              <span class="badge badge-nao-contem">🥛 Leite</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box">-</td>
-        </tr>
-
-        <!-- Bolo de Milho -->
-        <tr>
-          <td><strong>Bolo de Milho</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🥛 Leite</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box"></td>
-        </tr>
-
-        <!-- Bolo de Cenoura -->
-        <tr>
-          <td><strong>Bolo de Cenoura</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-              <span class="badge badge-nao-contem">🥛 Leite</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">🥛 Leite</span>
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box warning">⚠️ Gotas de chocolate, pode conter traços de leite</td>
-        </tr>
-
-        <!-- Bolo de Limão -->
-        <tr>
-          <td><strong>Bolo de Limão</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-              <span class="badge badge-nao-contem">🥛 Leite</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box">-</td>
-        </tr>
-
-        <!-- Bolo de Aipim -->
-        <tr>
-          <td><strong>Bolo de Aipim</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🥛 Leite</span>
-              <span class="badge badge-contem">🥥 Coco</span>
-              <span class="badge badge-contem">🧀 Queijo</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-                <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box"></td>
-        </tr>
-
-        <!-- Bolo Mesclado (Cenoura & Chocolate) -->
-        <tr>
-          <td><strong>Bolo Mesclado(Cenoura & Chocolate)</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter">🥛 Traços de Leite</span>
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box warning">⚠️ Chocolate em pó pode conter traços de leite</td>
-        </tr>
-        <!-- Bolo de Amendoim -->
-        <tr>
-          <td><strong>Bolo de Amendoim</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥛 Leite</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🥜 Amendoim</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-             <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box critical"></td>
-        </tr>
-
-        <!-- Bolo de Fubá -->
-        <tr>
-          <td><strong>Bolo de Fubá</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥛 Leite</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box">Base fubá+trigo</td>
-        </tr>
-
-        <!-- Fubá com Coco -->
-        <tr>
-          <td><strong>Fubá com Coco</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥛 Leite</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🥥 Coco</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box">Base fubá+trigo</td>
-        </tr>
-
-<!-- Bolo de Fubá com Goiabada-->
-        <tr>
-          <td><strong>Bolo de Fubá com Goiabada</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥛 Leite</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box">Base fubá+trigo / Goiabada</td>
-        </tr>
-        <!-- Bolo de Fubá com Laranja -->
-        <tr>
-          <td><strong>Bolo de Fubá com Laranja</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-              <span class="badge badge-nao-contem">🥛 Leite</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box">Base fubá+trigo</td>
-        </tr>
-
-<!-- Bolo de Banana -->
-        <tr>
-          <td><strong>Bolo de Banana</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥛 Leite</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🌿 Canela</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box"></td>
-        </tr>
-
-<!-- Bolo de Formigueiro -->
-        <tr>
-          <td><strong>Bolo Formigueiro</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥛 Leite</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box">Chocolate Granulado</td>
-        </tr>
-
-<!-- Lima da Pérsia com Frutas Vermelhas -->
-        <tr>
-          <td><strong>Lima da Pérsia com Frutas Vermelhas</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-              <span class="badge badge-nao-contem">🥛 Leite</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box">Frutas</td>
-        </tr>
-
-        <!-- Laranja Bahia com Amora -->
-        <tr>
-          <td><strong>Laranja Bahia c/ Amora</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-              <span class="badge badge-nao-contem">🥛 Leite</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box">Frutas</td>
-        </tr>
-
-        <!-- Maçã com Nozes -->
-        <tr>
-          <td><strong>Maçã com Nozes</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem">🌾 Glúten</span>
-              <span class="badge badge-contem">🥚 Ovos</span>
-              <span class="badge badge-contem">🌰 Castanhas</span>
-              <span class="badge badge-contem">🌿 Canela</span>
-              <span class="badge badge-contem">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem">🥥 Coco</span>
-              <span class="badge badge-nao-contem">🥛 Leite</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box critical">⚠️ Contém nozes</td>
-        </tr>
-
-        <!-- ✅ Maçã com Passas - CORRIGIDO: Sulfitos em CONTÉM -->
-        <tr>
-          <td><strong>Maçã com Passas</strong></td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-contem" title="Presente na receita">🌾 Glúten</span>
-              <span class="badge badge-contem" title="Presente na receita">🥚 Ovos</span>
-              <span class="badge badge-contem" title="Presente na receita">🌿 Canela</span>
-              <span class="badge badge-contem" title="Presente na uva-passa">🧂 Sulfitos</span>
-              <span class="badge badge-contem" title="Presente na uva-passa">🫘 Soja</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-nao-contem" title="Não adicionado na receita">🥛 Leite</span>
-              <span class="badge badge-nao-contem" title="Não adicionado na receita">🥜 Amendoim</span>
-              <span class="badge badge-nao-contem" title="Não adicionado na receita">🌰 Castanhas</span>
-              <span class="badge badge-nao-contem" title="Não adicionado na receita">🥥 Coco</span>
-            </div>
-          </td>
-          <td>
-            <div class="badge-list">
-              <span class="badge badge-pode-conter" title="Manipulado na cozinha">⚠️ Risco Contaminação Cruzada</span>
-            </div>
-          </td>
-          <td class="obs-box warning">⚠️ Contém uva-passa (sulfitos)</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- ✅ AVISO DE CONTAMINAÇÃO CRUZADA - CORRIGIDO -->
   <div class="warning-box">
-    <strong>⚠️ AVISO IMPORTANTE:</strong> 
-    Todos os produtos são preparados em cozinha que manipula 
-    <span style="color:#b30000; font-weight:bold;">🌾 glúten, 🥛 leite, 🥚 ovos, 🥜 amendoim, 🫘 soja, 🌰 castanhas, 🥥 coco e 🧂 sulfitos</span> (presentes em frutas secas como uva-passa). 
-    Embora adotemos boas práticas de fabricação, <strong>não podemos garantir ausência total de traços</strong>. 
-    Em caso de alergia grave, consulte nossa equipe antes de consumir.
+    <strong>⚠️ AVISO IMPORTANTE:</strong> Todos os produtos são preparados em cozinha que manipula 
+    <span style="color:#b30000; font-weight:bold;">🌾 glúten, 🥛 leite, 🥚 ovos, 🥜 amendoim, 🫘 soja, 🌰 castanhas, 🥥 coco e 🧂 sulfitos</span>. 
+    Embora adotemos boas práticas, <strong>não podemos garantir ausência total de traços</strong>. Em caso de alergia grave, consulte nossa equipe.
   </div>
 
-  <!-- FOOTER -->
   <div class="footer">
-    <div class="legal">
-      <strong>Base Legal:</strong> RDC nº 26/2015 e RDC nº 727/2022 da ANVISA. 
-      Declaração obrigatória de alérgenos em alimentos.
-    </div>
-    <div class="legal">
-      <strong>Legenda:</strong> 
-      <span style="color:var(--contem-text);font-weight:600">CONTÉM</span> = Ingrediente da receita / 
-      <span style="color:var(--nao-contem-text);font-weight:600">NÃO CONTÉM</span> = Não adicionado / 
-      <span style="color:var(--pode-conter-text);font-weight:600">PODE CONTER</span> = Risco de contaminação cruzada
-    </div>
-    <div class="legal">
-      <strong>Atualização:</strong> <span id="updateDate"></span> • 
-      Dúvidas: <a href="https://wa.me/5541991755009" style="color:var(--gold-primary);">(41) 99175-5009</a>
-    </div>
+    <div><strong>Base Legal:</strong> RDC nº 26/2015 e RDC nº 727/2022 da ANVISA. Declaração obrigatória de alérgenos.</div>
+    <div style="margin-top:5px;"><strong>Atualização:</strong> <span id="updateDate"></span> • Dúvidas: <a href="https://wa.me/5541991755009" style="color:var(--gold-primary); text-decoration:none;">(41) 99175-5009</a></div>
   </div>
-
-  <p class="disclaimer no-print">
-    ℹ️ Documento informativo. Consulte nossa equipe para casos de alergia grave.
-  </p>
 
 </div>
 
 <script>
-  document.getElementById('updateDate').textContent = new Date().toLocaleDateString('pt-BR', {
-    year: 'numeric', month: 'long', day: 'numeric'
-  });
+  document.getElementById('updateDate').textContent = new Date().toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
 </script>
 
 </body>
